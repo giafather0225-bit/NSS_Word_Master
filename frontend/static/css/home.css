@@ -281,7 +281,28 @@
    CENTER COLUMN — Header + 6-card grid + Weekly strip
    ════════════════════════════════════════════════════════ */
 
-.header-bar { padding: 4px 4px 0; }
+.header-bar {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 4px 4px 0;
+}
+
+.hb-left {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.hb-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+    padding-bottom: 2px;
+}
 
 .hb-label {
     font-size: 11px;
@@ -579,9 +600,7 @@
    ════════════════════════════════════════════════════════ */
 
 .top-right-menu {
-    position: absolute;
-    top: 14px;
-    right: 14px;
+    position: relative;
     z-index: 50;
 }
 

@@ -119,7 +119,9 @@ def shop_buy(body: BuyBody, db: Session = Depends(get_db)):
     if item is None or not item.is_active:
         raise HTTPException(404, "Item not found.")
 
-    if item.category == "decoration":
+    test_mode = cfg(db, "test_mode") == "true"
+
+    if item.category == "decoration" and not test_mode:
         if body.quantity != 1:
             raise HTTPException(400, "Decorations can only be bought one at a time.")
         existing_inv = db.query(IslandInventory).filter_by(
@@ -133,8 +135,6 @@ def shop_buy(body: BuyBody, db: Session = Depends(get_db)):
         ).first()
         if existing_placed:
             raise HTTPException(400, f"You already placed '{item.name}' in your island.")
-
-    test_mode = cfg(db, "test_mode") == "true"
     total_cost = item.price * body.quantity
     if not test_mode:
         try:

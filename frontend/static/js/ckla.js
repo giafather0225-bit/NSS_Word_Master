@@ -169,13 +169,13 @@ function _renderDomains(domains, rank, completionPct) {
         </div>
       `).join('')}
     </div>
-    ${allComplete ? `
+    ${(allComplete || (typeof isTestMode === 'function' && isTestMode())) ? `
       <div class="ckla-final-test-row" id="ckla-final-test-row">
         <div class="ckla-loading" style="font-size:.82rem">Checking final test status…</div>
       </div>` : ''}`;
 
   if (typeof lucide !== 'undefined') lucide.createIcons();
-  if (allComplete) _loadFinalTestRow();
+  if (allComplete || (typeof isTestMode === 'function' && isTestMode())) _loadFinalTestRow();
 }
 
 /** Load + render the Grade Final Test call-to-action row. @tag ACADEMY CKLA */

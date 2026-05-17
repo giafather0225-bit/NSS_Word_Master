@@ -115,6 +115,9 @@ def get_domains(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)
     order_cfg = db.query(AppConfig).filter_by(key=_CFG_DOMAIN_ORDER_FIXED).first()
     order_fixed = order_cfg and order_cfg.value == "true"
 
+    test_mode_cfg = db.query(AppConfig).filter_by(key="test_mode").first()
+    test_mode = test_mode_cfg and test_mode_cfg.value == "true"
+
     all_complete_by_num: dict[int, bool] = {}
     for d in domains:
         ids = all_lesson_ids_by_domain[d.id]
@@ -129,7 +132,8 @@ def get_domains(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)
 
         prev_num = d.domain_num - 1
         locked = (
-            order_fixed
+            not test_mode
+            and order_fixed
             and prev_num in all_complete_by_num
             and not all_complete_by_num[prev_num]
         )

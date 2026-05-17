@@ -216,7 +216,7 @@ def validate_evolution(
 
 # @tag ISLAND
 def execute_evolution(
-    db: Session, character_progress_id: int, stone_type: str
+    db: Session, character_progress_id: int, stone_type: str, test_mode: bool = False
 ) -> dict:
     """
     Execute evolution after passing validation.
@@ -238,8 +238,18 @@ def execute_evolution(
             "boost_subject": str,
         }
     """
-    result = validate_evolution(db, character_progress_id, stone_type)
-    next_stage = result["next_stage"]
+    if test_mode:
+        # In test mode, skip stone inventory check — just determine next stage directly.
+        prog_check = db.get(IslandCharacterProgress, character_progress_id)
+        if prog_check is None:
+            raise EvolutionError("Character progress not found.")
+        try:
+            next_stage = _NEXT_STAGE[(prog_check.stage or "baby", stone_type)]
+        except KeyError:
+            raise EvolutionError(f"Invalid stage/stone combination: {prog_check.stage}/{stone_type}")
+    else:
+        result = validate_evolution(db, character_progress_id, stone_type)
+        next_stage = result["next_stage"]
 
     prog = db.get(IslandCharacterProgress, character_progress_id)
     char = db.get(IslandCharacter, prog.character_id)
@@ -247,13 +257,14 @@ def execute_evolution(
     previous_stage = prog.stage
     prog.stage = next_stage
 
-    # Consume stone from inventory.
-    # Re-query after validate_evolution; if another request consumed it, raise early.
-    inv_row = _get_inventory_stone(db, stone_type)
-    if inv_row is None:
-        raise EvolutionError(f"Evolution stone '{stone_type}' was consumed by another request.")
-    inv_row.quantity -= 1
-    inv_row.used_on_character_progress_id = character_progress_id
+    if not test_mode:
+        # Consume stone from inventory.
+        # Re-query after validate_evolution; if another request consumed it, raise early.
+        inv_row = _get_inventory_stone(db, stone_type)
+        if inv_row is None:
+            raise EvolutionError(f"Evolution stone '{stone_type}' was consumed by another request.")
+        inv_row.quantity -= 1
+        inv_row.used_on_character_progress_id = character_progress_id
 
     # Handle completion.
     is_completed = next_stage in _FINAL_STAGES

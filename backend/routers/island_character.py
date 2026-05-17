@@ -111,6 +111,8 @@ def character_completed(db: Session = Depends(get_db)):
 @router.get("/character/silhouette")
 def character_silhouette(db: Session = Depends(get_db)):
     """Return all characters with adoptable/silhouette/locked status."""
+    test_mode = cfg(db, "test_mode") == "true"
+
     chars = db.query(IslandCharacter).order_by(
         IslandCharacter.zone, IslandCharacter.order_index).all()
 
@@ -140,11 +142,15 @@ def character_silhouette(db: Session = Depends(get_db)):
         )
         zone_unlocked = zone_unlocked_map.get(char.zone, False)
         not_active = char.id not in active_char_ids
+        # In test mode, all zones/prereqs are considered unlocked.
+        effective_zone_unlocked = True if test_mode else zone_unlocked
+        effective_prereq = True if test_mode else has_prereq
+        effective_available = True if test_mode else char.is_available
         result.append({
             "character_id": char.id, "name": char.name, "zone": char.zone,
             "order_index": char.order_index, "is_available": char.is_available,
-            "zone_unlocked": zone_unlocked, "prereq_met": has_prereq,
-            "adoptable": char.is_available and zone_unlocked and has_prereq and not_active,
+            "zone_unlocked": effective_zone_unlocked, "prereq_met": effective_prereq,
+            "adoptable": effective_available and effective_zone_unlocked and effective_prereq and not_active,
             "already_active": not not_active,
             "images": char.images or "{}",
             "lumi_production": char.lumi_production or 0,
@@ -204,8 +210,9 @@ def character_evolve(body: EvolveBranchBody, db: Session = Depends(get_db)):
         stone = "first_a" if stage == "baby" and branch == "a" else \
                 "first_b" if stage == "baby" and branch == "b" else \
                 "second"
+    test_mode = cfg(db, "test_mode") == "true"
     try:
-        result = svc.execute_evolution(db, body.character_progress_id, stone)
+        result = svc.execute_evolution(db, body.character_progress_id, stone, test_mode=test_mode)
 
         # ── Legend zone unlock: all 4 main zones need ≥1 first-evolution char ──
         new_stage = result.get("new_stage", "")

@@ -175,6 +175,10 @@ def get_grade_final_test(grade: int = Query(3, ge=3, le=8), db: Session = Depend
 # @tag ACADEMY CKLA
 def get_grade_final_test_status(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)):
     """Check if grade final test is locked (24h cooldown after a failed attempt)."""
+    test_mode_cfg = db.query(AppConfig).filter_by(key="test_mode").first()
+    if test_mode_cfg and test_mode_cfg.value == "true":
+        return {"locked": False, "retry_after": None}
+
     cooldown_key = f"ckla_final_test_last_fail_grade_{grade}"
     row = db.query(AppConfig).filter_by(key=cooldown_key).first()
     if row and row.value:

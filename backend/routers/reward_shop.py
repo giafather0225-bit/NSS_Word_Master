@@ -179,30 +179,36 @@ def shop_buy(body: BuyIn, db: Session = Depends(get_db)):
     # one BEGIN IMMEDIATE transaction. Double-click during network lag can't
     # double-spend, and a mid-op failure won't leave XP deducted without a
     # corresponding reward row.
+    test_mode = db.query(AppConfig).filter(AppConfig.key == "test_mode").first()
+    is_test = test_mode and test_mode.value == "true"
+
     from sqlalchemy import text
     if db.in_transaction():
         db.rollback()
     db.execute(text("BEGIN IMMEDIATE"))
     try:
-        current_xp = xp_engine.get_total_xp(db)
-        if current_xp < price:
-            db.rollback()
-            raise HTTPException(status_code=400, detail="Not enough XP")
-
         now_iso = datetime.now().isoformat()
         today   = datetime.now().date().isoformat()
-        # Import XPLog locally to avoid circular import at module top.
-        from backend.models import XPLog
-        db.add(XPLog(
-            action="shop_purchase",
-            xp_amount=-price,
-            detail=item.name,
-            earned_date=today,
-            created_at=now_iso,
-        ))
+
+        if not is_test:
+            current_xp = xp_engine.get_total_xp(db)
+            if current_xp < price:
+                db.rollback()
+                raise HTTPException(status_code=400, detail="Not enough XP")
+
+            # Import XPLog locally to avoid circular import at module top.
+            from backend.models import XPLog
+            db.add(XPLog(
+                action="shop_purchase",
+                xp_amount=-price,
+                detail=item.name,
+                earned_date=today,
+                created_at=now_iso,
+            ))
+
         pr = PurchasedReward(
             reward_item_id=item.id,
-            xp_spent=price,
+            xp_spent=price if not is_test else 0,
             is_used=False,
             purchased_at=now_iso,
             used_at=None,
