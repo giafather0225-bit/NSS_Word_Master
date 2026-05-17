@@ -11,19 +11,31 @@ cd "$SCRIPT_DIR"
 echo "=== GIA Learning App — Update ==="
 echo ""
 
-# 1. Pull latest from GitHub
-echo "[1/3] Downloading latest version..."
+# 1. Discard locally rebuilt bundles (server startup regenerates these,
+#    which would block git pull with "local changes" errors)
+echo "[1/4] Resetting auto-generated files..."
+git checkout -- \
+  frontend/static/js/bundle-a.min.js \
+  frontend/static/js/bundle-b.min.js \
+  frontend/static/js/bundle-c.min.js \
+  frontend/templates/child.html \
+  2>/dev/null || true
+echo "      Done."
+echo ""
+
+# 2. Pull latest from GitHub
+echo "[2/4] Downloading latest version..."
 git pull origin main
 echo ""
 
-# 2. Install / sync Python packages
-echo "[2/3] Updating packages..."
+# 3. Install / sync Python packages
+echo "[3/4] Updating packages..."
 python3 -m pip install -q --upgrade pip
-    python3 -m pip install -q -r requirements.txt
+python3 -m pip install -q -r requirements.txt
 echo "      Packages up to date."
 echo ""
 
-# 3. Copy .env if missing
+# 4. Copy .env if missing
 if [ ! -f ".env" ]; then
   if [ -f ".env.example" ]; then
     cp .env.example .env
@@ -32,7 +44,7 @@ if [ ! -f ".env" ]; then
   fi
 fi
 
-echo "[3/3] Done."
+echo "[4/4] Done."
 echo ""
 echo "Starting server at http://localhost:8000 ..."
 echo "(Press Ctrl+C to stop)"
