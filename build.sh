@@ -63,6 +63,8 @@ cat \
   $JS/daily-words.js \
   $JS/daily-words-weekly.js \
   $JS/ckla.js \
+  $JS/ckla-grade-test.js \
+  $JS/ckla-domain-test.js \
   $JS/ckla-lesson.js \
   $JS/ckla-lesson-reading.js \
   $JS/ckla-lesson-vocab.js \
