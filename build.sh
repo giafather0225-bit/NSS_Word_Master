@@ -1,12 +1,44 @@
 #!/bin/bash
 # build.sh — Bundle and minify deferred JS into 3 files
 # Run: bash build.sh
+#
+# Safety:
+#   • If npx (node) is not installed, this script exits cleanly without
+#     touching any existing bundle file — so daughter Mac (no node) keeps
+#     using the bundles that came via `git pull`.
+#   • Each esbuild invocation writes to a temp file then atomically moves
+#     it into place, so a failed build never produces a half-written or
+#     empty bundle.
 set -e
+set -o pipefail
 cd "$(dirname "$0")"
 JS=frontend/static/js
 OUT=$JS
 
+# ─── Pre-flight: skip cleanly if node/npx is missing ────────
+if ! command -v npx >/dev/null 2>&1; then
+  echo "build.sh: npx not found — keeping existing bundles (skip)."
+  exit 0
+fi
+
 echo "Building JS bundles..."
+
+# Helper: pipe stdin → minified output via tempfile, atomic move on success.
+emit() {
+  local out="$1"
+  local tmp
+  tmp=$(mktemp "${out}.XXXXXX")
+  # If esbuild fails the trap below removes the tempfile and propagates the
+  # error to set -e; the destination is untouched.
+  trap 'rm -f "$tmp"' RETURN
+  if npx esbuild --minify --legal-comments=none --loader=js > "$tmp"; then
+    mv "$tmp" "$out"
+    echo "  $(basename "$out") done ($(wc -c < "$out" | tr -d ' ') bytes)"
+  else
+    echo "  $(basename "$out") FAILED — leaving previous bundle intact"
+    return 1
+  fi
+}
 
 # Bundle A: feature modules (pre-katex)
 cat \
@@ -86,8 +118,7 @@ cat \
   $JS/review.js \
   $JS/review-hub.js \
   $JS/math-spaced-review.js \
-  | npx esbuild --minify --legal-comments=none --loader=js > $OUT/bundle-a.min.js
-echo "  bundle-a.min.js done ($(wc -c < $OUT/bundle-a.min.js) bytes)"
+  | emit $OUT/bundle-a.min.js
 
 # Bundle B: math modules (post-katex — depends on katex CDN)
 cat \
@@ -118,8 +149,7 @@ cat \
   $JS/math-kangaroo-result.js \
   $JS/math-glossary.js \
   $JS/math-navigation.js \
-  | npx esbuild --minify --legal-comments=none --loader=js > $OUT/bundle-b.min.js
-echo "  bundle-b.min.js done ($(wc -c < $OUT/bundle-b.min.js) bytes)"
+  | emit $OUT/bundle-b.min.js
 
 # Bundle C: word-manager + arcade
 cat \
@@ -135,8 +165,7 @@ cat \
   $JS/arcade-make24.js \
   $JS/arcade-word-builder.js \
   $JS/arcade-memory-match.js \
-  | npx esbuild --minify --legal-comments=none --loader=js > $OUT/bundle-c.min.js
-echo "  bundle-c.min.js done ($(wc -c < $OUT/bundle-c.min.js) bytes)"
+  | emit $OUT/bundle-c.min.js
 
 # ─── Cache-bust child.html ──────────────────────────────────────────────
 # Compute a single build hash from the freshly built bundles + every CSS
