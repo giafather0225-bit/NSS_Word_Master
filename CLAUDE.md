@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-16 — 라우터 52개(파일 57개) · JS 95개 · CSS 65개 · 서비스 18개 · CKLA 4파일 · Island 5파일 분리 · Island CSS hex→변수 완료 · mockups 삭제 완료
+> Last updated: 2026-05-17 — 라우터 56개(파일 61개) · JS 109개 · CSS 65개 · 서비스 17개 · 마이그레이션 63개 (최신: 058) · home.js/parent-panel.js/math_kangaroo.py 분리 · CSS hex 위반 0건
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -548,7 +548,7 @@ Cache busters in `child.html` are auto-managed by `build.sh` — every run rewri
 | My Problems | 오답 관리 | ✅ 유지 |
 | Placement Test | 진단/기록 | ✅ 유지 |
 | Glossary | 용어집 | ✅ 유지 |
-| Kangaroo | 별개 독립 모듈 | ⛔ 절대 건드리지 말 것 |
+| Kangaroo | 별개 독립 모듈 | ✅ 수정 가능 (Academy와 독립 유지) |
 
 ---
 
@@ -676,11 +676,12 @@ pre_test (5문항, 진단+뇌 준비, 점수 미표시)
 - `math-unit-test.js` ✅
 - `math-lesson-complete.js` ✅
 
-**절대 건드리지 말 것 (Kangaroo — 독립 모듈)**:
+**Kangaroo — 독립 모듈 (수정 가능)**:
 - `math-kangaroo.js` (및 관련 kangaroo JS 파일 전체)
 - `math-kangaroo.css`
 - `templates/math_kangaroo.html`
 - kangaroo 관련 DB 테이블 전체
+- Academy와 코드/DB/UI 독립 유지 필수
 
 ---
 
@@ -695,7 +696,7 @@ pre_test (5문항, 진단+뇌 준비, 점수 미표시)
 ### 주의사항
 - `MATH_SPEC.md` v2.0이 모든 설계 결정의 최종 기준
 - 스펙에 없는 기능 임의 추가 금지
-- Kangaroo 모듈은 Academy와 완전히 별개, 절대 건드리지 말 것
+- Kangaroo 모듈은 Academy와 완전히 별개 — 수정 가능하되 Academy 코드와 교차 의존 금지
 - 구현 중 스펙 불명확 시 `MATH_SPEC.md` 섹션 번호 명시 후 질문
 
 ---
@@ -1266,7 +1267,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 ---
 
-## Codebase Health Snapshot (2026-05-16 풀 스캔 기준)
+## Codebase Health Snapshot (2026-05-17 풀 스캔 기준)
 
 > 이 섹션은 실제 파일시스템과 grep 결과로 생성된 검증된 수치다. 추정치 없음.
 
@@ -1274,14 +1275,14 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 | 항목 | 수치 | 검증 방법 |
 |------|------|----------|
-| 등록된 FastAPI 라우터 | 52 | `grep -c "app.include_router" backend/main.py` |
-| routers/ 파일 수 | 57 | `ls backend/routers/*.py` (files_common.py 미등록) |
-| JS 소스 파일 | 95 | `ls frontend/static/js/*.js \| grep -v bundle` |
+| 등록된 FastAPI 라우터 | 56 | `grep -c "app.include_router" backend/main.py` |
+| routers/ 파일 수 | 61 | `ls backend/routers/*.py` (5개 유틸: _ckla_common, _island_common, _math_academy_common, files_common, math_kangaroo_helpers) |
+| JS 소스 파일 | 109 | `ls frontend/static/js/*.js \| grep -v bundle` |
 | CSS 파일 | 65 | `ls frontend/static/css/*.css` |
 | Island JSX 컴포넌트 | 17 | `ls frontend/src/island/*.jsx` |
-| 마이그레이션 파일 | 61 | `ls backend/migrations/[0-9]*.py` (번호 001~056, 중복 5쌍) |
-| ORM 모델 파일 | 13 | `ls backend/models/*.py` (\_base 제외) |
-| 서비스 파일 | 18 | `ls backend/services/*.py` |
+| 마이그레이션 파일 | 63 | `ls backend/migrations/[0-9]*.py` (최신: 058) |
+| ORM 모델 파일 | 11 | `ls backend/models/*.py` (\_base, \_\_init\_\_ 제외) |
+| 서비스 파일 | 17 | `ls backend/services/*.py` |
 | Island 라우터 파일 수 | 5 | island.py + island_{character,dev,legend,shop}.py |
 | `__all__` 내보낸 클래스 | 61 | `backend/models/__init__.py` |
 
@@ -1302,8 +1303,11 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 | # | 파일 | 문제 | 심각도 |
 |---|------|------|--------|
 | ~~4~~ | ~~Island CSS 4개 파일~~ | ~~Work Principle #3 위반: hex 컬러 직접 사용~~ → **✅ 완료 (commit 0aaa0c0)** — 모든 hex → CSS 변수 마이그레이션, island-specific 토큰을 `theme.css`에 추가 | ✅ 해결됨 |
-| 5 | `backend/migrations/` | 061 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전하지만 관리 복잡도 증가 | 낮음 (시스템적으로 안전) |
+| 5 | `backend/migrations/` | 063 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전. 057부터는 단순 증가 (058이 최신) | 낮음 (시스템적으로 안전) |
 | 6 | `models/gamification.py` | `Reward` 클래스가 legacy로 남아 있음 (`rewards` 테이블 back-compat) — 실제 사용 여부 불명 | 낮음 |
+| 10 | 500줄 초과 JS 10개 | `core.js` 803·`child.js` 684·`navigation.js` 674·`arcade-word-invaders.js` 647·`word-manager.js` 603·`review-hub.js` 594·`parent-ingest.js` 582·`arcade-crossword.js` 578·`finaltest.js` 529·`ckla.js` 503. parent-ingest/finaltest는 IIFE 캡슐화로 분리 ROI 낮음. core.js는 의존성 광범위로 고위험 | 중간 |
+| 11 | 500줄 초과 Python 2개 | `services/xp_engine.py` 530·`routers/files_voca.py` 504 — 경계 수준 | 낮음 |
+| ~~12~~ | ~~컴포넌트 CSS hex 직접 사용 (13건)~~ | ~~`color: #fff` 5건 + 그라데이션 끝점 8건~~ → **✅ 완료 (2026-05-17)** — 모두 `var(--text-on-primary)` / `var(--bg-card)`로 교체. 남은 hex는 fallback 또는 arcade 캔버스 면제 | ✅ 해결됨 |
 
 #### P3 — 관찰 사항
 
@@ -1335,7 +1339,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 ---
 
-## Learning Data Validation Status (2026-05-16 기준)
+## Learning Data Validation Status (2026-05-17 기준)
 
 ### DUX Voca_8000
 
