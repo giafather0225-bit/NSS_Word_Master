@@ -8,6 +8,14 @@
 // Current view state
 let currentView = 'home'; // 'home' | 'english' | 'math' | 'diary'
 
+// Compatibility shim — bare openIsland() calls (source in minified third-party
+// or service-worker cached chunk) redirect to the real entry point.
+if (typeof window.openIsland === 'undefined') {
+    window.openIsland = function () {
+        if (typeof openIslandMain === 'function') openIslandMain();
+    };
+}
+
 // Cached review counts — set by renderTodayTasks, used by renderSectionCards
 let _mathReviewDue = 0;
 let _englishReviewDue = 0;
