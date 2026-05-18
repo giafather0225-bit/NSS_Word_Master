@@ -763,7 +763,7 @@ function _renderHomePetsEmpty() {
             ).join('')}
             <span class="ih-empty-hint">Adopt your first character</span>
         </div>`;
-    if (window.lucide) lucide.createIcons({ el: host });
+    if (window.lucide) lucide.createIcons();
 }
 
 /** Render character PNG slots into #island-home-pets. @tag HOME_DASHBOARD */

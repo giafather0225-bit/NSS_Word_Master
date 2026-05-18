@@ -411,6 +411,7 @@ def care_status(character_progress_id: int, db: Session = Depends(get_db)):
             "is_completed": prog.is_completed,
             "consecutive_days": legend_prog.consecutive_days if legend_prog else 0,
             "images": char.images or "{}",
+            "zone": char.zone if char else "",
         },
     }
 

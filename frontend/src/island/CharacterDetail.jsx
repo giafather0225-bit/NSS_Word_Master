@@ -75,7 +75,7 @@ function _cdRenderError(el) {
 /** Return <img> for current stage, fallback to zone Lucide icon. @tag SHOP */
 function _cdCharImg(prog) {
     const stage   = prog.stage || 'baby';
-    const icon    = (window._ZONE_META?.[_cdZone] || {}).lucideIcon || 'heart';
+    const icon    = (_ZONE_META?.[_cdZone] || {}).lucideIcon || 'heart';
     let imgs = {};
     try { imgs = JSON.parse(prog.images || '{}'); } catch (_) {}
     const rel = imgs[stage] || imgs['baby'];
@@ -91,7 +91,7 @@ function _cdCharImg(prog) {
 function _cdRender(el) {
     const d    = _cdData;
     const prog = d?.progress || {};
-    const meta = window._ZONE_META?.[_cdZone] || {};
+    const meta = _ZONE_META?.[_cdZone] || {};
 
     const name   = escapeHtml((prog.nickname || prog.character_name || 'Character').substring(0, 16));
     const stage  = escapeHtml(prog.stage || 'baby');

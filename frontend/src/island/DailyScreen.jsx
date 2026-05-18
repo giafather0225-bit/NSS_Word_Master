@@ -57,7 +57,7 @@ function _idlRender() {
         return;
     }
 
-    const streak = d.streak?.current_streak ?? 0;
+    const streak = d.streak ?? 0;
     const tabs = ['attendance', 'missions', 'weekly'];
     const tabHTML = tabs.map(t => `
         <button class="idl-tab ${_idlTab === t ? 'idl-tab--active' : ''}" onclick="_idlSwitchTab('${t}')">
