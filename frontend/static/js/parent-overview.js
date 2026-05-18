@@ -161,8 +161,8 @@ function _ppHomeWeekCalendar(thisWeek, sum) {
 function _ppHomeVsLastWeek(thisWeek, lastWeek) {
     const sum7 = (arr, key) => arr.reduce((a, d) => a + (d[key] || 0), 0);
 
-    const thisWords = sum7(thisWeek, "words_correct");
-    const lastWords = sum7(lastWeek, "words_correct");
+    const thisWords = sum7(thisWeek, "words");
+    const lastWords = sum7(lastWeek, "words");
     const thisXP    = sum7(thisWeek, "xp");
     const lastXP    = sum7(lastWeek, "xp");
     const thisDays  = thisWeek.filter(d => (d.sessions || 0) > 0).length;
