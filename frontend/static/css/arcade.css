@@ -437,10 +437,12 @@
 .dm-card--correct {
   border-color: var(--color-success);
   background: var(--color-success-light);
+  animation: arcade-hit-flash 0.45s ease forwards;
 }
 .dm-card--wrong {
   border-color: var(--color-error);
   background: var(--color-error-light);
+  animation: arcade-miss-shake 0.4s ease forwards;
 }
 .dm-word {
   font-size: 36px;
@@ -625,6 +627,26 @@
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-6px); }
   75% { transform: translateX(6px); }
+}
+
+/* ── Shared correct / wrong flash utilities (usable by all games) ─ */
+.arcade-hit {
+  animation: arcade-hit-flash 0.4s ease forwards;
+}
+.arcade-miss {
+  animation: arcade-miss-shake 0.35s ease forwards;
+}
+@keyframes arcade-hit-flash {
+  0%   { outline: 2px solid transparent; background-color: inherit; }
+  30%  { outline: 3px solid var(--color-success); background-color: var(--color-success-light); transform: scale(1.04); }
+  100% { outline: 2px solid transparent; background-color: inherit; transform: scale(1); }
+}
+@keyframes arcade-miss-shake {
+  0%, 100% { transform: translateX(0); background-color: inherit; }
+  20%  { transform: translateX(-7px); background-color: var(--color-error-light); }
+  40%  { transform: translateX( 7px); }
+  60%  { transform: translateX(-4px); }
+  80%  { transform: translateX( 4px); }
 }
 
 .combo-burst {
