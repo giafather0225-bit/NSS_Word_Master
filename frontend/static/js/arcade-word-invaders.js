@@ -130,6 +130,7 @@ async function wiStart(level = 'normal') {
       </div>
       <div class="wi-canvas-wrap">
         <canvas id="wi-canvas"></canvas>
+        <div id="wi-powerup-flash" class="wi-powerup-flash"></div>
         <div class="wi-input-wrap">
           <input type="text" id="wi-input" class="wi-input" autocomplete="off"
                  autocapitalize="off" spellcheck="false"
@@ -341,6 +342,12 @@ function _wiActivatePowerup(type, x, y) {
   const cfg = WI_POWERUPS[type];
   _wiBurst(x, y, cfg.color);
   if (typeof sfxCombo === 'function') sfxCombo();
+  const fl = document.getElementById('wi-powerup-flash');
+  if (fl) {
+    fl.className = 'wi-powerup-flash';
+    void fl.offsetWidth;
+    fl.classList.add(`wi-powerup-flash--${type}`);
+  }
   if (type === 'ice') {
     _wi.slowUntil = performance.now() + WI_CFG.slowDurationMs;
   } else if (type === 'bomb') {
