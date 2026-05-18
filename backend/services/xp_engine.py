@@ -1,8 +1,10 @@
 """
 services/xp_engine.py — XP calculation and award logic
 Section: System
-Dependencies: models.py (XPLog, WordReview)
+Dependencies: models.py (XPLog, WordReview), services/xp_lumi_bridge.py
 API: called by routers/xp.py
+
+Lumi / Island-boost helpers live in xp_lumi_bridge.py (extracted 2026-05-18).
 """
 from typing import Optional
 
@@ -11,6 +13,12 @@ import time
 from datetime import datetime, date
 from sqlalchemy.orm import Session
 from backend.models import XPLog, WordReview, AppConfig
+from backend.services.xp_lumi_bridge import (
+    apply_boost as _apply_boost,
+    award_lumi_for_action as _award_lumi_for_action,
+    infer_source as _infer_source,
+    invalidate_lumi_cache,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -28,141 +36,15 @@ _ARCADE_CAP_TTL  = 30.0
 _arcade_cap_cache: Optional[int] = None
 _arcade_cap_at:    float      = 0.0
 
-_LUMI_RULES_TTL  = 30.0
-_lumi_rules_cache: Optional[dict[str, int]] = None
-_lumi_rules_at:    float               = 0.0
-
-_BOOST_TTL  = 30.0
-_boost_cache: Optional[dict[str, float]] = None
-_boost_at:    float                   = 0.0
-
 
 def invalidate_xp_cache() -> None:
     """Drop cached XP rules, arcade cap, lumi rules, and boost (call from Settings PUT endpoints)."""
     global _xp_rules_cache, _xp_rules_at, _arcade_cap_cache, _arcade_cap_at
-    global _lumi_rules_cache, _lumi_rules_at, _boost_cache, _boost_at
-    _xp_rules_cache  = None
-    _xp_rules_at     = 0.0
+    _xp_rules_cache   = None
+    _xp_rules_at      = 0.0
     _arcade_cap_cache = None
     _arcade_cap_at    = 0.0
-    _lumi_rules_cache = None
-    _lumi_rules_at    = 0.0
-    _boost_cache      = None
-    _boost_at         = 0.0
-
-# XP awarded per action — defaults. Parent can override via app_config
-# keys of the form `xp_rule_<action>`. See get_xp_rules().
-# Lumi awarded per XP action — config key → (app_config_key, earn_source)
-_LUMI_ACTION_MAP: dict[str, tuple[str, str]] = {
-    "stage_complete":       ("lumi_rule_english_stage", "english_stage"),
-    "final_test_pass":      ("lumi_rule_english_final", "english_final_test"),
-    "math_lesson_complete": ("lumi_rule_math_lesson",   "math_lesson"),
-    "math_unit_test_pass":  ("lumi_rule_math_unit",     "math_unit_test"),
-    "journal_complete":     ("lumi_rule_diary",          "diary"),
-    "review_complete":      ("lumi_rule_review",         "review"),
-}
-_LUMI_DEFAULTS: dict[str, int] = {
-    "lumi_rule_english_stage": 3,
-    "lumi_rule_english_final": 15,
-    "lumi_rule_math_lesson":   10,
-    "lumi_rule_math_unit":     20,
-    "lumi_rule_diary":          8,
-    "lumi_rule_review":         5,
-    "lumi_rule_streak":         5,
-}
-
-
-def _get_lumi_rules(db: Session) -> dict[str, int]:
-    """Return all lumi_rule_* AppConfig values, cached for _LUMI_RULES_TTL seconds.
-
-    Falls back to _LUMI_DEFAULTS for any key not present in app_config.
-    Cache is invalidated by invalidate_xp_cache() (called from parent Settings PUT).
-    """
-    global _lumi_rules_cache, _lumi_rules_at
-    if _lumi_rules_cache is not None and time.monotonic() - _lumi_rules_at < _LUMI_RULES_TTL:
-        return _lumi_rules_cache
-    rows = (
-        db.query(AppConfig)
-        .filter(AppConfig.key.like("lumi_rule_%"))
-        .all()
-    )
-    merged = dict(_LUMI_DEFAULTS)
-    for row in rows:
-        try:
-            merged[row.key] = max(0, int(row.value))
-        except (TypeError, ValueError):
-            pass
-    _lumi_rules_cache = merged
-    _lumi_rules_at    = time.monotonic()
-    return merged
-
-
-def _get_boost_pct(db: Session) -> dict[str, float]:
-    """Return cached lumi_boost_* percentages from app_config.
-
-    Keys: english, math, diary, review, total.
-    All default to 0.0 if not set. Cache TTL = _BOOST_TTL seconds.
-    Invalidated by invalidate_xp_cache().
-    """
-    global _boost_cache, _boost_at
-    if _boost_cache is not None and time.monotonic() - _boost_at < _BOOST_TTL:
-        return _boost_cache
-    keys = ("lumi_boost_total", "lumi_boost_english", "lumi_boost_math",
-            "lumi_boost_diary", "lumi_boost_review")
-    rows = db.query(AppConfig).filter(AppConfig.key.in_(keys)).all()
-    result: dict[str, float] = {
-        "total": 0.0, "english": 0.0, "math": 0.0, "diary": 0.0, "review": 0.0,
-    }
-    for row in rows:
-        short = row.key.replace("lumi_boost_", "")
-        try:
-            result[short] = float(row.value)
-        except (TypeError, ValueError):
-            pass
-    _boost_cache = result
-    _boost_at    = time.monotonic()
-    return result
-
-
-def _apply_boost(xp: int, action: str, db: Session) -> int:
-    """Return XP after applying completed-character boost for this action's subject.
-
-    Boost = floor(xp × (1 + (subject_pct + total_pct) / 100)).
-    No-op if island is off or no completed characters boosting.
-    """
-    try:
-        boosts  = _get_boost_pct(db)
-        subject = _infer_source(action)  # english/math/diary/review/""
-        pct     = boosts.get(subject, 0.0) + boosts.get("total", 0.0)
-        if pct <= 0:
-            return xp
-        return int(xp * (1.0 + pct / 100.0))
-    except Exception:
-        return xp
-
-
-def _award_lumi_for_action(db: Session, action: str) -> None:
-    """Award Lumi alongside XP for supported study actions. Silent on any error.
-
-    Uses a TTL-cached bulk fetch of all lumi_rule_* AppConfig rows instead
-    of one query per action — avoids repeated round-trips on the hot study path.
-    """
-    entry = _LUMI_ACTION_MAP.get(action)
-    if entry is None:
-        return
-    cfg_key, earn_source = entry
-    try:
-        rules  = _get_lumi_rules(db)
-        amount = rules.get(cfg_key, _LUMI_DEFAULTS.get(cfg_key, 0))
-    except Exception:
-        amount = _LUMI_DEFAULTS.get(cfg_key, 0)
-    if amount <= 0:
-        return
-    try:
-        from backend.services.lumi_engine import earn_lumi
-        earn_lumi(db, source=earn_source, amount=amount)
-    except Exception as exc:
-        logger.warning("lumi award failed for action=%s source=%s: %s", action, earn_source, exc)
+    invalidate_lumi_cache()
 
 
 XP_RULES_DEFAULT: dict[str, int] = {
@@ -253,37 +135,6 @@ def get_arcade_daily_cap(db: Session) -> int:
     _arcade_cap_cache = cap
     _arcade_cap_at    = time.monotonic()
     return cap
-
-
-_SOURCE_MAP: dict[str, str] = {
-    "ckla_lesson_complete": "ckla",
-    "ckla_domain_test_pass": "ckla",
-    "ckla_grade_final_pass": "ckla",
-    "ckla_daily_goal": "ckla",
-    "math_lesson_complete": "math",
-    "math_unit_test_pass": "math",
-    "math_spaced_review": "math",
-    "math_problem_mastered": "math",
-    "math_fluency_complete": "math",
-    "math_fluency_best": "math",
-    "math_placement_complete": "math",
-    "math_daily_complete": "math",
-    "math_daily_perfect": "math",
-    "math_kangaroo_complete": "math",
-    "math_kangaroo_80": "math",
-    "math_kangaroo_perfect": "math",
-    "journal_complete": "diary",
-    "review_complete": "review",
-    "daily_words_complete": "english",
-    "stage_complete": "english",
-    "final_test_pass": "english",
-    "unit_test_pass": "english",
-    "word_correct": "english",
-}
-
-
-def _infer_source(action: str) -> str:
-    return _SOURCE_MAP.get(action, "")
 
 
 # Dedup policy for award_xp():
