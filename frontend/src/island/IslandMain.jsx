@@ -60,6 +60,11 @@ async function openIslandMain() {
 
     const obEl = document.getElementById('isl-onboarding');
     if (obEl) { obEl.classList.add('hidden'); obEl.innerHTML = ''; }
+
+    // Reset zone detail overlay so stale detail screen doesn't bleed through
+    const detailEl = document.getElementById('isl-detail-overlay');
+    if (detailEl) { detailEl.classList.add('hidden'); detailEl.innerHTML = ''; }
+
     el.classList.remove('hidden');
     _renderIslandLoading();
 
@@ -82,6 +87,10 @@ async function openIslandMain() {
 function closeIslandMain() {
     const el = document.getElementById('island-overlay');
     if (el) el.classList.add('hidden');
+    const detailEl = document.getElementById('isl-detail-overlay');
+    if (detailEl) { detailEl.classList.add('hidden'); detailEl.innerHTML = ''; }
+    const evoEl = document.getElementById('isl-evo-modal');
+    if (evoEl) { evoEl.classList.add('hidden'); evoEl.innerHTML = ''; }
     if (_nightSwitchTimer) { clearTimeout(_nightSwitchTimer); _nightSwitchTimer = null; }
 }
 

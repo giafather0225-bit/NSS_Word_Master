@@ -159,10 +159,13 @@ function _renderShopGrid(items, totalXp) {
             : `<span class="shop-item-price">${item.final_price} XP</span>`;
         const desc = item.description ? `<div class="shop-item-desc">${escapeHtml(item.description)}</div>` : "";
         const catBadge = `<span class="shop-item-cat">${item.category || "badge"}</span>`;
+        const iconHtml = item.icon
+            ? `<i data-lucide="${escapeHtml(item.icon)}" style="width:28px;height:28px"></i>`
+            : `<i data-lucide="gift" style="width:28px;height:28px"></i>`;
         return `<div class="shop-item-card${affordable ? "" : " unaffordable"}"
                      onclick="${affordable ? `_shopConfirmBuy(${item.id},'${escapeHtml(item.name)}','${escapeHtml(item.icon)}',${item.final_price})` : ""}">
             ${discBadge}
-            <span class="shop-item-icon">${escapeHtml(item.icon || "")}</span>
+            <span class="shop-item-icon">${iconHtml}</span>
             <div class="shop-item-name">${escapeHtml(item.name)}</div>
             ${desc}
             <div class="shop-item-price-row">${priceHTML}</div>
@@ -170,6 +173,7 @@ function _renderShopGrid(items, totalXp) {
         </div>`;
     }).join("");
     body.innerHTML = `<div class="shop-grid">${cards}</div>`;
+    if (typeof lucide !== "undefined") lucide.createIcons();
 }
 
 // ─── Buy Confirm Popup ────────────────────────────────────────
@@ -183,9 +187,12 @@ function _shopConfirmBuy(itemId, name, icon, price) {
     const bg = document.createElement("div");
     bg.className = "shop-popup-bg";
     bg.id = "shop-popup-bg";
+    const popupIconHtml = icon
+        ? `<i data-lucide="${escapeHtml(icon)}" style="width:36px;height:36px"></i>`
+        : `<i data-lucide="gift" style="width:36px;height:36px"></i>`;
     bg.innerHTML = `
         <div class="shop-popup">
-            <div class="shop-popup-icon">${icon}</div>
+            <div class="shop-popup-icon">${popupIconHtml}</div>
             <div class="shop-popup-title">${escapeHtml(name)}</div>
             <div class="shop-popup-sub">${price} XP will be deducted.</div>
             <div class="shop-popup-btns">
@@ -194,6 +201,7 @@ function _shopConfirmBuy(itemId, name, icon, price) {
             </div>
         </div>`;
     document.body.appendChild(bg);
+    if (typeof lucide !== "undefined") lucide.createIcons();
 }
 
 /**
