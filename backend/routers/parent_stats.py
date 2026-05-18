@@ -330,7 +330,7 @@ def parent_weaknesses(
     """Top weaknesses across English / Math / CKLA for the parent Today tab. @tag PARENT WORD_STATS"""
     items = []
 
-    # English: top wrong words (lowest accuracy, ≥2 attempts)
+    # English: top wrong words (lowest accuracy, ≥1 attempt)
     correct_expr = func.sum(case((WordAttempt.is_correct == True, 1), else_=0))  # noqa: E712
     eng_rows = (
         db.query(
@@ -340,7 +340,7 @@ def parent_weaknesses(
             correct_expr.label("correct_count"),
         )
         .group_by(WordAttempt.word, WordAttempt.lesson)
-        .having(func.count(WordAttempt.id) >= 2)
+        .having(func.count(WordAttempt.id) >= 1)
         .order_by((correct_expr * 100.0 / func.count(WordAttempt.id)).asc())
         .limit(limit)
         .all()
@@ -355,40 +355,43 @@ def parent_weaknesses(
             "attempts": r.attempts,
         })
 
-    # Math: top weak concepts (most wrong attempts, lessons with mistakes)
+    # Math: top weak concepts — real accuracy from all attempts (wrong + correct)
+    math_correct_expr = func.sum(case((MathAttempt.is_correct == True, 1), else_=0))  # noqa: E712
     math_rows = (
         db.query(
             MathAttempt.lesson,
-            func.count(MathAttempt.id).label("wrong"),
+            func.count(MathAttempt.id).label("total"),
+            math_correct_expr.label("correct_count"),
         )
-        .filter(MathAttempt.is_correct == False)  # noqa: E712
         .group_by(MathAttempt.lesson)
-        .order_by(func.count(MathAttempt.id).desc())
+        .having(func.count(MathAttempt.id) >= 1)
+        .order_by((math_correct_expr * 100.0 / func.count(MathAttempt.id)).asc())
         .limit(limit)
         .all()
     )
     for r in math_rows:
+        acc = round(r.correct_count * 100.0 / max(r.total, 1), 0)
         items.append({
             "subject":  "math",
             "label":    (r.lesson or "").replace("-", " ").replace("_", " ").title(),
             "detail":   r.lesson or "",
-            "accuracy": 0,
-            "attempts": r.wrong,
+            "accuracy": int(acc),
+            "attempts": r.total,
         })
 
-    # CKLA: lessons with lowest Q&A accuracy (≥2 responses)
+    # CKLA: lessons with lowest Q&A accuracy (≥1 response)
+    ckla_correct_expr = func.sum(case((CKLAQuestionResponse.ai_score >= 1, 1), else_=0))
     ckla_rows = (
         db.query(
             CKLAQuestion.lesson_id,
             func.count(CKLAQuestionResponse.id).label("total"),
-            func.sum(case((CKLAQuestionResponse.ai_score >= 1, 1), else_=0)).label("correct"),
+            ckla_correct_expr.label("correct"),
         )
         .join(CKLAQuestion, CKLAQuestionResponse.question_id == CKLAQuestion.id)
         .group_by(CKLAQuestion.lesson_id)
-        .having(func.count(CKLAQuestionResponse.id) >= 2)
+        .having(func.count(CKLAQuestionResponse.id) >= 1)
         .order_by(
-            (func.sum(case((CKLAQuestionResponse.ai_score >= 1, 1), else_=0)) * 100.0
-             / func.count(CKLAQuestionResponse.id)).asc()
+            (ckla_correct_expr * 100.0 / func.count(CKLAQuestionResponse.id)).asc()
         )
         .limit(limit)
         .all()
