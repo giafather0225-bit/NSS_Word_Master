@@ -195,6 +195,7 @@ async function wiStart(level = 'normal') {
   input.addEventListener('keydown', _wiKeydown);
 
   if (typeof sfxStart === 'function') sfxStart();
+  await _arcadeCountdown();
   requestAnimationFrame(_wiLoop);
 }
 

@@ -132,6 +132,7 @@ async function wbStart(level = 'normal') {
   };
 
   if (typeof sfxStart === 'function') sfxStart();
+  await _arcadeCountdown();
   _wbRenderShell();
   _wbNextWord();
   _wb.tickHandle = setInterval(_wbTick, 500);  // Fix #19: setInterval instead of rAF

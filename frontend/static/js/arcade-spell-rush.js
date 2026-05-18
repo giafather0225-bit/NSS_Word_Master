@@ -133,6 +133,7 @@ async function srStart(level = 'normal') {
   };
 
   if (typeof sfxStart === 'function') sfxStart();
+  await _arcadeCountdown();
   _srNextWord();
 
   const input = document.getElementById('sr-input');

@@ -1670,3 +1670,26 @@
   line-height: 1.6;
   padding: 2px 0;
 }
+
+/* ── 3-2-1 Countdown overlay ─────────────────────────────────── */
+.arcade-countdown {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(250, 246, 239, 0.88);
+  z-index: 50; pointer-events: none;
+  border-radius: var(--radius-lg);
+}
+.arcade-countdown-num {
+  font-family: var(--font-family-display);
+  font-size: 96px; font-weight: 800;
+  color: var(--arcade-primary);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+@keyframes arcade-cdn-pop {
+  0%   { transform: scale(1.6); opacity: 0; }
+  25%  { transform: scale(1);   opacity: 1; }
+  80%  { transform: scale(1);   opacity: 1; }
+  100% { transform: scale(0.8); opacity: 0; }
+}
+.arcade-cdn-pop { animation: arcade-cdn-pop 0.75s var(--ease-calm) both; }

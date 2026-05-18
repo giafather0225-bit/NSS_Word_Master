@@ -72,7 +72,7 @@ async function miShowLevelPicker() {
 }
 
 /** Start a run. @tag ARCADE */
-function miStart(level = 'normal') {
+async function miStart(level = 'normal') {
   miStop();
   const body = document.getElementById('arcade-body');
   if (!body) return;
@@ -114,6 +114,7 @@ function miStart(level = 'normal') {
   input.value = ''; input.focus();
   input.addEventListener('keydown', _miKeydown);
   if (typeof sfxStart === 'function') sfxStart();
+  await _arcadeCountdown();
   requestAnimationFrame(_miLoop);
 }
 

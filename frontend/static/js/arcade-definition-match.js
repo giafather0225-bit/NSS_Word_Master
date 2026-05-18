@@ -138,6 +138,7 @@ async function dmStart(level = 'normal') {
   document.addEventListener('keydown', _dmKeydown);
 
   if (typeof sfxStart === 'function') sfxStart();
+  await _arcadeCountdown();
   _dmNextPair();
   _dm.tickHandle = setInterval(_dmTick, 500);  // Fix #19: setInterval instead of rAF
 }

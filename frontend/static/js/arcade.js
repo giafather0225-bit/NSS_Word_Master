@@ -318,6 +318,31 @@ function _arcadeStarsHTML(accuracy) {
   `</div>`;
 }
 
+/** 3-2-1-GO countdown overlay before a game starts. Returns a Promise. @tag ARCADE */
+function _arcadeCountdown() {
+  return new Promise((resolve) => {
+    const body = document.getElementById('arcade-body');
+    if (!body) { resolve(); return; }
+    const el = document.createElement('div');
+    el.className = 'arcade-countdown';
+    el.innerHTML = '<div class="arcade-countdown-num"></div>';
+    body.appendChild(el);
+    const num = el.querySelector('.arcade-countdown-num');
+    const steps = ['3', '2', '1', 'GO!'];
+    let i = 0;
+    const tick = () => {
+      if (i >= steps.length) { el.remove(); resolve(); return; }
+      num.textContent = steps[i];
+      num.classList.remove('arcade-cdn-pop');
+      void num.offsetWidth;
+      num.classList.add('arcade-cdn-pop');
+      i++;
+      setTimeout(tick, i < steps.length ? 800 : 500);
+    };
+    tick();
+  });
+}
+
 /** Restart score-pop animation on a HUD element. @tag ARCADE */
 function _arcadeScorePop(el) {
   if (!el) return;

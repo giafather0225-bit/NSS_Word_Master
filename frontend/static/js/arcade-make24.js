@@ -65,7 +65,7 @@ async function mkShowLevelPicker() {
 }
 
 /** Start Make 24. @tag ARCADE */
-function mkStart(level = 'normal') {
+async function mkStart(level = 'normal') {
   mkStop();
   _mkSolveCache.clear();  // M2: clear solve cache between sessions (stale entries from prev level)
   _mkLevel = MK_LEVELS[level] ? level : 'normal';
@@ -124,6 +124,7 @@ function mkStart(level = 'normal') {
   if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('make24');
 
   if (typeof sfxStart === 'function') sfxStart();
+  await _arcadeCountdown();
   _mkNextHand();
   _mk.tickHandle = setInterval(_mkTick, 500);  // Fix #19: setInterval instead of rAF
 }
