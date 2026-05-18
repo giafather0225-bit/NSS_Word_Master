@@ -318,6 +318,15 @@ function _arcadeStarsHTML(accuracy) {
   `</div>`;
 }
 
+/** Small star badge for level-picker cards (no animation). @tag ARCADE */
+function _arcadeLevelStarsHTML(accuracy) {
+  const count = _arcadeStars(accuracy);
+  if (count === 0) return '';
+  return `<div class="arcade-pb-stars" aria-label="${count} star best">` +
+    [0, 1, 2].map(i => `<span class="arcade-pb-star ${i < count ? 'arcade-pb-star--on' : 'arcade-pb-star--off'}">★</span>`).join('') +
+  `</div>`;
+}
+
 /** Render the shared game-over panel. @tag ARCADE */
 function _arcadeRenderGameOver({ state, accuracy, result, replayFn, extras = '' }) {
   const body = document.getElementById('arcade-body');

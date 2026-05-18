@@ -56,25 +56,36 @@ def _best_key(game: str, level: str = "") -> str:
 
 
 def _get_best(db: Session, game: str, level: str = "") -> dict:
-    """Read personal-best entry. Returns {score, date} or zeros."""
+    """Read personal-best entry. Returns {score, date, accuracy} or zeros."""
     row = db.query(AppConfig).filter(AppConfig.key == _best_key(game, level)).first()
     if not row or not row.value:
-        return {"score": 0, "date": ""}
+        return {"score": 0, "date": "", "accuracy": 0.0}
     try:
         data = json.loads(row.value)
-        return {"score": int(data.get("score", 0)), "date": str(data.get("date", ""))}
+        return {
+            "score":    int(data.get("score", 0)),
+            "date":     str(data.get("date", "")),
+            "accuracy": float(data.get("accuracy", 0.0)),
+        }
     except (ValueError, TypeError):
-        return {"score": 0, "date": ""}
+        return {"score": 0, "date": "", "accuracy": 0.0}
 
 
-def _set_best(db: Session, game: str, score: int, level: str = "", commit: bool = True) -> None:
+def _set_best(
+    db: Session,
+    game: str,
+    score: int,
+    level: str = "",
+    commit: bool = True,
+    accuracy: float = 0.0,
+) -> None:
     """Persist a new personal-best entry (scoped by level when provided).
 
     Pass commit=False when called inside a larger transaction so the caller
     bundles XP + best-score + streak into a single commit.
     """
     key = _best_key(game, level)
-    payload = json.dumps({"score": score, "date": date.today().isoformat()})
+    payload = json.dumps({"score": score, "date": date.today().isoformat(), "accuracy": round(accuracy, 4)})
     now = datetime.now().isoformat()
     row = db.query(AppConfig).filter(AppConfig.key == key).first()
     if row:
@@ -216,7 +227,7 @@ def arcade_score(req: ScoreRequest, db: Session = Depends(get_db)) -> dict:
     prev_best = _get_best(db, req.game, req.level)
     new_best = req.score > prev_best["score"]
     if new_best:
-        _set_best(db, req.game, req.score, req.level, commit=False)
+        _set_best(db, req.game, req.score, req.level, commit=False, accuracy=req.accuracy)
 
     db.commit()
 

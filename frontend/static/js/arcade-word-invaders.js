@@ -96,12 +96,13 @@ async function wiShowLevelPicker() {
   list.innerHTML = Object.entries(WI_LEVELS)
     .map(([key, cfg], i) => {
       const pb = bests[i].score || 0;
+      const pbAcc = bests[i].accuracy || 0;
       return `
         <div class="wi-level-card" onclick="wiStart('${key}')">
           <div class="wi-level-icon wi-level-icon--${key}">${key[0].toUpperCase()}</div>
           <div class="wi-level-name">${cfg.label}</div>
           <div class="wi-level-spec">Speed ${cfg.fallPxPerSec} · Max ${cfg.maxActive}</div>
-          <div class="wi-level-pb">Best: ${pb}</div>
+          <div class="wi-level-pb">Best: ${pb}${_arcadeLevelStarsHTML(pbAcc)}</div>
         </div>`;
     })
     .join('');
@@ -158,6 +159,7 @@ async function wiStart(level = 'normal') {
     pool: words,
     active: [],
     particles: [],
+    rings: [],
     floats: [],
     powerups: [],
     nextId: 1,
@@ -354,18 +356,20 @@ function _wiActivatePowerup(type, x, y) {
 }
 
 function _wiBurst(x, y, color) {
-  for (let i = 0; i < 14; i++) {
-    const a = (Math.PI * 2 * i) / 14 + Math.random() * 0.4;
-    const spd = 120 + Math.random() * 120;
+  for (let i = 0; i < 20; i++) {
+    const a = (Math.PI * 2 * i) / 20 + Math.random() * 0.5;
+    const spd = 130 + Math.random() * 150;
     _wi.particles.push({
       x, y,
       vx: Math.cos(a) * spd,
       vy: Math.sin(a) * spd,
-      life: 0.6,
-      maxLife: 0.6,
+      r: 2 + Math.random() * 3,
+      life: 0.55 + Math.random() * 0.2,
+      maxLife: 0.75,
       color,
     });
   }
+  _wi.rings.push({ x, y, r: 6, maxR: 55, life: 0.4, maxLife: 0.4, color });
 }
 
 function _wiUpdateHUD() {
@@ -468,6 +472,13 @@ function _wiLoop(ts) {
     const p = _wi.powerups[i];
     p.y += WI_CFG.powerupFallPxPerSec * dt;
     if (p.y >= floorY) _wi.powerups.splice(i, 1);
+  }
+
+  // Update rings
+  for (let i = _wi.rings.length - 1; i >= 0; i--) {
+    const rg = _wi.rings[i];
+    rg.life -= dt;
+    if (rg.life <= 0) _wi.rings.splice(i, 1);
   }
 
   // Update particles
@@ -594,13 +605,26 @@ function _wiDraw(ts) {
     ctx.fillText(cfg.label, x + w / 2, y + float + h / 2 + 1);
   });
 
+  // Expanding rings
+  _wi.rings.forEach((rg) => {
+    const alpha = Math.max(0, rg.life / rg.maxLife);
+    const r = rg.r + (rg.maxR - rg.r) * (1 - alpha);
+    ctx.strokeStyle = rg.color;
+    ctx.lineWidth = 3 * alpha;
+    ctx.globalAlpha = alpha * 0.8;
+    ctx.beginPath();
+    ctx.arc(rg.x, rg.y, r, 0, Math.PI * 2);
+    ctx.stroke();
+  });
+  ctx.globalAlpha = 1;
+
   // Particles
   _wi.particles.forEach((p) => {
-    const alpha = Math.max(0, p.life / p.maxLife);
+    const alpha = Math.max(0, p.life / (p.maxLife || 0.75));
     ctx.fillStyle = p.color;
     ctx.globalAlpha = alpha;
     ctx.beginPath();
-    ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+    ctx.arc(p.x, p.y, p.r || 3, 0, Math.PI * 2);
     ctx.fill();
   });
   ctx.globalAlpha = 1;

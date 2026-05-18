@@ -76,7 +76,7 @@ async function mmShowLevelPicker() {
       <div class="wi-level-icon wi-level-icon--${lv.key}">${lv.icon}</div>
       <div class="wi-level-name">${lv.name}</div>
       <div class="wi-level-spec">${lv.spec}</div>
-      <div class="wi-level-pb">Best: ${bests[i].score || 0}</div>
+      <div class="wi-level-pb">Best: ${bests[i].score || 0}${_arcadeLevelStarsHTML(bests[i].accuracy || 0)}</div>
     </div>`).join('');
 }
 

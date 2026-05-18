@@ -49,7 +49,7 @@ async function suShowLevelPicker() {
       <div class="wi-level-icon wi-level-icon--${key}">${key[0].toUpperCase()}</div>
       <div class="wi-level-name">${cfg.label}</div>
       <div class="wi-level-spec">${cfg.holes} blanks</div>
-      <div class="wi-level-pb">Best: ${bests[i].score || 0}</div>
+      <div class="wi-level-pb">Best: ${bests[i].score || 0}${_arcadeLevelStarsHTML(bests[i].accuracy || 0)}</div>
     </div>`).join('');
 }
 

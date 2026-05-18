@@ -64,12 +64,13 @@ async function wbShowLevelPicker() {
   list.innerHTML = Object.entries(WB_LEVELS)
     .map(([key, cfg], i) => {
       const pb = bests[i].score || 0;
+      const pbAcc = bests[i].accuracy || 0;
       return `
         <div class="wi-level-card" onclick="wbStart('${key}')">
           <div class="wi-level-icon wi-level-icon--${key}">${key[0].toUpperCase()}</div>
           <div class="wi-level-name">${cfg.label}</div>
           <div class="wi-level-spec">${cfg.timeLabel} round</div>
-          <div class="wi-level-pb">Best: ${pb}</div>
+          <div class="wi-level-pb">Best: ${pb}${_arcadeLevelStarsHTML(pbAcc)}</div>
         </div>`;
     })
     .join('');
