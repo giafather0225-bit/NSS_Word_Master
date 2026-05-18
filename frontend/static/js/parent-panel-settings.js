@@ -224,3 +224,4 @@ async function _ppSaveIslandToggle(checked) {
         window.toast && window.toast("Network error.", "error");
     }
 }
+window._ppSettings = _ppSettings;

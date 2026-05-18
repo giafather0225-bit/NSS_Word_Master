@@ -202,3 +202,4 @@ async function _ppIsland(body) {
         body.innerHTML = `<p class="pp-error-pad">Could not load Island data.</p>`;
     }
 }
+window._ppIsland = _ppIsland;

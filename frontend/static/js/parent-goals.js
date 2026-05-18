@@ -128,7 +128,7 @@ async function _ppGoalsSave() {
     }
 
     // Reload only when everything went through cleanly
-    if (saved && !failed && !skipped) setTimeout(() => _ppLoadTab("goals"), 800);
+    if (saved && !failed && !skipped) setTimeout(() => _ppLoadTab("habits"), 800);
 }
 
 window._ppGoals = _ppGoals;
