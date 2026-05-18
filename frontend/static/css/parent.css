@@ -19,7 +19,10 @@
   --r-sm: 8px; --r: 12px; --r-lg: 18px;
   --sidebar-w: 232px; --rail-w: 60px;
   --topbar-h: 52px;
-  font-family: "Pretendard", "Nunito", -apple-system, system-ui, sans-serif;
+  font-family: "Pretendard", "Plus Jakarta Sans", "Nunito", -apple-system, system-ui, sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  color: var(--ink-1);
+  line-height: 1.5;
 }
 
 /* ─── Overlay shell ───────────────────────────────────────────── */
@@ -31,8 +34,9 @@
 
 /* Mono font for all numeric values */
 #parent-overlay .mono {
-  font-family: "JetBrains Mono", "Cascadia Code", monospace;
+  font-family: "JetBrains Mono", "Cascadia Code", "Menlo", monospace;
   font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
 }
 
 /* ─── Sidebar ─────────────────────────────────────────────────── */
