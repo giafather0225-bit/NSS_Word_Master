@@ -42,6 +42,7 @@ let _islandStatus  = null;
 let _islandStreak  = 0;
 let _islandDaily   = null;
 let _nightSwitchTimer = null;
+let _wanderIntervals  = [];
 
 // ─── Open / Close ───────────────────────────────────────────────
 
@@ -77,6 +78,7 @@ async function openIslandMain() {
         _islandStreak = xpData.streak_days ?? 0;
         _islandDaily  = dailyData;
         _renderIslandMap();
+        _startCharWandering();
         if (typeof lucide !== 'undefined') lucide.createIcons();
         if (typeof checkIslandNotifications === 'function') checkIslandNotifications();
         _scheduleNightSwitch();
@@ -92,6 +94,8 @@ function closeIslandMain() {
     const evoEl = document.getElementById('isl-evo-modal');
     if (evoEl) { evoEl.classList.add('hidden'); evoEl.innerHTML = ''; }
     if (_nightSwitchTimer) { clearTimeout(_nightSwitchTimer); _nightSwitchTimer = null; }
+    _wanderIntervals.forEach(clearInterval);
+    _wanderIntervals = [];
 }
 
 // ─── Loading / Error ─────────────────────────────────────────────
@@ -303,6 +307,42 @@ function _svgZonesHTML(charsByZone, completedZones, zoneUnlock) {
         ${labels}`;
 }
 
+// ─── Character wandering ─────────────────────────────────────────
+
+/**
+ * Move each character bubble to a random point within its zone circle.
+ * Uses CSS transition (already set on the bubble) for smooth gliding.
+ * @tag SHOP
+ */
+function _startCharWandering() {
+    _wanderIntervals.forEach(clearInterval);
+    _wanderIntervals = [];
+
+    const SVG_W = 1376, SVG_H = 768;
+
+    _CHAR_BUBBLES.forEach(b => {
+        const circle = _ZONE_CIRCLES[b.zone];
+        if (!circle) return;
+
+        function pickWaypoint() {
+            const bubble = document.querySelector(`.gim-bubble[data-zone="${b.zone}"]`);
+            if (!bubble) return;
+            // sqrt(random) gives uniform distribution inside a circle
+            const angle = Math.random() * 2 * Math.PI;
+            const dist  = Math.sqrt(Math.random()) * circle.r * 0.68;
+            const svgX  = circle.cx + Math.cos(angle) * dist;
+            const svgY  = circle.cy + Math.sin(angle) * dist;
+            bubble.style.left = (svgX / SVG_W * 100).toFixed(2) + '%';
+            bubble.style.top  = (svgY / SVG_H * 100).toFixed(2) + '%';
+        }
+
+        // First wander after 1.5-2.5s so the map fully renders
+        setTimeout(pickWaypoint, 1500 + Math.random() * 1000);
+        // Then wander every 6-10s, each bubble on its own cadence
+        _wanderIntervals.push(setInterval(pickWaypoint, 6000 + Math.random() * 4000));
+    });
+}
+
 // ─── Character bubbles ───────────────────────────────────────────
 
 /** @tag SHOP */
@@ -359,7 +399,8 @@ function _bubblesHTML(charsByZone) {
 
         return `
             <button class="gim-bubble gim-float"
-                    style="left:${b.left};top:${b.top};width:96px;height:auto;animation-delay:${b.delay};display:flex;flex-direction:column;align-items:center;gap:4px;background:transparent;border:none;padding:0 0 4px;cursor:pointer;pointer-events:auto"
+                    data-zone="${b.zone}"
+                    style="left:${b.left};top:${b.top};width:96px;height:auto;animation-delay:${b.delay};display:flex;flex-direction:column;align-items:center;gap:4px;background:transparent;border:none;padding:0 0 4px;cursor:pointer;pointer-events:auto;transition:left 3.5s ease-in-out,top 3.5s ease-in-out"
                     onclick="_bubbleClick(this, '${escapeHtml(name)}', '${b.zone}', ${char.id || 0}, '${char.stage || 'baby'}', ${!!char.ready_to_evolve})"
                     aria-label="${name}" title="${name}">
                 <span class="gim-bubble-dot${evoCls}"
