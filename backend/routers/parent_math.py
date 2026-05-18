@@ -9,7 +9,7 @@ API: GET /api/parent/math-summary
 from datetime import date, timedelta
 
 from fastapi import APIRouter, Depends
-from sqlalchemy import func
+from sqlalchemy import case, func
 from sqlalchemy.orm import Session
 
 try:
@@ -52,16 +52,28 @@ def parent_math_summary(db: Session = Depends(get_db)):
     correct_attempts = sum(1 for a in recent_attempts if a.is_correct)
     accuracy_7d = round(correct_attempts * 100 / total_attempts, 1) if total_attempts else 0.0
 
-    # Weak concepts (top 5 by wrong count)
+    # Weak concepts (top 5 by wrong count, with accuracy from all attempts)
+    correct_expr = func.sum(case((MathAttempt.is_correct == True, 1), else_=0))  # noqa: E712
     concept_rows = (
-        db.query(MathAttempt.lesson, func.count(MathAttempt.id).label("wrong"))
-        .filter(MathAttempt.is_correct.is_(False))
+        db.query(
+            MathAttempt.lesson,
+            func.count(MathAttempt.id).label("total"),
+            correct_expr.label("correct_count"),
+        )
         .group_by(MathAttempt.lesson)
-        .order_by(func.count(MathAttempt.id).desc())
+        .having(func.count(MathAttempt.id) >= 1)
+        .order_by((correct_expr * 100.0 / func.count(MathAttempt.id)).asc())
         .limit(5)
         .all()
     )
-    weak_areas = [{"lesson": r.lesson, "wrong_count": r.wrong} for r in concept_rows]
+    weak_areas = [
+        {
+            "lesson":      r.lesson,
+            "wrong_count": r.total - r.correct_count,
+            "accuracy":    round(r.correct_count * 100.0 / max(r.total, 1), 0),
+        }
+        for r in concept_rows
+    ]
 
     # Wrong-review queue
     today_str = date.today().isoformat()

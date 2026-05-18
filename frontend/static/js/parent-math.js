@@ -90,16 +90,22 @@ function _ppMathWeakAreas(weak) {
         return _ppMathTitle("alert-triangle", "Weak Concepts")
             + _ppEmpty("check-circle", "No weak areas yet.", "Keep practicing to surface lessons that need review.");
     }
-    const rows = weak.map(w => `
+    const rows = weak.map(w => {
+        const acc = w.accuracy != null ? Math.round(w.accuracy) : null;
+        const accCls = acc == null ? "" : acc >= 70 ? "pp-stage-acc--good" : acc >= 40 ? "pp-stage-acc--ok" : "pp-stage-acc--low";
+        const accHtml = acc != null ? `<td class="pp-th-right"><span class="pp-stage-acc ${accCls}">${acc}%</span></td>` : "<td></td>";
+        return `
         <tr>
             <td><strong>${escapeHtml(_ppMathLesson(w.lesson))}</strong></td>
             <td class="pp-math-wrong-count">${w.wrong_count}×</td>
-        </tr>`).join("");
+            ${accHtml}
+        </tr>`;
+    }).join("");
     return `
         ${_ppMathTitle("alert-triangle", "Weak Concepts")}
         <div class="pp-table-wrap">
             <table class="pp-log-table">
-                <thead><tr><th>Lesson</th><th class="pp-th-right">Wrong</th></tr></thead>
+                <thead><tr><th>Lesson</th><th class="pp-th-right">Wrong</th><th class="pp-th-right">Accuracy</th></tr></thead>
                 <tbody>${rows}</tbody>
             </table>
         </div>`;
