@@ -56,15 +56,85 @@
 }
 .arcade-close-btn:hover { background: var(--color-primary-light); }
 
+/* ── Per-category header accent (English / Math) ─────────────── */
+#arcade-overlay:has(.arcade-body[data-game="word_invaders"],
+                    .arcade-body[data-game="spell_rush"],
+                    .arcade-body[data-game="crossword"],
+                    .arcade-body[data-game="definition_match"],
+                    .arcade-body[data-game="word_builder"],
+                    .arcade-body[data-game="memory_match"]) .arcade-header {
+  background: var(--english-light);
+  border-bottom-color: var(--english-primary);
+}
+#arcade-overlay:has(.arcade-body[data-game="word_invaders"],
+                    .arcade-body[data-game="spell_rush"],
+                    .arcade-body[data-game="crossword"],
+                    .arcade-body[data-game="definition_match"],
+                    .arcade-body[data-game="word_builder"],
+                    .arcade-body[data-game="memory_match"]) .arcade-header-title {
+  color: var(--english-ink);
+}
+
+#arcade-overlay:has(.arcade-body[data-game="math_invaders"],
+                    .arcade-body[data-game="sudoku"],
+                    .arcade-body[data-game="make24"]) .arcade-header {
+  background: var(--math-light);
+  border-bottom-color: var(--math-primary);
+}
+#arcade-overlay:has(.arcade-body[data-game="math_invaders"],
+                    .arcade-body[data-game="sudoku"],
+                    .arcade-body[data-game="make24"]) .arcade-header-title {
+  color: var(--math-ink);
+}
+
 .arcade-body {
   flex: 1;
   overflow: auto;
   padding: 32px 24px;
   font-family: var(--font-family);
   color: var(--text-primary);
-  background-image: radial-gradient(circle, var(--border-subtle) 1px, transparent 1px);
-  background-size: 24px 24px;
   background-color: var(--bg-page);
+}
+
+/* ── Lobby background ─────────────────────────────────────────── */
+.arcade-body--lobby {
+  background-image: url('/static/img/arcade/bg-lobby.webp');
+  background-size: 480px 480px;
+  background-repeat: repeat;
+  background-blend-mode: multiply;
+  background-color: var(--bg-page);
+}
+
+/* ── Per-game backgrounds (keyed by data-game on arcade-body) ── */
+.arcade-body[data-game="crossword"]      { --game-bg: url('/static/img/arcade/bg-crossword.webp'); }
+.arcade-body[data-game="sudoku"]         { --game-bg: url('/static/img/arcade/bg-sudoku.webp'); }
+.arcade-body[data-game="make24"]         { --game-bg: url('/static/img/arcade/bg-make24.webp'); }
+.arcade-body[data-game="word_invaders"]  { --game-bg: url('/static/img/arcade/bg-space.webp'); }
+.arcade-body[data-game="math_invaders"]  { --game-bg: url('/static/img/arcade/bg-space.webp'); }
+.arcade-body[data-game="spell_rush"]     { --game-bg: url('/static/img/arcade/bg-spell-rush.webp'); }
+.arcade-body[data-game="definition_match"] { --game-bg: url('/static/img/arcade/bg-definition-match.webp'); }
+.arcade-body[data-game="word_builder"]   { --game-bg: url('/static/img/arcade/bg-word-builder.webp'); }
+.arcade-body[data-game="memory_match"]   { --game-bg: url('/static/img/arcade/bg-memory-match.webp'); }
+
+/* Full-body background + cream overlay — covers both picker and game views */
+.arcade-body[data-game]:not(.arcade-body--game) {
+  background-image: var(--game-bg, none);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.arcade-body[data-game]:not(.arcade-body--game)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--bg-page) 76%, transparent);
+  pointer-events: none;
+  z-index: 0;
+}
+/* Ensure all direct children sit above the overlay */
+.arcade-body[data-game]:not(.arcade-body--game) > * {
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Arcade lobby ─────────────────────────────────────────────── */
@@ -544,7 +614,9 @@
   align-items: center;
   gap: 12px;
   padding: 24px 16px;
+  position: relative;
 }
+.wi-level-picker > * { position: relative; z-index: 1; }
 .wi-level-title {
   margin: 0;
   font-size: 22px;

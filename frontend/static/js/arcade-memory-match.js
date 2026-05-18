@@ -45,6 +45,15 @@ async function mmShowLevelPicker() {
       <h2 class="wi-level-title">Memory Card Match</h2>
       <p class="wi-level-sub">Flip cards to match each word with its definition.</p>
       <div class="wi-level-list" id="mm-level-list" style="grid-template-columns: repeat(3,1fr); max-width:540px;">Loading…</div>
+      <div class="arcade-how-to-play">
+        <div class="arcade-htp-title">How to play</div>
+        <ul class="arcade-htp-list">
+          <li>Flip two cards at a time — match each word with its definition.</li>
+          <li>Matched pairs stay face-up; unmatched pairs flip back over.</li>
+          <li>Find all pairs before time runs out to win.</li>
+          <li>Fewer flips = higher score; a time bonus is added on completion.</li>
+        </ul>
+      </div>
       <button type="button" class="wi-btn secondary" style="margin-top:12px"
               onclick="arcadeReturnToLobby()">Back</button>
     </div>`;

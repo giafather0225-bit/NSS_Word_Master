@@ -44,6 +44,15 @@ async function miShowLevelPicker() {
       <h2 class="wi-level-title">Select Difficulty</h2>
       <div class="wi-level-sub">Math Invaders</div>
       <div class="wi-level-list" id="mi-level-list">Loading…</div>
+      <div class="arcade-how-to-play">
+        <div class="arcade-htp-title">How to play</div>
+        <ul class="arcade-htp-list">
+          <li>Math problems fall from the top — type the correct answer to destroy them.</li>
+          <li>Each correct answer scores points; missed problems cost a life.</li>
+          <li>Lose all 3 lives or let a problem hit the bottom and the game ends.</li>
+          <li>Higher levels bring harder arithmetic and faster speeds.</li>
+        </ul>
+      </div>
       <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
     </div>`;
   const bests = await Promise.all(

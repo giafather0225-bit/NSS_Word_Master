@@ -35,6 +35,15 @@ async function srShowLevelPicker() {
       <h2 class="wi-level-title">Select Difficulty</h2>
       <div class="wi-level-sub">Spell Rush</div>
       <div class="wi-level-list" id="sr-level-list">Loading…</div>
+      <div class="arcade-how-to-play">
+        <div class="arcade-htp-title">How to play</div>
+        <ul class="arcade-htp-list">
+          <li>A definition appears — type the matching word as fast as you can.</li>
+          <li>Score points for each correct spelling; the faster you type, the more points.</li>
+          <li>Three wrong attempts on the same word ends your streak.</li>
+          <li>Complete all words before time runs out to win.</li>
+        </ul>
+      </div>
       <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
     </div>`;
 

@@ -35,6 +35,15 @@ async function dmShowLevelPicker() {
       <h2 class="wi-level-title">Select Difficulty</h2>
       <div class="wi-level-sub">Definition Match</div>
       <div class="wi-level-list" id="dm-level-list">Loading…</div>
+      <div class="arcade-how-to-play">
+        <div class="arcade-htp-title">How to play</div>
+        <ul class="arcade-htp-list">
+          <li>A word appears at the top — choose the correct definition from four options.</li>
+          <li>Answer quickly for a time bonus; wrong answers deduct points.</li>
+          <li>Complete all rounds before the timer runs out.</li>
+          <li>Harder levels show trickier definitions and give less time.</li>
+        </ul>
+      </div>
       <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
     </div>`;
 

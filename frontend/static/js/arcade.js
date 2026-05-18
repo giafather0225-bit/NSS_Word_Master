@@ -88,6 +88,8 @@ function closeArcade() {
 async function _renderArcadeLobby() {
   const body = document.getElementById('arcade-body');
   if (!body) return;
+  delete body.dataset.game;
+  body.classList.add('arcade-body--lobby');
 
   const bests = await Promise.all(
     ARCADE_GAMES.map((g) => {
@@ -178,6 +180,11 @@ async function _renderArcadeLobby() {
 /** @tag ARCADE */
 function _launchArcadeGame(id) {
   _arcadeInGame = true;
+  const body = document.getElementById('arcade-body');
+  if (body) {
+    body.classList.remove('arcade-body--lobby');
+    body.dataset.game = id;
+  }
   try {
     const key = `arcade_plays_${id}`;
     localStorage.setItem(key, String((parseInt(localStorage.getItem(key) || '0', 10) + 1)));
@@ -196,6 +203,8 @@ function _launchArcadeGame(id) {
 /** Return to arcade lobby from a game. @tag ARCADE */
 function arcadeReturnToLobby() {
   _arcadeInGame = false;
+  const body = document.getElementById('arcade-body');
+  if (body) delete body.dataset.game;
   if (typeof wiStop === 'function') wiStop();
   if (typeof dmStop === 'function') dmStop();
   if (typeof srStop === 'function') srStop();

@@ -36,6 +36,15 @@ async function cwShowLevelPicker() {
       <h2 class="wi-level-title">Select Difficulty</h2>
       <div class="wi-level-sub">Crossword</div>
       <div class="wi-level-list" id="cw-level-list">Loading…</div>
+      <div class="arcade-how-to-play">
+        <div class="arcade-htp-title">How to play</div>
+        <ul class="arcade-htp-list">
+          <li>Click a clue or a cell to select a word slot on the grid.</li>
+          <li>Type the answer letter by letter — correct letters turn green.</li>
+          <li>Fill every slot correctly to complete the puzzle.</li>
+          <li>Use the Reveal button for a hint if you get stuck.</li>
+        </ul>
+      </div>
       <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
     </div>`;
 

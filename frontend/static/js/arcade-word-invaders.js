@@ -71,6 +71,15 @@ async function wiShowLevelPicker() {
       <h2 class="wi-level-title">Select Difficulty</h2>
       <div class="wi-level-sub">Word Invaders</div>
       <div class="wi-level-list" id="wi-level-list">Loading…</div>
+      <div class="arcade-how-to-play">
+        <div class="arcade-htp-title">How to play</div>
+        <ul class="arcade-htp-list">
+          <li>Words fall from the top — type the correct spelling to shoot them down.</li>
+          <li>Each correct hit scores points; missed words cost a life.</li>
+          <li>Lose all 3 lives or let a word reach the bottom and the game ends.</li>
+          <li>Harder levels spawn more words at faster speeds.</li>
+        </ul>
+      </div>
       <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
     </div>`;
 

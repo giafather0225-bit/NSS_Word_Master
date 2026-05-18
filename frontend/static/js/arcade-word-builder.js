@@ -37,6 +37,15 @@ async function wbShowLevelPicker() {
       <h2 class="wi-level-title">Select Difficulty</h2>
       <div class="wi-level-sub">Word Builder</div>
       <div class="wi-level-list" id="wb-level-list">Loading…</div>
+      <div class="arcade-how-to-play">
+        <div class="arcade-htp-title">How to play</div>
+        <ul class="arcade-htp-list">
+          <li>Scrambled letters are shown — arrange them to spell the target word.</li>
+          <li>A definition clue is provided to help you identify the word.</li>
+          <li>Click letters to build your answer, then submit.</li>
+          <li>Complete all words before time runs out for a time bonus.</li>
+        </ul>
+      </div>
       <button type="button" class="wi-btn secondary" onclick="arcadeReturnToLobby()">Back</button>
     </div>`;
 
