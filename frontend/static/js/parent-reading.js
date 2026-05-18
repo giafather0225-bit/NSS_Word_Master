@@ -95,7 +95,7 @@ async function _ppReadingEnglish(el) {
                             <span class="pp-stage-name">${meta.name}</span>
                             <span class="pp-stage-acc pp-stage-acc--${accClass}">${acc}%</span>
                         </div>
-                        <div class="pp-stage-row"><span>Avg Time</span><strong>${s.avg_time_sec >= 60 ? Math.round(s.avg_time_sec / 60) + "m" : (Math.round(s.avg_time_sec) || "–") + "s"}</strong></div>
+                        <div class="pp-stage-row"><span>Avg Time</span><strong>${s.avg_time_sec == null ? "–" : s.avg_time_sec >= 60 ? Math.round(s.avg_time_sec / 60) + "m" : (Math.round(s.avg_time_sec) || "–") + "s"}</strong></div>
                         <div class="pp-stage-row"><span>Completions</span><strong>${s.completions}x</strong></div>
                     </div>`;
             }).join("");
