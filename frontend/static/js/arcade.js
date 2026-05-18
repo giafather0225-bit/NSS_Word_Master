@@ -301,6 +301,23 @@ function _arcadeGrade(accuracy) {
   return          { grade: 'C', cls: 'grade--c', msg: 'Keep going! You\'re getting better!' };
 }
 
+/** Compute 0–3 star count from accuracy. @tag ARCADE */
+function _arcadeStars(accuracy) {
+  const pct = accuracy * 100;
+  if (pct >= 90) return 3;
+  if (pct >= 70) return 2;
+  if (pct >= 50) return 1;
+  return 0;
+}
+
+/** Build star-rating HTML (3 stars). @tag ARCADE */
+function _arcadeStarsHTML(accuracy) {
+  const count = _arcadeStars(accuracy);
+  return `<div class="arcade-stars" data-stars="${count}" aria-label="${count} out of 3 stars">` +
+    [0, 1, 2].map(i => `<span class="arcade-star ${i < count ? 'arcade-star--filled' : 'arcade-star--empty'}">★</span>`).join('') +
+  `</div>`;
+}
+
 /** Render the shared game-over panel. @tag ARCADE */
 function _arcadeRenderGameOver({ state, accuracy, result, replayFn, extras = '' }) {
   const body = document.getElementById('arcade-body');
@@ -350,8 +367,11 @@ function _arcadeRenderGameOver({ state, accuracy, result, replayFn, extras = '' 
       })()
     : '';
 
+  const starsHTML = _arcadeStarsHTML(accuracy);
+
   body.innerHTML = `
     <div class="wi-gameover wi-gameover--${cls.replace('grade--', '')}">
+      ${starsHTML}
       <div class="arcade-grade ${cls}">${grade}</div>
       <div class="arcade-grade-msg">${msg}</div>
       ${bestBanner}
@@ -379,6 +399,10 @@ function _arcadeRenderGameOver({ state, accuracy, result, replayFn, extras = '' 
   if (result.new_best && typeof sfxNewBest === 'function') {
     sfxNewBest();
     _arcadeConfetti();
+  } else if (_arcadeStars(accuracy) === 3) {
+    // 3-star clear that isn't a new best still deserves confetti
+    _arcadeConfetti();
+    if (typeof sfxGameOver === 'function') sfxGameOver();
   } else if (typeof sfxGameOver === 'function') {
     sfxGameOver();
   }
