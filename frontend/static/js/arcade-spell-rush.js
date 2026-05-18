@@ -295,6 +295,7 @@ function _srSubmit() {
     return;
   }
   _srUpdateHUD();
+  if (typeof _arcadeScorePop === 'function') _arcadeScorePop(document.getElementById('sr-score'));
   _srNextWord();
 }
 

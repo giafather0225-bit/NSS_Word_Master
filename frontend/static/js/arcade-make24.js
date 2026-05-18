@@ -233,6 +233,7 @@ function _mkSubmit() {
     if (typeof sfxHit === 'function') sfxHit(_mk.streak);
     if (_mk.streak > 0 && _mk.streak % 3 === 0 && typeof sfxCombo === 'function') sfxCombo();
     _mkUpdateHUD();
+    if (typeof _arcadeScorePop === 'function') _arcadeScorePop(document.getElementById('mk-score'));
     _mkNextHand();
   } else {
     _mk.streak = 0;

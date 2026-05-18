@@ -252,6 +252,7 @@ function _dmAnswer(saidYes) {
     if (typeof sfxMiss === 'function') sfxMiss();
   }
   _dmUpdateHUD();
+  if (correct && typeof _arcadeScorePop === 'function') _arcadeScorePop(document.getElementById('dm-score'));
 
   const card = document.getElementById('dm-card');
   const reveal = document.getElementById('dm-reveal');

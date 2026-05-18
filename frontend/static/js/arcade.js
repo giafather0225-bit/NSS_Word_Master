@@ -318,6 +318,14 @@ function _arcadeStarsHTML(accuracy) {
   `</div>`;
 }
 
+/** Restart score-pop animation on a HUD element. @tag ARCADE */
+function _arcadeScorePop(el) {
+  if (!el) return;
+  el.classList.remove('arcade-score-pop');
+  void el.offsetWidth;
+  el.classList.add('arcade-score-pop');
+}
+
 /** Small star badge for level-picker cards (no animation). @tag ARCADE */
 function _arcadeLevelStarsHTML(accuracy) {
   const count = _arcadeStars(accuracy);

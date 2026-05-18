@@ -201,6 +201,7 @@ function _wbRenderShell() {
           <button type="button" class="wi-btn secondary" onclick="_wbClear()">Clear</button>
           <button type="button" class="wi-btn secondary" onclick="_wbShuffleTiles()">Shuffle</button>
         </div>
+        <p class="wb-keyboard-hint">Type letters &nbsp;·&nbsp; Backspace to undo</p>
       </div>
     </div>`;
   if (typeof lucide !== 'undefined') lucide.createIcons();
@@ -306,6 +307,12 @@ function _wbPlaceTile(id) {
   tile.placed = true;
   _wb.current.answer.push(tile);
   _wbUpdateBoard();
+  const answerRow = document.getElementById('wb-answer-row');
+  if (answerRow && !tile.revealed) {
+    const tiles = answerRow.querySelectorAll('.wb-answer-tile');
+    const last = tiles[tiles.length - 1];
+    if (last) last.classList.add('wb-tile--just-placed');
+  }
   if (_wb.current.answer.length === _wb.current.tiles.length) {
     _wbCheck();
   }
@@ -428,6 +435,7 @@ function _wbCheck() {
       if (typeof _arcadeShowCombo === 'function') _arcadeShowCombo(_wb.streak);
     }
     _wbUpdateHUD();
+    if (typeof _arcadeScorePop === 'function') _arcadeScorePop(document.getElementById('wb-score'));
     _wbRenderHistory();  // Fix #18
     setTimeout(() => {
       if (!_wb || !_wb.running) return;

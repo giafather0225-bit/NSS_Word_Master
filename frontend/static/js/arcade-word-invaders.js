@@ -317,6 +317,7 @@ function _wiKill(idx) {
   }
 
   _wiUpdateHUD();
+  if (typeof _arcadeScorePop === 'function') _arcadeScorePop(document.getElementById('wi-score'));
 }
 
 function _wiSpawnPowerup(x, y) {
@@ -658,6 +659,16 @@ function _wiDraw(ts) {
     ctx.globalAlpha = 1;
   } else if (_wi.banner && ts >= _wi.banner.until) {
     _wi.banner = null;
+  }
+
+  // Last-life danger vignette
+  if (_wi.lives === 1) {
+    const vigAlpha = 0.15 + 0.10 * Math.sin(ts * 0.004);
+    const grad = ctx.createRadialGradient(W / 2, H / 2, H * 0.2, W / 2, H / 2, H * 0.85);
+    grad.addColorStop(0, 'rgba(220,38,38,0)');
+    grad.addColorStop(1, `rgba(220,38,38,${vigAlpha.toFixed(3)})`);
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, W, H);
   }
 
   ctx.restore();

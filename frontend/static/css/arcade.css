@@ -773,6 +773,20 @@
 }
 .arcade-pb-star--on  { color: var(--arcade-primary); font-size: 11px; }
 .arcade-pb-star--off { color: var(--border-default);  font-size: 11px; }
+
+@keyframes arcade-score-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.4); color: var(--arcade-primary); }
+  100% { transform: scale(1); }
+}
+.arcade-score-pop { animation: arcade-score-pop 0.35s var(--ease-calm) both; }
+
+@keyframes wb-tile-flash {
+  0%   { background: var(--english-light); }
+  50%  { background: var(--english-soft); transform: scale(1.08); }
+  100% { background: var(--bg-card); transform: scale(1); }
+}
+.wb-tile--just-placed { animation: wb-tile-flash 0.22s var(--ease-calm) both; }
 @media (max-width: 520px) {
   .wi-level-list { grid-template-columns: 1fr; }
 }
@@ -1313,6 +1327,13 @@
   justify-content: center;
 }
 .wb-hint-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.wb-keyboard-hint {
+  margin: 6px 0 0;
+  font-size: 11px;
+  color: var(--text-hint);
+  letter-spacing: 0.04em;
+  text-align: center;
+}
 
 /* Fix #18: Word Builder history panel */
 .wb-history {
