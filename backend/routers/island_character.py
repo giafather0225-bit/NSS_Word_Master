@@ -77,15 +77,16 @@ def character_active(zone: Optional[str] = None, db: Session = Depends(get_db)):
         q = q.filter(IslandCharacter.zone == zone)
     rows = q.all()
 
-    prog_ids = [p.id for p, _ in rows if p.is_legend_type]
-    legend_days: dict[int, int] = {}
-    if prog_ids:
+    legend_char_ids = {p.character_id for p, _ in rows if p.is_legend_type}
+    legend_days_by_char: dict[int, int] = {}
+    if legend_char_ids:
         legend_rows = (
             db.query(IslandLegendProgress)
-            .filter(IslandLegendProgress.character_progress_id.in_(prog_ids))
+            .filter(IslandLegendProgress.character_id.in_(legend_char_ids))
             .all()
         )
-        legend_days = {lr.character_progress_id: lr.consecutive_days for lr in legend_rows}
+        legend_days_by_char = {lr.character_id: lr.consecutive_days for lr in legend_rows}
+    legend_days = {p.id: legend_days_by_char.get(p.character_id, 0) for p, _ in rows if p.is_legend_type}
 
     return {
         "characters": [

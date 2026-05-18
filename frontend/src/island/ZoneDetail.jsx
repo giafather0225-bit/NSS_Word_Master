@@ -517,8 +517,13 @@ async function _zdPlaceSelected(x, y) {
  * Only active in decorate mode. @tag SHOP
  */
 function _zdDecorMouseDown(e, placedId, el) {
-    if (!_zdDecorating) return;
     if (e.button !== 0) return;            // left click only
+    // Outside decorate mode: click-only (no drag) to show Remove popup
+    if (!_zdDecorating) {
+        e.stopPropagation();
+        _zdDecorClick(placedId, el);
+        return;
+    }
     e.stopPropagation();
     e.preventDefault();
 
@@ -591,9 +596,8 @@ function _zdDecorMouseDown(e, placedId, el) {
     document.addEventListener('mouseup',   onUp);
 }
 
-/** Click an already-placed item in decorate mode → show Remove popup. @tag SHOP */
+/** Click an already-placed item → show Remove popup (works in and out of decorate mode). @tag SHOP */
 function _zdDecorClick(placedId, btnEl) {
-    if (!_zdDecorating) return;
     document.querySelectorAll('.izd-decor-popup').forEach(n => n.remove());
     const popup = document.createElement('div');
     popup.className = 'izd-decor-popup';

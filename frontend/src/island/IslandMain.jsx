@@ -598,7 +598,7 @@ function _bubbleClick(el, name, zone, progId, stage, canEvolve) {
     popup.style.top  = `${rect.top  - sRect.top  - 8}px`;
 
     (screen || document.body).appendChild(popup);
-    if (typeof lucide !== 'undefined') lucide.createIcons({ el: popup });
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 
     // Close on outside click
     setTimeout(() => {
@@ -798,7 +798,9 @@ function _renderHomePets(chars) {
         </div>`;
     }).join('');
     host.innerHTML = html;
-    if (html && window.lucide) lucide.createIcons({ el: host });
+    const filledCount = _IH_SLOT_ORDER.filter(z => byZone[z]).length;
+    host.classList.toggle('ih-pets--full', filledCount >= 5);
+    if (html && window.lucide) lucide.createIcons();
 }
 
 /** Populate island home card with live data. @tag HOME_DASHBOARD */

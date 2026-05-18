@@ -436,6 +436,10 @@
     position: relative;
     z-index: 1;
 }
+/* 5-zone full layout: scale down so all pets fit the card width */
+.ih-pets--full .ih-pet--normal .ih-img { width: 42px; height: 42px; }
+.ih-pets--full .ih-pet--legend .ih-img { width: 58px; height: 58px; }
+.ih-pets--full { gap: 4px; }
 .ih-pet--legend::before {
     content: "";
     position: absolute;
