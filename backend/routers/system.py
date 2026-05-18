@@ -155,23 +155,8 @@ def check_update(force: bool = False) -> dict:
     return {**_update_cache, "from_cache": False}
 
 
-# @tag SYSTEM
-@router.get("/asset-check")
-def asset_check() -> dict:
-    """List Kangaroo PDFs declared in JSON sets that are missing on disk.
-
-    PDFs are intentionally untracked in git (copyright/security). Dad
-    copies them to the daughter's Mac manually; this endpoint reports
-    exactly what's missing so he knows what to copy.
-
-    Returns:
-      {
-        kangaroo_pdf: {
-          dir: str, expected: int, present: int, missing_count: int,
-          missing: [str, …]                # disk filenames, e.g. "ksf_2023_junior.pdf"
-        }
-      }
-    """
+def _check_kangaroo_pdf() -> dict:
+    """Compare pdf_file values in Kangaroo JSON sets vs disk."""
     kangaroo_data_dir = _REPO_ROOT / "backend" / "data" / "math" / "kangaroo"
     pdf_dir = _REPO_ROOT / "frontend" / "static" / "math" / "kangaroo" / "pdf"
 
@@ -184,23 +169,85 @@ def asset_check() -> dict:
                 continue
             pdf = d.get("pdf_file")
             if pdf:
-                # Strip leading "/static/math/kangaroo/pdf/" → just filename
                 expected.add(Path(pdf).name)
 
-    present: set[str] = set()
-    if pdf_dir.is_dir():
-        for f in pdf_dir.glob("*.pdf"):
-            present.add(f.name)
-
+    present: set[str] = {f.name for f in pdf_dir.glob("*.pdf")} if pdf_dir.is_dir() else set()
     missing = sorted(expected - present)
     return {
-        "kangaroo_pdf": {
-            "dir": str(pdf_dir),
-            "expected": len(expected),
-            "present": len(expected & present),
-            "missing_count": len(missing),
-            "missing": missing,
-        },
+        "dir": str(pdf_dir),
+        "expected": len(expected),
+        "present": len(expected & present),
+        "missing_count": len(missing),
+        "missing": missing,
+    }
+
+
+def _check_island_png() -> dict:
+    """Compare image paths in DB (characters + shop items) vs disk."""
+    from ..database import SessionLocal  # local import — avoid module-load cost
+    try:
+        from ..models import IslandCharacter, IslandShopItem
+    except ImportError:
+        from models import IslandCharacter, IslandShopItem  # type: ignore
+
+    island_root = _REPO_ROOT / "frontend" / "static" / "img" / "island"
+    expected: set[str] = set()
+
+    db = SessionLocal()
+    try:
+        # Characters: images JSON {stage_key: relative_path}
+        for c in db.query(IslandCharacter).all():
+            raw = c.images or ""
+            if not raw:
+                continue
+            try:
+                imgs = json.loads(raw)
+            except Exception:
+                continue
+            for path in imgs.values():
+                if path:
+                    expected.add(str(path).lstrip("/"))
+
+        # Shop items: image is a single relative path
+        for it in db.query(IslandShopItem).all():
+            if it.image:
+                expected.add(str(it.image).lstrip("/"))
+    finally:
+        db.close()
+
+    present: set[str] = set()
+    missing: list[str] = []
+    for rel in expected:
+        if (island_root / rel).is_file():
+            present.add(rel)
+        else:
+            missing.append(rel)
+
+    missing.sort()
+    return {
+        "dir": str(island_root),
+        "expected": len(expected),
+        "present": len(present),
+        "missing_count": len(missing),
+        "missing": missing,
+    }
+
+
+# @tag SYSTEM
+@router.get("/asset-check")
+def asset_check() -> dict:
+    """Report assets referenced by data/DB that are missing from disk.
+
+    Two categories:
+      • kangaroo_pdf — PDFs declared in JSON sets (intentionally git-untracked
+        for copyright; copied manually per Mac)
+      • island_png — PNG paths in island_characters.images + island_shop_items.image
+        (git-tracked; if missing the daughter likely needs to re-pull or there
+        is a service-worker cache problem)
+    """
+    return {
+        "kangaroo_pdf": _check_kangaroo_pdf(),
+        "island_png":   _check_island_png(),
     }
 
 

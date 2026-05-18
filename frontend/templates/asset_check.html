@@ -80,7 +80,21 @@ async function load() {
   try {
     const res = await fetch('/api/system/asset-check');
     const data = await res.json();
-    root.innerHTML = renderKangaroo(data.kangaroo_pdf || {});
+    root.innerHTML =
+      renderSection({
+        title: 'Math Kangaroo PDFs',
+        data: data.kangaroo_pdf || {},
+        fixHelp: (dir) => `AirDrop or rsync these PDFs from dad's Mac to <code>${esc(dir)}</code>. Git ignores PDFs so future <code>git pull</code> won't remove them.`,
+      }) +
+      renderSection({
+        title: 'GIA Island PNGs',
+        data: data.island_png || {},
+        fixHelp: (dir) => `These PNGs ARE tracked in git. Try <code>git pull</code> again, or do a hard refresh (<code>Cmd+Shift+R</code>) to clear the service-worker cache. If still missing, check <code>${esc(dir)}</code> manually.`,
+      }) +
+      `<div class="actions" style="margin-top:8px">
+         <button class="btn" onclick="load()">Re-check</button>
+         <button class="btn secondary" onclick="location.href='/'">Back to App</button>
+       </div>`;
   } catch (e) {
     root.innerHTML = `<div class="card"><p class="help">Failed to load: ${e}</p></div>`;
   }
@@ -90,39 +104,31 @@ function esc(s) { return String(s).replace(/[&<>"']/g, c => ({
   '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
 }[c])); }
 
-function renderKangaroo(k) {
-  const allOk = (k.missing_count || 0) === 0;
+function renderSection({ title, data, fixHelp }) {
+  const allOk = (data.missing_count || 0) === 0;
   const missingHtml = allOk
     ? `<div class="all-good">
          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-         <div>All Kangaroo PDFs present.</div>
+         <div>All present.</div>
        </div>`
     : `<div class="missing-list">${
-        (k.missing || []).map(f => `<div class="missing-item">${esc(f)}</div>`).join('')
+        (data.missing || []).map(f => `<div class="missing-item">${esc(f)}</div>`).join('')
       }</div>`;
 
-  const helpHtml = allOk ? '' : `
-    <div class="help" style="margin-top:14px">
-      <strong>How to fix:</strong> AirDrop or rsync these PDFs from dad's Mac to
-      <code>${esc(k.dir)}</code> on this machine. Git ignores PDFs so they won't be
-      removed by future <code>git pull</code>.
-    </div>`;
+  const helpHtml = allOk ? '' :
+    `<div class="help" style="margin-top:14px"><strong>How to fix:</strong> ${fixHelp(data.dir || '')}</div>`;
 
   return `
     <div class="card">
-      <h2>Math Kangaroo PDFs</h2>
+      <h2>${esc(title)}</h2>
       <div class="stat-row">
-        <div class="stat"><div class="n">${k.expected || 0}</div><div class="l">Expected</div></div>
-        <div class="stat ok"><div class="n">${k.present || 0}</div><div class="l">Present</div></div>
-        <div class="stat ${k.missing_count ? 'bad' : 'ok'}"><div class="n">${k.missing_count || 0}</div><div class="l">Missing</div></div>
+        <div class="stat"><div class="n">${data.expected || 0}</div><div class="l">Expected</div></div>
+        <div class="stat ok"><div class="n">${data.present || 0}</div><div class="l">Present</div></div>
+        <div class="stat ${data.missing_count ? 'bad' : 'ok'}"><div class="n">${data.missing_count || 0}</div><div class="l">Missing</div></div>
       </div>
-      <div class="path">${esc(k.dir || '(unknown)')}</div>
+      <div class="path">${esc(data.dir || '(unknown)')}</div>
       ${missingHtml}
       ${helpHtml}
-      <div class="actions">
-        <button class="btn" onclick="load()">Re-check</button>
-        <button class="btn secondary" onclick="location.href='/'">Back to App</button>
-      </div>
     </div>`;
 }
 
