@@ -138,10 +138,10 @@ async function mmStart(level = 'easy') {
     milestonesHit: new Set(),
   };
 
+  _mmRender();
   if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('memory_match');
   if (typeof sfxStart === 'function') sfxStart();
-
-  _mmRender();
+  await _arcadeCountdown();
   _mm.tickHandle = setInterval(_mmTick, 500);  // Fix #19: setInterval instead of rAF
 }
 
