@@ -87,7 +87,11 @@
       _status = await res.json();
     } catch (e) {
       console.error("[ReviewHub] hub-status failed:", e);
-      if (body) body.innerHTML = '<div class="rh-loading">Could not load review status. Please try again.</div>';
+      if (body) {
+        body.innerHTML = '<div class="rh-load-error"><p>Could not load review status.</p><button class="rh-retry-btn" id="rh-retry-btn">Try again</button></div>';
+        var retryBtn = body.querySelector("#rh-retry-btn");
+        if (retryBtn) retryBtn.addEventListener("click", _loadStatus);
+      }
       return;
     }
 
@@ -339,6 +343,10 @@
       '<button class="rh-back-btn" id="rh-all-done-back">Back to Home</button>',
     ].join("\n");
 
+    // Wire back button here so the listener is always attached regardless of which code path rendered the banner
+    var backBtn = banner.querySelector("#rh-all-done-back");
+    if (backBtn) backBtn.addEventListener("click", close);
+
     // Attach island update card if available
     setTimeout(function () {
       var slot = document.getElementById("rh-island-slot");
@@ -547,8 +555,6 @@
         var prevResult = body.querySelector(".rh-session-result");
         if (prevResult) prevResult.remove();
         body.appendChild(_buildAllDoneBanner());
-        var backBtn = _el("rh-all-done-back");
-        if (backBtn) backBtn.addEventListener("click", close);
       }
       if (typeof renderTodayTasks === "function") renderTodayTasks();
     }
