@@ -129,6 +129,7 @@ async function srStart(level = 'normal') {
     tickHandle: null,
     level,
     milestonesHit: new Set(),
+    missedWords: [],
   };
 
   if (typeof sfxStart === 'function') sfxStart();
@@ -271,6 +272,7 @@ function _srSubmit() {
   } else {
     _sr.streak = 0;
     _sr.score = Math.max(0, _sr.score - SR_CFG.wrongPenalty);
+    _sr.missedWords.push(_sr.current.word);
     if (typeof sfxMiss === 'function') sfxMiss();
     if (navigator.vibrate) navigator.vibrate(80);  // Fix #14: haptic feedback on wrong
     const box = document.getElementById('sr-boxes');
@@ -338,5 +340,12 @@ async function _srGameOver() {
   _sr = null;
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('spell_rush', state.score, state.correct, state.total, accuracy, state.level || 'normal');
-  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => srStart(state.level || 'normal') });
+  const missed = state.missedWords || [];
+  const extras = missed.length > 0
+    ? `<div class="cw-missed">
+        <div class="cw-missed-title">Missed words (${missed.length})</div>
+        ${missed.map((w) => `<div class="cw-missed-row"><b>${w.toUpperCase()}</b></div>`).join('')}
+      </div>`
+    : '';
+  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => srStart(state.level || 'normal'), extras });
 }

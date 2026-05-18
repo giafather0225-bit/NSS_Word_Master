@@ -45,6 +45,7 @@ async function wbShowLevelPicker() {
           <li>Scrambled letters are shown — arrange them to spell the target word.</li>
           <li>A definition clue is provided to help you identify the word.</li>
           <li>Click letters to build your answer, then submit.</li>
+          <li>Keyboard: type letters to place tiles · Backspace to undo the last tile.</li>
           <li>Complete all words before time runs out for a time bonus.</li>
         </ul>
       </div>

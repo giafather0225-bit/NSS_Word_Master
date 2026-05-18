@@ -130,6 +130,7 @@ async function dmStart(level = 'normal') {
     tickHandle: null,
     level,
     milestonesHit: new Set(),
+    missedWords: [],
   };
 
   document.getElementById('dm-yes').addEventListener('click', () => _dmAnswer(true));
@@ -250,6 +251,7 @@ function _dmAnswer(saidYes) {
     _dm.streak = 0;
     _dm.score = Math.max(0, _dm.score - DM_CFG.wrongPenalty);
     if (typeof sfxMiss === 'function') sfxMiss();
+    _dm.missedWords.push({ word: _dm.current.word, def: _dm.current.correctDef });
   }
   _dmUpdateHUD();
   if (correct && typeof _arcadeScorePop === 'function') _arcadeScorePop(document.getElementById('dm-score'));
@@ -290,5 +292,12 @@ async function _dmGameOver() {
   _dm = null;                 // M-1: null immediately to prevent stale callbacks
   const accuracy = state.total > 0 ? state.correct / state.total : 0;
   const result = await _arcadeReportScore('definition_match', state.score, state.correct, state.total, accuracy, state.level || 'normal');
-  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => dmStart(state.level || 'normal') });
+  const missed = state.missedWords || [];
+  const extras = missed.length > 0
+    ? `<div class="cw-missed">
+        <div class="cw-missed-title">Missed words (${missed.length})</div>
+        ${missed.map((m) => `<div class="cw-missed-row"><b>${m.word.toUpperCase()}</b> — ${m.def}</div>`).join('')}
+      </div>`
+    : '';
+  _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => dmStart(state.level || 'normal'), extras });
 }

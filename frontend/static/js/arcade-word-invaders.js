@@ -312,12 +312,22 @@ function _wiKill(idx) {
     _wi.banner = { text: `WAVE ${_wi.wave - 1} CLEARED  +${WI_CFG.waveBonus}`, until: performance.now() + 1500, duration: 1500 };
     if (_wi.wave % WI_CFG.bossEveryWaves === 0) {
       _wi.bossQueued = true;
+      _wiScheduleBossBanner();
     }
     if (typeof sfxCombo === 'function') sfxCombo();
   }
 
   _wiUpdateHUD();
   if (typeof _arcadeScorePop === 'function') _arcadeScorePop(document.getElementById('wi-score'));
+}
+
+function _wiScheduleBossBanner() {
+  const wRef = _wi;
+  setTimeout(() => {
+    if (_wi === wRef && _wi && _wi.bossQueued) {
+      _wi.banner = { text: 'BOSS INCOMING', until: performance.now() + 1200, duration: 1200 };
+    }
+  }, 1600);
 }
 
 function _wiSpawnPowerup(x, y) {
@@ -347,7 +357,7 @@ function _wiActivatePowerup(type, x, y) {
       _wi.wave += 1;
       _wi.score += WI_CFG.waveBonus;
       _wi.banner = { text: `WAVE ${_wi.wave - 1} CLEARED  +${WI_CFG.waveBonus}`, until: performance.now() + 1500, duration: 1500 };
-      if (_wi.wave % WI_CFG.bossEveryWaves === 0) _wi.bossQueued = true;
+      if (_wi.wave % WI_CFG.bossEveryWaves === 0) { _wi.bossQueued = true; _wiScheduleBossBanner(); }
       if (typeof sfxCombo === 'function') sfxCombo();
     }
   } else if (type === 'shield') {

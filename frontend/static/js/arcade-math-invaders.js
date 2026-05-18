@@ -158,6 +158,7 @@ function _miKeydown(e) {
   _mi.active.forEach((en, i) => {
     if (en.answer === ans && en.y > lowestY) { hitIdx = i; lowestY = en.y; }
   });
+  const wasHit = hitIdx >= 0;
 
   if (hitIdx >= 0) {
     const en = _mi.active[hitIdx];
@@ -178,6 +179,7 @@ function _miKeydown(e) {
     if (typeof sfxMiss === 'function') sfxMiss();
   }
   _miUpdateHUD();
+  if (typeof _arcadeScorePop === 'function' && wasHit) _arcadeScorePop(document.getElementById('mi-score'));
 }
 
 function _miBurst(x, y, color) {
