@@ -317,3 +317,5 @@ function _ppEsc(str) {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;');
 }
+
+window._ppCKLA = _ppCKLA;

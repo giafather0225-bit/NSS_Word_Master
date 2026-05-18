@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-17 — 라우터 56개(파일 61개) · JS 109개 · CSS 65개 · 서비스 17개 · 마이그레이션 63개 (최신: 058) · home.js/parent-panel.js/math_kangaroo.py 분리 · CSS hex 위반 0건
+> Last updated: 2026-05-18 — 라우터 56개(파일 61개) · JS 110개 · CSS 65개 · 서비스 17개 · 마이그레이션 63개 (최신: 058) · Parent Dashboard 6탭 확정(Reading/Habits/Goals 병합) · CKLA 4번째 과목 · Top Weaknesses 홈탭 추가
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -499,23 +499,24 @@ Access: Home banner "···" → 4-digit PIN (`services/pin_guard.py`).
 
 **Layout**: `#pp-body` is centered with `max-width: 1080px` and `padding: 24px 32px`. The body uses a `.pp-grid-2` utility (1fr 1fr, collapses to 1-col under 720px) for two-column rows. All emoji icons have been replaced with Lucide.
 
-**6-tab structure** (redesigned 2026-04-29 → 30) — `parent-panel.js` shell routes to one renderer per tab:
+**6-tab structure** (redesigned 2026-04-29 → 30; Reading/Habits/Goals merged 2026-05-18) — `parent-panel.js` shell routes to one renderer per tab:
 
 | Tab | Renderer | Content |
 |---|---|---|
-| **Home** | `parent-overview.js _ppHome` | Hero (status icon + 3 stats, color-coded green/amber/red) → Week Calendar (7 cells) → 2-col row: Today's Progress (per-subject XP from `today_by_subject`) \| vs Last Week (words/XP/days with ↑↓→ trends) → Alerts (pending day-offs, streak-at-risk, **goals lagging** when Thu-Sun & active goal pct < 50%). |
-| **English** | `parent-panel.js _ppEnglish` | Top 3-stat summary (Tracked Words / Overall Accuracy / Stage Completions) → 2-col: Most Missed Words (sticky-header table-wrap) \| Stage Performance (Lucide icon per stage + accuracy chip green/amber/red). |
+| **Home** | `parent-overview.js _ppHome` | Hero (status icon + 3 stats, color-coded green/amber/red) → Week Calendar (7 cells) → 2-col row: Today's Progress (4-subject XP: English/Math/Diary/CKLA from `today_by_subject`) \| vs Last Week (words/XP/days with ↑↓→ trends) → Island mini widget → **Top Weaknesses** (cross-subject: English wrong words + Math weak concepts + CKLA Q&A, sorted by accuracy ASC, from `/api/parent/weaknesses`) → Alerts (pending day-offs, streak-at-risk, goals lagging when Thu-Sun & active goal pct < 50%). |
+| **Reading** | `parent-reading.js _ppReading` | Sub-tab nav (English \| CKLA). **English sub-tab**: Top 3-stat summary (Tracked Words / Overall Accuracy / Stage Completions) → 2-col: Most Missed Words (sticky-header table-wrap) \| Stage Performance (Lucide icon per stage + accuracy chip green/amber/red). **CKLA sub-tab**: delegates to `parent-ckla.js _ppCKLA` — domain progress, Q&A accuracy, weekly graph. |
 | **Math** | `parent-math.js _ppMathSummary` | 4-stat grid → 2-col: Weak Concepts (humanized lesson names) \| Fact Fluency (Phase pill + accuracy chip) → Daily Challenge bar chart (7d) → Kangaroo Sets table. Lucide section-title icons throughout (`calculator`/`alert-triangle`/`zap`/`calendar-days`/`award`). |
-| **Habits** | `parent-panel.js _ppHabits` | Streak detail (`parent-streak.js`: 3 stat cards + Streak Rule editor + Last 30 Days grid 15-col on desktop) + Day-Off approvals. Subjects render with Lucide (`book-open`/`calculator`/`gamepad-2`); calendar cells use `flame`/`umbrella`/`x`. |
-| **Goals** | `parent-goals.js _ppGoals` | Summary banner + 2x2 progress card grid + inline Edit Targets form (PIN-gated PUT). |
+| **Habits** | `parent-panel.js _ppHabits` | Streak detail (`parent-streak.js`: 3 stat cards + Streak Rule editor + Last 30 Days grid 15-col on desktop) + **Weekly Goals** (`parent-goals.js _ppGoals` — summary banner + 2×2 progress card grid + inline Edit Targets form, PIN-gated PUT) + Day-Off approvals. Subjects render with Lucide (`book-open`/`calculator`/`gamepad-2`); calendar cells use `flame`/`umbrella`/`x`. |
+| **Island** | `parent-island.js _ppIsland` | Island status overview for parent view. |
 | **Settings** | `parent-panel.js _ppSettings` | 4 sections: Task Settings (full, 2-col task list) → 2-col row: Academy Schedule \| Account (PIN + parent email) → Weekly Report (`parent-report.js` — enable toggle, day-of-week select, child-name, Save Schedule / Send Now / Preview Data; gracefully degraded when PIN not yet verified) → Textbooks (`parent-textbooks.js` accordion + Add Textbook entry point linking to `/ingest`). |
 
 **Backend feed** (key endpoints):
-- `/api/parent/overview` returns `today_by_subject: {english,math,diary}→{xp,count}` (XPLog action prefix → subject) plus `recent_logs[].subject` and the original totals. Used by Home.
+- `/api/parent/overview` returns `today_by_subject: {english,math,diary,ckla}→{xp,count}` (XPLog action prefix → subject; `ckla_*` actions → "ckla") plus `recent_logs[].subject` and the original totals. Used by Home.
+- `/api/parent/weaknesses` returns up to 10 weakest items across English (WordAttempt), Math (MathAttempt), CKLA (CKLAQuestionResponse) sorted by accuracy ASC. Used by Home Top Weaknesses.
 - `/api/parent/summary`, `/api/parent/activity?days=14`, `/api/parent/word-stats`, `/api/parent/stage-stats`, `/api/parent/math-summary`, `/api/parent/streak`, `/api/parent/day-off-requests`, `/api/goals/weekly` — see `API_INDEX.md`.
 - `/api/parent/report/{schedule,send,preview}` — Weekly Report (PIN-gated).
 
-**Removed standalone tabs** (functionality merged into the 6 above): Overview/Activity/Word-stats/Stage-stats/Streak/XP/Day-off/Tasks/Schedule/Pin/Textbooks — all consolidated.
+**Removed standalone tabs** (functionality merged into the 6 above): Overview/Activity/Word-stats/Stage-stats/Streak/XP/Day-off/Tasks/Schedule/Pin/Textbooks/Goals/English/CKLA — all consolidated.
 
 Auxiliary modules still bundled but not direct tabs:
 - `parent-xp.js` — XP rules edit (separate flow; can be invoked from Settings when surfaced).
@@ -524,6 +525,8 @@ Auxiliary modules still bundled but not direct tabs:
 **CSS keys added for the redesign** (in `frontend/static/css/parent.css`):
 - Layout: `.pp-grid-2`
 - Home: `.pp-hero` (+ `--green/amber/red`, `-head`, `-icon`, `-msg`, `-stats`, `-stat`, `-num`, `-label`), `.pp-today-list/-row/-subject/-badge` (+ `--active/done/none/sub`), `.pp-week-grid/-cell/-day/-dot/-xp` (+ `--active`), `.pp-compare-grid/-row/-label/-val`, `.pp-trend` (+ `--up/down/same`), `.pp-alert-list/-alert` (+ `--warn/info`).
+- Home Weaknesses: `.pp-weakness-list`, `.pp-weakness-item`, `.pp-weakness-badge` (+ `--english/--math/--ckla`), `.pp-weakness-label`, `.pp-weakness-detail`, `.pp-weakness-acc`.
+- Reading sub-tabs: `.pp-subtab-nav`, `.pp-subtab-btn` (+ `.active`).
 - Goals: `.pp-goals-summary/-grid/-edit-box/-edit-row`, `.pp-goal-card/-header/-label/-val/-track/-fill/-footer/-pct/-achieved` (+ `--done`).
 - English/Math shared: `.pp-stage-list/-head/-acc` (+ `--good/ok/low`), `.pp-table-wrap` (sticky header), `.pp-section-title--icon`, `.pp-phase-pill`.
 - Settings: `.pp-form-row`, `.pp-toggle-row`, `.pp-rep-preview`.
