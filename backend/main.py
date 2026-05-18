@@ -29,6 +29,7 @@ from backend.folder_watcher import start_watcher
 
 from backend.routers import lessons, study, progress, words, files, tts, review, ai_coach
 from backend.routers import files_voca as files_voca_router
+from backend.routers import files_voca_ocr as files_voca_ocr_router
 from backend.routers import xp as xp_router
 from backend.routers import daily_words as daily_words_router
 from backend.routers import words_mywords as words_mywords_router
@@ -350,6 +351,7 @@ app.include_router(words.router)
 app.include_router(words_mywords_router.router)
 app.include_router(files.router)
 app.include_router(files_voca_router.router)
+app.include_router(files_voca_ocr_router.router)
 app.include_router(tts.router)
 app.include_router(review.router)
 app.include_router(ai_coach.router)
