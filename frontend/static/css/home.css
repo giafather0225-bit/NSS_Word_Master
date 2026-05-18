@@ -104,19 +104,22 @@
 }
 
 .tc-progress {
-    height: var(--progress-bar-height);
+    height: var(--progress-bar-height-lg);
     background: var(--bg-surface);
     border-radius: var(--radius-full);
     overflow: hidden;
+    margin-bottom: 2px;
 }
 
 .tc-progress-fill {
     height: 100%;
     width: 0%;
-    background: var(--diary-primary);
+    background: var(--review-primary);
     border-radius: var(--radius-full);
-    transition: width 0.6s var(--ease-calm);
+    transition: width 0.6s var(--ease-calm), background 0.4s ease;
 }
+.tc-progress-fill--half    { background: var(--arcade-primary); }
+.tc-progress-fill--done    { background: var(--math-primary); }
 
 .tc-list {
     display: flex;

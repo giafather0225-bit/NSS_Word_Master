@@ -141,7 +141,11 @@ async function renderTodayTasks() {
   if (xpEl) xpEl.textContent = `Set by parent · ${earnedXp} / ${totalXp} XP earned`;
   const fillEl = document.getElementById('today-tasks-progress-fill');
   const pct = total ? Math.round((doneCount / total) * 100) : 0;
-  if (fillEl) fillEl.style.width = pct + '%';
+  if (fillEl) {
+    fillEl.style.width = pct + '%';
+    fillEl.classList.toggle('tc-progress-fill--half', pct >= 50 && pct < 100);
+    fillEl.classList.toggle('tc-progress-fill--done', pct === 100);
+  }
   const progressBar = fillEl ? fillEl.parentElement : null;
   if (progressBar) progressBar.setAttribute('aria-valuenow', String(pct));
 

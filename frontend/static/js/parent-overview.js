@@ -246,7 +246,9 @@ function _ppHomeAlerts(pendingDayoffs, todayXP, activeCount, sum, goalsResp) {
 
 /** Cross-subject weakness digest (top wrong words / math concepts / CKLA Q&A). @tag PARENT WORD_STATS */
 function _ppHomeWeaknesses(items) {
-    if (!items || !items.length) return "";
+    if (!items || !items.length) return `
+        <div class="pp-section-title">Top Weaknesses</div>
+        <p class="pp-empty-hint" style="margin-bottom:16px">No weak areas yet — keep studying to see patterns here.</p>`;
 
     const SUBJECT_META = {
         english: { label: "English", cls: "pp-weakness-badge--english" },
