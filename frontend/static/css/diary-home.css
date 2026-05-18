@@ -362,6 +362,14 @@ body[data-view="diary"].dh-fullscreen #diary-view {
   cursor: default;
 }
 .dh-week-cell:hover:not(.is-empty) { transform: translateY(-1px); }
+.dh-week-cell.is-today {
+  border-color: var(--diary-primary);
+  background: var(--diary-light);
+}
+.dh-week-cell.is-today .dh-week-day {
+  color: var(--diary-ink);
+  font-weight: 700;
+}
 .dh-week-day {
   font-size: 10px;
   color: var(--text-hint);

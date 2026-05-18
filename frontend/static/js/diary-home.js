@@ -268,17 +268,19 @@ function _dhPaintWeek(entries) {
     }
 
     const labels = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    const todayIso = today.toISOString().slice(0, 10);
     let html = "";
     for (let i = 0; i < 7; i++) {
         const d = new Date(monday);
         d.setDate(monday.getDate() + i);
         const iso = d.toISOString().slice(0, 10);
+        const isToday = iso === todayIso;
         const entry = byDate[iso];
         const mood = entry?.mood || null;
         const moodMeta = mood && _DH_MOODS[mood] ? _DH_MOODS[mood] : null;
         const empty = !mood;
         html += `
-            <button class="dh-week-cell ${empty ? "is-empty" : ""}" type="button"
+            <button class="dh-week-cell ${empty ? "is-empty" : ""}${isToday ? " is-today" : ""}" type="button"
                 ${empty ? "" : `aria-label="${escapeHtml(d.toDateString())}, ${escapeHtml(mood)} mood"`}
                 ${empty ? "disabled" : ""}>
                 <div class="dh-week-day">${labels[i]}</div>
@@ -432,8 +434,8 @@ function _dhPaintStats(entries, streakDays, dayOffs) {
         if (s) s.textContent = sub || "";
     };
 
-    set("entries", String(monthEntries.length), "this month");
-    set("words",   totalWords.toLocaleString(),  "kept writing");
+    set("entries", String(monthEntries.length), monthEntries.length > 0 ? "this month" : "write your first!");
+    set("words",   totalWords.toLocaleString(),  totalWords > 0 ? "kept writing" : "start writing!");
     set("streak",  `${streakDays}d`,             streakDays > 0 ? "keep it going" : "start today");
     set("day-off", `${used}/${_DH_DAYOFF_MAX}`,  left > 0 ? `${left} left` : "all used");
 
