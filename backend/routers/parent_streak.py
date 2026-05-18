@@ -28,7 +28,7 @@ except ImportError:
 
 router = APIRouter()
 
-_VALID_STREAK_SUBJECTS = {"english", "math", "game"}
+_VALID_STREAK_SUBJECTS = {"ckla", "english", "math", "game"}
 
 
 class StreakRuleIn(BaseModel):
@@ -71,7 +71,7 @@ def parent_streak(db: Session = Depends(get_db)):
             "date": d,
             "maintained": bool(r and r.streak_maintained),
             "day_off": d in approved_day_offs,
-            "english": bool(r and (r.review_done and r.daily_words_done)),
+            "ckla":    bool(r and r.ckla_done),
             "math":    bool(r and r.math_done),
             "game":    bool(r and r.game_done),
         })

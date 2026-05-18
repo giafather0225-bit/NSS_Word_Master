@@ -7,9 +7,9 @@
    ================================================================ */
 
 const _PP_STREAK_SUBJECTS = [
-    ["english", "English", "book-open"],
-    ["math",    "Math",    "calculator"],
-    ["game",    "Game",    "gamepad-2"],
+    ["ckla", "CKLA",  "layers"],
+    ["math", "Math",  "calculator"],
+    ["game", "Game",  "gamepad-2"],
 ];
 
 const _ICON = (name, size = 16) =>
@@ -89,12 +89,12 @@ function _ppStreakCalendar(days) {
         else if (d.maintained) { icon = "flame";    cls = "maintained"; }
         const mm_dd = (d.date || "").slice(5);
         const dots = [
-            d.english ? '<span class="pp-streak-dot e" title="English"></span>' : '<span class="pp-streak-dot off"></span>',
-            d.math    ? '<span class="pp-streak-dot m" title="Math"></span>'    : '<span class="pp-streak-dot off"></span>',
-            d.game    ? '<span class="pp-streak-dot g" title="Game"></span>'    : '<span class="pp-streak-dot off"></span>',
+            d.ckla ? '<span class="pp-streak-dot e" title="CKLA"></span>' : '<span class="pp-streak-dot off"></span>',
+            d.math ? '<span class="pp-streak-dot m" title="Math"></span>' : '<span class="pp-streak-dot off"></span>',
+            d.game ? '<span class="pp-streak-dot g" title="Game"></span>' : '<span class="pp-streak-dot off"></span>',
         ].join("");
         return `
-            <div class="pp-streak-cell ${cls}" title="${d.date} — E:${d.english?'Y':'-'} M:${d.math?'Y':'-'} G:${d.game?'Y':'-'}">
+            <div class="pp-streak-cell ${cls}" title="${d.date} — C:${d.ckla?'Y':'-'} M:${d.math?'Y':'-'} G:${d.game?'Y':'-'}">
                 <div class="pp-streak-cell-icon">${_ICON(icon, 14)}</div>
                 <div class="pp-streak-cell-dots">${dots}</div>
                 <div class="pp-streak-cell-date">${mm_dd}</div>
@@ -103,7 +103,7 @@ function _ppStreakCalendar(days) {
     return `
         <div class="pp-section-title">Last 30 Days</div>
         <div class="pp-streak-legend">
-            <span><span class="pp-streak-dot e"></span> English</span>
+            <span><span class="pp-streak-dot e"></span> CKLA</span>
             <span><span class="pp-streak-dot m"></span> Math</span>
             <span><span class="pp-streak-dot g"></span> Game</span>
         </div>
