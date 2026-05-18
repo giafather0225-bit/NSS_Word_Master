@@ -21,10 +21,10 @@ window.DEV = {
     async go(stageNum) {
         const stageMap = {1: 'PREVIEW', 2: 'A', 3: 'B', 4: 'C', 5: 'D'};
         const key = stageMap[stageNum];
-        if (!key) { console.log('1-5 사이 숫자를 입력하세요'); return; }
+        if (!key) { console.log('Enter a number between 1 and 5'); return; }
         if (!items.length) {
             const lesson = lessonSelected();
-            if (!lesson) { console.log('레슨을 먼저 선택하세요'); return; }
+            if (!lesson) { console.log('Select a lesson first'); return; }
             await loadStudyItems(lesson);
         }
         jumpToStage(key);
@@ -440,7 +440,7 @@ async function startLessonAt(stageKey) {
     if (sidebar) sidebar.classList.add('collapsed');
     localStorage.setItem('sb_collapsed', '1');
     renderStage();
-  // ── 영어 레슨 EXIT 버튼 (.stage-header 우측) ───────────────────────────
+  // ── English lesson EXIT button (.stage-header right side) ────────────
   (function _injectEnglishHeader() {
     const existing = document.getElementById('english-lesson-header');
     if (existing) existing.remove();

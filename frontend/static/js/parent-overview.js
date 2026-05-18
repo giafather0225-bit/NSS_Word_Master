@@ -10,14 +10,17 @@
 /** Full Home tab: Hero + Today Progress + Week Calendar + vs Last Week + Island mini + Weaknesses + Alerts. @tag PARENT */
 async function _ppHome(body) {
     try {
+        const _failed = new Set();
+        const _safe = (p, fb, key) => p.catch(() => { _failed.add(key); return fb; });
+
         const [sum, ov, act14, dayoffs, goals, island, weak] = await Promise.all([
             apiFetchJSON("/api/parent/summary"),
             apiFetchJSON("/api/parent/overview"),
             apiFetchJSON("/api/parent/activity?days=14"),
-            apiFetchJSON("/api/parent/day-off-requests").catch(() => ({ requests: [] })),
-            apiFetchJSON("/api/goals/weekly").catch(() => ({ goals: [] })),
-            apiFetchJSON("/api/island/status").catch(() => null),
-            apiFetchJSON("/api/parent/weaknesses").catch(() => ({ weaknesses: [] })),
+            _safe(apiFetchJSON("/api/parent/day-off-requests"), { requests: [] }, "dayoffs"),
+            _safe(apiFetchJSON("/api/goals/weekly"), { goals: [] }, "goals"),
+            _safe(apiFetchJSON("/api/island/status"), null, "island"),
+            _safe(apiFetchJSON("/api/parent/weaknesses"), { weaknesses: [] }, "weaknesses"),
         ]);
 
         const bySubject = ov.today_by_subject || {
@@ -37,10 +40,17 @@ async function _ppHome(body) {
         const pendingDayoffs = (dayoffs.requests || []).filter(r => r.status === "pending");
         const weekMinutes    = thisWeek.reduce((a, d) => a + (d.minutes || 0), 0);
 
-        const islandMiniHtml = island && island.island_on ? _ppHomeIslandMini(island) : "";
-        const weakItems      = weak?.weaknesses || [];
+        const islandMiniHtml = island && island.island_on
+            ? _ppHomeIslandMini(island)
+            : _failed.has("island") ? `<p class="pp-fetch-warn">Could not load Island data.</p>` : "";
+        const weakItems = weak?.weaknesses || [];
+
+        const fetchWarnHtml = ["dayoffs", "goals", "weaknesses"].some(k => _failed.has(k))
+            ? `<p class="pp-fetch-warn">Some data could not be loaded — pull down to retry.</p>`
+            : "";
 
         body.innerHTML =
+            fetchWarnHtml +
             _ppHomeHero(sum, todayXP, activeCount, weekMinutes) +
             _ppHomeWeekCalendar(thisWeek, sum) +
             `<div class="pp-grid-2">
@@ -289,8 +299,9 @@ function _ppHomeIslandMini(island) {
            </span>`;
 
     return `
-        <div class="pp-island-mini" onclick="_ppLoadTab('island')" role="button" tabindex="0"
-             aria-label="Open Island tab">
+        <div class="pp-island-mini" onclick="_ppLoadTab('island')"
+             onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();_ppLoadTab('island');}"
+             role="button" tabindex="0" aria-label="Open Island tab">
             <div class="pp-island-mini-left">
                 <i data-lucide="palmtree" class="pp-island-mini-icon"></i>
                 <div>

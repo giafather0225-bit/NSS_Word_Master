@@ -141,11 +141,11 @@ function _ppMathFluency(fluency) {
 function _ppMathDailyChart(daily) {
     if (!daily.length) return "";
     const sorted = [...daily].sort((a, b) => (a.date || "").localeCompare(b.date || ""));
-    const maxScore = Math.max(1, ...sorted.map(d => d.total || 0));
+    const maxScore = Math.max(1, ...sorted.map(d => d.score || 0));
     const bars = sorted.map(d => {
         const score = d.score || 0;
         const total = d.total || 0;
-        const pct = total ? Math.round((score / maxScore) * 100) : 0;
+        const pct = score ? Math.round((score / maxScore) * 100) : 0;
         const dayLabel = (d.date || "").slice(5);
         const done = d.completed ? "pp-bar-fill pp-math-bar-done" : "pp-bar-fill pp-math-bar-partial";
         return `<div class="pp-bar-col">

@@ -10,7 +10,9 @@ import os
 import tempfile
 from typing import Optional
 
-from fastapi import APIRouter, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, Form, HTTPException, Request, UploadFile
+
+from backend.utils import ai_limiter
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -51,6 +53,7 @@ def _get_model():
 async def recognize_speech(
     audio: UploadFile = File(...),
     lang: Optional[str] = Form("en"),
+    _: None = Depends(ai_limiter),
 ):
     """
     Transcribe an uploaded audio clip with local Whisper.

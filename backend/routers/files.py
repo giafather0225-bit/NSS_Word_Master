@@ -21,7 +21,8 @@ import json
 import tempfile
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, Form, HTTPException, Request, UploadFile
+from backend.utils import ocr_limiter
 from sqlalchemy.orm import Session
 
 from backend.database import get_db, LEARNING_ROOT
@@ -209,6 +210,7 @@ async def trigger_ocr(
     lang: str = "eng",
     model: Optional[str] = None,
     db: Session = Depends(get_db),
+    _: None = Depends(ocr_limiter),
 ):
     """Run Tesseract OCR + Ollama refinement on stored files and save to words/study_items.
 

@@ -19,7 +19,7 @@ import asyncio
 import logging
 from concurrent.futures import ThreadPoolExecutor
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import Response
 from fastapi import HTTPException
 from pydantic import BaseModel
@@ -34,6 +34,8 @@ from backend.tts_edge import (
     example_full_bytes,
     line_bytes,
 )
+
+from backend.utils import tts_limiter
 
 router = APIRouter()
 
@@ -112,7 +114,7 @@ def _tts_response(audio: bytes) -> Response:
 
 # @tag TTS @tag PREVIEW
 @router.post("/api/tts/preview_sequence")
-async def tts_preview_sequence(req: PreviewTTSRequest):
+async def tts_preview_sequence(req: PreviewTTSRequest, _: None = Depends(tts_limiter)):
     """Return MP3 bytes for the preview sequence: word → meaning → example."""
     req.clean()
     try:
@@ -125,7 +127,7 @@ async def tts_preview_sequence(req: PreviewTTSRequest):
 
 # @tag TTS @tag PREVIEW
 @router.post("/api/tts/preview_word_meaning")
-async def tts_preview_word_meaning(req: WordMeaningTTSRequest):
+async def tts_preview_word_meaning(req: WordMeaningTTSRequest, _: None = Depends(tts_limiter)):
     """Return MP3 bytes for word (normal speed) → meaning (slow); call 3× for repetition."""
     req.clean()
     try:
@@ -138,7 +140,7 @@ async def tts_preview_word_meaning(req: WordMeaningTTSRequest):
 
 # @tag TTS
 @router.post("/api/tts/word_meaning")
-async def tts_word_meaning(req: WordMeaningTTSRequest):
+async def tts_word_meaning(req: WordMeaningTTSRequest, _: None = Depends(tts_limiter)):
     """Return MP3 bytes for word then meaning."""
     req.clean()
     try:
@@ -151,7 +153,7 @@ async def tts_word_meaning(req: WordMeaningTTSRequest):
 
 # @tag TTS
 @router.post("/api/tts/word_only")
-async def tts_word_only(req: TTSWordOnlyRequest):
+async def tts_word_only(req: TTSWordOnlyRequest, _: None = Depends(tts_limiter)):
     """Return MP3 bytes for a single word spoken aloud."""
     req.clean()
     try:
@@ -164,7 +166,7 @@ async def tts_word_only(req: TTSWordOnlyRequest):
 
 # @tag TTS
 @router.post("/api/tts/example_full")
-async def tts_example_full(req: TTSExampleFullRequest):
+async def tts_example_full(req: TTSExampleFullRequest, _: None = Depends(tts_limiter)):
     """Return MP3 bytes for a full example sentence."""
     req.clean()
     try:
@@ -177,7 +179,7 @@ async def tts_example_full(req: TTSExampleFullRequest):
 
 # @tag TTS
 @router.post("/api/tts")
-async def play_tts_line(req: TTSLineRequest):
+async def play_tts_line(req: TTSLineRequest, _: None = Depends(tts_limiter)):
     """Return MP3 bytes for a single line of narration."""
     req.clean()
     try:

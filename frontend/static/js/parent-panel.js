@@ -109,6 +109,8 @@ async function _ppVerifyPin() {
         if (res.ok) {
             window._ppSetPin(enteredPin);
             _ppRemovePin();
+            const el = document.getElementById("parent-overlay");
+            if (el) el.innerHTML = `<p class="pp-loading-center">Loading…</p>`;
             _ppRenderShell();
             _ppLoadTab("home");
         } else {

@@ -23,8 +23,9 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, File, Form, HTTPException, Request, UploadFile
 from fastapi.responses import FileResponse
+from backend.utils import ocr_limiter
 from sqlalchemy.orm import Session
 
 from backend.database import get_db, LEARNING_ROOT
@@ -313,7 +314,7 @@ async def voca_folder_ocr(
 
 # @tag FILES @tag OCR
 @router.post("/api/ocr/vocab_image")
-async def ocr_vocab_image(file: UploadFile = File(...)):
+async def ocr_vocab_image(file: UploadFile = File(...), _: None = Depends(ocr_limiter)):
     """Run vision OCR on a single uploaded image and return parsed words."""
     fname = file.filename or "upload.png"
     ext = Path(fname).suffix.lower()

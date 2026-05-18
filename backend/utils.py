@@ -1,12 +1,47 @@
 """
-utils.py — shared helpers (LLM/OCR parsing + path-safety validators).
+utils.py — shared helpers (LLM/OCR parsing + path-safety validators + rate limiter).
 """
 from typing import Optional
+from collections import deque
 
 import json
 import re
+import time
 
-from fastapi import HTTPException
+from fastapi import HTTPException, Request
+
+
+# ── Lightweight per-IP sliding-window rate limiter ─────────────────────
+
+class _RateLimiter:
+    """Thread-safe in-memory rate limiter (no external deps).
+
+    Tracks request timestamps per IP in a deque.  Each Dependency call
+    prunes old entries and raises 429 when the limit is exceeded.
+    """
+    def __init__(self, max_calls: int, window_sec: int) -> None:
+        self._max   = max_calls
+        self._win   = window_sec
+        self._store: dict[str, deque] = {}
+
+    def __call__(self, request: Request) -> None:
+        ip  = request.client.host if request.client else "unknown"
+        now = time.monotonic()
+        dq  = self._store.setdefault(ip, deque())
+        while dq and now - dq[0] > self._win:
+            dq.popleft()
+        if len(dq) >= self._max:
+            raise HTTPException(
+                status_code=429,
+                detail=f"Too many requests — please slow down (limit {self._max}/{self._win}s).",
+            )
+        dq.append(now)
+
+
+# Shared limiters — import and use as FastAPI Depends() in routers
+tts_limiter = _RateLimiter(max_calls=40, window_sec=60)   # 40 TTS req/min
+ai_limiter  = _RateLimiter(max_calls=15, window_sec=60)   # 15 AI req/min
+ocr_limiter = _RateLimiter(max_calls=10, window_sec=60)   # 10 OCR req/min
 
 
 # ── Path-safety validators (used by routers/lessons.py et al.) ────────

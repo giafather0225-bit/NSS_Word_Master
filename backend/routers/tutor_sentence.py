@@ -14,7 +14,7 @@ import re as _re
 from datetime import datetime, timezone
 
 import httpx
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
@@ -22,12 +22,12 @@ try:
     from ..database import get_db
     from ..models import UserPracticeSentence
     from ..schemas_common import Str80, Str500
-    from ..utils import strip_json_fences
+    from ..utils import strip_json_fences, ai_limiter
 except ImportError:
     from database import get_db
     from models import UserPracticeSentence
     from schemas_common import Str80, Str500
-    from utils import strip_json_fences
+    from utils import strip_json_fences, ai_limiter
 
 router = APIRouter()
 logger = logging.getLogger(__name__)
@@ -147,7 +147,7 @@ async def _evaluate_with_gemini(word: str, sentence: str) -> dict:
 
 # @tag AI @tag TUTOR
 @router.post("/api/tutor")
-async def ai_tutor_reply(req: TutorRequest):
+async def ai_tutor_reply(req: TutorRequest, _: None = Depends(ai_limiter)):
     """Return AI tutor feedback for a student's practice sentence."""
     try:
         from ..ai_tutor import get_tutor_feedback
@@ -160,7 +160,7 @@ async def ai_tutor_reply(req: TutorRequest):
 
 # @tag AI @tag EVALUATE
 @router.post("/api/evaluate-sentence")
-async def evaluate_sentence(req: EvaluateSentenceRequest):
+async def evaluate_sentence(req: EvaluateSentenceRequest, _: None = Depends(ai_limiter)):
     """Evaluate a student sentence with Ollama (primary) or Gemini (fallback)."""
     req.clean()
     try:
