@@ -194,23 +194,36 @@ def parent_activity(
     """Daily aggregated learning activity for the last N days. @tag PARENT"""
     start_date = (date.today() - timedelta(days=days - 1)).isoformat()
 
-    rows = (
+    # Aggregate sessions/minutes from LearningLog only — joining WordAttempt
+    # here would multiply each LearningLog row by its matching attempts.
+    session_rows = (
         db.query(
             func.substr(LearningLog.completed_at, 1, 10).label("day"),
-            func.count(func.distinct(WordAttempt.word)).label("words"),
             func.count(LearningLog.id).label("sessions"),
             func.sum(LearningLog.duration_sec).label("minutes"),
-        )
-        .outerjoin(
-            WordAttempt,
-            (WordAttempt.lesson == LearningLog.lesson) &
-            (WordAttempt.is_correct == True) &
-            (func.substr(WordAttempt.attempted_at, 1, 10) == func.substr(LearningLog.completed_at, 1, 10))
         )
         .filter(LearningLog.completed_at >= start_date)
         .group_by(func.substr(LearningLog.completed_at, 1, 10))
         .all()
     )
+
+    word_rows = (
+        db.query(
+            func.substr(WordAttempt.attempted_at, 1, 10).label("day"),
+            func.count(func.distinct(WordAttempt.word)).label("words"),
+        )
+        .filter(
+            WordAttempt.is_correct == True,  # noqa: E712
+            WordAttempt.attempted_at >= start_date,
+        )
+        .group_by(func.substr(WordAttempt.attempted_at, 1, 10))
+        .all()
+    )
+    words_by_date = {r.day: int(r.words or 0) for r in word_rows}
+    sessions_by_date = {
+        r.day: {"sessions": int(r.sessions or 0), "minutes": int(r.minutes or 0)}
+        for r in session_rows
+    }
 
     xp_rows = (
         db.query(XPLog.earned_date, func.sum(XPLog.xp_amount).label("xp"))
@@ -223,13 +236,13 @@ def parent_activity(
     daily = []
     for i in range(days):
         d = (date.today() - timedelta(days=days - 1 - i)).isoformat()
-        match = next((r for r in rows if r.day == d), None)
+        s = sessions_by_date.get(d, {"sessions": 0, "minutes": 0})
         daily.append({
             "date":     d,
-            "words":    match.words if match else 0,
+            "words":    words_by_date.get(d, 0),
             "xp":       xp_by_date.get(d, 0),
-            "minutes":  round((match.minutes or 0) / 60) if match else 0,
-            "sessions": match.sessions if match else 0,
+            "minutes":  round(s["minutes"] / 60),
+            "sessions": s["sessions"],
         })
 
     return {"daily": daily}
