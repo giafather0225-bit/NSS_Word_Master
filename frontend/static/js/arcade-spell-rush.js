@@ -272,7 +272,7 @@ function _srSubmit() {
   } else {
     _sr.streak = 0;
     _sr.score = Math.max(0, _sr.score - SR_CFG.wrongPenalty);
-    _sr.missedWords.push(_sr.current.word);
+    _sr.missedWords.push({ word: _sr.current.word, def: _sr.current.def });
     if (typeof sfxMiss === 'function') sfxMiss();
     if (navigator.vibrate) navigator.vibrate(80);  // Fix #14: haptic feedback on wrong
     const box = document.getElementById('sr-boxes');
@@ -344,7 +344,7 @@ async function _srGameOver() {
   const extras = missed.length > 0
     ? `<div class="cw-missed">
         <div class="cw-missed-title">Missed words (${missed.length})</div>
-        ${missed.map((w) => `<div class="cw-missed-row"><b>${w.toUpperCase()}</b></div>`).join('')}
+        ${missed.map((m) => `<div class="cw-missed-row"><b>${m.word.toUpperCase()}</b> — ${m.def}</div>`).join('')}
       </div>`
     : '';
   _arcadeRenderGameOver({ state, accuracy, result, replayFn: () => srStart(state.level || 'normal'), extras });
