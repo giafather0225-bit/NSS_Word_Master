@@ -524,6 +524,24 @@
   line-height: 1.5;
 }
 
+/* ── Time bar (depletes as round timer counts down) ─────── */
+.dm-time-bar {
+  width: 100%;
+  max-width: 480px;
+  height: 6px;
+  background: var(--border-subtle);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+.dm-time-fill {
+  height: 100%;
+  background: var(--math-primary);
+  border-radius: var(--radius-full);
+  transition: width 0.5s linear, background-color 0.3s ease;
+}
+.dm-time-fill--warn   { background: var(--arcade-primary); }
+.dm-time-fill--danger { background: var(--color-error); }
+
 /* ── Spell Rush ─────────────────────────────────────────── */
 .sr-view {
   max-width: 720px;

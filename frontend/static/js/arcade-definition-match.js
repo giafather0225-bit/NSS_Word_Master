@@ -92,6 +92,9 @@ async function dmStart(level = 'normal') {
         <div class="dm-def" id="dm-def">—</div>
         <div class="dm-reveal" id="dm-reveal"></div>
       </div>
+      <div class="dm-time-bar" aria-hidden="true">
+        <div class="dm-time-fill" id="dm-time-fill" style="width:100%"></div>
+      </div>
       <div class="dm-buttons">
         <button type="button" class="dm-btn dm-btn--no" id="dm-no"><span class="dm-btn-key">←</span> No</button>
         <button type="button" class="dm-btn dm-btn--yes" id="dm-yes">Yes <span class="dm-btn-key">→</span></button>
@@ -163,6 +166,14 @@ function _dmTick() {
   if (el) {
     el.textContent = String(Math.ceil(remain / 1000));
     el.classList.toggle('dm-time--urgent', remain <= 10000);
+  }
+  // Update time bar
+  const fill = document.getElementById('dm-time-fill');
+  if (fill) {
+    const pct = (remain / DM_CFG.roundMs) * 100;
+    fill.style.width = `${pct}%`;
+    fill.classList.toggle('dm-time-fill--warn',   pct <= 40);
+    fill.classList.toggle('dm-time-fill--danger',  pct <= 15);
   }
   if (remain <= 0) {
     if (_dm.tickHandle) { clearInterval(_dm.tickHandle); _dm.tickHandle = null; }
