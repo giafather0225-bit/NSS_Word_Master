@@ -25,6 +25,8 @@ const WB_LEVELS = {
 };
 
 let _wb = null;
+let _wbDragId = null;
+let _wbDragFromAnswer = false;
 
 /** Level picker for Word Builder. @tag ARCADE */
 async function wbShowLevelPicker() {
@@ -258,21 +260,33 @@ function _wbUpdateBoard() {
   const answerRow = document.getElementById('wb-answer-row');
   if (answerRow) {
     const placed = current.answer.map((t) =>
-      `<div class="wb-tile wb-answer-tile${t.revealed ? ' wb-tile--revealed' : ''}" data-id="${t.id}" onclick="_wbReturnTile(${t.id})">${t.letter}</div>`
+      `<div class="wb-tile wb-answer-tile${t.revealed ? ' wb-tile--revealed' : ''}" data-id="${t.id}" draggable="true"
+        onclick="_wbReturnTile(${t.id})" ondragstart="_wbDragStart(event,${t.id},true)"
+        ondragend="_wbDragEnd(event)">${t.letter}</div>`
     ).join('');
     const blanks = Array.from(
       { length: current.tiles.length - current.answer.length },
       () => `<div class="wb-tile wb-blank-tile"></div>`
     ).join('');
     answerRow.innerHTML = placed + blanks;
+    answerRow.ondragover  = (e) => _wbDragOver(e);
+    answerRow.ondragenter = (e) => _wbDragEnter(e, answerRow);
+    answerRow.ondragleave = (e) => _wbDragLeave(e, answerRow);
+    answerRow.ondrop      = (e) => _wbDrop(e, false, answerRow);
   }
 
   const tilesEl = document.getElementById('wb-tiles');
   if (tilesEl) {
     tilesEl.innerHTML = current.tiles
       .filter((t) => !t.placed)
-      .map((t) => `<div class="wb-tile wb-pool-tile" data-id="${t.id}" onclick="_wbPlaceTile(${t.id})">${t.letter}</div>`)
+      .map((t) => `<div class="wb-tile wb-pool-tile" data-id="${t.id}" draggable="true"
+        onclick="_wbPlaceTile(${t.id})" ondragstart="_wbDragStart(event,${t.id},false)"
+        ondragend="_wbDragEnd(event)">${t.letter}</div>`)
       .join('');
+    tilesEl.ondragover  = (e) => _wbDragOver(e);
+    tilesEl.ondragenter = (e) => _wbDragEnter(e, tilesEl);
+    tilesEl.ondragleave = (e) => _wbDragLeave(e, tilesEl);
+    tilesEl.ondrop      = (e) => _wbDrop(e, true, tilesEl);
   }
 
   const hintsLeft = document.getElementById('wb-hints-left');
@@ -334,6 +348,51 @@ function _wbHint() {
     _wb.current.answer.push(tile);
     _wbUpdateBoard();
     if (_wb.current.answer.length === _wb.current.tiles.length) _wbCheck();
+  }
+}
+
+/* ── Drag-and-drop handlers ────────────────────────────────────── */
+
+function _wbDragStart(e, id, fromAnswer) {
+  _wbDragId = id;
+  _wbDragFromAnswer = fromAnswer;
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', String(id));
+  requestAnimationFrame(() => { if (e.target) e.target.classList.add('wb-tile--dragging'); });
+}
+
+function _wbDragEnd(e) {
+  if (e.target) e.target.classList.remove('wb-tile--dragging');
+}
+
+function _wbDragOver(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+}
+
+function _wbDragEnter(e, zone) {
+  e.preventDefault();
+  zone.classList.add('wb-drop-active');
+}
+
+function _wbDragLeave(e, zone) {
+  if (!zone.contains(e.relatedTarget)) {
+    zone.classList.remove('wb-drop-active');
+  }
+}
+
+function _wbDrop(e, toPool, zone) {
+  e.preventDefault();
+  zone.classList.remove('wb-drop-active');
+  if (_wbDragId === null) return;
+  const id = _wbDragId;
+  const fromAnswer = _wbDragFromAnswer;
+  _wbDragId = null;
+  _wbDragFromAnswer = false;
+  if (toPool && fromAnswer) {
+    _wbReturnTile(id);
+  } else if (!toPool && !fromAnswer) {
+    _wbPlaceTile(id);
   }
 }
 

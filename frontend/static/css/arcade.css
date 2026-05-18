@@ -1272,6 +1272,19 @@
   border: 2px dashed var(--border-default);
   cursor: default;
 }
+.wb-pool-tile[draggable="true"],
+.wb-answer-tile[draggable="true"] { cursor: grab; }
+.wb-tile--dragging {
+  opacity: 0.35;
+  transform: scale(0.9);
+  cursor: grabbing;
+}
+.wb-drop-active {
+  outline: 2px dashed var(--arcade-primary);
+  background: var(--arcade-light);
+  border-radius: var(--radius-md);
+  transition: background 0.15s, outline 0.15s;
+}
 .wb-actions {
   display: flex;
   gap: 8px;
