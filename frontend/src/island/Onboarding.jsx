@@ -211,12 +211,20 @@ function _obRenderCharPick(el) {
     const zoneChars = _obChars.filter(c => c.zone === _obPickZone);
 
     const charCards = zoneChars.length
-        ? zoneChars.map(c => `
+        ? zoneChars.map(c => {
+            let imgs = {};
+            try { imgs = JSON.parse(c.images || '{}'); } catch (_) {}
+            const rel = imgs['baby'] || imgs['mid_a'] || imgs['mid_b'] || imgs['final_a'] || imgs['final_b'];
+            const visual = rel
+                ? `<img class="iob-char-img" src="/static/img/island/${rel}" alt="${escapeHtml(c.name)}" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><i data-lucide="${z.lucideIcon || 'smile'}" style="display:none"></i>`
+                : `<i data-lucide="${z.lucideIcon || 'smile'}"></i>`;
+            return `
             <div class="iob-char-card${_obPickCharId === c.id ? ' iob-char-card--selected' : ''}"
                  onclick="_obSelectChar(${c.id})">
-                <div class="iob-char-sil"><i data-lucide="${z.lucideIcon || 'smile'}"></i></div>
+                <div class="iob-char-sil">${visual}</div>
                 <div class="iob-char-name">${escapeHtml(c.name)}</div>
-            </div>`).join('')
+            </div>`;
+        }).join('')
         : `<div class="iob-empty">No characters found.</div>`;
 
     el.innerHTML = `

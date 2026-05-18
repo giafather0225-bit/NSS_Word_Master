@@ -59,6 +59,7 @@ def character_catalog(zone: Optional[str] = None, db: Session = Depends(get_db))
             "description": char.description, "is_legend": char.is_legend,
             "lumi_production": char.lumi_production, "is_available": char.is_available,
             "evo_first_xp": char.evo_first_xp, "evo_second_xp": char.evo_second_xp,
+            "images": char.images or "{}",
             "progress": [prog_dict(p, char_map[p.character_id]) for p in progs],
         })
     return {"characters": result}
