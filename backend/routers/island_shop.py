@@ -26,6 +26,14 @@ from backend.routers._island_common import (
 
 router = APIRouter(prefix="/api/island", tags=["island"])
 
+# Allowed source prefixes for the HTTP earn endpoint (internal service calls bypass this).
+_VALID_EARN_SOURCES = {
+    "english", "math", "diary", "review", "streak",
+    "production", "attendance", "daily_words", "ckla",
+    "sell_decor",
+}
+_MAX_EARN_PER_CALL = 500
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # 12.6 Currency
@@ -40,8 +48,13 @@ def currency_balance(db: Session = Depends(get_db)):
 # @tag ISLAND @tag AWARD
 @router.post("/lumi/earn")
 def lumi_earn(body: EarnLumiBody, db: Session = Depends(get_db)):
+    source_base = body.source.split("_")[0] if "_" in body.source else body.source
+    if source_base not in _VALID_EARN_SOURCES and body.source not in _VALID_EARN_SOURCES:
+        raise HTTPException(400, "Invalid earn source.")
     if body.amount <= 0:
         raise HTTPException(400, "amount must be positive.")
+    if body.amount > _MAX_EARN_PER_CALL:
+        raise HTTPException(400, f"amount exceeds maximum of {_MAX_EARN_PER_CALL}.")
     result = le.earn_lumi(db, source=body.source, amount=body.amount,
                           character_progress_id=body.character_progress_id)
     db.commit()

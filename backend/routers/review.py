@@ -461,6 +461,11 @@ def complete_review_session(req: SessionCompleteRequest, db: Session = Depends(g
             xp_earned = _xp.award_xp(db, "ckla_review_complete")
         except Exception as e:
             logger.warning("ckla_review_complete XP failed: %s", e)
+        try:
+            from backend.services import streak_engine as _streak
+            _streak.mark_ckla_done(db)
+        except Exception as e:
+            logger.warning("mark_ckla_done failed: %s", e)
 
     # Check if all queues are now empty → island care
     english_due = db.query(WordReview).filter(

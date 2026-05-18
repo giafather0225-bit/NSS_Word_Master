@@ -416,7 +416,24 @@ def daily_claim(db: Session = Depends(get_db)):
         raise HTTPException(400, "Attendance reward already claimed today.")
 
     REWARD = 30
-    result = le.earn_lumi(db, source="daily_attendance", amount=REWARD,
-                          earned_date=today)
-    db.commit()
+    try:
+        result = le.earn_lumi(db, source="daily_attendance", amount=REWARD,
+                              earned_date=today)
+        db.flush()
+        # Re-check after flush to guard against rapid double-submit
+        dup = db.query(IslandLumiLog).filter(
+            IslandLumiLog.source == "daily_attendance",
+            IslandLumiLog.earned_date == today,
+            IslandLumiLog.amount == REWARD,
+        ).count()
+        if dup > 1:
+            db.rollback()
+            raise HTTPException(400, "Attendance reward already claimed today.")
+        db.commit()
+    except HTTPException:
+        raise
+    except Exception as e:
+        db.rollback()
+        logger.warning("daily_claim failed: %s", e)
+        raise HTTPException(500, "Claim failed — please try again.")
     return {"ok": True, "lumi_earned": REWARD, "currency": result}

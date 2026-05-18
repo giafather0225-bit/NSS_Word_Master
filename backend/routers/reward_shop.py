@@ -33,18 +33,18 @@ logger = logging.getLogger(__name__)
 # ─── Seed Data ───────────────────────────────────────────────
 
 SEED_REWARDS = [
-    {"name": "Word Explorer Badge",  "category": "badge", "price": 50,   "icon": "🔍", "description": "You explored 50 new words!"},
-    {"name": "Streak Master Badge",  "category": "badge", "price": 100,  "icon": "🔥", "description": "7-day streak achieved!"},
-    {"name": "Perfect Scorer Badge", "category": "badge", "price": 150,  "icon": "💯", "description": "100% on a Final Test!"},
-    {"name": "Ocean Theme",          "category": "theme", "price": 200,  "icon": "🌊", "description": "Cool ocean colors for your app"},
-    {"name": "Space Theme",          "category": "theme", "price": 200,  "icon": "🚀", "description": "Dark space theme with stars"},
-    {"name": "Forest Theme",         "category": "theme", "price": 200,  "icon": "🌲", "description": "Calm forest green theme"},
-    {"name": "Hint Power",           "category": "power", "price": 30,   "icon": "💡", "description": "Get one free hint in any stage"},
-    {"name": "Skip Power",           "category": "power", "price": 50,   "icon": "⏭️", "description": "Skip one difficult word"},
-    {"name": "Double XP (1 day)",    "category": "power", "price": 100,  "icon": "⚡", "description": "Earn 2x XP for 24 hours"},
-    {"name": "Sticker Pack",         "category": "real",  "price": 500,  "icon": "⭐", "description": "Real sticker pack from Dad!"},
-    {"name": "Ice Cream Coupon",     "category": "real",  "price": 800,  "icon": "🍦", "description": "One ice cream from Dad!"},
-    {"name": "Movie Night",          "category": "real",  "price": 1000, "icon": "🎬", "description": "Pick a movie for family night!"},
+    {"name": "Word Explorer Badge",  "category": "badge", "price": 50,   "icon": "search",       "description": "You explored 50 new words!"},
+    {"name": "Streak Master Badge",  "category": "badge", "price": 100,  "icon": "flame",        "description": "7-day streak achieved!"},
+    {"name": "Perfect Scorer Badge", "category": "badge", "price": 150,  "icon": "award",        "description": "100% on a Final Test!"},
+    {"name": "Ocean Theme",          "category": "theme", "price": 200,  "icon": "waves",        "description": "Cool ocean colors for your app"},
+    {"name": "Space Theme",          "category": "theme", "price": 200,  "icon": "rocket",       "description": "Dark space theme with stars"},
+    {"name": "Forest Theme",         "category": "theme", "price": 200,  "icon": "trees",        "description": "Calm forest green theme"},
+    {"name": "Hint Power",           "category": "power", "price": 30,   "icon": "lightbulb",    "description": "Get one free hint in any stage"},
+    {"name": "Skip Power",           "category": "power", "price": 50,   "icon": "skip-forward", "description": "Skip one difficult word"},
+    {"name": "Double XP (1 day)",    "category": "power", "price": 100,  "icon": "zap",          "description": "Earn 2x XP for 24 hours"},
+    {"name": "Sticker Pack",         "category": "real",  "price": 500,  "icon": "star",         "description": "Real sticker pack from Dad!"},
+    {"name": "Ice Cream Coupon",     "category": "real",  "price": 800,  "icon": "ice-cream",    "description": "One ice cream from Dad!"},
+    {"name": "Movie Night",          "category": "real",  "price": 1000, "icon": "film",         "description": "Pick a movie for family night!"},
 ]
 
 

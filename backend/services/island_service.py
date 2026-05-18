@@ -8,6 +8,7 @@ API endpoints: called by routers/island.py
 from datetime import datetime, timezone
 from typing import Optional
 
+from sqlalchemy import update as _sa_update
 from sqlalchemy.orm import Session
 
 from backend.models.island import (
@@ -258,13 +259,24 @@ def execute_evolution(
     prog.stage = next_stage
 
     if not test_mode:
-        # Consume stone from inventory.
-        # Re-query after validate_evolution; if another request consumed it, raise early.
+        # Atomic consume: UPDATE WHERE quantity > 0 — prevents double-spend
+        # even if two requests pass validate_evolution concurrently.
         inv_row = _get_inventory_stone(db, stone_type)
         if inv_row is None:
             raise EvolutionError(f"Evolution stone '{stone_type}' was consumed by another request.")
-        inv_row.quantity -= 1
-        inv_row.used_on_character_progress_id = character_progress_id
+        rows_updated = db.execute(
+            _sa_update(IslandInventory)
+            .where(
+                IslandInventory.id == inv_row.id,
+                IslandInventory.quantity > 0,
+            )
+            .values(
+                quantity=IslandInventory.quantity - 1,
+                used_on_character_progress_id=character_progress_id,
+            )
+        ).rowcount
+        if rows_updated == 0:
+            raise EvolutionError(f"Evolution stone '{stone_type}' was consumed by another request.")
 
     # Handle completion.
     is_completed = next_stage in _FINAL_STAGES
