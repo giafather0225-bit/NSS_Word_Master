@@ -54,7 +54,7 @@ async function suShowLevelPicker() {
 }
 
 /** Start sudoku. @tag ARCADE */
-function suStart(level = 'easy') {
+async function suStart(level = 'easy') {
   suStop();
   const body = document.getElementById('arcade-body');
   if (!body) return;
@@ -74,8 +74,10 @@ function suStart(level = 'easy') {
 
   _suRender();
   if (typeof _arcadeShowTutorialOnce === 'function') _arcadeShowTutorialOnce('sudoku');
-  _su.tickHandle = setInterval(_suTick, 1000);
   if (typeof sfxStart === 'function') sfxStart();
+  await _arcadeCountdown();
+  _su.startedAt = performance.now();  // reset so elapsed time excludes countdown
+  _su.tickHandle = setInterval(_suTick, 1000);
 }
 
 /** Stop. @tag ARCADE */
