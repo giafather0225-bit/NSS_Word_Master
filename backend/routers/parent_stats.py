@@ -340,7 +340,7 @@ def parent_weaknesses(
             correct_expr.label("correct_count"),
         )
         .group_by(WordAttempt.word, WordAttempt.lesson)
-        .having(func.count(WordAttempt.id) >= 1)
+        .having(func.count(WordAttempt.id) >= 2)
         .order_by((correct_expr * 100.0 / func.count(WordAttempt.id)).asc())
         .limit(limit)
         .all()
