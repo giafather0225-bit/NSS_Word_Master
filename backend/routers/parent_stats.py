@@ -8,6 +8,7 @@ API: GET /api/parent/overview
      GET /api/parent/activity
      GET /api/parent/stage-stats
      GET /api/parent/word-stats
+     GET /api/parent/weaknesses
 """
 from typing import Optional
 
@@ -20,10 +21,14 @@ from sqlalchemy.orm import Session
 try:
     from ..database import get_db
     from ..models import LearningLog, WordAttempt, XPLog, Progress
+    from ..models.math import MathAttempt
+    from ..models.ckla import CKLAQuestion, CKLAQuestionResponse, CKLALesson
     from ..services import xp_engine, streak_engine
 except ImportError:
     from database import get_db
     from models import LearningLog, WordAttempt, XPLog, Progress
+    from models.math import MathAttempt
+    from models.ckla import CKLAQuestion, CKLAQuestionResponse, CKLALesson
     from services import xp_engine, streak_engine
 
 
@@ -35,8 +40,8 @@ router = APIRouter()
 def _subject_of_action(action: str) -> Optional[str]:
     """Map an XPLog action to a Home-tab subject bucket.
 
-    Returns one of {"english", "math", "diary"} or None for actions that
-    shouldn't count toward any per-subject total (cross-cutting bonuses,
+    Returns one of {"english", "math", "diary", "ckla"} or None for actions
+    that shouldn't count toward any per-subject total (cross-cutting bonuses,
     arcade plays).
     """
     a = (action or "").lower()
@@ -46,13 +51,14 @@ def _subject_of_action(action: str) -> Optional[str]:
     if a.startswith("streak_") and a.endswith("_bonus"):        return None
     # Arcade isn't an English/Math/Diary slot.
     if a.startswith("arcade_"):                                 return None
+    # CKLA: own bucket so Today tab can show 4 subjects.
+    if a.startswith("ckla_"):                                   return "ckla"
     # Math: explicit prefix.
     if a.startswith("math_"):                                   return "math"
     # Diary: journal + free writing + diary photos all roll up here.
     if a in ("journal_complete", "diary") or a.startswith("free_writing") or a.startswith("diary_"):
         return "diary"
-    # Everything else (English vocab stages, daily/weekly tests, review,
-    # CKLA reading) is English.
+    # Everything else (English vocab stages, daily/weekly tests, review) is English.
     return "english"
 
 
@@ -72,6 +78,7 @@ def parent_overview(db: Session = Depends(get_db)):
         "english": {"xp": 0, "count": 0},
         "math":    {"xp": 0, "count": 0},
         "diary":   {"xp": 0, "count": 0},
+        "ckla":    {"xp": 0, "count": 0},
     }
     for action, xp in db.query(XPLog.action, XPLog.xp_amount).filter(XPLog.earned_date == today).all():
         subj = _subject_of_action(action)
@@ -311,3 +318,97 @@ def parent_word_stats(db: Session = Depends(get_db)):
             for row in top_wrong
         ],
     }
+
+
+# ─── Cross-subject Weakness Digest ───────────────────────────
+
+@router.get("/api/parent/weaknesses")
+def parent_weaknesses(
+    limit: int = Query(default=5, ge=1, le=10),
+    db: Session = Depends(get_db),
+):
+    """Top weaknesses across English / Math / CKLA for the parent Today tab. @tag PARENT WORD_STATS"""
+    items = []
+
+    # English: top wrong words (lowest accuracy, ≥2 attempts)
+    correct_expr = func.sum(case((WordAttempt.is_correct == True, 1), else_=0))  # noqa: E712
+    eng_rows = (
+        db.query(
+            WordAttempt.word,
+            WordAttempt.lesson,
+            func.count(WordAttempt.id).label("attempts"),
+            correct_expr.label("correct_count"),
+        )
+        .group_by(WordAttempt.word, WordAttempt.lesson)
+        .having(func.count(WordAttempt.id) >= 2)
+        .order_by((correct_expr * 100.0 / func.count(WordAttempt.id)).asc())
+        .limit(limit)
+        .all()
+    )
+    for r in eng_rows:
+        acc = round(r.correct_count * 100.0 / max(r.attempts, 1), 0)
+        items.append({
+            "subject":  "english",
+            "label":    r.word,
+            "detail":   r.lesson or "",
+            "accuracy": int(acc),
+            "attempts": r.attempts,
+        })
+
+    # Math: top weak concepts (most wrong attempts, lessons with mistakes)
+    math_rows = (
+        db.query(
+            MathAttempt.lesson,
+            func.count(MathAttempt.id).label("wrong"),
+        )
+        .filter(MathAttempt.is_correct == False)  # noqa: E712
+        .group_by(MathAttempt.lesson)
+        .order_by(func.count(MathAttempt.id).desc())
+        .limit(limit)
+        .all()
+    )
+    for r in math_rows:
+        items.append({
+            "subject":  "math",
+            "label":    (r.lesson or "").replace("-", " ").replace("_", " ").title(),
+            "detail":   r.lesson or "",
+            "accuracy": 0,
+            "attempts": r.wrong,
+        })
+
+    # CKLA: lessons with lowest Q&A accuracy (≥2 responses)
+    ckla_rows = (
+        db.query(
+            CKLAQuestion.lesson_id,
+            func.count(CKLAQuestionResponse.id).label("total"),
+            func.sum(case((CKLAQuestionResponse.ai_score >= 1, 1), else_=0)).label("correct"),
+        )
+        .join(CKLAQuestion, CKLAQuestionResponse.question_id == CKLAQuestion.id)
+        .group_by(CKLAQuestion.lesson_id)
+        .having(func.count(CKLAQuestionResponse.id) >= 2)
+        .order_by(
+            (func.sum(case((CKLAQuestionResponse.ai_score >= 1, 1), else_=0)) * 100.0
+             / func.count(CKLAQuestionResponse.id)).asc()
+        )
+        .limit(limit)
+        .all()
+    )
+    # Resolve lesson titles
+    lesson_ids = [r.lesson_id for r in ckla_rows]
+    lesson_map: dict[int, str] = {}
+    if lesson_ids:
+        for les in db.query(CKLALesson.id, CKLALesson.title).filter(CKLALesson.id.in_(lesson_ids)).all():
+            lesson_map[les.id] = les.title
+    for r in ckla_rows:
+        acc = round(r.correct * 100.0 / max(r.total, 1), 0)
+        items.append({
+            "subject":  "ckla",
+            "label":    lesson_map.get(r.lesson_id, f"Lesson {r.lesson_id}"),
+            "detail":   "Q&A",
+            "accuracy": int(acc),
+            "attempts": r.total,
+        })
+
+    # Sort all items: lowest accuracy first, then most wrong attempts
+    items.sort(key=lambda x: (x["accuracy"], -x["attempts"]))
+    return {"weaknesses": items[:limit]}

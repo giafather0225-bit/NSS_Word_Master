@@ -130,11 +130,9 @@ function _ppRemovePin() {
 
 const PP_TABS = [
     ["home",     "Home"],
-    ["english",  "English"],
-    ["ckla",     "CKLA"],
+    ["reading",  "Reading"],
     ["math",     "Math"],
     ["habits",   "Habits"],
-    ["goals",    "Goals"],
     ["island",   "Island"],
     ["settings", "Settings"],
 ];
@@ -183,104 +181,18 @@ async function _ppLoadTab(tab) {
     const missing = `<p style="color:var(--color-error);padding:20px">Module not loaded.</p>`;
     switch (tab) {
         case "home":     if (typeof _ppHome        === "function") await _ppHome(body);        else body.innerHTML = missing; break;
-        case "english":  await _ppEnglish(body);  break;
-        case "ckla":     if (typeof _ppCKLA        === "function") await _ppCKLA(body);        else body.innerHTML = missing; break;
+        case "reading":  if (typeof _ppReading     === "function") await _ppReading(body);     else body.innerHTML = missing; break;
         case "math":     if (typeof _ppMathSummary === "function") await _ppMathSummary(body); else body.innerHTML = missing; break;
         case "habits":   await _ppHabits(body);   break;
-        case "goals":    if (typeof _ppGoals       === "function") await _ppGoals(body);       else body.innerHTML = missing; break;
         case "island":   if (typeof _ppIsland      === "function") await _ppIsland(body);      else body.innerHTML = missing; break;
         case "settings": await _ppSettings(body); break;
         default: body.innerHTML = "<p>Coming soon.</p>";
     }
 }
 
-// ─── Tab: English ─────────────────────────────────────────────
-
-/** Word stats + stage performance — 2-col layout. @tag PARENT WORD_STATS */
-async function _ppEnglish(body) {
-    try {
-        const [ws, stg] = await Promise.all([
-            apiFetchJSON("/api/parent/word-stats"),
-            apiFetchJSON("/api/parent/stage-stats"),
-        ]);
-
-        const words = ws.top_wrong || [];
-        const totalAttempts = words.reduce((a, w) => a + (w.attempts || 0), 0);
-        const totalWrong    = words.reduce((a, w) => a + (w.wrong_count || 0), 0);
-        const overallAcc    = totalAttempts ? Math.round((1 - totalWrong / totalAttempts) * 100) : 0;
-        const stages        = stg.stages || {};
-        const totalStageDone = Object.values(stages).reduce((a, s) => a + (s.completions || 0), 0);
-
-        const summary = `
-            <div class="pp-stats pp-english-stats pp-stats--mb20">
-                <div class="pp-stat"><div class="pp-stat-num">${words.length}</div><div class="pp-stat-label">Tracked Words</div></div>
-                <div class="pp-stat"><div class="pp-stat-num">${overallAcc}%</div><div class="pp-stat-label">Overall Accuracy</div></div>
-                <div class="pp-stat"><div class="pp-stat-num">${totalStageDone}</div><div class="pp-stat-label">Stage Completions</div></div>
-            </div>`;
-
-        const wordRows = words.length
-            ? words.map(w =>
-                `<tr><td><strong>${escapeHtml(w.word)}</strong></td><td>${escapeHtml(w.lesson)}</td><td class="pp-td-error-right">${w.wrong_count}</td><td class="pp-td-right">${Math.round(w.accuracy*100)}%</td></tr>`
-              ).join("")
-            : `<tr><td colspan="4">${_ppEmpty("file-search-2", "No missed words tracked yet.", "Words start showing up after the child fails them in Word Match or Spelling.")}</td></tr>`;
-
-        const STAGE_META = {
-            preview:    { name: "Preview",    icon: "eye"           },
-            word_match: { name: "Word Match", icon: "shuffle"       },
-            fill_blank: { name: "Fill Blank", icon: "type"          },
-            spelling:   { name: "Spelling",   icon: "spell-check"   },
-            sentence:   { name: "Sentence",   icon: "pen-line"      },
-            final_test: { name: "Final Test", icon: "graduation-cap"},
-        };
-        const STAGE_ORDER = ["preview", "word_match", "fill_blank", "spelling", "sentence", "final_test"];
-        const stageList = STAGE_ORDER
-            .filter(k => stages[k])
-            .map(k => {
-                const s = stages[k];
-                const meta = STAGE_META[k] || { name: k, icon: "circle" };
-                const acc = Math.round(s.avg_accuracy || 0);
-                const accClass = acc >= 90 ? "good" : acc >= 70 ? "ok" : "low";
-                return `
-                    <div class="pp-stage-card">
-                        <div class="pp-stage-head">
-                            <i data-lucide="${meta.icon}" style="width:16px;height:16px"></i>
-                            <span class="pp-stage-name">${meta.name}</span>
-                            <span class="pp-stage-acc pp-stage-acc--${accClass}">${acc}%</span>
-                        </div>
-                        <div class="pp-stage-row"><span>Avg Time</span><strong>${Math.round(s.avg_time_sec/60)}m</strong></div>
-                        <div class="pp-stage-row"><span>Completions</span><strong>${s.completions}x</strong></div>
-                    </div>`;
-            }).join("");
-
-        body.innerHTML = `
-            ${summary}
-            <div class="pp-grid-2">
-                <div>
-                    <div class="pp-section-title pp-section-title--no-top">Most Missed Words</div>
-                    <div class="pp-table-wrap">
-                        <table class="pp-log-table">
-                            <thead><tr>
-                                <th>Word</th><th>Lesson</th>
-                                <th class="pp-th-right">Wrong</th>
-                                <th class="pp-th-right">Accuracy</th>
-                            </tr></thead>
-                            <tbody>${wordRows}</tbody>
-                        </table>
-                    </div>
-                </div>
-                <div>
-                    <div class="pp-section-title pp-section-title--no-top">Stage Performance</div>
-                    <div class="pp-stage-list">${stageList || _ppEmpty("layers", "No stages completed yet.", "Each finished stage feeds these accuracy + time stats.")}</div>
-                </div>
-            </div>`;
-
-        if (typeof lucide !== "undefined") lucide.createIcons();
-    } catch (_) { body.innerHTML = `<p style="color:var(--color-error);padding:20px">Failed to load.</p>`; }
-}
-
 // ─── Tab: Habits ──────────────────────────────────────────────
 
-/** Streak + day-off approvals. @tag PARENT STREAK DAY_OFF */
+/** Streak + Goals + day-off approvals. @tag PARENT STREAK DAY_OFF */
 async function _ppHabits(body) {
     body.innerHTML = `<p style="color:var(--text-secondary);font-size:14px;padding:20px 0">Loading…</p>`;
 
@@ -302,10 +214,15 @@ async function _ppHabits(body) {
 
     body.innerHTML = streakHtml + `
         <div class="pp-section-divider pp-section-divider--habits"></div>
+        <div class="pp-section-title">Weekly Goals</div>
+        <div id="pp-habits-goals"></div>
+        <div class="pp-section-divider pp-section-divider--habits"></div>
         <div class="pp-section-title">Day Off Requests</div>
         <div id="pp-habits-dayoff"></div>`;
 
+    const goalsEl  = document.getElementById("pp-habits-goals");
     const dayoffEl = document.getElementById("pp-habits-dayoff");
+    if (goalsEl  && typeof _ppGoals   === "function") await _ppGoals(goalsEl);
     if (dayoffEl) await _ppDayOff(dayoffEl);
     if (typeof lucide !== "undefined") lucide.createIcons();
 }

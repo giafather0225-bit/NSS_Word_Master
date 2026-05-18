@@ -4,28 +4,30 @@
    Dependencies: core.js, parent-panel.js
    API endpoints: /api/parent/summary, /api/parent/overview,
                   /api/parent/activity, /api/parent/day-off-requests,
-                  /api/goals/weekly
+                  /api/goals/weekly, /api/parent/weaknesses
    ================================================================ */
 
-/** Full Home tab: Hero + Today Progress + Week Calendar + vs Last Week + Island mini + Alerts. @tag PARENT */
+/** Full Home tab: Hero + Today Progress + Week Calendar + vs Last Week + Island mini + Weaknesses + Alerts. @tag PARENT */
 async function _ppHome(body) {
     try {
-        const [sum, ov, act14, dayoffs, goals, island] = await Promise.all([
+        const [sum, ov, act14, dayoffs, goals, island, weak] = await Promise.all([
             apiFetchJSON("/api/parent/summary"),
             apiFetchJSON("/api/parent/overview"),
             apiFetchJSON("/api/parent/activity?days=14"),
             apiFetchJSON("/api/parent/day-off-requests").catch(() => ({ requests: [] })),
             apiFetchJSON("/api/goals/weekly").catch(() => ({ goals: [] })),
             apiFetchJSON("/api/island/status").catch(() => null),
+            apiFetchJSON("/api/parent/weaknesses").catch(() => ({ weaknesses: [] })),
         ]);
 
         const bySubject = ov.today_by_subject || {
             english: { xp: 0, count: 0 },
             math:    { xp: 0, count: 0 },
             diary:   { xp: 0, count: 0 },
+            ckla:    { xp: 0, count: 0 },
         };
         const todayXP    = ov.today_xp || 0;
-        const activeCount = ["english", "math", "diary"]
+        const activeCount = ["english", "math", "diary", "ckla"]
             .filter(k => (bySubject[k]?.count || 0) > 0).length;
 
         const daily    = act14.daily || [];
@@ -36,6 +38,7 @@ async function _ppHome(body) {
         const weekMinutes    = thisWeek.reduce((a, d) => a + (d.minutes || 0), 0);
 
         const islandMiniHtml = island && island.island_on ? _ppHomeIslandMini(island) : "";
+        const weakItems      = weak?.weaknesses || [];
 
         body.innerHTML =
             _ppHomeHero(sum, todayXP, activeCount, weekMinutes) +
@@ -45,6 +48,7 @@ async function _ppHome(body) {
                 <div>${_ppHomeVsLastWeek(thisWeek, lastWeek)}</div>
              </div>` +
             islandMiniHtml +
+            _ppHomeWeaknesses(weakItems) +
             _ppHomeAlerts(pendingDayoffs, todayXP, activeCount, sum, goals);
 
         if (typeof lucide !== "undefined") lucide.createIcons();
@@ -99,9 +103,10 @@ function _ppHomeHero(sum, todayXP, activeCount, weekMinutes) {
 /** Per-subject completion rows for today, with XP earned. @tag PARENT */
 function _ppHomeTodayProgress(bySubject) {
     const subjects = [
-        { key: "english", label: "English", icon: "book-open" },
+        { key: "english", label: "English", icon: "book-open"  },
         { key: "math",    label: "Math",    icon: "calculator" },
         { key: "diary",   label: "Diary",   icon: "pen-line"   },
+        { key: "ckla",    label: "CKLA",    icon: "layers"     },
     ];
 
     const rows = subjects.map(s => {
@@ -215,7 +220,7 @@ function _ppHomeAlerts(pendingDayoffs, todayXP, activeCount, sum, goalsResp) {
     const lagging = (goalsResp?.goals || []).filter(g => g.is_active && (g.pct || 0) < 50 && !g.achieved);
     if (inBackHalf && lagging.length > 0) {
         alerts.push(`
-            <div class="pp-alert pp-alert--warn pp-alert--clickable" onclick="_ppLoadTab('goals')">
+            <div class="pp-alert pp-alert--warn pp-alert--clickable" onclick="_ppLoadTab('habits')">
                 <i data-lucide="target" class="pp-icon-16-shrink"></i>
                 <span>${lagging.length} goal${lagging.length > 1 ? "s" : ""} lagging this week — under 50% with the weekend ahead</span>
                 <i data-lucide="chevron-right" class="pp-icon-14-trail"></i>
@@ -227,6 +232,37 @@ function _ppHomeAlerts(pendingDayoffs, todayXP, activeCount, sum, goalsResp) {
     return `
         <div class="pp-section-title">Alerts</div>
         <div class="pp-alert-list">${alerts.join("")}</div>`;
+}
+
+/** Cross-subject weakness digest (top wrong words / math concepts / CKLA Q&A). @tag PARENT WORD_STATS */
+function _ppHomeWeaknesses(items) {
+    if (!items || !items.length) return "";
+
+    const SUBJECT_META = {
+        english: { label: "English", cls: "pp-weakness-badge--english" },
+        math:    { label: "Math",    cls: "pp-weakness-badge--math"    },
+        ckla:    { label: "CKLA",    cls: "pp-weakness-badge--ckla"    },
+    };
+
+    const rows = items.map(item => {
+        const meta    = SUBJECT_META[item.subject] || { label: item.subject, cls: "" };
+        const accText = item.accuracy != null ? `${item.accuracy}%` : "—";
+        const accCls  = item.accuracy >= 70 ? "pp-stage-acc--good"
+                      : item.accuracy >= 40 ? "pp-stage-acc--ok"
+                      :                       "pp-stage-acc--low";
+        const detail  = item.detail ? `<span class="pp-weakness-detail">${escapeHtml(item.detail)}</span>` : "";
+        return `
+            <div class="pp-weakness-item">
+                <span class="pp-weakness-badge ${meta.cls}">${meta.label}</span>
+                <span class="pp-weakness-label">${escapeHtml(item.label)}</span>
+                ${detail}
+                <span class="pp-stage-acc ${accCls} pp-weakness-acc">${accText}</span>
+            </div>`;
+    }).join("");
+
+    return `
+        <div class="pp-section-title">Top Weaknesses</div>
+        <div class="pp-weakness-list">${rows}</div>`;
 }
 
 /** Island mini widget — Lumi balance + active chars + urgent warnings. @tag PARENT ISLAND */
