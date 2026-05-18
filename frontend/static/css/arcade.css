@@ -1372,14 +1372,16 @@
   perspective: 900px;
   cursor: pointer;
   border-radius: var(--radius-md);
+  transition: filter 0.15s ease;
 }
 .mm-card-inner {
   position: relative;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.35s ease;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: var(--radius-md);
+  box-shadow: 0 2px 6px rgba(43, 39, 34, 0.10);
 }
 /* Face-up states */
 .mm-card--flipped .mm-card-inner,
@@ -1388,7 +1390,8 @@
 }
 /* Hover hint (face-down only) */
 .mm-card:not(.mm-card--flipped):not(.mm-card--matched):hover .mm-card-inner {
-  transform: rotateY(12deg) scale(1.04);
+  transform: rotateY(14deg) scale(1.05);
+  box-shadow: 0 6px 18px rgba(43, 39, 34, 0.16);
 }
 
 /* ── Card faces ─────────────────────────────────────────────────── */
@@ -1454,14 +1457,16 @@
   color: var(--color-success);
   font-weight: 600;
 }
-/* Pop animation when pair is found */
+/* Pop + glow animation when pair is found */
 .mm-card--matched .mm-card-inner {
-  animation: mm-match-pop 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.4) both;
+  animation: mm-match-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.4) both;
+  box-shadow: 0 0 0 3px var(--color-success), 0 4px 14px color-mix(in srgb, var(--color-success) 40%, transparent);
 }
 @keyframes mm-match-pop {
-  0%   { transform: rotateY(180deg) scale(0.82); }
-  60%  { transform: rotateY(180deg) scale(1.06); }
-  100% { transform: rotateY(180deg) scale(1);    }
+  0%   { transform: rotateY(180deg) scale(0.80); }
+  50%  { transform: rotateY(180deg) scale(1.10); }
+  75%  { transform: rotateY(180deg) scale(0.97); }
+  100% { transform: rotateY(180deg) scale(1.00); }
 }
 
 .mm-quit-btn {
