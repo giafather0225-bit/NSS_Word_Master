@@ -251,11 +251,13 @@ function _ppHomeWeaknesses(items) {
                       : item.accuracy >= 40 ? "pp-stage-acc--ok"
                       :                       "pp-stage-acc--low";
         const detail  = item.detail ? `<span class="pp-weakness-detail">${escapeHtml(item.detail)}</span>` : "";
+        const attText = item.attempts ? `<span class="pp-weakness-attempts">${item.attempts}×</span>` : "";
         return `
             <div class="pp-weakness-item">
                 <span class="pp-weakness-badge ${meta.cls}">${meta.label}</span>
                 <span class="pp-weakness-label">${escapeHtml(item.label)}</span>
                 ${detail}
+                ${attText}
                 <span class="pp-stage-acc ${accCls} pp-weakness-acc">${accText}</span>
             </div>`;
     }).join("");

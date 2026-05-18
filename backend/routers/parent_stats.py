@@ -10,6 +10,7 @@ API: GET /api/parent/overview
      GET /api/parent/word-stats
      GET /api/parent/weaknesses
 """
+import re
 from typing import Optional
 
 from datetime import date, timedelta
@@ -373,7 +374,7 @@ def parent_weaknesses(
         acc = round(r.correct_count * 100.0 / max(r.total, 1), 0)
         items.append({
             "subject":  "math",
-            "label":    (r.lesson or "").replace("-", " ").replace("_", " ").title(),
+            "label":    re.sub(r'^L\d+_', '', r.lesson or '').replace("-", " ").replace("_", " ").title(),
             "detail":   r.lesson or "",
             "accuracy": int(acc),
             "attempts": r.total,
