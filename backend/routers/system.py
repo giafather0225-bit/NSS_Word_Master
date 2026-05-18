@@ -1,14 +1,16 @@
 """
 routers/system.py — System status, Ollama health, DB backup management,
-                    self-update check on demand
+                    self-update check on demand, asset diagnostic
 Section: System
 Dependencies: services/ollama_manager.py, services/backup_engine.py
 API: GET /api/system/status, GET /api/system/ollama,
      POST /api/system/ollama/restart, GET /api/system/backups,
      POST /api/system/backups, POST /api/system/backups/restore,
-     GET /api/system/check-update, POST /api/system/self-update
+     GET /api/system/check-update, POST /api/system/self-update,
+     GET /api/system/asset-check
 """
 
+import json
 import logging
 import os
 import subprocess
@@ -151,6 +153,55 @@ def check_update(force: bool = False) -> dict:
         "update_available": update_available,
     })
     return {**_update_cache, "from_cache": False}
+
+
+# @tag SYSTEM
+@router.get("/asset-check")
+def asset_check() -> dict:
+    """List Kangaroo PDFs declared in JSON sets that are missing on disk.
+
+    PDFs are intentionally untracked in git (copyright/security). Dad
+    copies them to the daughter's Mac manually; this endpoint reports
+    exactly what's missing so he knows what to copy.
+
+    Returns:
+      {
+        kangaroo_pdf: {
+          dir: str, expected: int, present: int, missing_count: int,
+          missing: [str, …]                # disk filenames, e.g. "ksf_2023_junior.pdf"
+        }
+      }
+    """
+    kangaroo_data_dir = _REPO_ROOT / "backend" / "data" / "math" / "kangaroo"
+    pdf_dir = _REPO_ROOT / "frontend" / "static" / "math" / "kangaroo" / "pdf"
+
+    expected: set[str] = set()
+    if kangaroo_data_dir.is_dir():
+        for jf in kangaroo_data_dir.glob("*.json"):
+            try:
+                d = json.loads(jf.read_text(encoding="utf-8"))
+            except Exception:
+                continue
+            pdf = d.get("pdf_file")
+            if pdf:
+                # Strip leading "/static/math/kangaroo/pdf/" → just filename
+                expected.add(Path(pdf).name)
+
+    present: set[str] = set()
+    if pdf_dir.is_dir():
+        for f in pdf_dir.glob("*.pdf"):
+            present.add(f.name)
+
+    missing = sorted(expected - present)
+    return {
+        "kangaroo_pdf": {
+            "dir": str(pdf_dir),
+            "expected": len(expected),
+            "present": len(expected & present),
+            "missing_count": len(missing),
+            "missing": missing,
+        },
+    }
 
 
 # @tag SYSTEM

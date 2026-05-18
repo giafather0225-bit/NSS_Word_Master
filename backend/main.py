@@ -434,3 +434,10 @@ def read_child(request: Request):
 def read_ingest(request: Request):
     """Serve the parent ingest (OCR upload) UI."""
     return templates.TemplateResponse(name="parent_ingest.html", request=request)
+
+
+# @tag PAGES SYSTEM
+@app.get("/asset-check")
+def read_asset_check(request: Request):
+    """Diagnostic page: which expected files are missing from disk?"""
+    return templates.TemplateResponse(name="asset_check.html", request=request)
