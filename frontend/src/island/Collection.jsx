@@ -34,7 +34,7 @@ async function openCollection() {
             apiFetchJSON('/api/island/character/completed'),
         ]);
         _colCatalog = catData.characters || catData || [];
-        (doneData.completed || doneData || []).forEach(c => {
+        (doneData.characters || []).forEach(c => {
             _colCompleted[c.character_id] = c;
         });
         _colRender(el);

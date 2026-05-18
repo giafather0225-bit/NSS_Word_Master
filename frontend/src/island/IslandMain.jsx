@@ -324,16 +324,32 @@ function _startCharWandering() {
         const circle = _ZONE_CIRCLES[b.zone];
         if (!circle) return;
 
+        let prevSvgX = circle.cx; // track last x to determine facing direction
+
         function pickWaypoint() {
+            // P2: skip while Zone Detail overlay is visible
+            const detail = document.getElementById('isl-detail-overlay');
+            if (detail && !detail.classList.contains('hidden')) return;
+
             const bubble = document.querySelector(`.gim-bubble[data-zone="${b.zone}"]`);
             if (!bubble) return;
+
             // sqrt(random) gives uniform distribution inside a circle
             const angle = Math.random() * 2 * Math.PI;
             const dist  = Math.sqrt(Math.random()) * circle.r * 0.68;
             const svgX  = circle.cx + Math.cos(angle) * dist;
             const svgY  = circle.cy + Math.sin(angle) * dist;
+
             bubble.style.left = (svgX / SVG_W * 100).toFixed(2) + '%';
             bubble.style.top  = (svgY / SVG_H * 100).toFixed(2) + '%';
+
+            // P3: flip character image based on horizontal movement direction
+            const dot = bubble.querySelector('.gim-bubble-dot');
+            if (dot) {
+                const movingLeft = svgX < prevSvgX - 2; // 2px dead-zone avoids flicker on tiny moves
+                dot.style.transform = movingLeft ? 'scaleX(-1)' : 'scaleX(1)';
+            }
+            prevSvgX = svgX;
         }
 
         // First wander after 1.5-2.5s so the map fully renders
@@ -663,6 +679,7 @@ function _scheduleNightSwitch() {
         const el = document.getElementById('gim-screen');
         if (!el) return; // overlay closed
         _renderIslandMap();
+        _startCharWandering();
         if (typeof lucide !== 'undefined') lucide.createIcons();
         _scheduleNightSwitch();
     }, corrected);
