@@ -1053,42 +1053,53 @@
 /* ── Shared fun feedback ─────────────────────────────────────────── */
 .arcade-float-score {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: var(--font-family-display);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 800;
   color: var(--arcade-ink);
+  background: color-mix(in srgb, var(--arcade-soft) 90%, transparent);
+  border: 1.5px solid var(--arcade-primary);
+  border-radius: var(--radius-full);
+  padding: 4px 14px;
   pointer-events: none;
   z-index: 900;
   animation: arcade-float-up 0.75s ease-out forwards;
 }
 @keyframes arcade-float-up {
-  0%   { opacity: 1; transform: translate(-50%, -50%); }
-  100% { opacity: 0; transform: translate(-50%, -120%); }
+  0%   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  20%  { transform: translate(-50%, -60%) scale(1.1); }
+  100% { opacity: 0; transform: translate(-50%, -140%) scale(0.85); }
 }
 
 .arcade-combo {
   position: fixed;
-  top: 50%;
+  top: 40%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(0.6);
+  transform: translate(-50%, -50%) scale(0.5);
   font-family: var(--font-family-display);
-  font-size: 36px;
+  font-size: 44px;
   font-weight: 900;
-  color: var(--arcade-primary);
-  text-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  color: var(--arcade-ink);
+  background: linear-gradient(135deg, var(--arcade-soft), var(--arcade-light));
+  border: 2px solid var(--arcade-primary);
+  border-radius: var(--radius-full);
+  padding: 10px 28px;
+  box-shadow: 0 4px 24px color-mix(in srgb, var(--arcade-primary) 40%, transparent);
+  text-shadow: none;
   pointer-events: none;
   z-index: 1100;
-  animation: arcade-combo-pop 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.4) forwards;
+  white-space: nowrap;
+  animation: arcade-combo-pop 0.95s cubic-bezier(0.175, 0.885, 0.32, 1.4) forwards;
 }
 @keyframes arcade-combo-pop {
-  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.6); }
-  30%  { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
-  60%  { transform: translate(-50%, -50%) scale(1.0); }
-  80%  { opacity: 1; }
-  100% { opacity: 0; transform: translate(-50%, -60%) scale(0.9); }
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.5) rotate(-6deg); }
+  25%  { opacity: 1; transform: translate(-50%, -50%) scale(1.2) rotate(2deg); }
+  50%  { transform: translate(-50%, -50%) scale(1.0) rotate(0deg); }
+  75%  { opacity: 1; transform: translate(-50%, -50%) scale(1.0); }
+  100% { opacity: 0; transform: translate(-50%, -65%) scale(0.85); }
 }
 
 /* ── Game-over grade badge ───────────────────────────────────────── */
