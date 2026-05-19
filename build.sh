@@ -185,6 +185,7 @@ if [ -f "$HTML" ]; then
     frontend/static/js/toast.js \
     frontend/static/js/core.js \
     frontend/static/js/core-fx.js \
+    frontend/static/js/core-stage.js \
     frontend/static/js/tts-client.js \
     frontend/static/js/analytics.js \
     frontend/static/js/navigation.js \
