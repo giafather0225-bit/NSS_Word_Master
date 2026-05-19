@@ -13,7 +13,8 @@
 #   • Final health check verifies the server is actually serving.
 
 set -u
-APP_DIR="$HOME/Documents/GitHub/NSS_Word_Master"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+APP_DIR="$(dirname "$SCRIPT_DIR")"
 VENV_DIR="$APP_DIR/.venv"
 PID_FILE="$APP_DIR/logs/server.pid"
 LOG_DIR="$APP_DIR/logs"
@@ -35,6 +36,9 @@ if [ -d "$VENV_DIR" ]; then
 else
   log "WARN: $VENV_DIR not found — using system python ($(python3 --version 2>&1))"
 fi
+
+# ─── Reset child.html (build.sh rewrites cache hash on every start) ───
+git checkout -- frontend/templates/child.html 2>/dev/null || true
 
 # ─── Stash any accidental local changes (so pull never fails) ──
 STASHED=0
@@ -98,31 +102,22 @@ if echo "$CHANGED" | grep -q "^frontend/static/js/bundle-"; then
 fi
 
 # ─── Stop old server ───
-if [ -f "$PID_FILE" ]; then
-  OLD_PID=$(cat "$PID_FILE")
-  if kill -0 "$OLD_PID" 2>/dev/null; then
-    log "Stopping old server (PID $OLD_PID)"
-    kill "$OLD_PID"
-    for i in 1 2 3 4 5; do
-      kill -0 "$OLD_PID" 2>/dev/null || break
-      sleep 1
-    done
-    # Force-kill if still alive
-    kill -0 "$OLD_PID" 2>/dev/null && kill -9 "$OLD_PID" 2>/dev/null
-  fi
-  rm -f "$PID_FILE"
-fi
-
-# Belt-and-suspenders: kill anything on the port (orphan uvicorn workers)
-if lsof -ti:$PORT >/dev/null 2>&1; then
-  lsof -ti:$PORT | xargs kill 2>/dev/null
-  sleep 1
-fi
+/usr/sbin/lsof -ti:$PORT | xargs kill -9 2>/dev/null || true
+sleep 2
 
 # ─── Start new server ───
 log "Starting new server on port $PORT"
-nohup uvicorn backend.main:app --host 127.0.0.1 --port $PORT \
-  >> "$LOG_DIR/server.log" 2>&1 &
+
+# If running under LaunchAgent, let launchd restart it automatically
+if launchctl list com.gia.learning >/dev/null 2>&1; then
+  log "LaunchAgent detected — restarting via launchctl"
+  launchctl stop com.gia.learning 2>/dev/null || true
+  log "launchd will restart the server. Reload browser in ~15 seconds."
+  exit 0
+fi
+
+# Fallback: no LaunchAgent — start directly
+nohup python3 "$APP_DIR/app.py" >> "$LOG_DIR/server.log" 2>&1 &
 NEW_PID=$!
 echo "$NEW_PID" > "$PID_FILE"
 log "Server PID: $NEW_PID"
