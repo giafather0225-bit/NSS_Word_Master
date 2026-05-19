@@ -6,7 +6,7 @@
    ================================================================ */
 
 /** @tag SYSTEM @tag PWA @tag OFFLINE */
-const SW_VERSION = 'gia-sw-v8';
+const SW_VERSION = 'gia-sw-v9';
 const STATIC_CACHE = `${SW_VERSION}-static`;
 const DATA_CACHE   = `${SW_VERSION}-data`;
 
@@ -75,6 +75,9 @@ function isCacheableApi(url, method) {
     if (p.startsWith('/api/words/')) return true;
     if (p === '/api/daily-words/today' || p === '/api/daily-words/status') return true;
     if (p === '/api/daily-words/weekly-test') return true;
+    // CKLA — read-only catalog + lesson content. POSTs (submit, mark-done)
+    // are filtered out by the method !== 'GET' guard above.
+    if (p.startsWith('/api/academy/ckla/')) return true;
     return false;
 }
 
