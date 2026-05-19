@@ -387,7 +387,6 @@ async function startLessonAt(stageKey) {
         activity: ROADMAP_LABELS[ROADMAP_STAGES.indexOf(targetStage)] || targetStage,
     };
     resetAllStageState();
-    magicFailCount = 0;
     examQueue      = [];
     examIndex      = 0;
     wordVaultSet.clear();
