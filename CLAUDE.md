@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-18 — 라우터 57개(파일 63개) · JS 110개 · CSS 65개 · 서비스 17개 · 마이그레이션 63개 (최신: 058) · Parent Dashboard 6탭 확정(Reading/Habits/Goals 병합) · CKLA 4번째 과목 · Top Weaknesses 홈탭 추가
+> Last updated: 2026-05-19 — 라우터 57개(파일 63개) · JS 113개 · CSS 65개 · 서비스 18개 · 마이그레이션 66개 (최신: 061) · Parent Dashboard 6탭 확정(Reading/Habits/Goals 병합) · CKLA 4번째 과목 · Top Weaknesses 홈탭 추가 · 부모 라우터 PIN 게이트 감사 완료
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -30,7 +30,7 @@
 2. 파일당 최대 ~500줄. 초과 시 모듈 분리 (예: `child.js` → `child-{calendar,exam,keyboard,text}.js`).
 3. CSS: `theme.css` 변수만 사용. 컴포넌트 CSS에 hex 직접 사용 금지.
 4. 모든 API: 적절한 에러 핸들링 + HTTP 상태코드. `RequestValidationError` 는 `main.py` 에서 child-friendly 422 JSON 으로 자동 변환됨.
-5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 추가 (현재 001~058, 파일 63개). **다음 신규 마이그레이션은 `059_` 부터 단순 증가** — 중복 prefix(025a/b, 033a/b, 034a/b, 040a/b, 041a/b) 방식은 종료됨. 시스템은 filename 전체로 추적하므로 기존 파일은 안전.
+5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 추가 (현재 001~061, 파일 66개). **신규 마이그레이션은 단순 증가** — 중복 prefix(025a/b, 033a/b, 034a/b, 040a/b, 041a/b) 방식은 종료됨 (059부터 단순 증가 적용 중). 시스템은 filename 전체로 추적하므로 기존 파일은 안전.
 6. Python: type hints + docstrings. JS: JSDoc `@tag` comments.
 7. async/await 일관성. N+1 쿼리 금지.
 8. 모든 사용자 입력 sanitize. SQL injection / XSS / prompt injection 방어. Pydantic 길이 제한 = `schemas_common.py` (Str80/Str200/Str500).
@@ -84,7 +84,7 @@ NSS_Word_Master/
 │   │   ├── lessons.py  system.py  gamification.py  learning.py
 │   │   ├── diary.py    math.py   assistant.py
 │   │   ├── us_academy.py  ckla.py  goals.py  island.py
-│   ├── services/                # 17 services
+│   ├── services/                # 18 services
 │   │   ├── xp_engine.py         # XP rules + award (config-overridable)
 │   │   ├── streak_engine.py     # 3-subject streak (ckla/math/game)
 │   │   ├── academy_session.py   # active session tracking
@@ -102,7 +102,7 @@ NSS_Word_Master/
 │   │   ├── ollama_manager.py    # auto-start, healthcheck
 │   │   └── backup_engine.py     # auto-snapshot (7-day rolling)
 │   ├── routers/                 # 57 files (52 registered; files_common.py = shared utility imported by files.py + files_voca.py, not a router)
-│   ├── migrations/              # 058_fix_words_bad_entries.py latest
+│   ├── migrations/              # 061_top_weaknesses_indexes.py latest
 │   ├── data/                    # static content (math/, daily_words/)
 │   │   └── math/{G3,G4,G5,G6,glossary,kangaroo,placement}/
 │   ├── DB_INDEX.md  API_INDEX.md
@@ -767,13 +767,13 @@ questions 배열 내 각 문제 필드:
 - `image_required: false` → `question_text` 인라인 렌더링 가능
 - 모든 solution은 영어로 작성
 
-**Solution 구축 현황 (2026-05-04 기준)**
+**Solution 구축 현황 (2026-05-19 기준)**
 
-| set_id | 상태 | 비고 |
-|--------|------|------|
-| `ikmc_2024_ecolier` | ✅ 완료 (24/24) | Q8·Q10 답안 수정 포함 |
-| `ksf_2024_junior` 외 ksf 12세트 | 구형 solutions dict (30개) | per-question 미변환 |
-| 나머지 90세트 | solution 없음 | PDF는 보유 |
+| 카테고리 | 세트 수 | 비고 |
+|---------|--------|------|
+| Full per-question solutions | **27** / 105 | `q.solution` + `q.solution_steps` 완성 (검증: `python3 -c "..."`) |
+| PDF Anchor 메타데이터-only | 78 / 105 | `questions` 배열 없음 — 의도적 (PDF.js로 PDF 페이지 직접 오픈) |
+| 구형 root `solutions` dict | 0 | 신규 형식으로 전환 완료 |
 
 **Answer Key 검증 현황 (2026-05-03 기준)**
 - VERIFIED: `intl_*` 전체, `ikmc_2021_*`, `ikmc_2023_ecolier`, `ikmc_2024_ecolier` (수학적 증명), `leb_2025_*`, `cyp_*`
@@ -989,7 +989,7 @@ Hub UI is calm (`bg-page` + cards only). Energy/SFX (`arcade-sfx.js`) only insid
 
 ### Migrations (`backend/migrations/`)
 
-> 총 63개 파일 (번호 001~058 중 중복 prefix 5쌍(025/033/034/040/041) 포함). 시스템은 filename 전체로 추적하므로 동일 prefix를 가진 a/b 파일도 각각 별개로 실행됨 — 안전.
+> 총 66개 파일 (번호 001~061 중 중복 prefix 5쌍(025/033/034/040/041) 포함). 시스템은 filename 전체로 추적하므로 동일 prefix를 가진 a/b 파일도 각각 별개로 실행됨 — 안전.
 
 **001~024 (기반 + Island 초기)**
 001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy_tables · 011 ckla_tables · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals · 017 math_progress UNIQUE · 018 island_tables (10 new tables) · 019 ckla_grade · 020 ckla_badges · 021 ckla_spelling_grammar · 022 math_v2_schema · 023 island_decor_image_paths · 024 island_decor_extension
@@ -998,7 +998,7 @@ Hub UI is calm (`bg-page` + cards only). Energy/SFX (`arcade-sfx.js`) only insid
 025a ai_call_log · 025b ckla_review_to_word_reviews · 026 ckla_aux_content · 027 fix_d1_lesson_titles · 028 fix_qa_model_answers · 029 fix_d4l9_evaluative · 030 audio_url_backfill · 031 fix_ocr_artifacts · 032 fix_data_quality_round2 · 033a add_qa_done · 033b math_progress_mastery · 034a math_attempt_misconception · 034b strip_wordnet_tags · 035 fix_bad_definitions · 036 fix_short_definitions · 037 fix_mw_colon_definitions · 038 fix_pos_and_short_definitions · 039 fix_circular_and_misc
 
 **040~056 (DUX 사전 정규화 + Island 확장)**
-040a fix_compound_noun_pos · 040b math_unique_constraints · 041a fix_relating_to_definitions · 041b math_daily_unique_date · 042 fix_examples_bold_and_wrong · 043 lowercase_definition_starts · 044 fix_structural_and_content_p1 · 045 expand_short_definitions · 046 fill_sort_order · 047 drop_us_academy_passages · 048 drop_us_academy_session_results · 049 fix_lesson14_progress · 050 generate_missing_audio · 051 normalize_pretest_stage · 052 island_zone_sequential_lock · 053 island_zone_first_evo_unlock · 054 xplog_composite_index · 055 island_evo_food_image_paths · 056 word_reviews_easiness_real · 057 normalize_pos_tags · **058 fix_words_bad_entries** ← latest
+040a fix_compound_noun_pos · 040b math_unique_constraints · 041a fix_relating_to_definitions · 041b math_daily_unique_date · 042 fix_examples_bold_and_wrong · 043 lowercase_definition_starts · 044 fix_structural_and_content_p1 · 045 expand_short_definitions · 046 fill_sort_order · 047 drop_us_academy_passages · 048 drop_us_academy_session_results · 049 fix_lesson14_progress · 050 generate_missing_audio · 051 normalize_pretest_stage · 052 island_zone_sequential_lock · 053 island_zone_first_evo_unlock · 054 xplog_composite_index · 055 island_evo_food_image_paths · 056 word_reviews_easiness_real · 057 normalize_pos_tags · 058 fix_words_bad_entries · 059 fix_reward_items_category_icons · 060 island_character_images · **061 top_weaknesses_indexes** ← latest
 
 ---
 
@@ -1283,12 +1283,12 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 |------|------|----------|
 | 등록된 FastAPI 라우터 | 57 | `grep -c "app.include_router" backend/main.py` |
 | routers/ 파일 수 | 63 | `ls backend/routers/*.py` (5개 유틸: _ckla_common, _island_common, _math_academy_common, files_common, math_kangaroo_helpers) |
-| JS 소스 파일 | 109 | `ls frontend/static/js/*.js \| grep -v bundle` |
+| JS 소스 파일 | 113 | `ls frontend/static/js/*.js \| grep -v bundle` |
 | CSS 파일 | 65 | `ls frontend/static/css/*.css` |
 | Island JSX 컴포넌트 | 17 | `ls frontend/src/island/*.jsx` |
-| 마이그레이션 파일 | 63 | `ls backend/migrations/[0-9]*.py` (최신: 058) |
+| 마이그레이션 파일 | 66 | `ls backend/migrations/[0-9]*.py` (최신: 061) |
 | ORM 모델 파일 | 11 | `ls backend/models/*.py` (\_base, \_\_init\_\_ 제외) |
-| 서비스 파일 | 17 | `ls backend/services/*.py` |
+| 서비스 파일 | 18 | `ls backend/services/*.py` (xp_lumi_bridge 추가) |
 | Island 라우터 파일 수 | 5 | island.py + island_{character,dev,legend,shop}.py |
 | `__all__` 내보낸 클래스 | 61 | `backend/models/__init__.py` |
 
@@ -1309,7 +1309,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 | # | 파일 | 문제 | 심각도 |
 |---|------|------|--------|
 | ~~4~~ | ~~Island CSS 4개 파일~~ | ~~Work Principle #3 위반: hex 컬러 직접 사용~~ → **✅ 완료 (commit 0aaa0c0)** — 모든 hex → CSS 변수 마이그레이션, island-specific 토큰을 `theme.css`에 추가 | ✅ 해결됨 |
-| 5 | `backend/migrations/` | 063 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전. 058 최신, 059부터 단순 증가 | 낮음 (시스템적으로 안전) |
+| 5 | `backend/migrations/` | 066 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전. 061 최신, 059부터 단순 증가 적용 중 | 낮음 (시스템적으로 안전) |
 | 6 | `models/gamification.py` | `Reward` 클래스가 legacy로 남아 있음 (`rewards` 테이블 back-compat) — 실제 사용 여부 불명 | 낮음 |
 | 10 | 500줄 초과 JS 10개 | `core.js` 803·`child.js` 684·`navigation.js` 674·`arcade-word-invaders.js` 647·`word-manager.js` 603·`review-hub.js` 594·`parent-ingest.js` 582·`arcade-crossword.js` 578·`finaltest.js` 529·`ckla.js` 503. parent-ingest/finaltest는 IIFE 캡슐화로 분리 ROI 낮음. core.js는 의존성 광범위로 고위험 | 중간 |
 | 11 | 500줄 초과 Python 2개 | `services/xp_engine.py` 530·`routers/files_voca.py` 504 — 경계 수준 | 낮음 |
@@ -1338,10 +1338,18 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 4. ~~**Island CSS hex → CSS 변수 마이그레이션**: `island-loop.css`, `island-main.css`, `island-zones.css`, `island-system.css`~~ ✅ 완료 (commit 0aaa0c0)
 ~~5. **마이그레이션 번호 정리**: 057부터는 중복 prefix 없이 단순 증가로 유지~~ ✅ CLAUDE.md Work Principle #5에 명시 완료
 
+#### 단기 (1~2 스프린트, 신규)
+
+6. ~~**부모 라우터 PIN 게이트 감사**: 모든 `parent_*` 라우터의 PIN 적용 일관성 확인~~ ✅ 완료 (2026-05-19, commit fb7ee8b) — system.py의 ollama/restart + backups POST에 PIN 추가, self-update는 의도적 미적용으로 주석 명시
+7. ~~**XPLog `_SOURCE_MAP`에 arcade_play 매핑 추가**~~ ✅ 완료 (2026-05-19, commit 34f7fd6)
+8. ~~**부모 Top Weaknesses 쿼리 인덱스 보강**: word_attempts/math_attempts/ckla_response composite + range indexes~~ ✅ 완료 (2026-05-19, migration 061)
+
 #### 중기 (구조 개선)
 
-7. **US Academy 라우터 구현**: `backend/routers/us_academy.py` 생성하여 `USAcademyWord`/`USAcademyWordProgress` API 노출
-8. **`Reward` 모델 제거**: 실제 미사용 확인 후 `rewards` 테이블과 함께 deprecated migration으로 처리
+9. ~~**US Academy 라우터 구현**~~ → 불필요 확인 (CLAUDE.md US Academy 섹션 참조)
+10. **`Reward` 모델 제거**: 실제 미사용 확인 후 `rewards` 테이블과 함께 deprecated migration으로 처리 (다음 우선순위)
+11. **오프라인 모드**: service-worker에 CKLA 정적 자산 사전 캐싱 (Phase 4 backlog 항목)
+12. **`core.js`/`child.js` 분할**: 800+/680+ 줄, 의존성 광범위로 고위험 — 별도 세션 권장
 
 ---
 
@@ -1385,7 +1393,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 | 답안 검증 | VERIFIED: `intl_*` 전체, `ikmc_2021_*`, `ikmc_2023/2024_ecolier`, `leb_2025_*`, `cyp_*` | |
 | 미검증 | `ikmc_2012~2022` (일부), `usa_*`, `ksf_*` | UI는 정상 작동, 답 출처 미확인 |
 | 알려진 오류 | `cyp_2015` Q30=V, `cyp_2024` Q5=V (그리스 파일, UI 미노출) | |
-| solution 완성 | `ikmc_2024_ecolier` 24/24 ✅ | 나머지 90세트 미완성 |
+| solution 완성 | 27/105 세트 (full per-question solutions) ✅ | 78세트는 PDF Anchor 메타데이터-only (의도적) |
 
 ### Island Character Catalog
 
