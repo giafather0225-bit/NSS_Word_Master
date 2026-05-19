@@ -6,7 +6,7 @@
    ================================================================ */
 
 /** @tag SYSTEM @tag PWA @tag OFFLINE */
-const SW_VERSION = 'gia-sw-v9';
+const SW_VERSION = 'gia-sw-v10';
 const STATIC_CACHE = `${SW_VERSION}-static`;
 const DATA_CACHE   = `${SW_VERSION}-data`;
 
@@ -41,13 +41,18 @@ const APP_SHELL = [
     '/static/js/math-navigation.js?v=5',
 ];
 
-// NUCLEAR CACHE CLEAR: unregister self and wipe all caches immediately
 self.addEventListener('install', () => self.skipWaiting());
 
+// On activate, drop only caches from *previous* SW versions. The current
+// version's STATIC_CACHE and DATA_CACHE are kept so that data the user
+// already downloaded (CKLA lessons, math sets, etc.) survives SW updates.
 self.addEventListener('activate', (event) => {
+    const keep = new Set([STATIC_CACHE, DATA_CACHE]);
     event.waitUntil(
         caches.keys()
-            .then((keys) => Promise.all(keys.map((k) => caches.delete(k))))
+            .then((keys) => Promise.all(
+                keys.filter((k) => !keep.has(k)).map((k) => caches.delete(k))
+            ))
             .then(() => self.clients.claim())
     );
 });
