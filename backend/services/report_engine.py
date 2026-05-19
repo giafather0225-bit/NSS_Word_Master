@@ -274,6 +274,40 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
     ckla_qa_correct = ckla_qa_rows.correct or 0
     ckla_qa_acc = round(ckla_qa_correct * 100.0 / max(ckla_qa_total, 1), 1) if ckla_qa_total else None
 
+    # CKLA weakest lessons by all-time Q&A accuracy (matches Home Top Weaknesses
+    # card from parent_stats.parent_weaknesses). All-time, not week-scoped —
+    # persistent weaknesses are what parents need to know about.
+    from backend.models.ckla import CKLAQuestion  # avoid top-level cycle
+    ckla_weak_correct = func.sum(case((CKLAQuestionResponse.ai_score >= 1, 1), else_=0))
+    ckla_weak_rows = (
+        db.query(
+            CKLAQuestion.lesson_id,
+            func.count(CKLAQuestionResponse.id).label("total"),
+            ckla_weak_correct.label("correct"),
+        )
+        .join(CKLAQuestion, CKLAQuestionResponse.question_id == CKLAQuestion.id)
+        .group_by(CKLAQuestion.lesson_id)
+        .having(func.count(CKLAQuestionResponse.id) >= 1)
+        .order_by((ckla_weak_correct * 100.0 / func.count(CKLAQuestionResponse.id)).asc())
+        .limit(3)
+        .all()
+    )
+    ckla_weak_lesson_ids = [r.lesson_id for r in ckla_weak_rows]
+    ckla_weak_title_map: dict[int, str] = {}
+    if ckla_weak_lesson_ids:
+        for les in db.query(CKLALesson.id, CKLALesson.title).filter(
+            CKLALesson.id.in_(ckla_weak_lesson_ids)
+        ).all():
+            ckla_weak_title_map[les.id] = les.title
+    ckla_weak_lessons = [
+        {
+            "title":    ckla_weak_title_map.get(r.lesson_id, f"Lesson {r.lesson_id}"),
+            "accuracy": round((r.correct or 0) * 100.0 / max(r.total, 1), 0),
+            "attempts": r.total,
+        }
+        for r in ckla_weak_rows
+    ]
+
     # Days with at least one lesson this week
     ckla_days_studied = (
         db.query(func.count(func.distinct(func.substr(CKLALessonProgress.completed_at, 1, 10))))
@@ -306,6 +340,7 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
             "rank":              ckla_rank,
             "qa_accuracy":       ckla_qa_acc,
             "days_studied":      int(ckla_days_studied),
+            "weak_lessons":      ckla_weak_lessons,
         },
         "math": {
             "total_attempts":   math_total,

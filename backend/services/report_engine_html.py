@@ -85,6 +85,7 @@ def _ckla_section(ckla: dict, c: dict) -> str:
     done    = ckla.get("completed_total", 0)
     days    = ckla.get("days_studied", 0)
     qa_acc  = ckla.get("qa_accuracy")
+    weak    = ckla.get("weak_lessons", []) or []
 
     qa_row = ""
     if qa_acc is not None:
@@ -93,6 +94,28 @@ def _ckla_section(ckla: dict, c: dict) -> str:
         <tr>
           <td style="font-size:13px;color:{c['text_sub']};padding:4px 0;">Q&amp;A Accuracy (7d)</td>
           <td style="font-size:13px;font-weight:700;color:{qa_color};text-align:right;">{qa_acc}%</td>
+        </tr>"""
+
+    weak_block = ""
+    if weak:
+        rows = ""
+        for w in weak:
+            acc = int(w["accuracy"])
+            color = c["error"] if acc < 50 else c["warning"]
+            rows += f"""
+            <tr>
+              <td style="font-size:13px;color:{c['text']};padding:4px 0;">{w['title']}</td>
+              <td style="font-size:12px;color:{c['text_sub']};padding:4px 12px;">{w['attempts']} Q&amp;A</td>
+              <td style="font-size:13px;font-weight:700;color:{color};text-align:right;">{acc}%</td>
+            </tr>"""
+        weak_block = f"""
+        {_section_header("CKLA — Lessons Needing Review", c['error'], c['error_light'], c['error_ink'])}
+        <tr>
+          <td>
+            <table width="100%" cellpadding="0" cellspacing="0">
+              {rows}
+            </table>
+          </td>
         </tr>"""
 
     header = _section_header("CKLA Grade 3", c["eng"], c["eng_light"], c["eng_ink"])
@@ -119,7 +142,8 @@ def _ckla_section(ckla: dict, c: dict) -> str:
           </tr>
         </table>
       </td>
-    </tr>"""
+    </tr>
+    {weak_block}"""
 
 
 def _section_header(title: str, color: str, light: str, ink: str) -> str:
