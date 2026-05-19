@@ -214,11 +214,32 @@ function _ppRenderShell() {
         </div>`;
 
     if (typeof lucide !== "undefined") lucide.createIcons();
+    _ppApplySidebarWidth();
     _ppUpdateHabitsBadge();
     _ppStartLivePoll();
 }
 
 // ─── Sidebar toggle ───────────────────────────────────────────
+
+/**
+ * Apply sidebar width inline. We bypass the CSS cascade here because the
+ * `#pp-sidebar.pp-rail` rule with !important still did not win in practice
+ * (cause unclear — likely a stale-cache / specificity edge case). Inline
+ * styles always win, so this is the robust fix.
+ *
+ * Below 1100px the existing `@media (max-width: 1100px) .pp-sidebar` rule
+ * must take over — we clear the inline width there so the media query wins.
+ * @tag PARENT
+ */
+function _ppApplySidebarWidth() {
+    const sb = document.getElementById("pp-sidebar");
+    if (!sb) return;
+    if (window.matchMedia("(max-width: 1100px)").matches) {
+        sb.style.width = "";
+        return;
+    }
+    sb.style.width = sb.classList.contains("pp-rail") ? "var(--rail-w)" : "var(--sidebar-w)";
+}
 
 /** @tag PARENT */
 function _ppToggleSidebar() {
@@ -226,6 +247,12 @@ function _ppToggleSidebar() {
     if (!sb) return;
     const nowRail = sb.classList.toggle("pp-rail");
     localStorage.setItem("pp.sidebar", nowRail ? "rail" : "expand");
+    _ppApplySidebarWidth();
+}
+
+if (typeof window !== "undefined" && !window._ppSidebarResizeBound) {
+    window.addEventListener("resize", _ppApplySidebarWidth);
+    window._ppSidebarResizeBound = true;
 }
 
 // ─── Range segment ────────────────────────────────────────────
