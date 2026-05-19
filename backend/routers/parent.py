@@ -20,6 +20,7 @@ from typing import Optional
 import logging
 import os
 import re
+import time
 from datetime import datetime
 
 from fastapi import APIRouter, Depends, Header, HTTPException
@@ -81,15 +82,40 @@ class PinVerifyIn(BaseModel):
 
 # ─── PIN verification ──────────────────────────────────────────
 
+# Single-user app — module-level cache is fine. TTL bounds staleness so a
+# manual sqlite edit eventually takes effect without a restart; explicit
+# invalidation handles in-process writes.
+_PIN_CACHE_TTL = 30.0
+_pin_cache_value: Optional[str] = None
+_pin_cache_at: float = 0.0
+
+
+def invalidate_parent_pin_cache() -> None:
+    """Drop the cached stored-PIN. Call after writing AppConfig 'pin'."""
+    global _pin_cache_value, _pin_cache_at
+    _pin_cache_value = None
+    _pin_cache_at = 0.0
+
+
 def _get_stored_pin(db: Session) -> str:
     """Read the active parent PIN row from AppConfig, falling back to DEFAULT_PIN.
 
     The value may be either a pbkdf2 hash (preferred) or — on databases that
     predate the hashing rollout — the literal 4-digit string. Callers must
     verify via `pin_hash.verify_pin`, not raw compare, so both formats work.
+
+    Cached for _PIN_CACHE_TTL seconds to avoid hitting AppConfig on every
+    PIN-gated request.
     """
+    global _pin_cache_value, _pin_cache_at
+    now = time.monotonic()
+    if _pin_cache_value is not None and (now - _pin_cache_at) < _PIN_CACHE_TTL:
+        return _pin_cache_value
     row = db.query(AppConfig).filter(AppConfig.key == "pin").first()
-    return row.value if (row and row.value) else DEFAULT_PIN
+    value = row.value if (row and row.value) else DEFAULT_PIN
+    _pin_cache_value = value
+    _pin_cache_at = now
+    return value
 
 
 def _upgrade_pin_if_plaintext(db: Session, verified_pin: str) -> None:
@@ -106,6 +132,7 @@ def _upgrade_pin_if_plaintext(db: Session, verified_pin: str) -> None:
     row.value = pin_hash.hash_pin(verified_pin)
     row.updated_at = datetime.now().isoformat()
     db.commit()
+    invalidate_parent_pin_cache()
 
 
 # @tag PARENT PIN
@@ -324,6 +351,8 @@ def parent_set_config(
     else:
         db.add(AppConfig(key=body.key, value=stored_value, updated_at=now))
     db.commit()
+    if body.key == "pin":
+        invalidate_parent_pin_cache()
     return {"ok": True}
 
 
