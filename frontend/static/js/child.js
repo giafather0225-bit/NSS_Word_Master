@@ -6,8 +6,7 @@
                  preview.js, wordmatch.js, fillblank.js, spelling.js,
                  sentence.js
    API endpoints: /api/progress/sparta_reset,
-                  /api/progress/challenge_complete,
-                  /api/rewards/earn_all
+                  /api/progress/challenge_complete
    ================================================================ */
 
 /* eslint-disable no-use-before-define */

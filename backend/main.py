@@ -64,7 +64,6 @@ from backend.routers import math_glossary as math_glossary_router
 from backend.routers import math_problems as math_problems_router
 from backend.routers import speech as speech_router
 from backend.routers import arcade as arcade_router
-from backend.routers import rewards as rewards_router
 from backend.routers import schedules as schedules_router
 from backend.routers import dashboard as dashboard_router
 from backend.routers import tutor_sentence as tutor_sentence_router
@@ -387,7 +386,6 @@ app.include_router(math_glossary_router.router)
 app.include_router(math_problems_router.router)
 app.include_router(speech_router.router)
 app.include_router(arcade_router.router)
-app.include_router(rewards_router.router)
 app.include_router(schedules_router.router)
 app.include_router(dashboard_router.router)
 app.include_router(tutor_sentence_router.router)

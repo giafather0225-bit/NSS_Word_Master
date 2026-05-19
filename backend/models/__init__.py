@@ -16,7 +16,7 @@ from .lessons import (
     Word,
     WordReview,
 )
-from .system import Reward, Schedule, AppConfig
+from .system import Schedule, AppConfig
 from .gamification import (
     XPLog,
     StreakLog,
@@ -69,7 +69,7 @@ __all__ = [
     # lessons
     "Lesson", "StudyItem", "Progress", "UserPracticeSentence", "Word", "WordReview",
     # system
-    "Reward", "Schedule", "AppConfig",
+    "Schedule", "AppConfig",
     # gamification
     "XPLog", "StreakLog", "TaskSetting", "RewardItem", "PurchasedReward",
     # learning

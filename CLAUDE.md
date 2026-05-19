@@ -1310,7 +1310,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 |---|------|------|--------|
 | ~~4~~ | ~~Island CSS 4개 파일~~ | ~~Work Principle #3 위반: hex 컬러 직접 사용~~ → **✅ 완료 (commit 0aaa0c0)** — 모든 hex → CSS 변수 마이그레이션, island-specific 토큰을 `theme.css`에 추가 | ✅ 해결됨 |
 | 5 | `backend/migrations/` | 066 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전. 061 최신, 059부터 단순 증가 적용 중 | 낮음 (시스템적으로 안전) |
-| 6 | `models/gamification.py` | `Reward` 클래스가 legacy로 남아 있음 (`rewards` 테이블 back-compat) — 실제 사용 여부 불명 | 낮음 |
+| ~~6~~ | ~~`models/system.py` `Reward`~~ | ~~legacy back-compat~~ → **✅ 완료 (2026-05-19, migration 062)** — 사용처 0건 확인 후 모델/라우터/테이블 삭제 | ✅ 해결됨 |
 | 10 | 500줄 초과 JS 10개 | `core.js` 803·`child.js` 684·`navigation.js` 674·`arcade-word-invaders.js` 647·`word-manager.js` 603·`review-hub.js` 594·`parent-ingest.js` 582·`arcade-crossword.js` 578·`finaltest.js` 529·`ckla.js` 503. parent-ingest/finaltest는 IIFE 캡슐화로 분리 ROI 낮음. core.js는 의존성 광범위로 고위험 | 중간 |
 | 11 | 500줄 초과 Python 2개 | `services/xp_engine.py` 530·`routers/files_voca.py` 504 — 경계 수준 | 낮음 |
 | ~~12~~ | ~~컴포넌트 CSS hex 직접 사용 (13건)~~ | ~~`color: #fff` 5건 + 그라데이션 끝점 8건~~ → **✅ 완료 (2026-05-17)** — 모두 `var(--text-on-primary)` / `var(--bg-card)`로 교체. 남은 hex는 fallback 또는 arcade 캔버스 면제 | ✅ 해결됨 |
@@ -1347,7 +1347,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 #### 중기 (구조 개선)
 
 9. ~~**US Academy 라우터 구현**~~ → 불필요 확인 (CLAUDE.md US Academy 섹션 참조)
-10. **`Reward` 모델 제거**: 실제 미사용 확인 후 `rewards` 테이블과 함께 deprecated migration으로 처리 (다음 우선순위)
+10. ~~**`Reward` 모델 제거**~~ ✅ 완료 (2026-05-19, migration 062) — `Reward` 클래스 + `routers/rewards.py` + `rewards` 테이블 모두 삭제. 사용처 0건 확인 후 진행
 11. **오프라인 모드**: service-worker에 CKLA 정적 자산 사전 캐싱 (Phase 4 backlog 항목)
 12. **`core.js`/`child.js` 분할**: 800+/680+ 줄, 의존성 광범위로 고위험 — 별도 세션 권장
 

@@ -1,21 +1,12 @@
 """
-models/system.py — System + legacy (Reward, Schedule, AppConfig).
+models/system.py — System tables (Schedule, AppConfig).
 Section: System
 Dependencies: ._base.Base
 """
 
-from sqlalchemy import Column, Integer, String, Boolean
+from sqlalchemy import Column, Integer, String
 
 from ._base import Base
-
-
-class Reward(Base):
-    __tablename__ = "rewards"
-
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String)
-    description = Column(String)
-    is_earned = Column(Boolean, default=False)
 
 
 class Schedule(Base):
@@ -35,4 +26,4 @@ class AppConfig(Base):
     updated_at = Column(String)
 
 
-__all__ = ["Reward", "Schedule", "AppConfig"]
+__all__ = ["Schedule", "AppConfig"]
