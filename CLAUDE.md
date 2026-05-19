@@ -708,7 +708,7 @@ pre_test (5문항, 진단+뇌 준비, 점수 미표시)
 ---
 
 ### Math Kangaroo
-104 sets in `backend/data/math/kangaroo/`: IKMC 2012-2023, intl 2009-2025, KSF 2020-2025, Lebanon 2024-2025, India, USA 2003-2025, Cyprus
+90 sets in `backend/data/math/kangaroo/`: IKMC 2012-2023, intl 2009-2025, KSF 2020-2025, Lebanon 2024-2025, India, USA 2003-2025 (Cyprus 세트는 PDF 없어 2026-05-19 삭제)
 Levels: Pre-Ecolier (1-2), Ecolier (3-4), Benjamin (5-6), Cadet, Junior, Student
 Mode: 단일 모드 — 타이머 + 제출 후 결과 표시 (Practice/Test 구분 없음, 2026-05-03 통합)
 XP: complete +5, ≥80% +5, perfect +10
@@ -767,19 +767,20 @@ questions 배열 내 각 문제 필드:
 - `image_required: false` → `question_text` 인라인 렌더링 가능
 - 모든 solution은 영어로 작성
 
-**Solution 구축 현황 (2026-05-19 기준)**
+**Solution 구축 현황 (2026-05-19 기준, 깨진 cyp/india/leb 15세트 삭제 후)**
 
 | 카테고리 | 세트 수 | 비고 |
 |---------|--------|------|
-| Full per-question solutions | **27** / 105 | `q.solution` + `q.solution_steps` 완성 (검증: `python3 -c "..."`) |
-| PDF Anchor 메타데이터-only | 78 / 105 | `questions` 배열 없음 — 의도적 (PDF.js로 PDF 페이지 직접 오픈) |
+| Full per-question solutions | **27** / 90 | `q.solution` + `q.solution_steps` 완성 |
+| PDF Anchor 메타데이터-only | 63 / 90 | `questions` 배열 없음 — 의도적 (PDF.js로 PDF 페이지 직접 오픈), PDF 존재 확인됨 |
 | 구형 root `solutions` dict | 0 | 신규 형식으로 전환 완료 |
+| 삭제된 깨진 세트 | -15 | 12 cyp_pre_ecolier (그리스 원본, PDF 없음) + 3 (india_2019, india_ksf, leb_2024) |
 
 **Answer Key 검증 현황 (2026-05-03 기준)**
 - VERIFIED: `intl_*` 전체, `ikmc_2021_*`, `ikmc_2023_ecolier`, `ikmc_2024_ecolier` (수학적 증명), `leb_2025_*`, `cyp_*`
 - PENDING: `ikmc_2023_benjamin`(Q25-30 미검증), `ikmc_2023_pre_ecolier` — UI 버튼 비활성화
 - UNVERIFIED: `ikmc_2012~2022`, `usa_*`, `ksf_*` 등 — 데이터 구조 정상, 답 출처 미확인
-- ❌ 데이터 오류: `cyp_2015` Q30=V, `cyp_2024` Q5=V (그리스 파일, PDF 없어 UI 노출 안됨)
+- (cyp_* 세트는 2026-05-19 삭제됨 — PDF 부재 + 그리스 원본 답 오류)
 - ❌ 답안 오류 수정: `usa_2024_ecolier.json` Q8=B→D, Q10=A→C (ikmc_2024_ecolier 작성 시 발견)
 
 **Sources**
@@ -1388,11 +1389,11 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 | 항목 | 상태 | 비고 |
 |------|------|------|
-| 세트 수 | 104 sets | `backend/data/math/kangaroo/*.json` |
+| 세트 수 | 90 sets | `backend/data/math/kangaroo/*.json` (2026-05-19 cyp/india/leb 15 미작동 세트 삭제) |
 | PDF 위치 | `frontend/static/math/kangaroo/pdf/` | PDF Anchor Mode 채택 |
 | 답안 검증 | VERIFIED: `intl_*` 전체, `ikmc_2021_*`, `ikmc_2023/2024_ecolier`, `leb_2025_*`, `cyp_*` | |
 | 미검증 | `ikmc_2012~2022` (일부), `usa_*`, `ksf_*` | UI는 정상 작동, 답 출처 미확인 |
-| 알려진 오류 | `cyp_2015` Q30=V, `cyp_2024` Q5=V (그리스 파일, UI 미노출) | |
+| 알려진 오류 | (해결됨) cyp/india/leb 15세트는 2026-05-19 삭제 | |
 | solution 완성 | 27/105 세트 (full per-question solutions) ✅ | 78세트는 PDF Anchor 메타데이터-only (의도적) |
 
 ### Island Character Catalog
