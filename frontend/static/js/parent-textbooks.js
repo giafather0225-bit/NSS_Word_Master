@@ -25,7 +25,7 @@ async function _ppTextbooks(body) {
             </div>`;
 
         const rows = tbs.map((tb, i) => `
-            <div style="border-bottom:1px solid var(--color-primary-light)">
+            <div style="border-bottom:1px solid var(--border-subtle)">
                 <div style="display:flex;align-items:center;gap:12px;padding:14px 4px;cursor:pointer"
                      onclick="_ppTbToggle('ppTb${i}', '${escapeHtml(tb.name)}')">
                     <i data-lucide="book-marked" style="width:18px;height:18px;color:var(--english-primary)"></i>

@@ -151,7 +151,7 @@ async function _ppSaveXPRules() {
             msg.textContent = res.ok ? "Saved." : "Failed to save.";
             msg.style.color = res.ok ? "var(--color-success)" : "var(--color-error)";
         }
-        if (res.ok) setTimeout(() => _ppLoadTab("xp"), 400);
+        if (res.ok) setTimeout(() => _ppLoadTab("settings"), 400);
     } catch (err) {
         console.error("[parent-xp] save failed:", err);
         if (msg) { msg.textContent = "Network error."; msg.style.color = "var(--color-error)"; }
@@ -168,7 +168,7 @@ async function _ppResetXPRules() {
             msg.textContent = res.ok ? "Reset." : "Failed.";
             msg.style.color = res.ok ? "var(--color-success)" : "var(--color-error)";
         }
-        if (res.ok) setTimeout(() => _ppLoadTab("xp"), 400);
+        if (res.ok) setTimeout(() => _ppLoadTab("settings"), 400);
     } catch (err) {
         console.error("[parent-xp] reset failed:", err);
     }

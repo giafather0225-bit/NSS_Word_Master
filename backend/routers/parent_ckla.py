@@ -48,7 +48,7 @@ def ckla_summary(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db
     if domain_ids:
         for lid, did in (
             db.query(CKLALesson.id, CKLALesson.domain_id)
-            .filter(CKLALesson.domain_id.in_(domain_ids), CKLALesson.is_active == True)
+            .filter(CKLALesson.domain_id.in_(domain_ids), CKLALesson.is_active.is_(True))
             .all()
         ):
             domain_lesson_map.setdefault(did, []).append(lid)
@@ -112,7 +112,7 @@ def ckla_summary(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db
     # ── Domain breakdown ────────────────────────────────────────
     domain_rows = []
     for d in domains:
-        ids = domain_lesson_map[d.id]
+        ids = domain_lesson_map.get(d.id, [])
         done = sum(1 for lid in ids if lid in completed_ids)
         consec_fails = fail_configs.get(d.domain_num, 0)
         domain_rows.append({
@@ -276,7 +276,7 @@ def ckla_chart(
     if domain_ids:
         all_lesson_ids = [
             lid for lid, in db.query(CKLALesson.id)
-            .filter(CKLALesson.domain_id.in_(domain_ids), CKLALesson.is_active == True)
+            .filter(CKLALesson.domain_id.in_(domain_ids), CKLALesson.is_active.is_(True))
             .all()
         ]
 

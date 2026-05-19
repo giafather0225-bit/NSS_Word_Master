@@ -43,7 +43,7 @@ def send_report_now(
     db:   Session = Depends(get_db),
     _pin: bool    = Depends(require_parent_pin),
 ):
-    """즉시 주간 리포트 이메일 발송. @tag PARENT REPORT"""
+    """Send the weekly report email immediately. @tag PARENT REPORT"""
     email = _cfg(db, "parent_email")
     if not email or "@" not in email:
         raise HTTPException(
@@ -62,7 +62,7 @@ def preview_report(
     db:   Session = Depends(get_db),
     _pin: bool    = Depends(require_parent_pin),
 ):
-    """리포트 데이터 JSON 미리보기. @tag PARENT REPORT"""
+    """Return a JSON preview of the weekly report data. @tag PARENT REPORT"""
     return report_engine.collect_weekly_data(db)
 
 
@@ -73,7 +73,7 @@ def get_schedule(
     db:   Session = Depends(get_db),
     _pin: bool    = Depends(require_parent_pin),
 ):
-    """자동 발송 스케줄 조회. @tag PARENT REPORT"""
+    """Get the current automatic report send schedule. @tag PARENT REPORT"""
     return {
         "enabled":      _cfg(db, "report_enabled",     "0") == "1",
         "day_of_week":  int(_cfg(db, "report_day_of_week", "1")),
@@ -88,7 +88,7 @@ def set_schedule(
     db:   Session = Depends(get_db),
     _pin: bool    = Depends(require_parent_pin),
 ):
-    """자동 발송 스케줄 저장. @tag PARENT REPORT"""
+    """Save the automatic report send schedule. @tag PARENT REPORT"""
     if not 0 <= body.day_of_week <= 6:
         raise HTTPException(status_code=400, detail="day_of_week must be 0–6")
     if not body.child_name.strip():

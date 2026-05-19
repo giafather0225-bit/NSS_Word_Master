@@ -128,7 +128,7 @@ function _ppHomeHeadline(range, sum, ov, daily, xpSum) {
 }
 window._ppSendCheer = function () {
     // Placeholder — could POST to /api/parent/cheer in future.
-    if (window.showToast) window.showToast("Cheer sent to Gia ✨", "success");
+    if (window.toast) window.toast("Cheer sent to Gia!", "success");
 };
 
 /** 4-column KPI row, accent colors per metric. @tag PARENT */
@@ -357,21 +357,23 @@ async function _ppHomeLoadMiniCards() {
     const mathEl = document.getElementById("pp-home-math-mini");
     if (mathEl) {
         if (math) {
-            const placement = math.placement_grade || "G3";
-            const lessons = math.lessons_done || 0;
-            const totalLessons = math.lessons_total || 0;
-            const accStr = math.recent_accuracy != null ? `${math.recent_accuracy}%` : "—";
+            const lessons = math.academy?.completed || 0;
+            const totalLessons = math.academy?.total_lessons || 0;
+            const accPct = math.recent_7d?.accuracy_pct;
+            const accStr = accPct != null ? `${accPct}%` : "—";
+            const weakCount = (math.weak_areas || []).length;
+            const eqRate = math.academy?.eq_pass_rate != null ? `${math.academy.eq_pass_rate}%` : "—";
             mathEl.innerHTML = `
                 <div class="pp-mini-flex">
                     <div>
-                        <div class="pp-mini-kick">Placement</div>
-                        <div class="mono pp-mini-big">${escapeHtml(placement)}<span class="pp-mini-big-sub">suggested</span></div>
+                        <div class="pp-mini-kick">Academy</div>
+                        <div class="mono pp-mini-big">${lessons}<span class="pp-mini-big-sub">/ ${totalLessons} lessons</span></div>
                     </div>
                 </div>
                 <div class="pp-mini-3">
-                    <div><div class="pp-mini-kick">Academy</div><div class="mono pp-mini-val">${lessons}/${totalLessons}</div></div>
-                    <div><div class="pp-mini-kick">Recent Acc.</div><div class="mono pp-mini-val">${accStr}</div></div>
-                    <div><div class="pp-mini-kick">Weak Areas</div><div class="mono pp-mini-val">${(math.weak_concepts || []).length}</div></div>
+                    <div><div class="pp-mini-kick">7d Accuracy</div><div class="mono pp-mini-val">${accStr}</div></div>
+                    <div><div class="pp-mini-kick">Exit Quiz</div><div class="mono pp-mini-val">${eqRate}</div></div>
+                    <div><div class="pp-mini-kick">Weak Areas</div><div class="mono pp-mini-val">${weakCount}</div></div>
                 </div>`;
         } else {
             mathEl.innerHTML = `<p class="pp-text-hint" style="padding:12px">No math data yet.</p>`;
@@ -384,8 +386,7 @@ window._ppHomeLoadMiniCards = _ppHomeLoadMiniCards;
 /** Approvals rail card. @tag PARENT DAY_OFF */
 function _ppHomeApprovalsCard(allReqs, island) {
     const dayoff = allReqs.filter(r => r.status === "pending");
-    const rewardReqs = (island?.reward_requests || []).filter(r => r.status === "pending");
-    const total = dayoff.length + rewardReqs.length;
+    const total = dayoff.length;
 
     const dayoffRows = dayoff.map(r => `
         <div class="pp-rail-row">
@@ -401,16 +402,6 @@ function _ppHomeApprovalsCard(allReqs, island) {
             </div>
         </div>`).join("");
 
-    const rewardRows = rewardReqs.map(r => `
-        <div class="pp-rail-row">
-            <div class="pp-rail-row-head">
-                <i data-lucide="gift" class="pp-rail-icon-rewards"></i>
-                <span class="pp-rail-row-title">Reward Request</span>
-            </div>
-            <div class="pp-rail-row-body">${escapeHtml(r.what || r.label || "")}</div>
-            <div class="mono pp-rail-row-cost">${r.cost || 0} Lumi</div>
-        </div>`).join("");
-
     return `
         <div class="pp-card pp-rail-card">
             <div class="pp-card-head pp-rail-head">
@@ -422,7 +413,7 @@ function _ppHomeApprovalsCard(allReqs, island) {
             </div>
             ${total === 0
                 ? `<div class="pp-empty pp-rail-empty"><p class="pp-empty-title">No pending requests</p></div>`
-                : dayoffRows + rewardRows}
+                : dayoffRows}
         </div>`;
 }
 
@@ -505,7 +496,7 @@ function _ppHomeIslandCard(island) {
                     ${_ppRing(owned, total, { size: 52, stroke: 6, color: "var(--legend-primary)", label: `${pct}%` })}
                     <div class="pp-island-mini-right">
                         <div class="mono pp-island-mini-lumi">${lumi.toLocaleString()} <span class="pp-island-mini-lumi-sub">Lumi</span></div>
-                        <div class="pp-island-mini-sub">Today +${island.lumi_today || 0}</div>
+                        <div class="pp-island-mini-sub">${active.length} active · ${owned} completed</div>
                     </div>
                 </div>
                 <div class="pp-island-mini-stack">
