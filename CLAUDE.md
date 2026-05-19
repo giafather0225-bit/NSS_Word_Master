@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-19 — 라우터 57개(파일 63개) · JS 113개 · CSS 65개 · 서비스 18개 · 마이그레이션 66개 (최신: 061) · Parent Dashboard 6탭 확정(Reading/Habits/Goals 병합) · CKLA 4번째 과목 · Top Weaknesses 홈탭 추가 · 부모 라우터 PIN 게이트 감사 완료
+> Last updated: 2026-05-19 — 라우터 56개(파일 62개) · JS 114개 · CSS 65개 · 서비스 18개 · 마이그레이션 67개 (최신: 062) · Parent Dashboard 6탭 확정(Reading/Habits/Goals 병합) · CKLA 4번째 과목 · Top Weaknesses 홈탭 추가 · 부모 라우터 PIN 게이트 감사 완료 · legacy Reward 모듈 제거 · core.js → core-fx.js 분할 · require_parent_pin 캐시화
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -30,7 +30,7 @@
 2. 파일당 최대 ~500줄. 초과 시 모듈 분리 (예: `child.js` → `child-{calendar,exam,keyboard,text}.js`).
 3. CSS: `theme.css` 변수만 사용. 컴포넌트 CSS에 hex 직접 사용 금지.
 4. 모든 API: 적절한 에러 핸들링 + HTTP 상태코드. `RequestValidationError` 는 `main.py` 에서 child-friendly 422 JSON 으로 자동 변환됨.
-5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 추가 (현재 001~061, 파일 66개). **신규 마이그레이션은 단순 증가** — 중복 prefix(025a/b, 033a/b, 034a/b, 040a/b, 041a/b) 방식은 종료됨 (059부터 단순 증가 적용 중). 시스템은 filename 전체로 추적하므로 기존 파일은 안전.
+5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 추가 (현재 001~062, 파일 67개). **신규 마이그레이션은 단순 증가** — 중복 prefix(025a/b, 033a/b, 034a/b, 040a/b, 041a/b) 방식은 종료됨 (059부터 단순 증가 적용 중). 시스템은 filename 전체로 추적하므로 기존 파일은 안전.
 6. Python: type hints + docstrings. JS: JSDoc `@tag` comments.
 7. async/await 일관성. N+1 쿼리 금지.
 8. 모든 사용자 입력 sanitize. SQL injection / XSS / prompt injection 방어. Pydantic 길이 제한 = `schemas_common.py` (Str80/Str200/Str500).
@@ -102,7 +102,7 @@ NSS_Word_Master/
 │   │   ├── ollama_manager.py    # auto-start, healthcheck
 │   │   └── backup_engine.py     # auto-snapshot (7-day rolling)
 │   ├── routers/                 # 57 files (52 registered; files_common.py = shared utility imported by files.py + files_voca.py, not a router)
-│   ├── migrations/              # 061_top_weaknesses_indexes.py latest
+│   ├── migrations/              # 062_drop_legacy_rewards.py latest
 │   ├── data/                    # static content (math/, daily_words/)
 │   │   └── math/{G3,G4,G5,G6,glossary,kangaroo,placement}/
 │   ├── DB_INDEX.md  API_INDEX.md
@@ -990,7 +990,7 @@ Hub UI is calm (`bg-page` + cards only). Energy/SFX (`arcade-sfx.js`) only insid
 
 ### Migrations (`backend/migrations/`)
 
-> 총 66개 파일 (번호 001~061 중 중복 prefix 5쌍(025/033/034/040/041) 포함). 시스템은 filename 전체로 추적하므로 동일 prefix를 가진 a/b 파일도 각각 별개로 실행됨 — 안전.
+> 총 67개 파일 (번호 001~062 중 중복 prefix 5쌍(025/033/034/040/041) 포함). 시스템은 filename 전체로 추적하므로 동일 prefix를 가진 a/b 파일도 각각 별개로 실행됨 — 안전.
 
 **001~024 (기반 + Island 초기)**
 001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy_tables · 011 ckla_tables · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals · 017 math_progress UNIQUE · 018 island_tables (10 new tables) · 019 ckla_grade · 020 ckla_badges · 021 ckla_spelling_grammar · 022 math_v2_schema · 023 island_decor_image_paths · 024 island_decor_extension
@@ -999,7 +999,7 @@ Hub UI is calm (`bg-page` + cards only). Energy/SFX (`arcade-sfx.js`) only insid
 025a ai_call_log · 025b ckla_review_to_word_reviews · 026 ckla_aux_content · 027 fix_d1_lesson_titles · 028 fix_qa_model_answers · 029 fix_d4l9_evaluative · 030 audio_url_backfill · 031 fix_ocr_artifacts · 032 fix_data_quality_round2 · 033a add_qa_done · 033b math_progress_mastery · 034a math_attempt_misconception · 034b strip_wordnet_tags · 035 fix_bad_definitions · 036 fix_short_definitions · 037 fix_mw_colon_definitions · 038 fix_pos_and_short_definitions · 039 fix_circular_and_misc
 
 **040~056 (DUX 사전 정규화 + Island 확장)**
-040a fix_compound_noun_pos · 040b math_unique_constraints · 041a fix_relating_to_definitions · 041b math_daily_unique_date · 042 fix_examples_bold_and_wrong · 043 lowercase_definition_starts · 044 fix_structural_and_content_p1 · 045 expand_short_definitions · 046 fill_sort_order · 047 drop_us_academy_passages · 048 drop_us_academy_session_results · 049 fix_lesson14_progress · 050 generate_missing_audio · 051 normalize_pretest_stage · 052 island_zone_sequential_lock · 053 island_zone_first_evo_unlock · 054 xplog_composite_index · 055 island_evo_food_image_paths · 056 word_reviews_easiness_real · 057 normalize_pos_tags · 058 fix_words_bad_entries · 059 fix_reward_items_category_icons · 060 island_character_images · **061 top_weaknesses_indexes** ← latest
+040a fix_compound_noun_pos · 040b math_unique_constraints · 041a fix_relating_to_definitions · 041b math_daily_unique_date · 042 fix_examples_bold_and_wrong · 043 lowercase_definition_starts · 044 fix_structural_and_content_p1 · 045 expand_short_definitions · 046 fill_sort_order · 047 drop_us_academy_passages · 048 drop_us_academy_session_results · 049 fix_lesson14_progress · 050 generate_missing_audio · 051 normalize_pretest_stage · 052 island_zone_sequential_lock · 053 island_zone_first_evo_unlock · 054 xplog_composite_index · 055 island_evo_food_image_paths · 056 word_reviews_easiness_real · 057 normalize_pos_tags · 058 fix_words_bad_entries · 059 fix_reward_items_category_icons · 060 island_character_images · 061 top_weaknesses_indexes · **062 drop_legacy_rewards** ← latest
 
 ---
 
@@ -1282,12 +1282,12 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 | 항목 | 수치 | 검증 방법 |
 |------|------|----------|
-| 등록된 FastAPI 라우터 | 57 | `grep -c "app.include_router" backend/main.py` |
-| routers/ 파일 수 | 63 | `ls backend/routers/*.py` (5개 유틸: _ckla_common, _island_common, _math_academy_common, files_common, math_kangaroo_helpers) |
-| JS 소스 파일 | 113 | `ls frontend/static/js/*.js \| grep -v bundle` |
+| 등록된 FastAPI 라우터 | 56 | `grep -c "app.include_router" backend/main.py` (rewards 라우터 제거, 2026-05-19) |
+| routers/ 파일 수 | 62 | `ls backend/routers/*.py` (5개 유틸: _ckla_common, _island_common, _math_academy_common, files_common, math_kangaroo_helpers) |
+| JS 소스 파일 | 114 | `ls frontend/static/js/*.js \| grep -v bundle` (core-fx.js 추가, 2026-05-19) |
 | CSS 파일 | 65 | `ls frontend/static/css/*.css` |
 | Island JSX 컴포넌트 | 17 | `ls frontend/src/island/*.jsx` |
-| 마이그레이션 파일 | 66 | `ls backend/migrations/[0-9]*.py` (최신: 061) |
+| 마이그레이션 파일 | 67 | `ls backend/migrations/[0-9]*.py` (최신: 062) |
 | ORM 모델 파일 | 11 | `ls backend/models/*.py` (\_base, \_\_init\_\_ 제외) |
 | 서비스 파일 | 18 | `ls backend/services/*.py` (xp_lumi_bridge 추가) |
 | Island 라우터 파일 수 | 5 | island.py + island_{character,dev,legend,shop}.py |
@@ -1310,9 +1310,9 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 | # | 파일 | 문제 | 심각도 |
 |---|------|------|--------|
 | ~~4~~ | ~~Island CSS 4개 파일~~ | ~~Work Principle #3 위반: hex 컬러 직접 사용~~ → **✅ 완료 (commit 0aaa0c0)** — 모든 hex → CSS 변수 마이그레이션, island-specific 토큰을 `theme.css`에 추가 | ✅ 해결됨 |
-| 5 | `backend/migrations/` | 066 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전. 061 최신, 059부터 단순 증가 적용 중 | 낮음 (시스템적으로 안전) |
+| 5 | `backend/migrations/` | 067 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전. 062 최신, 059부터 단순 증가 적용 중 | 낮음 (시스템적으로 안전) |
 | ~~6~~ | ~~`models/system.py` `Reward`~~ | ~~legacy back-compat~~ → **✅ 완료 (2026-05-19, migration 062)** — 사용처 0건 확인 후 모델/라우터/테이블 삭제 | ✅ 해결됨 |
-| 10 | 500줄 초과 JS 10개 | `core.js` 803·`child.js` 684·`navigation.js` 674·`arcade-word-invaders.js` 647·`word-manager.js` 603·`review-hub.js` 594·`parent-ingest.js` 582·`arcade-crossword.js` 578·`finaltest.js` 529·`ckla.js` 503. parent-ingest/finaltest는 IIFE 캡슐화로 분리 ROI 낮음. core.js는 의존성 광범위로 고위험 | 중간 |
+| 10 | 500줄 초과 JS 9개 | `child.js` 683·`navigation.js` 674·~~`core.js` 803~~ → **657** (2026-05-19 core-fx.js 분할)·`arcade-word-invaders.js` 647·`word-manager.js` 603·`review-hub.js` 594·`parent-ingest.js` 582·`arcade-crossword.js` 578·`finaltest.js` 529·`ckla.js` 503. parent-ingest/finaltest는 IIFE 캡슐화로 분리 ROI 낮음 | 중간 |
 | 11 | 500줄 초과 Python 2개 | `services/xp_engine.py` 530·`routers/files_voca.py` 504 — 경계 수준 | 낮음 |
 | ~~12~~ | ~~컴포넌트 CSS hex 직접 사용 (13건)~~ | ~~`color: #fff` 5건 + 그라데이션 끝점 8건~~ → **✅ 완료 (2026-05-17)** — 모두 `var(--text-on-primary)` / `var(--bg-card)`로 교체. 남은 hex는 fallback 또는 arcade 캔버스 면제 | ✅ 해결됨 |
 
