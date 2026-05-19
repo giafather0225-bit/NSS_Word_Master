@@ -69,6 +69,7 @@ _SOURCE_MAP: dict[str, str] = {
     "final_test_pass":         "english",
     "unit_test_pass":          "english",
     "word_correct":            "english",
+    "arcade_play":             "english",
 }
 
 
