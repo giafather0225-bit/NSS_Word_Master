@@ -222,23 +222,22 @@ function _ppRenderShell() {
 // ─── Sidebar toggle ───────────────────────────────────────────
 
 /**
- * Apply sidebar width inline. We bypass the CSS cascade here because the
- * `#pp-sidebar.pp-rail` rule with !important still did not win in practice
- * (cause unclear — likely a stale-cache / specificity edge case). Inline
- * styles always win, so this is the robust fix.
- *
- * Below 1100px the existing `@media (max-width: 1100px) .pp-sidebar` rule
- * must take over — we clear the inline width there so the media query wins.
+ * Apply sidebar width inline. CSS-cascade edits to the rail rule kept
+ * appearing to fail because service-worker.js uses cacheFirst for /static/*
+ * — when CSS was edited without re-running build.sh, the ?v= hash didn't
+ * bump and the SW kept serving the old parent.css forever. Inline style
+ * bypasses the SW cache entirely. Also forces narrow viewports to rail
+ * (matches the @media (max-width: 1100px) intent).
  * @tag PARENT
  */
 function _ppApplySidebarWidth() {
     const sb = document.getElementById("pp-sidebar");
     if (!sb) return;
-    if (window.matchMedia("(max-width: 1100px)").matches) {
-        sb.style.width = "";
-        return;
-    }
-    sb.style.width = sb.classList.contains("pp-rail") ? "var(--rail-w)" : "var(--sidebar-w)";
+    const isRail = sb.classList.contains("pp-rail")
+                || window.matchMedia("(max-width: 1100px)").matches;
+    // Use setProperty with priority so inline beats any cascading rule.
+    sb.style.setProperty("width", isRail ? "60px" : "232px", "important");
+    sb.style.setProperty("min-width", "0", "important");
 }
 
 /** @tag PARENT */
