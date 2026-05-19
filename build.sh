@@ -54,10 +54,10 @@ cat \
   $JS/parent-panel-settings.js \
   $JS/parent-panel-habits.js \
   $JS/parent-panel-home.js \
-  $JS/parent-reading.js \
+  $JS/parent-panel-reading.js \
   $JS/parent-goals.js \
   $JS/parent-textbooks.js \
-  $JS/parent-math.js \
+  $JS/parent-panel-math.js \
   $JS/parent-streak.js \
   $JS/parent-xp.js \
   $JS/parent-settings.js \
