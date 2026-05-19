@@ -1253,3 +1253,256 @@
 }
 .pp-sr-bar-fill { height: 100%; background: var(--review-primary); }
 .pp-sr-hint { font-size: 10.5px; color: var(--ink-4); margin-top: 8px; line-height: 1.5; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Section-title modifiers
+   ═══════════════════════════════════════════════════════════════ */
+.pp-section-title--no-top { margin-top: 0; }
+.pp-section-title--mt24   { margin-top: 24px; }
+.pp-section-title--icon   { display: flex; align-items: center; gap: 6px; }
+.pp-icon-15 { width: 15px; height: 15px; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Shared 2-column grid
+   ═══════════════════════════════════════════════════════════════ */
+.pp-grid-2 {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+@media (max-width: 720px) { .pp-grid-2 { grid-template-columns: 1fr; } }
+
+/* ═══════════════════════════════════════════════════════════════
+   Shared log / data table
+   ═══════════════════════════════════════════════════════════════ */
+.pp-log-table {
+  width: 100%; border-collapse: collapse; font-size: 12px; color: var(--ink-2);
+}
+.pp-log-table th {
+  padding: 5px 8px; text-align: left; font-weight: 700; font-size: 10.5px;
+  letter-spacing: 0.06em; color: var(--ink-4); border-bottom: 1px solid var(--line);
+}
+.pp-log-table td {
+  padding: 6px 8px; border-bottom: 1px solid var(--line-2); vertical-align: middle;
+}
+.pp-log-table tr:last-child td { border-bottom: none; }
+.pp-th-right, .pp-td-right   { text-align: right; }
+.pp-th-center, .pp-td-center  { text-align: center; }
+.pp-td-muted    { color: var(--ink-3); }
+.pp-td-muted-sm { color: var(--ink-3); font-size: 10.5px; }
+.pp-td-hint-sm  { color: var(--ink-4); font-size: 10px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Shared bar chart (used by XP, Math daily, etc.)
+   ═══════════════════════════════════════════════════════════════ */
+.pp-bar-chart {
+  display: flex; align-items: flex-end; gap: 4px; height: 72px;
+  padding: 0 2px; margin: 8px 0;
+}
+.pp-bar-col {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  gap: 2px; height: 100%;
+}
+.pp-bar-value {
+  font-size: 9px; color: var(--ink-3); font-family: "JetBrains Mono", monospace;
+  min-height: 12px; text-align: center;
+}
+.pp-bar-label {
+  font-size: 9px; color: var(--ink-4); white-space: nowrap; text-align: center;
+}
+.pp-bar-track {
+  flex: 1; width: 100%; background: var(--line); border-radius: 3px 3px 0 0; overflow: hidden;
+  display: flex; align-items: flex-end;
+}
+.pp-bar-fill { width: 100%; background: var(--ink-1); border-radius: 3px 3px 0 0; }
+
+/* ═══════════════════════════════════════════════════════════════
+   Math tab — stats grid
+   ═══════════════════════════════════════════════════════════════ */
+.pp-math-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px;
+}
+@media (max-width: 900px) { .pp-math-stats { grid-template-columns: repeat(2, 1fr); } }
+.pp-math-stat {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r);
+  padding: 12px 14px;
+}
+.pp-math-stat .pp-stat-num  { font-size: 22px; font-weight: 800; letter-spacing: -0.04em; color: var(--math-primary); }
+.pp-math-stat .pp-stat-label { font-size: 10.5px; color: var(--ink-3); margin-top: 2px; }
+.pp-math-wrong-count { color: var(--bad); }
+
+/* Math bar chart variant */
+.pp-math-chart .pp-bar-fill        { background: var(--math-primary); }
+.pp-math-bar-done    { background: var(--math-primary); }
+.pp-math-bar-partial { background: var(--warn); }
+
+/* Stage accuracy chip colours */
+.pp-stage-acc--good { color: var(--ok); }
+.pp-stage-acc--ok   { color: var(--warn); }
+.pp-stage-acc--low  { color: var(--bad); }
+
+/* Stage card (fluency, exit-quiz history) */
+.pp-stage-card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r);
+  padding: 12px 14px; display: flex; flex-direction: column; gap: 6px;
+}
+.pp-stage-name { font-size: 12px; font-weight: 600; color: var(--ink-1); }
+.pp-stage-row  {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 11px; color: var(--ink-3);
+}
+
+/* Math badge chips */
+.pp-math-badge--first  { background: rgba(16,185,129,0.12); color: var(--ok);   border-radius: 3px; padding: 0 5px; font-size: 10px; font-weight: 700; }
+.pp-math-badge--retry  { background: rgba(245,158,11,0.12);  color: var(--warn); border-radius: 3px; padding: 0 5px; font-size: 10px; font-weight: 700; }
+.pp-math-badge--stuck  { background: rgba(239,68,68,0.12);   color: var(--bad);  border-radius: 3px; padding: 0 5px; font-size: 10px; font-weight: 700; }
+.pp-math-badge--pass   { background: rgba(16,185,129,0.12);  color: var(--ok);   border-radius: 3px; padding: 0 5px; font-size: 10px; font-weight: 700; }
+.pp-math-badge--fail   { background: rgba(239,68,68,0.12);   color: var(--bad);  border-radius: 3px; padding: 0 5px; font-size: 10px; font-weight: 700; }
+
+.pp-math-row--stuck td  { background: rgba(239,68,68,0.03); }
+.pp-math-score--hint    { font-size: 10px; color: var(--ink-4); }
+
+/* ═══════════════════════════════════════════════════════════════
+   Island tab — full styles
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Tab wrapper */
+.pp-island-tab { display: flex; flex-direction: column; gap: 20px; }
+
+/* 2-col layout (reuses pp-grid-2 but island sometimes wants different gap) */
+.pp-island-content-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+}
+@media (max-width: 720px) { .pp-island-content-grid { grid-template-columns: 1fr; } }
+
+/* Currency bar */
+.pp-island-currency-bar {
+  display: flex; align-items: center; gap: 24px;
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r);
+  padding: 12px 16px; flex-wrap: wrap;
+}
+.pp-island-currency-item {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1px;
+}
+.pp-island-currency-item--muted { opacity: 0.55; }
+.pp-island-currency-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: var(--ink-4);
+  text-transform: uppercase;
+}
+.pp-island-currency-val {
+  font-size: 20px; font-weight: 800; letter-spacing: -0.04em;
+  font-family: "JetBrains Mono", monospace; color: var(--legend-ink);
+}
+
+/* Zone pills */
+.pp-island-zones {
+  display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px;
+}
+.pp-island-zone-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 10px; border-radius: 99px;
+  font-size: 11px; font-weight: 600; color: var(--ink-2);
+  background: var(--paper); border: 1px solid var(--line);
+  cursor: default; transition: background 0.15s;
+}
+.pp-island-zone-pill--locked {
+  opacity: 0.45; pointer-events: none;
+}
+.pp-island-zone-lock { color: var(--ink-4); }
+
+/* Character grid */
+.pp-island-char-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px;
+}
+.pp-island-char-card {
+  background: var(--paper); border: 1px solid var(--line); border-radius: var(--r);
+  padding: 12px; display: flex; flex-direction: column; gap: 8px;
+  transition: box-shadow 0.15s;
+}
+.pp-island-char-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.06); }
+.pp-island-char-card--done {
+  border-color: var(--ok); background: rgba(16,185,129,0.03);
+}
+
+/* Character portrait */
+.pp-island-char-portrait-wrap {
+  position: relative; width: 100%; aspect-ratio: 1; border-radius: 8px;
+  background: var(--line-2); overflow: hidden; display: flex; align-items: center; justify-content: center;
+}
+.pp-island-char-portrait {
+  width: 100%; height: 100%; object-fit: contain;
+}
+.pp-island-char-portrait--placeholder {
+  font-size: 32px; color: var(--ink-4);
+}
+.pp-island-char-level {
+  position: absolute; top: 4px; right: 4px;
+  background: rgba(0,0,0,0.55); color: var(--paper);
+  font-size: 9px; font-weight: 700; padding: 1px 5px; border-radius: 4px;
+  font-family: "JetBrains Mono", monospace;
+}
+
+/* Character info */
+.pp-island-char-info { display: flex; flex-direction: column; gap: 3px; }
+.pp-island-char-header {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.pp-island-char-name {
+  font-size: 12px; font-weight: 700; color: var(--ink-1); flex: 1; min-width: 0;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.pp-island-char-zone-tag {
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 1px 5px; border-radius: 3px;
+  background: var(--math-light); color: var(--math-ink);
+}
+.pp-island-char-stage {
+  font-size: 10.5px; color: var(--ink-3);
+}
+
+/* Completed badge row */
+.pp-island-char-badges { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px; }
+.pp-island-completed-badge {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 10px; font-weight: 700;
+  padding: 1px 6px; border-radius: 3px;
+  background: rgba(16,185,129,0.12); color: var(--ok);
+}
+
+/* Status badge chips */
+.pp-island-badge {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 9.5px; font-weight: 700; padding: 1px 6px; border-radius: 3px;
+}
+.pp-island-badge--done   { background: rgba(16,185,129,0.12); color: var(--ok);   }
+.pp-island-badge--evolve { background: rgba(238,199,112,0.18); color: var(--legend-ink); }
+.pp-island-badge--boost  { background: rgba(91,141,239,0.12); color: var(--english-primary); }
+
+/* Hunger / Happiness gauges */
+.pp-island-gauges { display: flex; flex-direction: column; gap: 4px; }
+.pp-island-gauge-row {
+  display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--ink-3);
+}
+.pp-island-gauge-track {
+  flex: 1; height: 5px; background: var(--line); border-radius: 999px; overflow: hidden;
+}
+.pp-island-gauge-fill  { height: 100%; background: var(--ok); border-radius: 999px; transition: width 0.3s; }
+.pp-island-gauge-num   { font-size: 9.5px; color: var(--ink-4); font-family: "JetBrains Mono", monospace; width: 28px; text-align: right; }
+
+/* Lumi log */
+.pp-island-log { display: flex; flex-direction: column; gap: 2px; }
+.pp-island-log-header {
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: var(--ink-4);
+  text-transform: uppercase; padding: 0 4px; margin-bottom: 4px;
+}
+.pp-island-log-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 6px; border-radius: 6px; font-size: 11px;
+}
+.pp-island-log-row:nth-child(even) { background: var(--line-2); }
+.pp-island-log-source { flex: 1; color: var(--ink-2); min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pp-island-log-amount {
+  font-size: 11px; font-weight: 700; font-family: "JetBrains Mono", monospace;
+  color: var(--legend-ink); white-space: nowrap;
+}
+.pp-island-log-when  { font-size: 10px; color: var(--ink-4); white-space: nowrap; }
+.pp-island-log-empty { font-size: 12px; color: var(--ink-4); text-align: center; padding: 16px 0; }
