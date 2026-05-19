@@ -63,7 +63,7 @@ cat \
   $JS/parent-settings.js \
   $JS/parent-report.js \
   $JS/parent-ckla.js \
-  $JS/parent-island.js \
+  $JS/parent-panel-island.js \
   $JS/reward-shop.js \
   $JS/reward-shop-use.js \
   $JS/reward-shop-island.js \
