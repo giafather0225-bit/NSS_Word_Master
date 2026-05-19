@@ -9,7 +9,8 @@
   --ink-1: #0f1115; --ink-2: #3f3f46; --ink-3: #71717a; --ink-4: #a1a1aa; --ink-5: #d4d4d8;
   --line:  #e4e4e7; --line-2:#f1f1f3;
   --bg:    #f7f7f5; --paper: #ffffff;
-  --ok:    #10b981; --warn:  #f59e0b; --bad:   #ef4444;
+  --ok:     #10b981; --warn:     #f59e0b; --bad:     #ef4444;
+  --ok-ink: #065f46; --warn-ink: #92400e; --bad-ink: #991b1b;
   --english-primary: #5b8def; --english-light: #eef4fa; --english-ink: #1f3a6b;
   --math-primary:    #59c6c9; --math-light:    #e6f7f7; --math-ink:    #1a4f51;
   --diary-primary:   #f29f7c; --diary-light:   #fdeee5; --diary-ink:   #7a3e22;
@@ -88,7 +89,7 @@
 .pp-nav-item i { width: 18px; height: 18px; flex-shrink: 0; }
 .pp-nav-label { font-size: 13px; font-weight: 600; }
 .pp-nav-badge {
-  margin-left: auto; background: var(--bad); color: #fff;
+  margin-left: auto; background: var(--bad); color: var(--paper);
   font-size: 10px; font-weight: 700; font-family: "JetBrains Mono", monospace;
   min-width: 16px; height: 16px; border-radius: 999px;
   display: inline-flex; align-items: center; justify-content: center;
@@ -329,8 +330,8 @@
 .pp-btn:hover { opacity: 0.85; }
 .pp-btn i { width: 14px; height: 14px; }
 .pp-btn.primary   { background: var(--ink-1);  color: var(--paper);  }
-.pp-btn.success   { background: var(--ok);     color: #fff;          }
-.pp-btn.danger    { background: var(--bad);    color: #fff;          }
+.pp-btn.success   { background: var(--ok);     color: var(--paper);  }
+.pp-btn.danger    { background: var(--bad);    color: var(--paper);  }
 .pp-btn.secondary { background: var(--line-2); color: var(--ink-2);  border: 1px solid var(--line); }
 .pp-btn.ghost     { background: none; color: var(--ink-3); border: 1px solid var(--line); }
 .pp-btn--sm       { padding: 4px 10px; font-size: 11px; }
@@ -1108,7 +1109,7 @@
 }
 .pp-struggle-chip {
   font-size: 11px; padding: 3px 7px;
-  background: rgba(239,68,68,0.08); color: #991b1b;
+  background: rgba(239,68,68,0.08); color: var(--bad-ink);
   border: 1px solid rgba(239,68,68,0.18);
   border-radius: 4px; font-weight: 600;
 }
@@ -1720,9 +1721,9 @@
   font-size: 9.5px; font-weight: 700; padding: 1px 5px; border-radius: 3px;
   letter-spacing: 0.02em; text-transform: capitalize;
 }
-.pp-dayoff-status--pending  { background: rgba(245,158,11,0.16); color: #92400e; }
-.pp-dayoff-status--approved { background: rgba(16,185,129,0.16); color: #065f46; }
-.pp-dayoff-status--denied   { background: rgba(239,68,68,0.16);  color: #991b1b; }
+.pp-dayoff-status--pending  { background: rgba(245,158,11,0.16); color: var(--warn-ink); }
+.pp-dayoff-status--approved { background: rgba(16,185,129,0.16); color: var(--ok-ink);   }
+.pp-dayoff-status--denied   { background: rgba(239,68,68,0.16);  color: var(--bad-ink);  }
 .pp-dayoff-reason { font-size: 11px; color: var(--ink-3); margin-top: 3px; line-height: 1.5; }
 .pp-dayoff-btns { display: flex; gap: 6px; margin-top: 6px; }
 
@@ -1799,7 +1800,7 @@
 .pp-purchase-name { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .pp-purchase-meta { font-size: 10px; color: var(--ink-3); margin-top: 1px; }
 .pp-purchase-status { font-size: 9.5px; font-weight: 700; padding: 1px 5px; border-radius: 3px; }
-.pp-purchase-status.is-unused { background: rgba(245,158,11,0.16); color: #92400e; }
+.pp-purchase-status.is-unused { background: rgba(245,158,11,0.16); color: var(--warn-ink); }
 .pp-purchase-status.is-used   { background: var(--line-2); color: var(--ink-3); }
 
 /* ─────────────────────────────────────────────────────────────── */
