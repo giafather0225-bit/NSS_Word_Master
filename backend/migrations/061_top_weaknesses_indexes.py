@@ -26,40 +26,22 @@ from pathlib import Path
 DB_PATH = Path.home() / "NSS_Learning" / "database" / "voca.db"
 
 _INDEXES = [
-    # English Top Weaknesses: GROUP BY (word, lesson)
-    ("ix_word_attempts_word_lesson",
-     "CREATE INDEX IF NOT EXISTS ix_word_attempts_word_lesson "
-     "ON word_attempts (word, lesson)"),
-    # Time-window scans on word_attempts (parent_stats.parent_activity)
-    ("ix_word_attempts_attempted_at",
-     "CREATE INDEX IF NOT EXISTS ix_word_attempts_attempted_at "
-     "ON word_attempts (attempted_at)"),
-    # Math Top Weaknesses: GROUP BY (lesson)
-    ("ix_math_attempts_lesson",
-     "CREATE INDEX IF NOT EXISTS ix_math_attempts_lesson "
-     "ON math_attempts (lesson)"),
-    # Time-window scans on math_attempts
-    ("ix_math_attempts_attempted_at",
-     "CREATE INDEX IF NOT EXISTS ix_math_attempts_attempted_at "
-     "ON math_attempts (attempted_at)"),
-    # CKLA Top Weaknesses: JOIN on question_id + filter on ai_score
-    ("ix_ckla_response_question_score",
-     "CREATE INDEX IF NOT EXISTS ix_ckla_response_question_score "
-     "ON us_academy_question_responses (question_id, ai_score)"),
-    # Time-window scans on CKLA responses
-    ("ix_ckla_response_created_at",
-     "CREATE INDEX IF NOT EXISTS ix_ckla_response_created_at "
-     "ON us_academy_question_responses (created_at)"),
+    "CREATE INDEX IF NOT EXISTS ix_word_attempts_word_lesson ON word_attempts (word, lesson)",
+    "CREATE INDEX IF NOT EXISTS ix_word_attempts_attempted_at ON word_attempts (attempted_at)",
+    "CREATE INDEX IF NOT EXISTS ix_math_attempts_lesson ON math_attempts (lesson)",
+    "CREATE INDEX IF NOT EXISTS ix_math_attempts_attempted_at ON math_attempts (attempted_at)",
+    "CREATE INDEX IF NOT EXISTS ix_ckla_response_question_score ON us_academy_question_responses (question_id, ai_score)",
+    "CREATE INDEX IF NOT EXISTS ix_ckla_response_created_at ON us_academy_question_responses (created_at)",
 ]
 
 
 def run(db_path: Path = DB_PATH) -> None:
     conn = sqlite3.connect(db_path)
     try:
-        for name, sql in _INDEXES:
+        for sql in _INDEXES:
             conn.execute(sql)
-            print(f"061: {name} created (or already existed)")
         conn.commit()
+        print(f"061: {len(_INDEXES)} indexes created (or already existed)")
     finally:
         conn.close()
 
