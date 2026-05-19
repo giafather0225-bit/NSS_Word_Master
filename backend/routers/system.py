@@ -67,7 +67,7 @@ def ollama_status() -> dict:
 
 # @tag OLLAMA SYSTEM
 @router.post("/ollama/restart")
-def ollama_restart() -> dict:
+def ollama_restart(_pin: bool = Depends(require_parent_pin)) -> dict:
     """Stop the spawned Ollama process (if any) and re-run ensure_ollama()."""
     ollama_manager.shutdown_ollama()
     return ollama_manager.ensure_ollama()
@@ -82,7 +82,7 @@ def list_db_backups() -> dict:
 
 # @tag BACKUP SYSTEM
 @router.post("/backups")
-def trigger_backup() -> dict:
+def trigger_backup(_pin: bool = Depends(require_parent_pin)) -> dict:
     """Force an immediate DB backup. No-op if today's backup already exists."""
     return backup_engine.backup_database()
 
@@ -255,7 +255,13 @@ def asset_check() -> dict:
 @router.post("/self-update")
 def self_update() -> dict:
     """Spawn gia-auto-update.sh detached. The script kills this server and
-    starts a fresh one — current request still completes before the kill."""
+    starts a fresh one — current request still completes before the kill.
+
+    Intentionally NOT PIN-gated: this is called from update-banner.js on the
+    child's home screen during the auto-update flow. Origin is parent-owned
+    git remote, so supply-chain risk is low; worst-case abuse from devtools
+    is an unwanted restart, not code execution beyond what auto-update does
+    anyway."""
     script = _REPO_ROOT / "launcher" / "gia-auto-update.sh"
     if not script.exists():
         raise HTTPException(status_code=404, detail="update script not found")
