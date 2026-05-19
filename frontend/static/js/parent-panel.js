@@ -235,8 +235,12 @@ function _ppApplySidebarWidth() {
     if (!sb) return;
     const isRail = sb.classList.contains("pp-rail")
                 || window.matchMedia("(max-width: 1100px)").matches;
-    // Use setProperty with priority so inline beats any cascading rule.
-    sb.style.setProperty("width", isRail ? "60px" : "232px", "important");
+    const w = isRail ? "60px" : "232px";
+    // Flexbox quirk: flex-basis defaults to `auto` which uses content max-width
+    // (~232px from "Parent Dashboard" + Gia card). Setting flex shorthand
+    // forces the flex item to honour the rail width.
+    sb.style.setProperty("flex", `0 0 ${w}`, "important");
+    sb.style.setProperty("width", w, "important");
     sb.style.setProperty("min-width", "0", "important");
 }
 
