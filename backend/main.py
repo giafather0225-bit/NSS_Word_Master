@@ -76,6 +76,7 @@ from backend.routers import island_character as island_character_router
 from backend.routers import island_shop as island_shop_router
 from backend.routers import island_legend as island_legend_router
 from backend.routers import island_dev as island_dev_router
+from backend.routers import streak_freeze as streak_freeze_router
 from backend.services import ollama_manager, backup_engine
 from backend.services import island_care_engine as care
 from backend.services import island_production_engine as prod
@@ -409,6 +410,7 @@ app.include_router(parent_router.router)
 app.include_router(parent_stats_router.router)
 app.include_router(parent_math_router.router)
 app.include_router(parent_streak_router.router)
+app.include_router(streak_freeze_router.router)
 app.include_router(parent_xp_router.router)
 app.include_router(parent_report_router.router)
 app.include_router(starred_router.router)

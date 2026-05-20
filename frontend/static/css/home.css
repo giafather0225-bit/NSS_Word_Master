@@ -531,6 +531,33 @@
     flex-shrink: 0;
 }
 
+/* ── Streak Freeze widget ── */
+.sr-icon--shield {
+    background: var(--english-light);
+    color: var(--english-ink);
+}
+
+.sr-action {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border: 1px solid var(--english-soft);
+    border-radius: var(--radius-full);
+    background: var(--english-light);
+    color: var(--english-ink);
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+    flex-shrink: 0;
+}
+.sr-action:hover { background: var(--english-soft); }
+.sr-action:active { transform: scale(0.96); }
+.sr-action:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.sr-sub--frozen {
+    color: var(--diary-ink);
+    font-weight: 700;
+}
+
 /* ── Ocean World card ── */
 .ocean-world-card {
     position: relative;
