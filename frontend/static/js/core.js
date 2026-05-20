@@ -361,6 +361,10 @@ function markStageComplete(stageKey) {
     if (window.ReviewModule && typeof window.ReviewModule.registerLesson === "function") {
         try { window.ReviewModule.registerLesson(currentSubject, currentTextbook, selectedLesson); } catch(e) { console.warn("[SM2] registerLesson error:", e); }
     }
+    // Island guide cheer (L2): bottom-right bounce + text bubble per stage.
+    if (window.IslandGuide && typeof window.IslandGuide.celebrate === "function") {
+        try { window.IslandGuide.celebrate(stageKey); } catch (_) {}
+    }
 }
 
 /**

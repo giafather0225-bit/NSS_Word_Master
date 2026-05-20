@@ -138,6 +138,92 @@ def daily_batch(db: Session = Depends(get_db)):
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# 12.8.5 Active Guide — character used by the in-lesson cheer widget
+# ─────────────────────────────────────────────────────────────────────────────
+
+# Maps the learner's current subject to its Island zone. Reused by the
+# learning-screen guide widget so each subject feels like "your forest
+# friend / ocean friend / etc." is studying with you.
+_SUBJECT_ZONE_MAP = {
+    "english":     "forest",
+    "ckla":        "forest",
+    "daily_words": "forest",
+    "math":        "ocean",
+    "diary":       "savanna",
+    "review":      "space",
+}
+
+
+# @tag ISLAND @tag NAVIGATION
+@router.get("/active-guide")
+def active_guide(subject: str = "english", db: Session = Depends(get_db)):
+    """Return the character that should cheer the child on while they
+    study the given subject. Picks the most-recently-adopted active
+    progress row in the matching zone; falls back to the first character
+    catalog entry for the zone if no progress exists yet (so first-time
+    users still see a friend)."""
+    import json as _json
+
+    zone = _SUBJECT_ZONE_MAP.get(subject, "forest")
+
+    prog_row = (
+        db.query(IslandCharacterProgress, IslandCharacter)
+        .join(IslandCharacter, IslandCharacterProgress.character_id == IslandCharacter.id)
+        .filter(
+            IslandCharacter.zone == zone,
+            IslandCharacterProgress.is_active == True,  # noqa: E712
+            IslandCharacterProgress.is_completed == False,  # noqa: E712
+        )
+        .order_by(IslandCharacterProgress.adopted_at.desc())
+        .first()
+    )
+
+    if prog_row:
+        prog, char = prog_row
+        stage = prog.stage or "baby"
+        nickname = prog.nickname or char.name
+        gauges = {"hunger": prog.hunger, "happiness": prog.happiness}
+        mood = (
+            "sad" if (prog.hunger < 30 or prog.happiness < 30)
+            else "happy" if (prog.hunger >= 60 and prog.happiness >= 60)
+            else "neutral"
+        )
+    else:
+        # First-time fallback — show the zone's first catalog character
+        # in baby form so the widget always has someone to render.
+        char = (
+            db.query(IslandCharacter)
+            .filter(IslandCharacter.zone == zone)
+            .order_by(IslandCharacter.id.asc())
+            .first()
+        )
+        if not char:
+            raise HTTPException(status_code=404, detail=f"No characters in zone {zone}")
+        stage = "baby"
+        nickname = char.name
+        gauges = {"hunger": 80, "happiness": 80}
+        mood = "happy"
+
+    try:
+        images = _json.loads(char.images or "{}")
+    except Exception:
+        images = {}
+    image_url = images.get(stage) or images.get("baby") or ""
+
+    return {
+        "zone":         zone,
+        "subject":      subject,
+        "character_id": char.id,
+        "name":         char.name,
+        "nickname":     nickname,
+        "stage":        stage,
+        "image":        image_url,
+        "mood":         mood,
+        "gauges":       gauges,
+    }
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # 12.9 Boost & Notifications
 # ─────────────────────────────────────────────────────────────────────────────
 

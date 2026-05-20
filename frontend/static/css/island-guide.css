@@ -1,0 +1,87 @@
+/* ================================================================
+   island-guide.css — In-lesson Island character cheer widget (L2)
+   Section: Island / Navigation
+   Dependencies: theme.css (--english-light, --diary-ink, etc.)
+   ================================================================ */
+
+/* Anchor in the stage card so the guide sits with the active lesson and
+   never overlaps the sidebar. JS injects #island-guide once. */
+.ig-root {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    width: 88px;
+    pointer-events: none;       /* purely decorative — never blocks input */
+    z-index: 5;
+    user-select: none;
+}
+
+.ig-root.hidden { display: none; }
+
+.ig-img {
+    width: 80px;
+    height: 80px;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(120, 90, 60, 0.18));
+}
+
+/* Single-shot 0.5s bounce. JS toggles the class on stage completion. */
+@keyframes ig-bounce-kf {
+    0%   { transform: translateY(0)    scale(1);    }
+    30%  { transform: translateY(-14px) scale(1.06); }
+    60%  { transform: translateY(0)    scale(0.96); }
+    100% { transform: translateY(0)    scale(1);    }
+}
+.ig-bounce { animation: ig-bounce-kf 0.5s var(--ease-calm, ease-out); }
+
+/* Speech bubble above the character. Tail uses border trick for a tiny
+   triangle so we don't need an extra DOM node. */
+.ig-bubble {
+    position: absolute;
+    bottom: 86px;
+    right: 0;
+    min-width: 88px;
+    max-width: 160px;
+    padding: 6px 12px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: 12px;
+    font-family: var(--font-family-display);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.ig-bubble.hidden { display: none; }
+.ig-bubble--show {
+    opacity: 1;
+    transform: translateY(0);
+}
+.ig-bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    right: 32px;
+    width: 0;
+    height: 0;
+    border-left:   6px solid transparent;
+    border-right:  6px solid transparent;
+    border-top:    6px solid var(--bg-card);
+}
+
+/* Mood tint — currently subtle (a slight border shift). Kept simple
+   so we don't need extra art for happy/sad states. */
+.ig-root[data-mood="sad"]     .ig-bubble { border-color: var(--review-soft); }
+.ig-root[data-mood="happy"]   .ig-bubble { border-color: var(--english-soft); }
+
+/* Mobile: shrink a touch so it doesn't crowd the stage on small screens. */
+@media (max-width: 640px) {
+    .ig-root  { width: 64px; right: 10px; bottom: 10px; }
+    .ig-img   { width: 60px; height: 60px; }
+    .ig-bubble{ bottom: 66px; font-size: 12px; padding: 5px 10px; }
+}

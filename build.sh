@@ -121,6 +121,7 @@ cat \
   $JS/review-hub.js \
   $JS/math-spaced-review.js \
   $JS/streak-freeze.js \
+  $JS/island-guide.js \
   | emit $OUT/bundle-a.min.js
 
 # Bundle B: math modules (post-katex — depends on katex CDN)

@@ -171,6 +171,12 @@ window.setSubject = async function (key) {
     if (tabMath) tabMath.classList.toggle('active', !isEng);
     localStorage.setItem('subject_mode', key);
 
+    // Tell the in-lesson cheer widget which zone's character to greet
+    // the student with. `key` is the same identifier the API expects.
+    if (window.IslandGuide && typeof window.IslandGuide.setSubject === "function") {
+        try { window.IslandGuide.setSubject(key === "math" ? "math" : "english"); } catch (_) {}
+    }
+
     const subjectMap = { eng: "English", math: "Math" };
     const newSubject = subjectMap[key] || key;
     if (currentSubject === newSubject) return;

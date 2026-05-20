@@ -370,7 +370,14 @@
         var passed = pct >= PASS_PCT;
 
         // Save permanent pass on 90%+ — unlocks exam button forever
-        if (passed) savePass(ctx);
+        if (passed) {
+            savePass(ctx);
+            // Cheer from the Island guide character (L2): one final bounce
+            // on top of the existing particle burst + Perfect banner.
+            if (window.IslandGuide && typeof window.IslandGuide.celebrate === 'function') {
+                try { window.IslandGuide.celebrate('final_test'); } catch (_) {}
+            }
+        }
 
         eo('body').innerHTML = buildResultsHTML(mcCorrect, fillCorrect, total, maxPts, pct, passed, missed);
         if (typeof lucide !== 'undefined') lucide.createIcons();
