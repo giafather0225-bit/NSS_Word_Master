@@ -104,6 +104,7 @@ async function renderHomeDashboard() {
   await renderWeeklyStrip();
   bindTopRightMenu();
   await renderSummaryBar();
+  if (typeof window.refreshStreakFreeze === "function") window.refreshStreakFreeze();
   if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
