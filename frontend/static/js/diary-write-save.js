@@ -184,6 +184,14 @@ async function _dwSave() {
 
 /** Called after a successful save. Shows a Done button + opt-in tips prompt. */
 function _dwOnSaveSuccess(date) {
+    // Savanna-zone character cheers the saved entry, then fades away.
+    if (window.IslandGuide && typeof window.IslandGuide.celebrate === "function") {
+        try {
+            window.IslandGuide.celebrate("diary_done", {
+                subject: "diary", floating: true, autoHide: true,
+            });
+        } catch (_) {}
+    }
     const save = document.getElementById("dw-save");
     if (save) {
         save.disabled = false;

@@ -89,6 +89,15 @@ async function renderMathComplete() {
         _appendIslandUpdate(document.getElementById('math-island-update'), mathState.islandData ?? null);
     }
     if (typeof lucide !== 'undefined') lucide.createIcons();
+
+    // Ocean-zone character pops in to cheer the finished lesson, then fades.
+    if (window.IslandGuide && typeof window.IslandGuide.celebrate === 'function') {
+        try {
+            window.IslandGuide.celebrate('math_lesson', {
+                subject: 'math', floating: true, autoHide: true,
+            });
+        } catch (_) {}
+    }
 }
 
 /** @tag MATH @tag ACADEMY */

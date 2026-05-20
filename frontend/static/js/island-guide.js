@@ -15,9 +15,11 @@
 
     let _state = null;            // { subject, name, image, stage, mood }
     let _hideTimer = null;
+    let _autoHideTimer = null;
 
     // Per-stage messages. STAGE keys come from core.js (STAGE.PREVIEW = 'PREVIEW',
-    // STAGE.A/B/C/D for steps 2~5). 'final_test' is our own bonus key.
+    // STAGE.A/B/C/D for steps 2~5). 'final_test' is the English exam bonus key;
+    // 'math_lesson' / 'diary_done' fire from the Math/Diary completion screens.
     const _MSGS = {
         PREVIEW:      "All set!",
         A:            "Match made!",
@@ -25,22 +27,37 @@
         C:            "Spelled it!",
         D:            "Sentence ready!",
         final_test:   "Amazing!",
+        math_lesson:  "Great math!",
+        diary_done:   "Lovely entry!",
     };
 
     function _$(id) { return document.getElementById(id); }
 
-    function _ensureDom() {
-        if (_$("island-guide")) return;
-        const host = _$("stage-card") || document.body;
-        const root = document.createElement("div");
-        root.id = "island-guide";
-        root.className = "ig-root hidden";
-        root.setAttribute("aria-hidden", "true");
-        root.innerHTML = `
-            <div class="ig-bubble hidden" id="ig-bubble" role="status" aria-live="polite"></div>
-            <img class="ig-img" id="ig-img" alt="" />
-        `;
-        host.appendChild(root);
+    /**
+     * Ensure the widget DOM exists and lives in the right host.
+     * English lessons anchor it inside #stage-card (it hides naturally when
+     * the lesson screen hides). Math/Diary completion screens use `floating`
+     * so it sits fixed at the viewport's bottom-right, independent of which
+     * container is on screen.
+     */
+    function _ensureDom(host, floating) {
+        let root = _$("island-guide");
+        if (!root) {
+            root = document.createElement("div");
+            root.id = "island-guide";
+            root.className = "ig-root hidden";
+            root.setAttribute("aria-hidden", "true");
+            root.innerHTML = `
+                <div class="ig-bubble hidden" id="ig-bubble" role="status" aria-live="polite"></div>
+                <img class="ig-img" id="ig-img" alt="" />
+            `;
+        }
+        const target = floating
+            ? document.body
+            : (host || _$("stage-card") || document.body);
+        if (root.parentElement !== target) target.appendChild(root);
+        root.classList.toggle("ig-root--floating", !!floating);
+        return root;
     }
 
     function _resolveImage(rel) {
@@ -71,11 +88,11 @@
         }
     }
 
-    function setSubject(subject) {
+    function setSubject(subject, host, floating) {
         if (!subject) return;
         try { localStorage.setItem(STORAGE_KEY, subject); } catch (_) {}
-        _ensureDom();
-        _loadGuide(subject);
+        _ensureDom(host, floating);
+        return _loadGuide(subject);
     }
 
     function _showBubble(text) {
@@ -102,14 +119,28 @@
     }
 
     /**
-     * Trigger a cheer for a stage completion. Safe to call before the
-     * guide has loaded — it'll just no-op until a subject is set.
+     * Trigger a cheer for a stage/lesson completion.
+     *
+     * English stages call `celebrate('A')` with no options — the guide is
+     * already loaded (navigation set the subject) and anchored in the stage
+     * card. Math/Diary completion screens pass options:
+     *   { subject:'math'|'diary', floating:true, autoHide:true }
+     * which lazy-loads that zone's character, shows it fixed bottom-right,
+     * then fades the whole widget away after the cheer.
      */
-    function celebrate(stageKey) {
-        if (!_state) return;
-        const msg = _MSGS[stageKey] || _MSGS.PREVIEW;
-        _ensureDom();
-        _showBubble(msg);
+    async function celebrate(stageKey, opts) {
+        opts = opts || {};
+        const floating = !!opts.floating;
+        _ensureDom(opts.host, floating);
+        if (opts.subject && (!_state || _state.subject !== opts.subject)) {
+            await _loadGuide(opts.subject);
+        }
+        if (!_state) return;            // no guide loaded yet — silent no-op
+        if (_autoHideTimer) { clearTimeout(_autoHideTimer); _autoHideTimer = null; }
+        _showBubble(_MSGS[stageKey] || _MSGS.PREVIEW);
+        if (opts.autoHide) {
+            _autoHideTimer = setTimeout(hide, VISIBLE_MS + FADE_MS + 100);
+        }
     }
 
     function hide() {

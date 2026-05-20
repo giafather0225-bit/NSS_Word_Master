@@ -18,6 +18,16 @@
 
 .ig-root.hidden { display: none; }
 
+/* Floating mode — used by Math/Diary completion screens that don't share
+   the English #stage-card host. Pinned to the viewport bottom-right, clear
+   of the left sidebar (240px) and the bottom-center toast. */
+.ig-root--floating {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 1500;
+}
+
 .ig-img {
     width: 80px;
     height: 80px;
