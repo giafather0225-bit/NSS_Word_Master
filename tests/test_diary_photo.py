@@ -26,7 +26,18 @@ def _clean(db_session):
 
 
 def _png():
-    return ("test.png", b"\x89PNG\r\nfake-image-bytes", "image/png")
+    # Full 8-byte PNG magic: \x89 P N G \r \n \x1a \n  (RFC 2083 §12.11)
+    return ("test.png", b"\x89PNG\r\n\x1a\n" + b"\x00" * 20, "image/png")
+
+
+def _spoofed_png():
+    """A file named .png but with JPEG magic bytes — should be rejected."""
+    return ("spoof.png", b"\xff\xd8\xff" + b"\x00" * 20, "image/png")
+
+
+def _spoofed_jpg():
+    """A file named .jpg but with PNG magic bytes — should be rejected."""
+    return ("spoof.jpg", b"\x89PNG\r\n\x1a\n" + b"\x00" * 20, "image/jpeg")
 
 
 # ── POST /api/diary/photo ─────────────────────────────────────
@@ -41,6 +52,22 @@ def test_upload_invalid_extension_400(client):
     r = client.post("/api/diary/photo", data={"entry_date": _SENTINEL},
                     files={"file": ("bad.txt", b"data", "text/plain")})
     assert r.status_code == 400
+
+
+def test_upload_magic_mismatch_png_ext_400(client):
+    """Content has JPEG magic but file is named .png — magic check rejects it."""
+    r = client.post("/api/diary/photo", data={"entry_date": _SENTINEL},
+                    files={"file": _spoofed_png()})
+    assert r.status_code == 400
+    assert "does not match" in r.json()["detail"].lower()
+
+
+def test_upload_magic_mismatch_jpg_ext_400(client):
+    """Content has PNG magic but file is named .jpg — magic check rejects it."""
+    r = client.post("/api/diary/photo", data={"entry_date": _SENTINEL},
+                    files={"file": _spoofed_jpg()})
+    assert r.status_code == 400
+    assert "does not match" in r.json()["detail"].lower()
 
 
 def test_upload_creates_entry(client, db_session):
@@ -74,6 +101,14 @@ def test_multi_upload_returns_filename(client):
     body = r.json()
     assert body["filename"].startswith(_SENTINEL)
     assert body["photo_url"].startswith("/api/diary/photo/")
+
+
+def test_multi_upload_magic_mismatch_400(client):
+    """Multi-upload endpoint also rejects extension/content mismatch."""
+    r = client.post("/api/diary/photo/multi", data={"entry_date": _SENTINEL},
+                    files={"file": _spoofed_png()})
+    assert r.status_code == 400
+    assert "does not match" in r.json()["detail"].lower()
 
 
 # ── DELETE /api/diary/photo/{filename} ────────────────────────

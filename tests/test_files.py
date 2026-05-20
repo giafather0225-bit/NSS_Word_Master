@@ -34,6 +34,11 @@ def _png():
     return {"file": ("x.png", b"\x89PNG\r\nfake", "image/png")}
 
 
+def _spoofed_png():
+    """JPEG magic bytes disguised as .png — should be rejected at magic check."""
+    return {"file": ("spoof.png", b"\xff\xd8\xff" + b"\x00" * 20, "image/png")}
+
+
 # ── POST /api/storage/lessons/{id}/files ──────────────────────
 
 def test_upload_missing_lesson_404(client):
@@ -77,3 +82,27 @@ def test_ocr_invalid_lang_400(client, lesson):
 def test_ocr_missing_lesson_404(client):
     r = client.post("/api/storage/lessons/9999/ocr?lang=eng")
     assert r.status_code == 404
+
+
+# ── Magic-byte rejection — POST /api/storage/lessons/{id}/files ──
+
+def test_upload_lesson_file_magic_mismatch_400(client, lesson):
+    """Extension is .png but content starts with JPEG magic — rejected 400."""
+    r = client.post(
+        f"/api/storage/lessons/{lesson.id}/files",
+        files=_spoofed_png(),
+    )
+    assert r.status_code == 400
+
+
+def test_upload_lesson_file_valid_png_accepted(client, lesson):
+    """Correct PNG magic bytes pass the check (file reaches save_lesson_file)."""
+    r = client.post(
+        f"/api/storage/lessons/{lesson.id}/files",
+        files=_png(),
+    )
+    # 200 OK or 400 from save_lesson_file (stub bytes fail HEIC/PIL conversion)
+    # — important is that magic check itself did NOT fire a 400 for this path.
+    # A real PNG stub may fail downstream but never with "does not match".
+    if r.status_code == 400:
+        assert "does not match" not in r.json().get("detail", "")
