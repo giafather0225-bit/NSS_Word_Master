@@ -113,6 +113,9 @@ cat \
   $JS/child-calendar.js \
   $JS/child-keyboard.js \
   $JS/child-text.js \
+  $JS/child-bootstrap.js \
+  $JS/navigation-sidebar.js \
+  $JS/navigation-dropdown.js \
   $JS/sentence_ai.js \
   $JS/collocation.js \
   $JS/finaltest.js \
