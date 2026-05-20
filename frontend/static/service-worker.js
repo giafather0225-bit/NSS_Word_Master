@@ -6,42 +6,65 @@
    ================================================================ */
 
 /** @tag SYSTEM @tag PWA @tag OFFLINE */
-const SW_VERSION = 'gia-sw-v10';
+const SW_VERSION = 'gia-sw-v11';
 const STATIC_CACHE = `${SW_VERSION}-static`;
 const DATA_CACHE   = `${SW_VERSION}-data`;
 
-// App shell: cached on install. Keep list short — other assets are added
-// on-demand via the runtime fetch handler (stale-while-revalidate).
+// App shell: cached on install. Entries are stored under their pathname
+// only — the `?v=…` cache-busters that `build.sh` rewrites in child.html
+// are normalised away at lookup time via `ignoreSearch: true` in the
+// cacheFirst handler. This lets a fresh deploy's `?v=4c7a5441` request
+// still serve the previously precached file when the user is offline.
 const APP_SHELL = [
+    // Core stylesheets
     '/static/css/theme.css',
-    '/static/css/base.css?v=1',
-    '/static/css/layout.css?v=1',
-    '/static/css/components.css?v=1',
-    '/static/css/utilities.css?v=1',
-    '/static/css/legacy-app.css?v=1',
-    '/static/css/main-shell.css?v=1',
-    '/static/css/main-idle.css?v=1',
-    '/static/css/main-topbar.css?v=1',
-    '/static/css/main-stage.css?v=1',
-    '/static/css/main-responsive.css?v=1',
-    '/static/css/main-layout.css?v=1',
-    '/static/css/math-academy-sidebar.css?v=1',
-    '/static/css/math-academy-stages.css?v=1',
-    '/static/css/math-academy-fluency.css?v=1',
-    '/static/css/math-academy-modes.css?v=1',
-    '/static/css/math-academy-content.css?v=1',
-    '/static/css/math-academy-anim.css?v=1',
-    '/static/css/toast.css?v=1',
-    '/static/js/core.js?v=2',
-    '/static/js/tts-client.js?v=1',
-    '/static/js/navigation.js?v=1',
-    '/static/js/math-academy.js?v=5',
-    '/static/js/math-problem-ui.js?v=4',
-    '/static/js/math-learn-cards.js?v=1',
-    '/static/js/math-navigation.js?v=5',
+    '/static/css/base.css',
+    '/static/css/layout.css',
+    '/static/css/components.css',
+    '/static/css/utilities.css',
+    '/static/css/legacy-app.css',
+    '/static/css/main-shell.css',
+    '/static/css/main-idle.css',
+    '/static/css/main-topbar.css',
+    '/static/css/main-stage.css',
+    '/static/css/main-responsive.css',
+    '/static/css/main-layout.css',
+    '/static/css/toast.css',
+    // Home + the primary subjects (Home is the default landing view;
+    // CKLA + Diary are the most common navigation targets).
+    '/static/css/home.css',
+    '/static/css/daily-words.css',
+    '/static/css/ckla.css',
+    '/static/css/diary.css',
+    '/static/css/diary-home.css',
+    // Math academy core
+    '/static/css/math-academy-sidebar.css',
+    '/static/css/math-academy-stages.css',
+    '/static/css/math-academy-fluency.css',
+    '/static/css/math-academy-modes.css',
+    '/static/css/math-academy-content.css',
+    '/static/css/math-academy-anim.css',
+    // Core JS (loaded before bundle-a in child.html)
+    '/static/js/core.js',
+    '/static/js/core-fx.js',
+    '/static/js/core-stage.js',
+    '/static/js/tts-client.js',
+    '/static/js/navigation.js',
+    // Feature bundles
+    '/static/js/bundle-a.min.js',
+    '/static/js/bundle-b.min.js',
 ];
 
-self.addEventListener('install', () => self.skipWaiting());
+// Precache APP_SHELL on install so the app boots offline after the very
+// first visit, then skipWaiting so the new SW activates immediately.
+self.addEventListener('install', (event) => {
+    event.waitUntil(
+        caches.open(STATIC_CACHE)
+            .then((cache) => cache.addAll(APP_SHELL))
+            .catch(() => {})
+            .then(() => self.skipWaiting())
+    );
+});
 
 // On activate, drop only caches from *previous* SW versions. The current
 // version's STATIC_CACHE and DATA_CACHE are kept so that data the user
@@ -117,7 +140,9 @@ self.addEventListener('fetch', (event) => {
 // ── Strategies ─────────────────────────────────────────────
 async function cacheFirst(req, cacheName) {
     const cache = await caches.open(cacheName);
-    const cached = await cache.match(req);
+    // ignoreSearch so a fresh ?v=… cache-buster still matches the
+    // previously precached pathname-only entry from APP_SHELL.
+    const cached = await cache.match(req, { ignoreSearch: true });
     if (cached) {
         fetch(req).then((res) => {
             if (res && res.ok) cache.put(req, res.clone());
