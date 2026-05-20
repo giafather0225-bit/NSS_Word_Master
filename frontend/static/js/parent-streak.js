@@ -34,13 +34,14 @@ async function _ppStreak(body) {
     }
 }
 
-/** Top 3 stat cards: current / longest / freeze this month. @tag PARENT STREAK */
+/** Top stat cards: current / longest / day-offs / streak shields. @tag PARENT STREAK */
 function _ppStreakCards(data) {
     return `
         <div class="pp-stats pp-streak-stats">
             <div class="pp-stat"><div class="pp-stat-num">${_ICON("flame", 20)} ${data.current || 0}d</div><div class="pp-stat-label">Current Streak</div></div>
             <div class="pp-stat"><div class="pp-stat-num">${_ICON("trophy", 20)} ${data.longest || 0}d</div><div class="pp-stat-label">Longest Ever</div></div>
-            <div class="pp-stat"><div class="pp-stat-num">${_ICON("umbrella", 20)} ${data.freeze_this_month || 0}</div><div class="pp-stat-label">Freezes This Month</div></div>
+            <div class="pp-stat"><div class="pp-stat-num">${_ICON("umbrella", 20)} ${data.freeze_this_month || 0}</div><div class="pp-stat-label">Day-Offs This Month</div></div>
+            <div class="pp-stat"><div class="pp-stat-num">${_ICON("snowflake", 20)} ${data.shields_used_month || 0}</div><div class="pp-stat-label">Shields Used (${data.shields_available || 0} left)</div></div>
         </div>`;
 }
 
@@ -85,8 +86,9 @@ function _ppStreakCalendar(days) {
     const cells = days.map(d => {
         let icon = "x";
         let cls = "broken";
-        if (d.day_off)         { icon = "umbrella"; cls = "freeze"; }
-        else if (d.maintained) { icon = "flame";    cls = "maintained"; }
+        if (d.frozen)          { icon = "snowflake"; cls = "shield"; }
+        else if (d.day_off)    { icon = "umbrella";  cls = "freeze"; }
+        else if (d.maintained) { icon = "flame";     cls = "maintained"; }
         const mm_dd = (d.date || "").slice(5);
         const dots = [
             d.ckla ? '<span class="pp-streak-dot e" title="CKLA"></span>' : '<span class="pp-streak-dot off"></span>',

@@ -12,17 +12,18 @@ from datetime import datetime, date, timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from pydantic import BaseModel
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 try:
     from ..database import get_db
     from ..models import AppConfig, StreakLog, DayOffRequest
-    from ..services import streak_engine
+    from ..services import streak_engine, streak_freeze_engine
     from .parent import require_parent_pin, _upsert_app_config
 except ImportError:
     from database import get_db
     from models import AppConfig, StreakLog, DayOffRequest
-    from services import streak_engine
+    from services import streak_engine, streak_freeze_engine
     from routers.parent import require_parent_pin, _upsert_app_config
 
 
@@ -63,6 +64,14 @@ def parent_streak(db: Session = Depends(get_db)):
             DayOffRequest.status == "approved",
         ).all()
     }
+    # Batch-load all Lumi-consumed Streak Freezes in the 30-day window.
+    frozen_days = {
+        row[0]
+        for row in db.execute(
+            text("SELECT used_date FROM streak_freezes WHERE used_date >= :s"),
+            {"s": start},
+        ).all()
+    }
     last_30 = []
     for i in range(29, -1, -1):
         d = (today - timedelta(days=i)).isoformat()
@@ -71,6 +80,7 @@ def parent_streak(db: Session = Depends(get_db)):
             "date": d,
             "maintained": bool(r and r.streak_maintained),
             "day_off": d in approved_day_offs,
+            "frozen":  d in frozen_days,
             "ckla":    bool(r and r.ckla_done),
             "math":    bool(r and r.math_done),
             "game":    bool(r and r.game_done),
@@ -81,6 +91,12 @@ def parent_streak(db: Session = Depends(get_db)):
         DayOffRequest.status == "approved",
         DayOffRequest.request_date.like(f"{ym}-%"),
     ).count()
+    # Real Lumi Streak Shields: used this month + remaining inventory.
+    shields_used_month = db.execute(
+        text("SELECT COUNT(*) FROM streak_freezes WHERE used_date LIKE :ym"),
+        {"ym": f"{ym}-%"},
+    ).scalar() or 0
+    shields_available = streak_freeze_engine.available_count(db)
 
     next_7  = 7  - (current % 7)  if current % 7  else 7
     next_30 = 30 - (current % 30) if current % 30 else 30
@@ -91,6 +107,8 @@ def parent_streak(db: Session = Depends(get_db)):
         "rule": {"subjects": sorted(subjects), "mode": mode},
         "last_30d": last_30,
         "freeze_this_month": freeze_count,
+        "shields_used_month": shields_used_month,
+        "shields_available": shields_available,
         "milestones": {
             "days_to_next_7":  next_7,
             "days_to_next_30": next_30,
