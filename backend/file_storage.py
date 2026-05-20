@@ -23,8 +23,31 @@ ALLOWED_IMAGE_EXTS = {".heic", ".jpg", ".jpeg", ".png", ".webp", ".bmp"}
 ALLOWED_PDF_EXTS   = {".pdf"}
 ALLOWED_EXTS       = ALLOWED_IMAGE_EXTS | ALLOWED_PDF_EXTS
 
-# 파일 크기 제한: 80 MB
+# File size guard.
+# Note: the HTTP router layer (files_common._stream_save_upload) already caps
+# incoming uploads at 20 MB.  This constant is a defence-in-depth backstop
+# for any direct programmatic call to save_lesson_file() outside HTTP context.
 MAX_FILE_BYTES = 80 * 1024 * 1024
+
+# Magic-byte signatures for image format verification.
+# .heic/.heif omitted — their ISO Base Media "ftyp" box varies by encoder;
+# Pillow/pillow-heif will reject malformed HEIC content.
+_IMAGE_MAGIC: dict[str, list[bytes]] = {
+    ".jpg":  [b"\xff\xd8\xff"],
+    ".jpeg": [b"\xff\xd8\xff"],
+    ".png":  [b"\x89PNG\r\n\x1a\n"],
+    ".webp": [b"RIFF"],
+    ".gif":  [b"GIF87a", b"GIF89a"],
+    ".bmp":  [b"BM"],
+}
+
+
+def _check_image_magic(raw: bytes, ext: str) -> bool:
+    """Return True if ``raw`` starts with the expected magic bytes for ``ext``."""
+    sigs = _IMAGE_MAGIC.get(ext, [])
+    if not sigs:
+        return True
+    return any(raw[:12].startswith(s) for s in sigs)
 
 _SAFE_FNAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_\-. ]{0,99}$")
 
@@ -158,6 +181,8 @@ def save_lesson_file(lesson_id: int, raw: bytes, original_name: str) -> FileReco
             raw = _heic_to_jpg(raw)
             ext = ".jpg"
             converted = True
+        elif not _check_image_magic(raw, ext):
+            raise ValueError(f"파일 내용이 확장자({ext})와 일치하지 않습니다.")
         content_type = "image/jpeg" if ext in (".jpg", ".jpeg") else f"image/{ext.lstrip('.')}"
 
     else:  # PDF

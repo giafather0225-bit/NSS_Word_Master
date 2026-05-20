@@ -32,6 +32,33 @@ ALLOWED_UPLOAD_EXTS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".heic", ".heif
 MAX_UPLOAD_BYTES   = 20_000_000  # 20 MB
 CHUNK_SIZE         = 1_048_576   # 1 MB — streaming chunk size
 
+# ── Magic-byte signatures ──────────────────────────────────
+# Maps lower-case extension → list of accepted byte prefixes.
+# .heic/.heif use a variable ISO Base Media File Format "ftyp" box whose
+# first 12 bytes differ by encoder; we skip the signature check and rely on
+# PIL to reject invalid HEIC content instead.
+_IMAGE_MAGIC: dict[str, list[bytes]] = {
+    ".jpg":  [b"\xff\xd8\xff"],
+    ".jpeg": [b"\xff\xd8\xff"],
+    ".png":  [b"\x89PNG\r\n\x1a\n"],
+    ".webp": [b"RIFF"],          # first 4 bytes; bytes 8-11 are b"WEBP"
+    ".gif":  [b"GIF87a", b"GIF89a"],
+    ".bmp":  [b"BM"],
+    ".pdf":  [b"%PDF"],
+}
+
+
+def check_upload_magic(raw_head: bytes, ext: str) -> bool:
+    """Return True if ``raw_head`` starts with the expected magic bytes for ``ext``.
+
+    Pass at least 12 bytes.  Returns True for extensions without a known
+    signature (e.g. .heic/.heif) so callers need no special-casing.
+    """
+    sigs = _IMAGE_MAGIC.get(ext, [])
+    if not sigs:
+        return True  # no known signature → defer to downstream processor
+    return any(raw_head.startswith(sig) for sig in sigs)
+
 
 # ── Validators ─────────────────────────────────────────────
 

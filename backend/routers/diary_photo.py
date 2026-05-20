@@ -57,6 +57,43 @@ _CHUNK_SIZE       = 1_048_576   # 1 MB
 _PHOTO_NAME_RE    = _re.compile(r"^[A-Za-z0-9._-]+$")
 _DATE_RE          = _re.compile(r'^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$')
 
+# Magic-byte signatures for image format verification.
+# .heic/.heif omitted — ISO Base Media "ftyp" box varies by encoder;
+# PIL/pillow-heif rejects malformed HEIC content during processing.
+_PHOTO_MAGIC: dict[str, list[bytes]] = {
+    ".jpg":  [b"\xff\xd8\xff"],
+    ".jpeg": [b"\xff\xd8\xff"],
+    ".png":  [b"\x89PNG\r\n\x1a\n"],
+    ".webp": [b"RIFF"],
+    ".gif":  [b"GIF87a", b"GIF89a"],
+}
+_PHOTO_MEDIA_TYPES: dict[str, str] = {
+    ".jpg":  "image/jpeg",
+    ".jpeg": "image/jpeg",
+    ".png":  "image/png",
+    ".webp": "image/webp",
+    ".gif":  "image/gif",
+    ".heic": "image/heic",
+    ".heif": "image/heif",
+}
+
+
+def _check_photo_magic(path: Path, ext: str) -> bool:
+    """Return True if the file at ``path`` has expected magic bytes for ``ext``.
+
+    Returns True for extensions without a known signature (.heic/.heif) so
+    callers need no special-casing — PIL will reject invalid HEIC content.
+    """
+    sigs = _PHOTO_MAGIC.get(ext, [])
+    if not sigs:
+        return True
+    try:
+        with open(path, "rb") as fh:
+            head = fh.read(12)
+        return any(head.startswith(s) for s in sigs)
+    except OSError:
+        return False
+
 
 def _normalize_and_thumbnail(src: Path) -> Optional[Path]:
     """
@@ -180,6 +217,12 @@ async def upload_diary_photo(
     # and cleans up the partial file on any failure.
     await _stream_save_photo(file, fpath)
 
+    # Verify magic bytes match the declared extension (defence-in-depth against
+    # extension-mismatch uploads).  HEIC/HEIF bypass the check — PIL handles them.
+    if not _check_photo_magic(fpath, ext):
+        fpath.unlink(missing_ok=True)
+        raise HTTPException(status_code=400, detail="File content does not match its extension")
+
     # Normalize EXIF rotation + 256×256 thumbnail. HEIC is re-encoded to JPEG.
     _normalize_and_thumbnail(fpath)
     if ext in {".heic", ".heif"}:
@@ -249,6 +292,10 @@ async def upload_diary_photo_multi(
     fpath = _PHOTO_DIR / fname
     await _stream_save_photo(file, fpath)
 
+    if not _check_photo_magic(fpath, ext):
+        fpath.unlink(missing_ok=True)
+        raise HTTPException(status_code=400, detail="File content does not match its extension")
+
     # EXIF rotate + 256×256 thumbnail. HEIC is re-encoded to JPEG so the
     # final filename may differ from what we wrote during streaming.
     thumb_path = _normalize_and_thumbnail(fpath)
@@ -303,4 +350,5 @@ def get_diary_photo(filename: str):
     fpath = (_PHOTO_DIR / filename).resolve()
     if fpath.parent != _PHOTO_DIR.resolve() or not fpath.exists():
         raise HTTPException(status_code=404, detail="Photo not found")
-    return FileResponse(str(fpath))
+    mt = _PHOTO_MEDIA_TYPES.get(fpath.suffix.lower(), "application/octet-stream")
+    return FileResponse(str(fpath), media_type=mt)

@@ -29,6 +29,7 @@ from backend.routers.files_common import (
     _validate_name,
     _validate_lesson,
     _stream_save_upload,
+    check_upload_magic,
 )
 
 router = APIRouter()
@@ -113,6 +114,13 @@ async def voca_folder_upload(
             await _stream_save_upload(f, dest)
         except HTTPException as e:
             skipped.append(f"{raw_name}: {e.detail}")
+            continue
+        # Verify magic bytes match the declared extension.
+        with open(dest, "rb") as fh:
+            head = fh.read(16)
+        if not check_upload_magic(head, ext):
+            dest.unlink(missing_ok=True)
+            skipped.append(f"{raw_name}: content does not match extension")
             continue
         saved.append(dest.name)
     return {

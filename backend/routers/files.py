@@ -40,6 +40,7 @@ from backend.routers.files_common import (
     _validate_lang,
     _stream_save_upload,
     _has_def_ex,
+    check_upload_magic,
 )
 
 router = APIRouter()
@@ -73,6 +74,14 @@ async def files_upload(
     src_path = dir_path / f"source{ext}"
     await _stream_save_upload(file, src_path)
     raw = src_path.read_bytes()  # single read for OCR — peak = 1× file size
+
+    # Verify file content matches the declared extension before sending to OCR.
+    if not check_upload_magic(raw[:16], ext):
+        src_path.unlink(missing_ok=True)
+        raise HTTPException(
+            status_code=400,
+            detail=f"File content does not match extension '{ext}'. Please upload a valid image or PDF.",
+        )
 
     try:
         data = await extract_vocab_from_bytes(raw)
