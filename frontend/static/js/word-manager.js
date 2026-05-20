@@ -94,18 +94,18 @@
         const card = ce("div", "wm-lesson-card");
         const canLearn = wordCount > 0;
         card.innerHTML =
-          '<div class="wm-lesson-info" data-lesson="' + name + '">' +
+          '<div class="wm-lesson-info" data-lesson="' + esc(name) + '">' +
             '<span class="wm-lesson-icon"><i data-lucide="file-text" style="width:16px;height:16px;stroke-width:1.5"></i></span>' +
             '<div class="wm-lesson-meta">' +
-              '<span class="wm-lesson-name">' + name.replace(/_/g, " ") + '</span>' +
+              '<span class="wm-lesson-name">' + esc(name.replace(/_/g, " ")) + '</span>' +
               '<span class="wm-lesson-count">' + wordCount + ' words</span>' +
             '</div>' +
           '</div>' +
           '<div class="wm-lesson-actions">' +
-            '<button class="wm-lesson-learn" data-lesson="' + name + '" title="Learn"' +
+            '<button class="wm-lesson-learn" data-lesson="' + esc(name) + '" title="Learn"' +
               (canLearn ? '' : ' disabled') + '>▶ Learn</button>' +
-            '<button class="wm-lesson-rename" data-lesson="' + name + '" title="Rename"><i data-lucide="pencil" style="width:14px;height:14px;pointer-events:none"></i></button>' +
-            '<button class="wm-lesson-del" data-lesson="' + name + '" title="Delete"><i data-lucide="x" style="width:14px;height:14px;pointer-events:none"></i></button>' +
+            '<button class="wm-lesson-rename" data-lesson="' + esc(name) + '" title="Rename"><i data-lucide="pencil" style="width:14px;height:14px;pointer-events:none"></i></button>' +
+            '<button class="wm-lesson-del" data-lesson="' + esc(name) + '" title="Delete"><i data-lucide="x" style="width:14px;height:14px;pointer-events:none"></i></button>' +
           '</div>';
         card.querySelector(".wm-lesson-info").onclick = () => openLesson(name);
         const learnBtn = card.querySelector(".wm-lesson-learn");
@@ -367,11 +367,11 @@
       return '<div class="wm-word-item">' +
         '<div class="wm-word-num">' + (i + 1) + '</div>' +
         '<div class="wm-word-main">' +
-          '<div class="wm-word-text">' + w.word + ' <span class="wm-word-pos">' + w.pos + '</span></div>' +
-          '<div class="wm-word-def">' + w.definition + '</div>' +
-          (w.example ? '<div class="wm-word-ex">' + w.example + '</div>' : '') +
+          '<div class="wm-word-text">' + esc(w.word) + ' <span class="wm-word-pos">' + esc(w.pos) + '</span></div>' +
+          '<div class="wm-word-def">' + esc(w.definition) + '</div>' +
+          (w.example ? '<div class="wm-word-ex">' + esc(w.example) + '</div>' : '') +
         '</div>' +
-        '<button class="wm-word-del" data-word="' + w.word.replace(/"/g, '&quot;') + '" title="Delete"><i data-lucide="x" style="width:14px;height:14px;pointer-events:none"></i></button>' +
+        '<button class="wm-word-del" data-word="' + esc(w.word) + '" title="Delete"><i data-lucide="x" style="width:14px;height:14px;pointer-events:none"></i></button>' +
       '</div>';
     }).join("");
 
@@ -530,8 +530,8 @@
         '<div class="wm-detail">' +
           '<div class="wm-detail-title">Weekly Test  ' +
             '<span class="wm-word-count">' + (idx + 1) + ' / ' + words.length + '</span></div>' +
-          '<div class="wm-wt-def">' + (w.definition || '(no definition)') + '</div>' +
-          (w.example ? '<div class="wm-wt-ex">' + w.example.replace(new RegExp(w.word, 'ig'), '____') + '</div>' : '') +
+          '<div class="wm-wt-def">' + esc(w.definition || '(no definition)') + '</div>' +
+          (w.example ? '<div class="wm-wt-ex">' + esc(w.example).replace(new RegExp(esc(w.word), 'ig'), '____') + '</div>' : '') +
           '<input type="text" id="wm-wt-input" class="wm-input" placeholder="Type the word..." autocomplete="off" />' +
           '<button id="wm-wt-submit" class="wm-btn-primary" style="margin-top:12px;">Submit</button>' +
           '<div id="wm-wt-fb" class="wm-wt-fb"></div>' +

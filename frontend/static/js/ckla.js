@@ -155,13 +155,13 @@ function _renderDomains(domains, rank, completionPct) {
         <div class="ckla-domain-card ckla-domain-card--locked" title="Complete Domain ${d.domain_num - 1} first">
           <div class="ckla-domain-lock-icon"><i data-lucide="lock" width="18" height="18"></i></div>
           <div class="ckla-domain-num">Domain ${d.domain_num}</div>
-          <div class="ckla-domain-title">${d.title}</div>
+          <div class="ckla-domain-title">${escapeHtml(d.title)}</div>
           <div class="ckla-domain-locked-hint">Complete Domain ${d.domain_num - 1} first</div>
         </div>
       ` : `
         <div class="ckla-domain-card" onclick="loadCKLALessons(${d.domain_num})">
           <div class="ckla-domain-num">Domain ${d.domain_num}</div>
-          <div class="ckla-domain-title">${d.title}</div>
+          <div class="ckla-domain-title">${escapeHtml(d.title)}</div>
           <div class="ckla-domain-lessons">${d.completed_count != null ? `${d.completed_count}/` : ''}${d.lesson_count} lessons</div>
           ${d.all_complete ? `<div class="ckla-domain-test-link"
             onclick="event.stopPropagation(); openDomainTest(${d.domain_num})">
@@ -300,7 +300,7 @@ function _renderLessons(data) {
   view.innerHTML = `
     <div class="ckla-header">
       <button class="ckla-back-btn" onclick="loadCKLADomains()">← Domains</button>
-      <h2 class="ckla-title">D${domainNum}: ${data.domain.title}</h2>
+      <h2 class="ckla-title">D${domainNum}: ${escapeHtml(data.domain.title)}</h2>
     </div>
     ${bannerHtml}
     <div class="ckla-lesson-list">
@@ -319,9 +319,9 @@ function _renderLessons(data) {
             <div class="ckla-lesson-meta">
               <span class="ckla-lesson-num">Lesson ${l.lesson_num}</span>
               ${diffLabel ? `<span class="ckla-lesson-diff ckla-diff-${diff}">${diffLabel}</span>` : ''}
-              ${l.word_work_word ? `<span class="ckla-lesson-ww"><i data-lucide="star" style="width:12px;height:12px;vertical-align:-1px;stroke-width:1.5"></i> ${l.word_work_word}</span>` : ''}
+              ${l.word_work_word ? `<span class="ckla-lesson-ww"><i data-lucide="star" style="width:12px;height:12px;vertical-align:-1px;stroke-width:1.5"></i> ${escapeHtml(l.word_work_word)}</span>` : ''}
             </div>
-            <div class="ckla-lesson-title">${l.title}</div>
+            <div class="ckla-lesson-title">${escapeHtml(l.title)}</div>
             <div class="ckla-lesson-chips">${chips}</div>
           </div>`;
       }).join('')}

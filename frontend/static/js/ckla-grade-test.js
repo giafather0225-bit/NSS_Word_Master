@@ -45,7 +45,7 @@ function _renderGradeFinalTest(data) {
   function renderQ() {
     const q = questions[currentIdx];
     const metaHtml = (q.domain_title || q.lesson_title)
-      ? `<div class="ckla-test-meta">${[q.domain_title, q.lesson_title].filter(Boolean).join(' · ')}</div>`
+      ? `<div class="ckla-test-meta">${[q.domain_title, q.lesson_title].filter(Boolean).map(escapeHtml).join(' · ')}</div>`
       : '';
 
     let bodyHtml = '';
@@ -68,7 +68,7 @@ function _renderGradeFinalTest(data) {
           placeholder="Write your sentence here…">${escapeHtml(answers[q.id] || '')}</textarea>`;
     } else {
       // Q&A
-      const kindLabel = (q.kind || 'qa').replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+      const kindLabel = escapeHtml((q.kind || 'qa').replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase()));
       bodyHtml = `
         <span class="ckla-test-type-label">${kindLabel}</span>
         <div class="ckla-test-question">${escapeHtml(q.question_text)}</div>
@@ -154,9 +154,9 @@ function _cklaRenderFinalTestWait(result) {
   const pct = Math.round(result.score_pct || 0);
   const wrongList = (result.wrong_questions || []).map(q => `
     <div class="cfw-wrong-item">
-      <div class="cfw-wrong-lesson">${q.lesson_title || 'Lesson'}</div>
-      <div class="cfw-wrong-q">${q.question_text}</div>
-      <div class="cfw-wrong-ans">Correct: ${q.correct_answer}</div>
+      <div class="cfw-wrong-lesson">${escapeHtml(q.lesson_title || 'Lesson')}</div>
+      <div class="cfw-wrong-q">${escapeHtml(q.question_text)}</div>
+      <div class="cfw-wrong-ans">Correct: ${escapeHtml(q.correct_answer)}</div>
     </div>`).join('');
 
   view.innerHTML = `

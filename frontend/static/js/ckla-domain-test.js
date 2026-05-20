@@ -61,7 +61,7 @@ function _renderDomainTest(domainNum, data) {
       }).join('');
       bodyHtml = `
         <div class="ckla-test-type-label">Vocabulary — Choose the Word</div>
-        <div class="ckla-test-question">${q.question_text}</div>
+        <div class="ckla-test-question">${escapeHtml(q.question_text)}</div>
         <div class="ckla-test-options">${choiceHtml}</div>`;
 
     } else if (q.type === 'vocab_fill') {
@@ -69,7 +69,7 @@ function _renderDomainTest(domainNum, data) {
       const saved = answers[q.id] || '';
       bodyHtml = `
         <div class="ckla-test-type-label">Vocabulary — Spell the Word</div>
-        <div class="ckla-test-question">${q.question_text}</div>
+        <div class="ckla-test-question">${escapeHtml(q.question_text)}</div>
         <div class="ckla-test-fill-wrap">
           <input id="ckla-test-fill-input" class="ckla-test-fill-input"
                  type="text" placeholder="Type the word…"
@@ -81,8 +81,8 @@ function _renderDomainTest(domainNum, data) {
       // Q&A — textarea
       const saved = answers[q.id] || '';
       bodyHtml = `
-        <div class="ckla-test-type-label">${q.kind ? q.kind.replace(/_/g, ' ') : 'Comprehension'}</div>
-        <div class="ckla-test-question">${q.question_text}</div>
+        <div class="ckla-test-type-label">${escapeHtml(q.kind ? q.kind.replace(/_/g, ' ') : 'Comprehension')}</div>
+        <div class="ckla-test-question">${escapeHtml(q.question_text)}</div>
         <textarea id="ckla-test-qa-input" class="ckla-test-qa" rows="4"
                   placeholder="Write your answer…"
                   oninput="window._domainTestState && (window._domainTestState.answers[${q.id}] = this.value)"

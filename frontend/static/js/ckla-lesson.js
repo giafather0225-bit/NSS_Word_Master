@@ -82,8 +82,8 @@ function renderCKLALesson(data) {
     <div class="ckla-lesson-header">
       <button class="ckla-back-btn" id="ckla-lesson-back-btn">← Domain ${data.domain_num}</button>
       <div class="ckla-lesson-info">
-        <span class="ckla-lesson-tag">Lesson ${data.lesson_num} · ${data.domain_title}</span>
-        <span class="ckla-lesson-htitle">${data.title}</span>
+        <span class="ckla-lesson-tag">Lesson ${data.lesson_num} · ${escapeHtml(data.domain_title)}</span>
+        <span class="ckla-lesson-htitle">${escapeHtml(data.title)}</span>
       </div>
     </div>
     <div class="ckla-tabs" role="tablist">
