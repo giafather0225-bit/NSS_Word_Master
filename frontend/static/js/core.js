@@ -87,8 +87,7 @@ let ownSentencesByItemId = {};
 let examQueue = [];
 /** @tag FINAL_TEST */
 let examIndex = 0;
-/** @tag MY_WORDS */
-const wordVaultSet = new Set();
+// wordVaultSet moved to core-vault.js (still globally accessible)
 /** @tag SENTENCE */
 let lastTypedSentence = "";
 
@@ -537,35 +536,7 @@ function updateProgressPct() {
  */
 function updateChallengeMeta() {}
 
-// Audio FX + particle system moved to core-fx.js (loaded right after core.js)
-
-// ─── Word vault ───────────────────────────────────────────────
-/**
- * Render the word-vault chip list.
- * @tag MY_WORDS DAILY_WORDS
- */
-function renderWordVault() {
-    const el = $("word-vault");
-    if (!el) return;
-    el.innerHTML = "";
-    [...wordVaultSet].sort((a, b) => a.localeCompare(b)).forEach((w) => {
-        const s = document.createElement("span");
-        s.className = "vault-chip";
-        s.textContent = w;
-        el.appendChild(s);
-    });
-}
-
-/**
- * Add a word to the vault and re-render.
- * @tag MY_WORDS DAILY_WORDS
- */
-function addWordVault(word) {
-    const w = String(word || "").trim();
-    if (!w) return;
-    wordVaultSet.add(w);
-    renderWordVault();
-}
-
-// Stage-card visibility + sentence utilities moved to core-stage.js
-// (loaded right after core-fx.js)
+// Extracted to sibling files (all loaded immediately after core.js):
+//   core-fx.js     — audio FX + particle system
+//   core-stage.js  — stage-card visibility + sentence utilities
+//   core-vault.js  — word vault state + helpers
