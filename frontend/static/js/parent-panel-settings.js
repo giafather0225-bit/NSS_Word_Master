@@ -90,13 +90,99 @@ function _ppSetAccessCard(testMode, islandCfg) {
                 <div class="pp-panel-title-left">Access &amp; Mode</div>
             </div>
             <div class="pp-set-list">
-                ${row("lock",           "Parent PIN",       "Set",                `<button class="pp-btn ghost pp-btn--sm" onclick="alert('Change PIN via legacy flow.')">Change</button>`)}
+                ${row("lock",           "Parent PIN",       "Set",                `<button class="pp-btn ghost pp-btn--sm" onclick="_ppTogglePinForm()">Change</button>`)}
                 ${row("flask-conical",  "Test Mode",        tm ? "ON" : "OFF",    toggle("pp-tm-chk",       tm,       "_ppSaveTestMode(this.checked)"))}
                 ${row("palmtree",       "Island enabled",   islandOn ? "ON" : "OFF", toggle("pp-island-chk", islandOn, "_ppSaveIslandToggle(this.checked)"))}
+            </div>
+            <div id="pp-pin-form" class="pp-form-row" style="display:none;margin-top:12px;padding:12px;background:var(--bg-surface);border-radius:var(--radius-md);">
+                <div class="pp-form-row">
+                    <label class="pp-form-label">Current PIN</label>
+                    <div class="pp-pin-input-wrap" style="display:flex;align-items:center;gap:6px;">
+                        <input id="pp-current-pin" class="pp-input" type="password" maxlength="4"
+                               inputmode="numeric" pattern="[0-9]*" autocomplete="current-password"
+                               placeholder="Enter current PIN" style="flex:1;" />
+                        <button type="button" class="pp-btn ghost pp-btn--sm"
+                                onclick="_ppTogglePinVisibility('pp-current-pin', this)"
+                                aria-label="Show or hide PIN">
+                            <i data-lucide="eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="pp-form-row" style="margin-top:8px;">
+                    <label class="pp-form-label">New PIN (4 digits)</label>
+                    <div class="pp-pin-input-wrap" style="display:flex;align-items:center;gap:6px;">
+                        <input id="pp-new-pin" class="pp-input" type="password" maxlength="4"
+                               inputmode="numeric" pattern="[0-9]*" autocomplete="new-password"
+                               placeholder="Enter new PIN" style="flex:1;" />
+                        <button type="button" class="pp-btn ghost pp-btn--sm"
+                                onclick="_ppTogglePinVisibility('pp-new-pin', this)"
+                                aria-label="Show or hide PIN">
+                            <i data-lucide="eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="pp-form-row" style="margin-top:8px;">
+                    <label class="pp-form-label">Confirm New PIN</label>
+                    <div class="pp-pin-input-wrap" style="display:flex;align-items:center;gap:6px;">
+                        <input id="pp-confirm-pin" class="pp-input" type="password" maxlength="4"
+                               inputmode="numeric" pattern="[0-9]*" autocomplete="new-password"
+                               placeholder="Re-enter new PIN" style="flex:1;" />
+                        <button type="button" class="pp-btn ghost pp-btn--sm"
+                                onclick="_ppTogglePinVisibility('pp-confirm-pin', this)"
+                                aria-label="Show or hide PIN">
+                            <i data-lucide="eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div style="display:flex;gap:8px;margin-top:12px;align-items:center;">
+                    <button class="pp-btn primary" onclick="_ppSavePin()">Save</button>
+                    <button class="pp-btn ghost" onclick="_ppTogglePinForm()">Cancel</button>
+                    <div id="pp-pin-msg" class="pp-set-status" style="margin:0;"></div>
+                </div>
+                <div class="pp-form-hint" style="margin-top:8px;color:var(--text-hint);font-size:var(--font-size-xs);">
+                    Avoid repeats (1111) and sequences (1234). The child should not be able to guess this.
+                </div>
             </div>
             <div id="pp-tm-status" class="pp-set-status">${tm ? "Test mode active — locks bypassed." : "Real mode active."}</div>
         </div>`;
 }
+
+/** Toggle the inline Change-PIN form. @tag PARENT PIN */
+function _ppTogglePinForm() {
+    const f = document.getElementById("pp-pin-form");
+    if (!f) return;
+    const show = f.style.display === "none";
+    f.style.display = show ? "block" : "none";
+    if (show) {
+        const i = document.getElementById("pp-current-pin");
+        if (i) i.focus();
+        if (window.lucide && lucide.createIcons) lucide.createIcons();
+    } else {
+        ["pp-current-pin", "pp-new-pin", "pp-confirm-pin"].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) { el.value = ""; el.type = "password"; }
+        });
+        const msg = document.getElementById("pp-pin-msg");
+        if (msg) { msg.textContent = ""; msg.classList.remove("error", "success"); }
+    }
+}
+window._ppTogglePinForm = _ppTogglePinForm;
+
+/** Toggle password/text visibility for a single PIN input. @tag PARENT PIN */
+function _ppTogglePinVisibility(inputId, btn) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    const showing = input.type === "text";
+    input.type = showing ? "password" : "text";
+    if (btn) {
+        const icon = btn.querySelector("i[data-lucide]");
+        if (icon) {
+            icon.setAttribute("data-lucide", showing ? "eye" : "eye-off");
+            if (window.lucide && lucide.createIcons) lucide.createIcons();
+        }
+    }
+}
+window._ppTogglePinVisibility = _ppTogglePinVisibility;
 
 /** Home sections toggle grid (6 sections). @tag PARENT SETTINGS */
 function _ppSetHomeSectionsCard() {

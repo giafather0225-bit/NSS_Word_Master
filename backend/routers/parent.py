@@ -80,6 +80,11 @@ class PinVerifyIn(BaseModel):
     pin: str = Field(min_length=1, max_length=16)
 
 
+class PinChangeIn(BaseModel):
+    current_pin: str = Field(min_length=1, max_length=16)
+    new_pin:     str = Field(min_length=1, max_length=16)
+
+
 # ─── PIN verification ──────────────────────────────────────────
 
 # Single-user app — module-level cache is fine. TTL bounds staleness so a
@@ -175,6 +180,48 @@ def parent_verify_pin(body: PinVerifyIn, db: Session = Depends(get_db)):
         raise HTTPException(status_code=403, detail="Wrong PIN")
     pin_guard.record_success(db, "parent")
     _upgrade_pin_if_plaintext(db, body.pin or "")
+    return {"ok": True}
+
+
+@router.post("/api/parent/change-pin")
+def parent_change_pin(
+    body: PinChangeIn,
+    db:   Session = Depends(get_db),
+    _pin: bool    = Depends(require_parent_pin),
+):
+    """
+    Change the parent PIN. Re-verifies the current PIN from the request body
+    (defence-in-depth against a session being left unlocked) and rejects weak
+    or unchanged values. @tag PARENT PIN SECURITY
+    """
+    pin_guard.assert_not_locked(db, "parent")
+    stored = _get_stored_pin(db)
+    if not pin_hash.verify_pin(body.current_pin or "", stored):
+        pin_guard.record_failure(db, "parent")
+        raise HTTPException(status_code=403, detail="Current PIN is wrong.")
+    pin_guard.record_success(db, "parent")
+
+    new_pin = body.new_pin or ""
+    if not new_pin.isdigit() or len(new_pin) != 4:
+        raise HTTPException(status_code=400, detail="New PIN must be exactly 4 digits.")
+    if pin_hash.is_weak_pin(new_pin):
+        raise HTTPException(
+            status_code=400,
+            detail="PIN is too easy to guess — avoid repeats (1111) and sequences (1234).",
+        )
+    if new_pin == (body.current_pin or ""):
+        raise HTTPException(status_code=400, detail="New PIN must differ from the current PIN.")
+
+    hashed = pin_hash.hash_pin(new_pin)
+    row = db.query(AppConfig).filter(AppConfig.key == "pin").first()
+    now = datetime.now().isoformat()
+    if row:
+        row.value = hashed
+        row.updated_at = now
+    else:
+        db.add(AppConfig(key="pin", value=hashed, updated_at=now))
+    db.commit()
+    invalidate_parent_pin_cache()
     return {"ok": True}
 
 
@@ -332,6 +379,11 @@ def parent_set_config(
     if body.key == "pin":
         if not body.value.isdigit() or len(body.value) != 4:
             raise HTTPException(status_code=400, detail="PIN must be exactly 4 digits")
+        if pin_hash.is_weak_pin(body.value):
+            raise HTTPException(
+                status_code=400,
+                detail="PIN is too easy to guess — avoid repeats (1111) and sequences (1234).",
+            )
         # Never persist the 4-digit PIN as plaintext — always hash before
         # writing. Verify path uses pin_hash.verify_pin() which handles both
         # formats, so legacy rows still work until they self-upgrade.

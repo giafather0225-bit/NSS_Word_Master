@@ -76,3 +76,22 @@ def verify_pin(candidate: str, stored: str) -> bool:
 def needs_upgrade(stored: str) -> bool:
     """True if a verified PIN is still stored as plaintext and should be rewritten."""
     return bool(stored) and not is_hashed(stored)
+
+
+# Trivially guessable 4-digit PINs. A 9yo can try every one of these in under
+# a minute; if the parent never set one, the daughter can self-approve day-offs,
+# edit XP rules, and use any Reward Shop item.
+_WEAK_PINS = frozenset({
+    "0000", "1111", "2222", "3333", "4444", "5555",
+    "6666", "7777", "8888", "9999",
+    "1234", "4321", "0001", "1212", "2580", "1010",
+})
+
+
+def is_weak_pin(pin: str) -> bool:
+    """True if the PIN is in the trivially-guessable blocklist.
+
+    Only meaningful for plaintext values — a hashed PIN cannot be evaluated
+    here (use `is_hashed()` first). Empty/None counts as weak.
+    """
+    return (not pin) or (pin in _WEAK_PINS)

@@ -394,41 +394,65 @@ async function ppForceUnlockG4() {
     }
 }
 
-/** POST new PIN to /api/parent/config. Requires current PIN to already be verified. @tag PARENT PIN */
+// Mirrors backend services/pin_hash.py _WEAK_PINS — keep in sync.
+const _PP_WEAK_PINS = new Set([
+    "0000","1111","2222","3333","4444","5555","6666","7777","8888","9999",
+    "1234","4321","0001","1212","2580","1010",
+]);
+
+/** POST to /api/parent/change-pin. Requires current PIN re-entry as defence
+ *  against an unattended unlocked session. @tag PARENT PIN */
 async function _ppSavePin() {
-    const newPin  = document.getElementById("pp-new-pin")?.value.trim();
-    const confirm = document.getElementById("pp-confirm-pin")?.value.trim();
-    const msg     = document.getElementById("pp-pin-msg");
-    const setMsg  = (text, kind) => {
+    const currentPin = document.getElementById("pp-current-pin")?.value.trim();
+    const newPin     = document.getElementById("pp-new-pin")?.value.trim();
+    const confirm    = document.getElementById("pp-confirm-pin")?.value.trim();
+    const msg        = document.getElementById("pp-pin-msg");
+    const setMsg     = (text, kind) => {
         if (!msg) return;
         msg.textContent = text;
         msg.classList.remove("error", "success");
         if (kind) msg.classList.add(kind);
     };
+    if (!currentPin || currentPin.length !== 4 || !/^\d+$/.test(currentPin)) {
+        setMsg("Enter your current PIN (4 digits).", "error");
+        return;
+    }
     if (!newPin || newPin.length !== 4 || !/^\d+$/.test(newPin)) {
-        setMsg("PIN must be exactly 4 digits.", "error");
+        setMsg("New PIN must be exactly 4 digits.", "error");
         return;
     }
     if (newPin !== confirm) {
-        setMsg("PINs do not match.", "error");
+        setMsg("New PINs do not match.", "error");
+        return;
+    }
+    if (newPin === currentPin) {
+        setMsg("New PIN must differ from the current PIN.", "error");
+        return;
+    }
+    if (_PP_WEAK_PINS.has(newPin)) {
+        setMsg("Too easy to guess — avoid repeats (1111) and sequences (1234).", "error");
         return;
     }
     try {
-        const res = await window._ppFetch("/api/parent/config", {
+        const res = await window._ppFetch("/api/parent/change-pin", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ key: "pin", value: newPin }),
+            body: JSON.stringify({ current_pin: currentPin, new_pin: newPin }),
         });
-        // Update the in-memory verified PIN so subsequent calls keep working
-        if (res.ok) window._ppSetPin(newPin);   // keep closure PIN in sync
-        setMsg(res.ok ? "PIN changed successfully!" : "Failed to save.", res.ok ? "success" : "error");
         if (res.ok) {
-            ["pp-new-pin", "pp-confirm-pin"].forEach(id => {
+            window._ppSetPin(newPin);   // keep closure PIN in sync
+            setMsg("PIN changed successfully!", "success");
+            ["pp-current-pin", "pp-new-pin", "pp-confirm-pin"].forEach(id => {
                 const i = document.getElementById(id);
-                if (i) i.value = "";
+                if (i) { i.value = ""; i.type = "password"; }
             });
+        } else {
+            let detail = "Failed to save.";
+            try { const j = await res.json(); if (j && j.detail) detail = j.detail; } catch (_) {}
+            setMsg(detail, "error");
         }
     } catch (_) {
         setMsg("Network error.", "error");
     }
 }
+window._ppSavePin = _ppSavePin;

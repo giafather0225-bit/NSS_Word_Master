@@ -188,6 +188,48 @@ async def lifespan(application: FastAPI):
         _applied, _skipped, _failed,
     )
 
+    # ── PIN strength check ────────────────────────────────────
+    # Parent functions (XP rules, day-off approval, weekly report, system
+    # backup, Reward Shop "use") are gated only by a 4-digit PIN. If the
+    # parent never set one, the fallback DEFAULT_PIN ("0000") guards every-
+    # thing — trivial for a 9yo to bypass. Log a loud warning so the parent
+    # notices, and refuse to boot if STRICT_PIN=1 is set.
+    try:
+        from backend.services import pin_hash as _pin_hash
+        _pcheck = _sqlite3.connect(str(_DB_PATH))
+        _row = _pcheck.execute(
+            "SELECT value FROM app_config WHERE key = 'pin'"
+        ).fetchone()
+        _pcheck.close()
+        _stored = _row[0] if _row else ""
+        _weak = False
+        _reason = ""
+        if not _stored:
+            _weak = True
+            _reason = "no PIN set — DEFAULT_PIN fallback in use"
+        elif not _pin_hash.is_hashed(_stored) and _pin_hash.is_weak_pin(_stored):
+            _weak = True
+            _reason = "stored PIN is a trivially-guessable plaintext value"
+        if _weak:
+            _msg = (
+                "\n" + "!" * 72 +
+                f"\n[security] Parent PIN is weak: {_reason}.\n"
+                "[security] A child can bypass parent controls (day-off approval,\n"
+                "[security] XP rules, system backup, Reward Shop). Set a non-trivial\n"
+                "[security] PIN via Parent Dashboard → Settings → Account.\n" +
+                "!" * 72
+            )
+            if os.getenv("STRICT_PIN") == "1":
+                logger.error(_msg)
+                raise SystemExit(
+                    "STRICT_PIN=1 and parent PIN is weak — refusing to boot."
+                )
+            logger.warning(_msg)
+    except SystemExit:
+        raise
+    except Exception as _e:
+        logger.warning("[security] PIN strength check skipped: %s", _e)
+
     # Phase 10: auto-backup DB (idempotent — no-op if today's snapshot exists)
     try:
         result = backup_engine.backup_database()
