@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-20 — 라우터 56개(파일 63개, +streak_freeze 미등록) · JS 116개 · CSS 65개 · 서비스 19개 · 마이그레이션 68개 (최신: 063) · Parent Dashboard 6탭 확정 · CKLA 4번째 과목 · Top Weaknesses 홈탭 · 부모 PIN 게이트 감사 · legacy Reward 제거 · core.js → core-fx/core-stage/core-vault 3분할 (805→542줄) · require_parent_pin 캐시 · SW APP_SHELL precache 정상화 · 주간 리포트 CKLA 약점 · Daily Streak Freeze 백엔드
+> Last updated: 2026-05-20 — 라우터 57개(파일 63개) · JS 118개 · CSS 66개 · 서비스 19개 · 마이그레이션 68개 (최신: 063) · Parent Dashboard 6탭 · CKLA 4번째 과목 · Top Weaknesses 홈탭 · 부모 PIN 게이트 감사 · legacy Reward 제거 · core.js → core-fx/core-stage/core-vault 3분할 (805→542줄) · require_parent_pin 캐시 · SW APP_SHELL precache 정상화 · 주간 리포트 CKLA 약점 · Daily Streak Freeze (풀스택) · Island 학습 가이드 위젯 (L2) · 업로드 magic-byte 검증 + innerHTML XSS 이스케이프
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -1282,10 +1282,10 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 | 항목 | 수치 | 검증 방법 |
 |------|------|----------|
-| 등록된 FastAPI 라우터 | 56 | `grep -c "app.include_router" backend/main.py` (rewards 라우터 제거, 2026-05-19) |
+| 등록된 FastAPI 라우터 | 57 | `grep -c "app.include_router" backend/main.py` (rewards 제거 -1, streak_freeze 추가 +1, 2026-05-19~20) |
 | routers/ 파일 수 | 63 | `ls backend/routers/*.py` (5개 유틸 + streak_freeze.py 추가 — 미등록 상태) |
-| JS 소스 파일 | 116 | `ls frontend/static/js/*.js \| grep -v bundle` (core-fx + core-stage + core-vault 추가, 2026-05-19~20) |
-| CSS 파일 | 65 | `ls frontend/static/css/*.css` |
+| JS 소스 파일 | 118 | `ls frontend/static/js/*.js \| grep -v bundle` (core-fx/core-stage/core-vault + streak-freeze + island-guide 추가) |
+| CSS 파일 | 66 | `ls frontend/static/css/*.css` (island-guide.css 추가) |
 | Island JSX 컴포넌트 | 17 | `ls frontend/src/island/*.jsx` |
 | 마이그레이션 파일 | 68 | `ls backend/migrations/[0-9]*.py` (최신: 063) |
 | ORM 모델 파일 | 11 | `ls backend/models/*.py` (\_base, \_\_init\_\_ 제외) |
