@@ -9,6 +9,7 @@ from typing import Optional
 import logging
 import time
 from datetime import date, timedelta
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 from backend.models import StreakLog, DayOffRequest, WordReview, AppConfig
 
@@ -261,7 +262,15 @@ def _evaluate_streak(db: Session, log: StreakLog, commit: bool = True) -> None:
         DayOffRequest.request_date == log.date,
         DayOffRequest.status == "approved",
     ).first()
-    if day_off:
+    # Child-initiated Streak Freeze (Lumi-consumable) — same effect as a
+    # parent-approved day-off but doesn't require approval. Queried as a
+    # raw SELECT to avoid introducing a fresh SQLAlchemy model for a tiny
+    # log table.
+    frozen = db.execute(
+        text("SELECT 1 FROM streak_freezes WHERE used_date = :d LIMIT 1"),
+        {"d": log.date},
+    ).first()
+    if day_off or frozen:
         log.streak_maintained = True
     else:
         subjects, mode = get_streak_config(db)
