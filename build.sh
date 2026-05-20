@@ -121,6 +121,7 @@ cat \
   $JS/finaltest.js \
   $JS/unittest.js \
   $JS/review.js \
+  $JS/review-hub-cards.js \
   $JS/review-hub.js \
   $JS/math-spaced-review.js \
   $JS/streak-freeze.js \

@@ -1,7 +1,9 @@
 /* ================================================================
    review-hub.js — Review Hub full-screen overlay orchestrator
    Section: Review
-   Dependencies: review.js (ReviewModule), math-spaced-review.js (MathSpacedReview), home.js (renderTodayTasks)
+   Dependencies: review-hub-cards.js (card builders, loaded first in bundle),
+                 review.js (ReviewModule), math-spaced-review.js (MathSpacedReview),
+                 home.js (renderTodayTasks)
    API endpoints:
      GET  /api/review/hub-status
      POST /api/review/session-complete
@@ -19,16 +21,9 @@
   var _cklaDone = false;
   var _islandData = null;  // island gain from the final session-complete
 
-  // ── DOM helpers ───────────────────────────────────────────────────
+  // ── DOM helper ────────────────────────────────────────────────────
 
   function _el(id) { return document.getElementById(id); }
-
-  function _html(tag, cls, inner) {
-    var e = document.createElement(tag);
-    if (cls) e.className = cls;
-    if (inner !== undefined) e.innerHTML = inner;
-    return e;
-  }
 
   // ── Build overlay DOM (once) ──────────────────────────────────────
 
@@ -119,243 +114,23 @@
     body.innerHTML = "";
 
     // English card
-    body.appendChild(_buildEnglishCard());
+    body.appendChild(_rhBuildEnglishCard(_status, _englishDone, _startEnglish));
 
     // CKLA card (only when ckla words exist or completed today)
     var cklaDue = (_status.ckla && _status.ckla.due) || 0;
     if (cklaDue > 0 || _cklaDone) {
-      body.appendChild(_buildCklaCard());
+      body.appendChild(_rhBuildCklaCard(_status, _cklaDone, _startCkla));
     }
 
     // Math card
-    body.appendChild(_buildMathCard());
+    body.appendChild(_rhBuildMathCard(_status, _mathDone, _startMath));
 
     // All-done banner (shown only when all are done at open time or after completion)
     if (_englishDone && _mathDone && (_cklaDone || cklaDue === 0)) {
-      body.appendChild(_buildAllDoneBanner());
+      body.appendChild(_rhBuildAllDoneBanner(_islandData, close));
     }
 
     if (typeof lucide !== "undefined") lucide.createIcons();
-  }
-
-  function _buildEnglishCard() {
-    var due = (_status.english && _status.english.due) || 0;
-    var breakdown = (_status.english && _status.english.breakdown) || {};
-    var isDone = _englishDone || due === 0;
-
-    var card = _html("div", "rh-card rh-card--english" + (isDone ? " rh-card--done" : "") + (due === 0 && !_englishDone ? " rh-card--empty" : ""), "");
-    card.id = "rh-english-card";
-
-    // Icon
-    var icon = _html("div", "rh-card-icon");
-    var lucideIcon = document.createElement("i");
-    lucideIcon.setAttribute("data-lucide", isDone ? "check-circle" : "book-open");
-    icon.appendChild(lucideIcon);
-    card.appendChild(icon);
-
-    // Info
-    var info = _html("div", "rh-card-info", "");
-
-    var label = _html("div", "rh-card-label", "English Review");
-    info.appendChild(label);
-
-    var countEl = _html("div", "rh-card-count" + (isDone ? " rh-card-count--done" : ""), "");
-    if (_englishDone) {
-      countEl.textContent = "Completed";
-    } else if (due === 0) {
-      countEl.textContent = "Nothing due today";
-    } else {
-      countEl.textContent = due + " word" + (due === 1 ? "" : "s") + " due";
-    }
-    info.appendChild(countEl);
-
-    // Source tags
-    if (!_englishDone && due > 0 && Object.keys(breakdown).length > 0) {
-      var tags = _html("div", "rh-tags", "");
-      Object.keys(breakdown).forEach(function (src) {
-        var n = breakdown[src];
-        if (!n) return;
-        var tag = _html("span", "rh-tag rh-tag--" + src, src.toUpperCase() + " " + n);
-        tags.appendChild(tag);
-      });
-      info.appendChild(tags);
-    }
-
-    // 7-day accuracy chip
-    var acc7d = _status.english && _status.english.accuracy_7d;
-    if (acc7d != null) {
-      var accChip = _html("div", "rh-accuracy-chip", "");
-      var accIcon = document.createElement("i");
-      accIcon.setAttribute("data-lucide", "trending-up");
-      accChip.appendChild(accIcon);
-      var accLabel = document.createElement("span");
-      accLabel.textContent = "7d accuracy: " + acc7d + "%";
-      accChip.appendChild(accLabel);
-      info.appendChild(accChip);
-    }
-
-    card.appendChild(info);
-
-    // Action
-    if (_englishDone) {
-      var check = _html("div", "rh-done-checkmark", "");
-      var ci = document.createElement("i");
-      ci.setAttribute("data-lucide", "check");
-      check.appendChild(ci);
-      var span = document.createElement("span");
-      span.textContent = "Done";
-      check.appendChild(span);
-      card.appendChild(check);
-    } else {
-      var btn = _html("button", "rh-start-btn", "Start");
-      btn.disabled = due === 0;
-      btn.addEventListener("click", _startEnglish);
-      card.appendChild(btn);
-    }
-
-    return card;
-  }
-
-  function _buildMathCard() {
-    var due = (_status.math && _status.math.due) || 0;
-    var isDone = _mathDone || due === 0;
-
-    var card = _html("div", "rh-card rh-card--math" + (isDone ? " rh-card--done" : "") + (due === 0 && !_mathDone ? " rh-card--empty" : ""), "");
-    card.id = "rh-math-card";
-
-    // Icon
-    var icon = _html("div", "rh-card-icon");
-    var lucideIcon = document.createElement("i");
-    lucideIcon.setAttribute("data-lucide", isDone ? "check-circle" : "calculator");
-    icon.appendChild(lucideIcon);
-    card.appendChild(icon);
-
-    // Info
-    var info = _html("div", "rh-card-info", "");
-
-    var label = _html("div", "rh-card-label", "Math Review");
-    info.appendChild(label);
-
-    var countEl = _html("div", "rh-card-count" + (isDone ? " rh-card-count--done" : ""), "");
-    if (_mathDone) {
-      countEl.textContent = "Completed";
-    } else if (due === 0) {
-      countEl.textContent = "Nothing due today";
-    } else {
-      countEl.textContent = due + " problem" + (due === 1 ? "" : "s") + " due";
-    }
-    info.appendChild(countEl);
-
-    // 7-day accuracy chip
-    var mathAcc7d = _status.math && _status.math.accuracy_7d;
-    if (mathAcc7d != null) {
-      var mathAccChip = _html("div", "rh-accuracy-chip", "");
-      var mathAccIcon = document.createElement("i");
-      mathAccIcon.setAttribute("data-lucide", "trending-up");
-      mathAccChip.appendChild(mathAccIcon);
-      var mathAccLabel = document.createElement("span");
-      mathAccLabel.textContent = "7d accuracy: " + mathAcc7d + "%";
-      mathAccChip.appendChild(mathAccLabel);
-      info.appendChild(mathAccChip);
-    }
-
-    card.appendChild(info);
-
-    // Action
-    if (_mathDone) {
-      var check = _html("div", "rh-done-checkmark", "");
-      var ci = document.createElement("i");
-      ci.setAttribute("data-lucide", "check");
-      check.appendChild(ci);
-      var span = document.createElement("span");
-      span.textContent = "Done";
-      check.appendChild(span);
-      card.appendChild(check);
-    } else {
-      var btn = _html("button", "rh-start-btn", "Start");
-      btn.disabled = due === 0;
-      btn.addEventListener("click", _startMath);
-      card.appendChild(btn);
-    }
-
-    return card;
-  }
-
-  function _buildCklaCard() {
-    var due = (_status.ckla && _status.ckla.due) || 0;
-    var isDone = _cklaDone || due === 0;
-
-    var card = _html("div", "rh-card rh-card--ckla" + (isDone ? " rh-card--done" : "") + (due === 0 && !_cklaDone ? " rh-card--empty" : ""), "");
-    card.id = "rh-ckla-card";
-
-    // Icon
-    var icon = _html("div", "rh-card-icon");
-    var lucideIcon = document.createElement("i");
-    lucideIcon.setAttribute("data-lucide", isDone ? "check-circle" : "graduation-cap");
-    icon.appendChild(lucideIcon);
-    card.appendChild(icon);
-
-    // Info
-    var info = _html("div", "rh-card-info", "");
-
-    var label = _html("div", "rh-card-label", "CKLA Review");
-    info.appendChild(label);
-
-    var countEl = _html("div", "rh-card-count" + (isDone ? " rh-card-count--done" : ""), "");
-    if (_cklaDone) {
-      countEl.textContent = "Completed";
-    } else if (due === 0) {
-      countEl.textContent = "Nothing due today";
-    } else {
-      countEl.textContent = due + " word" + (due === 1 ? "" : "s") + " due";
-    }
-    info.appendChild(countEl);
-
-    card.appendChild(info);
-
-    // Action
-    if (_cklaDone) {
-      var check = _html("div", "rh-done-checkmark", "");
-      var ci = document.createElement("i");
-      ci.setAttribute("data-lucide", "check");
-      check.appendChild(ci);
-      var span = document.createElement("span");
-      span.textContent = "Done";
-      check.appendChild(span);
-      card.appendChild(check);
-    } else {
-      var btn = _html("button", "rh-start-btn", "Start");
-      btn.disabled = due === 0;
-      btn.addEventListener("click", _startCkla);
-      card.appendChild(btn);
-    }
-
-    return card;
-  }
-
-  function _buildAllDoneBanner() {
-    var banner = _html("div", "rh-all-done", "");
-    banner.innerHTML = [
-      '<i data-lucide="star" class="rh-all-done-icon"></i>',
-      '<div class="rh-all-done-title">All Reviews Complete!</div>',
-      '<div class="rh-all-done-sub">Great job! Come back tomorrow for your next session.</div>',
-      '<div id="rh-island-slot"></div>',
-      '<button class="rh-back-btn" id="rh-all-done-back">Back to Home</button>',
-    ].join("\n");
-
-    // Wire back button here so the listener is always attached regardless of which code path rendered the banner
-    var backBtn = banner.querySelector("#rh-all-done-back");
-    if (backBtn) backBtn.addEventListener("click", close);
-
-    // Attach island update card if available
-    setTimeout(function () {
-      var slot = document.getElementById("rh-island-slot");
-      if (slot && typeof _appendIslandUpdate === "function") {
-        _appendIslandUpdate(slot, _islandData);
-      }
-    }, 0);
-
-    return banner;
   }
 
   // ── Session starters ──────────────────────────────────────────────
@@ -498,16 +273,16 @@
     var old = body.querySelector(".rh-session-result");
     if (old) old.remove();
 
-    var card = _html("div", "rh-session-result", "");
+    var card = _rhHtml("div", "rh-session-result", "");
 
     var iconEl = document.createElement("i");
     iconEl.setAttribute("data-lucide", "check-circle-2");
     card.appendChild(iconEl);
 
-    var info = _html("div", "rh-session-result-info", "");
-    info.appendChild(_html("div", "rh-session-result-title", label + " Complete"));
+    var info = _rhHtml("div", "rh-session-result-info", "");
+    info.appendChild(_rhHtml("div", "rh-session-result-title", label + " Complete"));
     if (xpEarned > 0) {
-      info.appendChild(_html("div", "rh-session-result-xp", "+" + xpEarned + " XP earned"));
+      info.appendChild(_rhHtml("div", "rh-session-result-xp", "+" + xpEarned + " XP earned"));
     }
     card.appendChild(info);
 
@@ -531,18 +306,18 @@
 
     // Re-render English card
     var oldEnglish = _el("rh-english-card");
-    var newEnglish = _buildEnglishCard();
+    var newEnglish = _rhBuildEnglishCard(_status, _englishDone, _startEnglish);
     if (oldEnglish) body.replaceChild(newEnglish, oldEnglish);
 
     // Re-render CKLA card (only if it was rendered)
     var oldCkla = _el("rh-ckla-card");
     if (oldCkla) {
-      body.replaceChild(_buildCklaCard(), oldCkla);
+      body.replaceChild(_rhBuildCklaCard(_status, _cklaDone, _startCkla), oldCkla);
     }
 
     // Re-render Math card
     var oldMath = _el("rh-math-card");
-    var newMath = _buildMathCard();
+    var newMath = _rhBuildMathCard(_status, _mathDone, _startMath);
     if (oldMath) body.replaceChild(newMath, oldMath);
 
     // Show all-done banner if all complete
@@ -554,7 +329,7 @@
         // Per-session result card is superseded by the all-done banner
         var prevResult = body.querySelector(".rh-session-result");
         if (prevResult) prevResult.remove();
-        body.appendChild(_buildAllDoneBanner());
+        body.appendChild(_rhBuildAllDoneBanner(_islandData, close));
       }
       if (typeof renderTodayTasks === "function") renderTodayTasks();
     }
