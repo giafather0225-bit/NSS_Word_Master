@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-20 — 라우터 57개(파일 63개) · JS 118개 · CSS 66개 · 서비스 19개 · 마이그레이션 68개 (최신: 063) · Parent Dashboard 6탭 · CKLA 4번째 과목 · Top Weaknesses 홈탭 · 부모 PIN 게이트 감사 · legacy Reward 제거 · core.js → core-fx/core-stage/core-vault 3분할 (805→542줄) · require_parent_pin 캐시 · SW APP_SHELL precache 정상화 · 주간 리포트 CKLA 약점 · Daily Streak Freeze (풀스택) · Island 학습 가이드 위젯 (L2) · 업로드 magic-byte 검증 + innerHTML XSS 이스케이프
+> Last updated: 2026-05-21 — 라우터 57개(파일 63개) · JS 124개 · CSS 66개 · 서비스 20개 · 마이그레이션 68개 (최신: 063) · Parent Dashboard 6탭 · CKLA 4번째 과목 · Top Weaknesses 홈탭 · 부모 PIN 게이트 감사 · legacy Reward 제거 · core.js → core-fx/core-stage/core-vault 3분할 (805→542줄) · word-manager 3분할 · review-hub 2분할 · arcade-word-invaders 2분할 · child.js 3분할 · navigation.js 2분할 · dead code 정리 (parent-island.js, test_growth_theme.py)
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -507,7 +507,7 @@ Access: Home banner "···" → 4-digit PIN (`services/pin_guard.py`).
 | **Reading** | `parent-reading.js _ppReading` | Sub-tab nav (English \| CKLA). **English sub-tab**: Top 3-stat summary (Tracked Words / Overall Accuracy / Stage Completions) → 2-col: Most Missed Words (sticky-header table-wrap) \| Stage Performance (Lucide icon per stage + accuracy chip green/amber/red). **CKLA sub-tab**: delegates to `parent-ckla.js _ppCKLA` — domain progress, Q&A accuracy, weekly graph. |
 | **Math** | `parent-math.js _ppMathSummary` | 4-stat grid → 2-col: Weak Concepts (humanized lesson names) \| Fact Fluency (Phase pill + accuracy chip) → Daily Challenge bar chart (7d) → Kangaroo Sets table. Lucide section-title icons throughout (`calculator`/`alert-triangle`/`zap`/`calendar-days`/`award`). |
 | **Habits** | `parent-panel.js _ppHabits` | Streak detail (`parent-streak.js`: 3 stat cards + Streak Rule editor + Last 30 Days grid 15-col on desktop) + **Weekly Goals** (`parent-goals.js _ppGoals` — summary banner + 2×2 progress card grid + inline Edit Targets form, PIN-gated PUT) + Day-Off approvals. Subjects render with Lucide (`book-open`/`calculator`/`gamepad-2`); calendar cells use `flame`/`umbrella`/`x`. |
-| **Island** | `parent-island.js _ppIsland` | Island status overview for parent view. |
+| **Island** | `parent-panel-island.js _ppIsland` | Island status overview for parent view. |
 | **Settings** | `parent-panel.js _ppSettings` | 4 sections: Task Settings (full, 2-col task list) → 2-col row: Academy Schedule \| Account (PIN + parent email) → Weekly Report (`parent-report.js` — enable toggle, day-of-week select, child-name, Save Schedule / Send Now / Preview Data; gracefully degraded when PIN not yet verified) → Textbooks (`parent-textbooks.js` accordion + Add Textbook entry point linking to `/ingest`). |
 
 **Backend feed** (key endpoints):
@@ -946,7 +946,7 @@ Hub UI is calm (`bg-page` + cards only). Energy/SFX (`arcade-sfx.js`) only insid
 | Service worker / PWA | `static/service-worker.js` + `manifest.json` | ✅ |
 | Splash screen (per-day-of-week colors) | `splash.js` + `splash.css` | ✅ |
 | JS bundle auto-rebuild on startup | `build.sh` (run from `lifespan`) | ✅ |
-| Dark mode toggle UI | tokens ready, no UI control | 🟡 |
+| Dark mode toggle UI | `openSettings()` → modal + toggle (home.js); pre-DOM init child.html | ✅ |
 | macOS LaunchAgent | see `README.md` | ✅ |
 
 ---
@@ -1284,12 +1284,12 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 |------|------|----------|
 | 등록된 FastAPI 라우터 | 57 | `grep -c "app.include_router" backend/main.py` (rewards 제거 -1, streak_freeze 추가 +1, 2026-05-19~20) |
 | routers/ 파일 수 | 63 | `ls backend/routers/*.py` (5개 유틸 + streak_freeze.py 추가 — 미등록 상태) |
-| JS 소스 파일 | 118 | `ls frontend/static/js/*.js \| grep -v bundle` (core-fx/core-stage/core-vault + streak-freeze + island-guide 추가) |
+| JS 소스 파일 | 124 | `ls frontend/static/js/*.js \| grep -v bundle` (word-manager 3분할 + review-hub 2분할 + arcade-word-invaders 2분할 + child 3분할 + navigation 2분할; parent-island.js 삭제) |
 | CSS 파일 | 66 | `ls frontend/static/css/*.css` (island-guide.css 추가) |
 | Island JSX 컴포넌트 | 17 | `ls frontend/src/island/*.jsx` |
 | 마이그레이션 파일 | 68 | `ls backend/migrations/[0-9]*.py` (최신: 063) |
 | ORM 모델 파일 | 11 | `ls backend/models/*.py` (\_base, \_\_init\_\_ 제외) |
-| 서비스 파일 | 19 | `ls backend/services/*.py` (xp_lumi_bridge + streak_freeze_engine 추가) |
+| 서비스 파일 | 20 | `ls backend/services/*.py` (xp_lumi_bridge + streak_freeze_engine 추가) |
 | Island 라우터 파일 수 | 5 | island.py + island_{character,dev,legend,shop}.py |
 | `__all__` 내보낸 클래스 | 61 | `backend/models/__init__.py` |
 
@@ -1312,8 +1312,8 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 | ~~4~~ | ~~Island CSS 4개 파일~~ | ~~Work Principle #3 위반: hex 컬러 직접 사용~~ → **✅ 완료 (commit 0aaa0c0)** — 모든 hex → CSS 변수 마이그레이션, island-specific 토큰을 `theme.css`에 추가 | ✅ 해결됨 |
 | 5 | `backend/migrations/` | 067 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전. 062 최신, 059부터 단순 증가 적용 중 | 낮음 (시스템적으로 안전) |
 | ~~6~~ | ~~`models/system.py` `Reward`~~ | ~~legacy back-compat~~ → **✅ 완료 (2026-05-19, migration 062)** — 사용처 0건 확인 후 모델/라우터/테이블 삭제 | ✅ 해결됨 |
-| 10 | 500줄 초과 JS 8개 | `child.js` 683·`navigation.js` 674·`arcade-word-invaders.js` 647·`word-manager.js` 603·`review-hub.js` 594·`parent-ingest.js` 582·`arcade-crossword.js` 578·~~`core.js` 803~~ → **542** (3분할: core-fx + core-stage + core-vault, -33%)·`finaltest.js` 529·`ckla.js` 503. parent-ingest/finaltest는 IIFE 캡슐화로 분리 ROI 낮음 | 중간 |
-| 11 | 500줄 초과 Python 2개 | `services/xp_engine.py` 530·`routers/files_voca.py` 504 — 경계 수준 | 낮음 |
+| 10 | 500줄 초과 JS 9개 | `arcade-crossword.js` 588·`parent-ingest.js` 582·`arcade.js` 561·`core.js` 546·`finaltest.js` 536·`parent-panel.js` 526·`arcade-word-builder.js` 525·`parent-panel-home.js` 512·`ckla.js` 503. ~~child.js 683~~ ✅→3분할 ~~navigation.js 674~~ ✅→2분할 ~~arcade-word-invaders 647~~ ✅→2분할 ~~word-manager 603~~ ✅→3분할 ~~review-hub 594~~ ✅→2분할. parent-ingest/finaltest는 IIFE 캡슐화로 분리 ROI 낮음 | 중간 |
+| ~~11~~ | ~~500줄 초과 Python 2개~~ | ~~`services/xp_engine.py` 530·`routers/files_voca.py` 504~~ → **✅ 해소됨** — xp_engine 381줄·files_voca 169줄 (리팩토링 후 감소) | ✅ 해결됨 |
 | ~~12~~ | ~~컴포넌트 CSS hex 직접 사용 (13건)~~ | ~~`color: #fff` 5건 + 그라데이션 끝점 8건~~ → **✅ 완료 (2026-05-17)** — 모두 `var(--text-on-primary)` / `var(--bg-card)`로 교체. 남은 hex는 fallback 또는 arcade 캔버스 면제 | ✅ 해결됨 |
 
 #### P3 — 관찰 사항
