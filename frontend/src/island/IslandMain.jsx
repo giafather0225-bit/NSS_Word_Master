@@ -259,7 +259,7 @@ function _svgZonesHTML(charsByZone, completedZones, zoneUnlock) {
             ? `<span>${completedZones} / 4</span>`
             : '';
         return `
-            <div class="gim-lock-center" style="left:${lx};top:${ly}" onclick="_islandLockedClick('${zone}')">
+            <div class="gim-lock-center" data-zone="${zone}" style="left:${lx};top:${ly}" onclick="_islandLockedClick('${zone}')">
                 <i data-lucide="lock" style="width:24px;height:24px;color:rgba(255,255,255,.9)"></i>
                 ${sub}
             </div>`;
@@ -568,8 +568,8 @@ function _islandZoneClick(zone) {
 
 /** @tag SHOP */
 function _islandLockedClick(zone) {
-    // Shake the zone button for tactile feedback
-    const btn = document.querySelector(`.gim-zone-btn[data-zone="${zone}"]`);
+    // Shake the lock overlay for tactile feedback
+    const btn = document.querySelector(`.gim-lock-center[data-zone="${zone}"]`);
     if (btn) {
         btn.classList.remove('gim-zone-btn--shake');
         // Force reflow to restart animation if clicked again quickly

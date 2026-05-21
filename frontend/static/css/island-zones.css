@@ -16,6 +16,18 @@
 }
 #isl-detail-overlay.hidden { display: none; }
 
+/* ── Screen entry animation ──────────────────────────────────── */
+
+@keyframes isl-screen-in {
+    from { opacity: 0; transform: translateX(18px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* All direct children of the overlay slide in when rendered */
+#isl-detail-overlay > * {
+    animation: isl-screen-in 0.22s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
 /* ── Zone Detail screen ──────────────────────────────────────── */
 
 .izd-screen {

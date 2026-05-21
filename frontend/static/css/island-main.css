@@ -93,8 +93,9 @@
     justify-content: center;
     transition: background var(--transition-fast), color var(--transition-fast);
 }
-.isl-topbar-btn:hover { background: var(--bg-surface); color: var(--text-primary); }
-.isl-topbar-btn i     { width: 18px; height: 18px; }
+.isl-topbar-btn:hover  { background: var(--bg-surface); color: var(--text-primary); }
+.isl-topbar-btn:active { background: var(--border-subtle); transform: scale(0.90); }
+.isl-topbar-btn i      { width: 18px; height: 18px; }
 
 /* ── Map area ──────────────────────────────────────────────── */
 
@@ -266,7 +267,8 @@
     transition: background var(--transition-fast);
     box-shadow: var(--shadow-soft);
 }
-.isl-zoom-btn:hover { background: var(--bg-surface); }
+.isl-zoom-btn:hover  { background: var(--bg-surface); }
+.isl-zoom-btn:active { background: var(--border-subtle); transform: scale(0.90); }
 
 /* ── Loading / Error states ────────────────────────────────── */
 
