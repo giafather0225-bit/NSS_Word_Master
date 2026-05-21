@@ -318,4 +318,5 @@ function _ppEsc(str) {
         .replace(/"/g, '&quot;');
 }
 
-window._ppCKLA = _ppCKLA;
+window._ppCKLA         = _ppCKLA;
+window._ppCKLASetRange = _ppCKLASetRange;

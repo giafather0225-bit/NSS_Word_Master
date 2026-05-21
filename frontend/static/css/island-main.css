@@ -1210,6 +1210,15 @@
     to   { opacity: 1; transform: translate(-50%, -100%); }
 }
 
+@keyframes gim-zone-shake {
+    0%,100% { transform: translateX(0); }
+    20%      { transform: translateX(-5px); }
+    40%      { transform: translateX(5px); }
+    60%      { transform: translateX(-4px); }
+    80%      { transform: translateX(3px); }
+}
+.gim-zone-btn--shake { animation: gim-zone-shake 0.32s ease both; }
+
 .gim-care-popup-name {
     font-family: var(--font-family-display);
     font-size: var(--font-size-sm);

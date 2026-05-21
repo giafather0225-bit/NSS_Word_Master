@@ -568,6 +568,15 @@ function _islandZoneClick(zone) {
 
 /** @tag SHOP */
 function _islandLockedClick(zone) {
+    // Shake the zone button for tactile feedback
+    const btn = document.querySelector(`.gim-zone-btn[data-zone="${zone}"]`);
+    if (btn) {
+        btn.classList.remove('gim-zone-btn--shake');
+        // Force reflow to restart animation if clicked again quickly
+        void btn.offsetWidth;
+        btn.classList.add('gim-zone-btn--shake');
+        setTimeout(() => btn.classList.remove('gim-zone-btn--shake'), 320);
+    }
     if (typeof _showShopToast !== 'function') return;
     const msg = zone === 'legend'
         ? 'Evolve 1 character in each zone to unlock Legend'

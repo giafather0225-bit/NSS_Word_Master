@@ -71,6 +71,7 @@
     font-family: var(--font-family-display);
 }
 .iob-next-btn:hover, .iob-confirm-btn:hover { background: var(--rewards-hover); }
+.iob-next-btn:active, .iob-confirm-btn:active { transform: scale(0.96); }
 .iob-next-btn.disabled, .iob-confirm-btn:disabled { opacity: 0.45; cursor: not-allowed; }
 
 /* Stage (zone/char/name) */
@@ -746,10 +747,15 @@
 .pp-toggle-hint { font-size: var(--font-size-xs); color: var(--text-hint); margin-top: 2px; }
 
 /* ── Island Result card (study completion) ───────────────────────── */
+@keyframes ir-card-in {
+    from { opacity: 0; transform: translateY(6px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
 .ir-card {
     margin-top: 16px; padding: 12px 14px;
     background: var(--rewards-light); border: 1px solid var(--rewards-soft);
     border-radius: var(--radius-md);
+    animation: ir-card-in 0.22s cubic-bezier(.175,.885,.32,1.275) both;
 }
 .ir-header {
     display: flex; align-items: center; gap: 6px;
@@ -1089,7 +1095,9 @@
     flex: 1; overflow-y: auto;
     padding: 20px 16px 32px;
     display: flex; flex-direction: column; gap: 16px;
+    transition: opacity 0.15s ease;
 }
+.idl-body--fade { opacity: 0; }
 
 /* Attendance */
 .idl-week-grid {
@@ -1126,6 +1134,7 @@
     cursor: pointer; transition: background var(--transition-fast);
 }
 .idl-claim-btn:hover:not(:disabled) { background: var(--rewards-hover); }
+.idl-claim-btn:active:not(:disabled) { transform: scale(0.96); }
 .idl-claim-btn--done {
     background: var(--bg-surface); color: var(--text-hint);
     border: 1px solid var(--border-subtle); cursor: default;

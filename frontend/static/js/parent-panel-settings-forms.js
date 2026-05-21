@@ -226,34 +226,6 @@ async function _ppResetXPRules() {
     }
 }
 
-/** Trigger backend streak recalc. @tag PARENT STREAK */
-async function _ppRecalcStreak() {
-    try {
-        const res = await window._ppFetch("/api/parent/streak-recalc", { method: "POST" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        if (window.showToast) window.showToast("Streak recalculated.", "success");
-    } catch (err) {
-        alert("Failed to recalculate streak.");
-    }
-}
-
-/** Preview weekly report HTML. @tag PARENT REPORT */
-async function _ppPreviewReport() {
-    window.open("/api/parent/report/preview", "_blank");
-}
-
-/** Send weekly report immediately. @tag PARENT REPORT */
-async function _ppSendReportNow() {
-    if (!confirm("Send weekly report now to the configured email?")) return;
-    try {
-        const res = await window._ppFetch("/api/parent/report/send", { method: "POST" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        if (window.showToast) window.showToast("Report sent.", "success");
-    } catch (err) {
-        alert("Failed to send report.");
-    }
-}
-
 /** Trigger backup. @tag PARENT SYSTEM BACKUP */
 async function _ppRunBackup() {
     try {
@@ -296,14 +268,13 @@ async function _ppCheckUpdates() {
     }
 }
 
+// Note: _ppRecalcStreak is defined in parent-streak.js
+//       _ppPreviewReport / _ppSendReportNow are defined in parent-report.js
 window._ppResetXPRules     = _ppResetXPRules;
 window._ppSetStreakRuleCard = _ppSetStreakRuleCard;
 window._ppSetXpRulesCard   = _ppSetXpRulesCard;
 window._ppSetReportCard    = _ppSetReportCard;
 window._ppSetSystemCard    = _ppSetSystemCard;
-window._ppRecalcStreak     = _ppRecalcStreak;
-window._ppPreviewReport    = _ppPreviewReport;
-window._ppSendReportNow    = _ppSendReportNow;
 window._ppRunBackup        = _ppRunBackup;
 window._ppRestartOllama    = _ppRestartOllama;
 window._ppCheckUpdates     = _ppCheckUpdates;

@@ -181,8 +181,18 @@ function _idlWeeklyHTML(d) {
 
 /** @tag SHOP */
 function _idlSwitchTab(tab) {
-    _idlTab = tab;
-    _idlRender();
+    if (_idlTab === tab) return;
+    const body = document.querySelector('.idl-body');
+    if (body) {
+        body.classList.add('idl-body--fade');
+        setTimeout(() => {
+            _idlTab = tab;
+            _idlRender();
+        }, 150);
+    } else {
+        _idlTab = tab;
+        _idlRender();
+    }
 }
 
 /** @tag SHOP */
@@ -193,7 +203,12 @@ async function _idlClaimAttendance() {
             _idlData.today_claimed = true;
             _idlData.can_claim_today = false;
             if (res.lumi_earned) {
-                if (typeof _showShopToast === 'function') _showShopToast(`+${res.lumi_earned} Lumi`);
+                // Coin particle celebration (reuses _claimCelebrate from IslandMain.jsx)
+                if (typeof _claimCelebrate === 'function') {
+                    _claimCelebrate(res.lumi_earned);
+                } else if (typeof _showShopToast === 'function') {
+                    _showShopToast(`+${res.lumi_earned} Lumi`);
+                }
             }
         }
     } catch (_) { /* silent */ }
