@@ -344,6 +344,25 @@ _READABLE_CONFIG_KEYS = {
 }
 
 
+_HOME_SECTION_KEYS = ["english", "math", "diary", "arcade", "shop", "review"]
+
+
+@router.get("/api/parent/home-sections")
+def parent_home_sections(db: Session = Depends(get_db)):
+    """Return visibility flags for all 6 home sections. Defaults to true if unset. @tag PARENT SETTINGS"""
+    rows = {
+        r.key: r.value
+        for r in db.query(AppConfig)
+        .filter(AppConfig.key.in_([f"section_{k}" for k in _HOME_SECTION_KEYS]))
+        .all()
+    }
+    sections = {
+        k: rows.get(f"section_{k}", "true") != "false"
+        for k in _HOME_SECTION_KEYS
+    }
+    return {"sections": sections}
+
+
 @router.get("/api/parent/config/{key}")
 def parent_get_config(key: str, db: Session = Depends(get_db)):
     """Read a whitelisted AppConfig value. Returns "" if unset. @tag PARENT SETTINGS"""

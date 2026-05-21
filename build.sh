@@ -56,6 +56,7 @@ cat \
   $JS/parent-panel-settings-forms.js \
   $JS/parent-panel-habits.js \
   $JS/parent-panel-home.js \
+  $JS/parent-panel-home-rail.js \
   $JS/parent-panel-reading.js \
   $JS/parent-goals.js \
   $JS/parent-textbooks.js \

@@ -211,6 +211,21 @@ function _ppSetSystemCard(sys) {
 
 // ─── Mutations ────────────────────────────────────────────────
 
+/** Reset all XP rules to defaults via POST /api/parent/xp-rules/reset. @tag PARENT XP */
+async function _ppResetXPRules() {
+    if (!confirm("Reset all XP rules to default values?")) return;
+    try {
+        const res = await window._ppFetch("/api/parent/xp-rules/reset", { method: "POST" });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        if (window.showToast) window.showToast("XP rules reset to defaults.", "success");
+        // Reload settings tab to reflect new values
+        if (typeof _ppLoadTab === "function") setTimeout(() => _ppLoadTab("settings"), 600);
+    } catch (err) {
+        console.error("[reset xp rules] failed:", err);
+        alert("Failed to reset XP rules.");
+    }
+}
+
 /** Trigger backend streak recalc. @tag PARENT STREAK */
 async function _ppRecalcStreak() {
     try {
@@ -281,6 +296,7 @@ async function _ppCheckUpdates() {
     }
 }
 
+window._ppResetXPRules     = _ppResetXPRules;
 window._ppSetStreakRuleCard = _ppSetStreakRuleCard;
 window._ppSetXpRulesCard   = _ppSetXpRulesCard;
 window._ppSetReportCard    = _ppSetReportCard;

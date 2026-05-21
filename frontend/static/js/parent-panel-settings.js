@@ -10,19 +10,20 @@
 async function _ppSettings(body) {
     try {
         const _safe = (p, fb) => p.catch(() => fb);
-        const [testMode, streak, xpRules, reportSched, islandCfg, sysStatus] = await Promise.all([
-            _safe(apiFetchJSON("/api/parent/test-mode"),       { test_mode: false }),
-            _safe(apiFetchJSON("/api/parent/streak"),          { rule: {} }),
-            _safe(apiFetchJSON("/api/parent/xp-rules"),        { rules: {} }),
+        const [testMode, streak, xpRules, reportSched, islandCfg, sysStatus, sectionsResp] = await Promise.all([
+            _safe(apiFetchJSON("/api/parent/test-mode"),          { test_mode: false }),
+            _safe(apiFetchJSON("/api/parent/streak"),             { rule: {} }),
+            _safe(apiFetchJSON("/api/parent/xp-rules"),           { rules: {} }),
             _safe(window._ppFetch("/api/parent/report/schedule").then(r => r.json()), {}),
-            _safe(apiFetchJSON("/api/island/config"),          {}),
-            _safe(apiFetchJSON("/api/system/status"),          {}),
+            _safe(apiFetchJSON("/api/island/config"),             {}),
+            _safe(apiFetchJSON("/api/system/status"),             {}),
+            _safe(apiFetchJSON("/api/parent/home-sections"),      { sections: {} }),
         ]);
 
         body.innerHTML = `
             <div class="pp-set-grid pp-set-grid--top">
                 ${_ppSetAccessCard(testMode, islandCfg)}
-                ${_ppSetHomeSectionsCard()}
+                ${_ppSetHomeSectionsCard(sectionsResp.sections || {})}
             </div>
             <div class="pp-set-grid pp-set-grid--mid">
                 ${_ppSetStreakRuleCard(streak.rule || {})}
@@ -158,15 +159,20 @@ function _ppTogglePinVisibility(inputId, btn) {
 }
 
 /** Home sections toggle grid (6 sections). @tag PARENT SETTINGS */
-function _ppSetHomeSectionsCard() {
-    const sections = [
-        { key: "english", label: "English", on: true },
-        { key: "math",    label: "Math",    on: true },
-        { key: "diary",   label: "Diary",   on: true },
-        { key: "arcade",  label: "Arcade",  on: true },
-        { key: "shop",    label: "Shop",    on: true },
-        { key: "review",  label: "Review",  on: true },
+function _ppSetHomeSectionsCard(dbSections) {
+    const DEFS = [
+        { key: "english", label: "English" },
+        { key: "math",    label: "Math"    },
+        { key: "diary",   label: "Diary"   },
+        { key: "arcade",  label: "Arcade"  },
+        { key: "shop",    label: "Shop"    },
+        { key: "review",  label: "Review"  },
     ];
+    // Default to true when not yet saved in DB
+    const sections = DEFS.map(d => ({
+        ...d,
+        on: dbSections[d.key] !== false,
+    }));
     const cells = sections.map(s => `
         <label class="pp-home-section ${s.on ? "is-on" : ""}">
             <input type="checkbox" data-section-key="${s.key}" ${s.on ? "checked" : ""}
@@ -197,10 +203,10 @@ function _ppSetHomeSectionsCard() {
 async function _ppSaveSectionToggle(key, checked) {
     const msg = document.getElementById("pp-sections-msg");
     try {
-        const res = await window._ppFetch(`/api/parent/config/section_${key}`, {
+        const res = await window._ppFetch("/api/parent/config", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ value: checked ? "true" : "false" }),
+            body: JSON.stringify({ key: `section_${key}`, value: checked ? "true" : "false" }),
         });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         if (msg) { msg.textContent = `${key} section ${checked ? "enabled" : "disabled"}.`; msg.className = "pp-form-msg success"; }
