@@ -698,10 +698,10 @@
 
 .gim-zone-label-wrap {
     position: absolute;
-    /* Anchor is at circle's bottom rim. Translate up by full height so the
-       wrap hangs above the anchor — badges stacked on top, label at bottom
-       resting on the rim from inside. */
-    transform: translate(-50%, -100%);
+    /* Anchor = circle's bottom edge + gap (set in JS).
+       translateX(-50%) centers the wrap horizontally; wrap top aligns to
+       anchor so the label stack appears BELOW the circle. */
+    transform: translateX(-50%);
     z-index: 5;
     display: flex;
     flex-direction: column;
@@ -945,6 +945,8 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
+    max-height: 100px;
+    overflow-y: auto;
 }
 
 .gim-today-row {

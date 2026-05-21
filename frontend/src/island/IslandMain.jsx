@@ -34,6 +34,7 @@ const _CHAR_BUBBLES = [
     { zone: 'space',   left: '86%', top: '40%', delay: '.5s'  },
     { zone: 'ocean',   left: '16%', top: '78%', delay: '.8s'  },
     { zone: 'savanna', left: '83%', top: '60%', delay: '1.2s' },
+    { zone: 'legend',  left: '48%', top: '50%', delay: '1.6s' },
 ];
 
 // ─── State ──────────────────────────────────────────────────────
@@ -283,14 +284,13 @@ function _svgZonesHTML(charsByZone, completedZones, zoneUnlock) {
             ? `onclick="_islandLockedClick('${zone}')"`
             : `onclick="_islandZoneClick('${zone}')"`;
 
-        // Label sits at the INSIDE bottom edge of the circle.
-        // Anchor = circle's bottom edge (cy + r). Label-wrap uses translate(-50%, -100%)
-        // so the entire stack (badges → label) hangs ABOVE the anchor, label bottom
-        // touching the circle rim from inside.
+        // Label sits BELOW the circle.
+        // Anchor = circle's bottom edge (cy + r) + small gap.
+        // CSS uses translateX(-50%) so the wrap top aligns to anchor → label flows down.
         const lx = `${(cfg.cx / W * 100).toFixed(2)}%`;
-        const ly = `${((cfg.cy + cfg.r - 4) / H * 100).toFixed(2)}%`;
+        const ly = `${((cfg.cy + cfg.r + 6) / H * 100).toFixed(2)}%`;
 
-        // Order: badges first (rendered ABOVE label) → label last (sits at bottom).
+        // Order: badges first (appear above label, just below circle) → label last.
         return `
             <div class="gim-zone-label-wrap" style="left:${lx};top:${ly}" ${click}>
                 ${warnBadge}${evoBadge}
@@ -455,10 +455,9 @@ function _streakDotsHTML(count, total = 7) {
 
 /** @tag SHOP */
 function _todayRowsHTML(chars) {
-    // Character rows (top 3)
-    const top3 = chars.slice(0, 3);
-    const charRows = top3.length
-        ? top3.map(c => {
+    // Character rows — show all active characters
+    const charRows = chars.length
+        ? chars.map(c => {
             const meta   = _ZONE_META[c.zone] || {};
             const name   = escapeHtml((c.nickname || c.name || '').substring(0, 10));
             const status = _charStatus(c);
