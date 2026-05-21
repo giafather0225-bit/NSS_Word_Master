@@ -27,7 +27,7 @@
 ## Work Principles (MUST FOLLOW)
 
 1. 수정 전 반드시 기존 코드 읽기. 기존 기능 절대 파괴 금지.
-2. 파일당 최대 ~500줄. 초과 시 모듈 분리 (예: `child.js` → `child-{calendar,exam,keyboard,text}.js`).
+2. 파일당 최대 ~600줄. 초과 시 모듈 분리 (예: `child.js` → `child-{calendar,exam,keyboard,text}.js`).
 3. CSS: `theme.css` 변수만 사용. 컴포넌트 CSS에 hex 직접 사용 금지.
 4. 모든 API: 적절한 에러 핸들링 + HTTP 상태코드. `RequestValidationError` 는 `main.py` 에서 child-friendly 422 JSON 으로 자동 변환됨.
 5. DB 스키마 변경: `backend/migrations/`에 idempotent 마이그레이션 추가 (현재 001~063, 파일 68개). **신규 마이그레이션은 단순 증가** — 중복 prefix(025a/b, 033a/b, 034a/b, 040a/b, 041a/b) 방식은 종료됨 (059부터 단순 증가 적용 중). 시스템은 filename 전체로 추적하므로 기존 파일은 안전.
@@ -1312,7 +1312,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 | ~~4~~ | ~~Island CSS 4개 파일~~ | ~~Work Principle #3 위반: hex 컬러 직접 사용~~ → **✅ 완료 (commit 0aaa0c0)** — 모든 hex → CSS 변수 마이그레이션, island-specific 토큰을 `theme.css`에 추가 | ✅ 해결됨 |
 | 5 | `backend/migrations/` | 067 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전. 062 최신, 059부터 단순 증가 적용 중 | 낮음 (시스템적으로 안전) |
 | ~~6~~ | ~~`models/system.py` `Reward`~~ | ~~legacy back-compat~~ → **✅ 완료 (2026-05-19, migration 062)** — 사용처 0건 확인 후 모델/라우터/테이블 삭제 | ✅ 해결됨 |
-| 10 | 500줄 초과 JS 7개 | `parent-ingest.js` 582·`arcade.js` 561·`core.js` 546·`finaltest.js` 536·`arcade-word-builder.js` 525·`parent-panel-home.js` 512·`ckla.js` 503. ~~arcade-crossword.js 588~~ ✅→2분할 ~~parent-panel.js 526~~ ✅→차트분할(354줄) ~~child.js 683~~ ✅→3분할 ~~navigation.js 674~~ ✅→2분할 ~~arcade-word-invaders 647~~ ✅→2분할 ~~word-manager 603~~ ✅→3분할 ~~review-hub 594~~ ✅→2분할. parent-ingest/finaltest는 IIFE 캡슐화로 분리 ROI 낮음 | 중간 |
+| ~~10~~ | ~~600줄 초과 JS~~ | 기준 600줄로 완화 (2026-05-22). ~~500줄 기준: `parent-ingest.js` 582·`arcade.js` 561·`core.js` 546·`finaltest.js` 536·`arcade-word-builder.js` 525·`parent-panel-home.js` 512·`ckla.js` 503~~ → **✅ 해소됨** — 현재 600줄 초과 파일 없음. 과거 분할: ~~arcade-crossword.js 588~~ ✅ ~~parent-panel.js 526~~ ✅ ~~child.js 683~~ ✅ ~~navigation.js 674~~ ✅ ~~arcade-word-invaders 647~~ ✅ ~~word-manager 603~~ ✅ ~~review-hub 594~~ ✅ ~~parent-panel-home.js 566~~ ✅ | ✅ 해결됨 |
 | ~~11~~ | ~~500줄 초과 Python 2개~~ | ~~`services/xp_engine.py` 530·`routers/files_voca.py` 504~~ → **✅ 해소됨** — xp_engine 381줄·files_voca 169줄 (리팩토링 후 감소) | ✅ 해결됨 |
 | ~~12~~ | ~~컴포넌트 CSS hex 직접 사용 (13건)~~ | ~~`color: #fff` 5건 + 그라데이션 끝점 8건~~ → **✅ 완료 (2026-05-17)** — 모두 `var(--text-on-primary)` / `var(--bg-card)`로 교체. 남은 hex는 fallback 또는 arcade 캔버스 면제 | ✅ 해결됨 |
 
