@@ -126,10 +126,10 @@
 .sidebar-toggle--floating {
     position: fixed;
     top: 14px;
-    /* Sit on the sidebar's right edge (half inside, half outside) so it
-       never overlaps content. Sidebar = var(--sidebar-width, 240px);
-       button = 40px wide → center at 240px means left = 220px. */
-    left: calc(var(--sidebar-width, 240px) - 20px);
+    /* Fully inside the sidebar so it never overlaps main content.
+       Sidebar = var(--sidebar-width, 240px); button = 40px wide
+       → flush with the right edge means left = 240 - 40 = 200px. */
+    left: calc(var(--sidebar-width, 240px) - 40px);
     z-index: 101;
     width: 40px;
     height: 40px;
@@ -150,6 +150,12 @@
 /* When sidebar collapsed, slide button to top-left corner */
 body.sb-collapsed .sidebar-toggle--floating {
     left: 14px;
+}
+
+/* When sidebar collapsed, push roadmap right so the 40px toggle doesn't
+   overlap the first step. 14px (toggle left) + 40px (width) + 4px gap = 58px */
+body.sb-collapsed .stage-header {
+    padding-left: 58px;
 }
 
 /* Icon state: panel-left-close when open, panel-left-open when collapsed */
