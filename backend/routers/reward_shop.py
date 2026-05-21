@@ -351,10 +351,12 @@ def shop_set_pin(body: SetPinIn, db: Session = Depends(get_db)):
     if already_set:
         raise HTTPException(status_code=403, detail="PIN already set. Change it in Parent Dashboard.")
     # When PIN is still the factory default ("0000"), allow setup without
-    # current_pin — the child-facing setup screen doesn't know the default.
-    # If current_pin IS supplied, verify it (allows "0000" or the current value).
+    # supplying current_pin — the child-facing setup screen doesn't know it.
+    # If current_pin IS explicitly supplied, verify it regardless (must be
+    # "0000" or the actual current value — prevents silent override).
     is_still_default = not pin_hash.is_hashed(current) and current == DEFAULT_PIN
-    if not is_still_default:
+    current_pin_provided = body.current_pin is not None
+    if not is_still_default or current_pin_provided:
         if not pin_hash.verify_pin(body.current_pin or "", current):
             raise HTTPException(status_code=403, detail="Current PIN required")
     now = datetime.now().isoformat()
