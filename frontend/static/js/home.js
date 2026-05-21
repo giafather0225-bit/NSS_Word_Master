@@ -314,9 +314,41 @@ function _applyTestModeBadge() {
   if (badge) badge.style.display = _testModeActive ? 'inline-flex' : 'none';
 }
 
+// ─── Home sections visibility ───────────────────────────────────────────────
+/** Section key → DOM element ID map. @tag HOME_DASHBOARD SETTINGS */
+const _HOME_SECTION_ID = {
+  english: 'section-card-english',
+  math:    'section-card-math',
+  diary:   'section-card-diary',
+  arcade:  'section-card-arcade',
+  shop:    'home-reward-card',
+  review:  'section-card-review',
+};
+
+/**
+ * Fetch parent-configured section visibility and hide any disabled cards.
+ * Falls back to showing all cards if the API is unreachable.
+ * @tag HOME_DASHBOARD SETTINGS
+ */
+async function _applyHomeSections() {
+  try {
+    const data = await fetch('/api/parent/home-sections').then(r => r.json());
+    const sections = data.sections || {};
+    Object.entries(_HOME_SECTION_ID).forEach(([key, elId]) => {
+      const el = document.getElementById(elId);
+      if (!el) return;
+      const visible = sections[key] !== false;
+      el.style.display = visible ? '' : 'none';
+    });
+  } catch (_) {
+    // API unreachable — leave all sections visible (safe default)
+  }
+}
+
 // Initialize home view on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   switchView('home');
   if (typeof loadDailyWordsSection === 'function') loadDailyWordsSection();
   _loadTestMode();
+  _applyHomeSections();
 });
