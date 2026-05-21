@@ -46,7 +46,7 @@ async function _ppHome(body) {
     try {
         const _safe = (p, fb) => p.catch(() => fb);
 
-        const [sum, ov, act30, dayoffs, island, weak, tasks, xpSum] = await Promise.all([
+        const [sum, ov, act30, dayoffs, island, weak, tasks, xpSum, goalsResp] = await Promise.all([
             _safe(apiFetchJSON("/api/parent/summary"),               {}),
             _safe(apiFetchJSON("/api/parent/overview"),              {}),
             _safe(apiFetchJSON("/api/parent/activity?days=30"),      { daily: [] }),
@@ -55,6 +55,7 @@ async function _ppHome(body) {
             _safe(apiFetchJSON("/api/parent/weaknesses"),            { weaknesses: [] }),
             _safe(apiFetchJSON("/api/tasks/today"),                  []),
             _safe(apiFetchJSON("/api/xp/summary"),                   {}),
+            _safe(apiFetchJSON("/api/goals/weekly"),                 { goals: [] }),
         ]);
 
         const range = window._ppGetRange ? window._ppGetRange() : "weekly";
@@ -73,6 +74,7 @@ async function _ppHome(body) {
                     </div>
                 </div>
                 <div class="pp-home-rail">
+                    ${_ppHomeAlertsCard(sum, dayoffs, goalsResp, daily)}
                     ${_ppHomeApprovalsCard(dayoffs.requests || [], island)}
                     ${_ppHomeStreakCard(sum, daily)}
                     ${_ppHomeIslandCard(island)}
@@ -382,6 +384,58 @@ async function _ppHomeLoadMiniCards() {
     if (typeof lucide !== "undefined") lucide.createIcons();
 }
 window._ppHomeLoadMiniCards = _ppHomeLoadMiniCards;
+
+/** Alerts rail card — streak-at-risk, goals lagging, pending day-offs. @tag PARENT */
+function _ppHomeAlertsCard(sum, dayoffs, goalsResp, daily) {
+    const alerts = [];
+
+    // 1. Pending day-off requests
+    const pending = (dayoffs.requests || []).filter(r => r.status === "pending").length;
+    if (pending > 0) {
+        alerts.push({ icon: "calendar-x-2", type: "warn",
+            text: `${pending} day-off request${pending > 1 ? "s" : ""} pending approval` });
+    }
+
+    // 2. Streak at risk: streak > 0 and no activity today
+    const streak = sum.current_streak || 0;
+    if (streak > 0) {
+        const todayRow = (daily || []).slice(-1)[0] || {};
+        const todayActive = (todayRow.minutes || 0) > 0 || (todayRow.sessions || 0) > 0 || (todayRow.xp || 0) > 0;
+        if (!todayActive) {
+            alerts.push({ icon: "flame", type: "warn",
+                text: `Streak at risk — no activity yet today (${streak}d streak)` });
+        }
+    }
+
+    // 3. Goals lagging: Thu-Sun and any active goal < 50% complete
+    const dow = new Date().getDay(); // 0=Sun,4=Thu,5=Fri,6=Sat
+    if ([0, 4, 5, 6].includes(dow)) {
+        const lagging = (goalsResp.goals || []).filter(g => g.is_active && (g.pct || 0) < 50);
+        if (lagging.length > 0) {
+            alerts.push({ icon: "target", type: "info",
+                text: `${lagging.length} weekly goal${lagging.length > 1 ? "s" : ""} behind pace (<50%)` });
+        }
+    }
+
+    if (alerts.length === 0) return "";
+
+    const rows = alerts.map(a => `
+        <div class="pp-alert pp-alert--${a.type}">
+            <i data-lucide="${a.icon}"></i>
+            <span>${escapeHtml(a.text)}</span>
+        </div>`).join("");
+
+    return `
+        <div class="pp-card pp-rail-card">
+            <div class="pp-card-head pp-rail-head">
+                <span class="pp-card-head-left">
+                    <i data-lucide="alert-triangle" class="pp-rail-icon-bad"></i>Alerts
+                </span>
+                <span class="mono pp-rail-count--bad">${alerts.length}</span>
+            </div>
+            <div class="pp-alert-list">${rows}</div>
+        </div>`;
+}
 
 /** Approvals rail card. @tag PARENT DAY_OFF */
 function _ppHomeApprovalsCard(allReqs, island) {

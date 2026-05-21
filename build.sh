@@ -53,6 +53,7 @@ cat \
   $JS/parent-panel-charts.js \
   $JS/parent-panel.js \
   $JS/parent-panel-settings.js \
+  $JS/parent-panel-settings-forms.js \
   $JS/parent-panel-habits.js \
   $JS/parent-panel-home.js \
   $JS/parent-panel-reading.js \
