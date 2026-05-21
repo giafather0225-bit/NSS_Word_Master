@@ -137,6 +137,7 @@ function _ppHabitsDayOffsCard(requests, goals) {
                 <button class="pp-btn ghost pp-btn--sm" onclick="_ppGoalsEdit()">Edit</button>
             </div>
             <div class="pp-goalbar-list">${goalRows || `<p class="pp-text-hint">No active goals.</p>`}</div>
+            <div id="pp-goals-edit-area"></div>
         </div>`;
 }
 
@@ -158,9 +159,9 @@ async function _ppDecideDayOff(reqId, decision) {
     }
 }
 
-/** Placeholder — open settings tab where goals can be edited. @tag PARENT GOALS */
+/** Open inline goal-target editor inside the habits panel. @tag PARENT GOALS */
 function _ppGoalsEdit() {
-    if (typeof _ppLoadTab === "function") _ppLoadTab("settings");
+    if (typeof _ppGoalsEditMode === "function") _ppGoalsEditMode();
 }
 
 window._ppHabits         = _ppHabits;

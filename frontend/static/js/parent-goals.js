@@ -131,4 +131,6 @@ async function _ppGoalsSave() {
     if (saved && !failed && !skipped) setTimeout(() => _ppLoadTab("habits"), 800);
 }
 
-window._ppGoals = _ppGoals;
+window._ppGoals         = _ppGoals;
+window._ppGoalsEditMode = _ppGoalsEditMode;
+window._ppGoalsSave     = _ppGoalsSave;

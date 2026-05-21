@@ -36,12 +36,13 @@ const _PP_XP_RULE_META = {
 async function _ppSettings(body) {
     try {
         const _safe = (p, fb) => p.catch(() => fb);
-        const [testMode, streak, xpRules, reportSched, islandCfg] = await Promise.all([
+        const [testMode, streak, xpRules, reportSched, islandCfg, sysStatus] = await Promise.all([
             _safe(apiFetchJSON("/api/parent/test-mode"),       { test_mode: false }),
             _safe(apiFetchJSON("/api/parent/streak"),          { rule: {} }),
             _safe(apiFetchJSON("/api/parent/xp-rules"),        { rules: {} }),
             _safe(window._ppFetch("/api/parent/report/schedule").then(r => r.json()), {}),
             _safe(apiFetchJSON("/api/island/config"),          {}),
+            _safe(apiFetchJSON("/api/system/status"),          {}),
         ]);
 
         body.innerHTML = `
@@ -54,7 +55,7 @@ async function _ppSettings(body) {
                 ${_ppSetXpRulesCard(xpRules.rules || {})}
             </div>
             ${_ppSetReportCard(reportSched)}
-            ${_ppSetSystemCard()}`;
+            ${_ppSetSystemCard(sysStatus)}`;
 
         if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (err) {
@@ -218,42 +219,49 @@ function _ppSetHomeSectionsCard() {
         </div>`;
 }
 
-/** Streak rule editor with radio cards. @tag PARENT STREAK */
+/** Streak rule editor — checkboxes + mode radios wired to _ppSaveStreakRule. @tag PARENT STREAK */
 function _ppSetStreakRuleCard(rule) {
     const subjects = rule.subjects || [];
-    const mode = rule.mode || "all";
-    const current = `${mode}|${subjects.slice().sort().join(",")}`;
+    const mode     = rule.mode || "all";
 
-    const rules = [
-        { key: "any|english",              label: "English only",       desc: "Complete one English lesson today" },
-        { key: "any|english,math",         label: "English or Math",    desc: "Complete English or Math today" },
-        { key: "all|english,game,math",    label: "All three subjects", desc: "English, Math, and one game/arcade" },
-        { key: "any|english,game,math",    label: "Any one subject",    desc: "At least one of English, Math, or game" },
+    const SUBJECTS = [
+        { key: "ckla", label: "CKLA", icon: "layers" },
+        { key: "math", label: "Math", icon: "calculator" },
+        { key: "game", label: "Game", icon: "gamepad-2" },
     ];
 
-    const rows = rules.map(r => {
-        const isCurrent = r.key === current;
-        return `
-            <label class="pp-rule-card ${isCurrent ? "is-current" : ""}">
-                <span class="pp-rule-radio ${isCurrent ? "is-current" : ""}"></span>
-                <span class="pp-rule-body">
-                    <span class="pp-rule-label">${escapeHtml(r.label)}</span>
-                    <span class="pp-rule-desc">${escapeHtml(r.desc)}</span>
-                </span>
-            </label>`;
-    }).join("");
+    const checks = SUBJECTS.map(s => `
+        <label class="pp-streak-check-label">
+            <input type="checkbox" class="pp-streak-check-input" value="${s.key}"
+                   ${subjects.includes(s.key) ? "checked" : ""}>
+            <i data-lucide="${s.icon}" class="pp-streak-check-icon"></i>
+            <span>${escapeHtml(s.label)}</span>
+        </label>`).join("");
 
     return `
         <div class="pp-panel">
             <div class="pp-panel-title">
                 <div class="pp-panel-title-left">Streak rule
-                    <span class="pp-panel-sub">What counts as one streak day · current: ${escapeHtml(current)}</span>
+                    <span class="pp-panel-sub">What counts as one streak day</span>
                 </div>
             </div>
-            <div class="pp-rule-list">${rows}</div>
+            <div class="pp-mini-kick">Subjects</div>
+            <div class="pp-streak-checks">${checks}</div>
+            <div class="pp-mini-kick pp-mini-kick--mt8">Mode</div>
+            <div class="pp-streak-mode-row">
+                <label class="pp-streak-mode-label">
+                    <input type="radio" name="pp-streak-mode" value="all" ${mode === "all" ? "checked" : ""}>
+                    <span>All selected — every subject must be completed</span>
+                </label>
+                <label class="pp-streak-mode-label">
+                    <input type="radio" name="pp-streak-mode" value="any" ${mode === "any" ? "checked" : ""}>
+                    <span>Any one — at least one subject is enough</span>
+                </label>
+            </div>
+            <p class="pp-form-msg" id="pp-streak-msg"></p>
             <div class="pp-panel-foot">
-                <span class="pp-text-hint">After changing, optionally recalculate past streaks.</span>
-                <button class="pp-btn ghost pp-btn--sm" onclick="_ppRecalcStreak()">Recalculate</button>
+                <button class="pp-btn primary pp-btn--sm" onclick="_ppSaveStreakRule()">Save rule</button>
+                <button class="pp-btn ghost  pp-btn--sm" onclick="_ppRecalcStreak()">Recalculate</button>
             </div>
         </div>`;
 }
@@ -284,54 +292,67 @@ function _ppSetXpRulesCard(rules) {
                 <div class="pp-panel-title-left">XP rules
                     <span class="pp-panel-sub">How much XP each action awards</span>
                 </div>
-                <button class="pp-btn ghost pp-btn--sm" onclick="alert('Reset via /api/parent/xp-rules POST { action: reset }')">Reset to defaults</button>
+                <button class="pp-btn ghost pp-btn--sm" onclick="_ppResetXPRules()">Reset to defaults</button>
             </div>
             <div class="pp-xprule-grid">${cells || `<p class="pp-text-hint">No XP rules loaded.</p>`}</div>
         </div>`;
 }
 
-/** Weekly email report card. @tag PARENT REPORT */
+/** Weekly email report card — save form wired to _ppSaveReportSchedule. @tag PARENT REPORT */
 function _ppSetReportCard(sched) {
-    const enabled = !!sched.enabled;
-    const day = sched.send_day || "Sun";
-    const time = sched.send_time || "20:00";
-    const email = sched.email || "";
-    const lastSent = sched.last_sent || "—";
+    const dow       = sched.day_of_week != null ? sched.day_of_week : 0;
+    const childName = sched.child_name   || "";
+    const email     = sched.parent_email || "(not set)";
+
+    const DAYS = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const dayOpts = DAYS.map((d, i) =>
+        `<option value="${i}" ${dow === i ? "selected" : ""}>${d}</option>`).join("");
 
     return `
         <div class="pp-panel">
             <div class="pp-panel-title">
                 <div class="pp-panel-title-left">Weekly report · email
-                    <span class="pp-panel-sub">${enabled ? `Active · sends ${escapeHtml(day)} at ${escapeHtml(time)}` : "Disabled"}</span>
+                    <span class="pp-panel-sub">Sends to ${escapeHtml(email)}</span>
                 </div>
                 <div class="pp-rep-actions">
                     <button class="pp-btn ghost pp-btn--sm" onclick="_ppPreviewReport()">Preview</button>
                     <button class="pp-btn primary pp-btn--sm" onclick="_ppSendReportNow()">Send now</button>
                 </div>
             </div>
-            <div class="pp-rep-grid">
-                <div class="pp-rep-field">
-                    <div class="pp-mini-kick">Email</div>
-                    <div class="mono pp-rep-val">${escapeHtml(email || "(not set)")}</div>
+            <div class="pp-rep-form">
+                <div class="pp-toggle-row" style="margin-bottom:10px;">
+                    <label class="pp-toggle">
+                        <input type="checkbox" id="pp-rep-enabled">
+                        <span class="pp-toggle-track"></span>
+                    </label>
+                    <span class="pp-form-label">Enable weekly email</span>
                 </div>
-                <div class="pp-rep-field">
-                    <div class="pp-mini-kick">Last sent</div>
-                    <div class="mono pp-rep-val">${escapeHtml(lastSent.slice(0, 19))}</div>
+                <div class="pp-form-row">
+                    <label class="pp-form-label" for="pp-rep-name">Child name in email</label>
+                    <input id="pp-rep-name" class="pp-input" type="text" maxlength="80"
+                           value="${escapeHtml(childName)}" placeholder="e.g. Gia">
                 </div>
-                <div class="pp-rep-field">
-                    <div class="pp-mini-kick">Status</div>
-                    <div class="pp-rep-val">
-                        <span class="pp-pill ${enabled ? "pp-pill--ok" : "pp-pill--ink"}">
-                            ${enabled ? "Active" : "Off"}
-                        </span>
-                    </div>
+                <div class="pp-form-row" style="margin-top:8px;">
+                    <label class="pp-form-label" for="pp-rep-day">Send day</label>
+                    <select id="pp-rep-day" class="pp-input">${dayOpts}</select>
                 </div>
+                <div style="display:flex;gap:8px;margin-top:12px;">
+                    <button class="pp-btn primary pp-btn--sm" onclick="_ppSaveReportSchedule()">Save schedule</button>
+                </div>
+                <p class="pp-form-msg" id="pp-rep-msg"></p>
             </div>
         </div>`;
 }
 
-/** System status 4-cell grid + action buttons. @tag PARENT SYSTEM */
-function _ppSetSystemCard() {
+/** System status grid + action buttons — renders live data from /api/system/status. @tag PARENT SYSTEM */
+function _ppSetSystemCard(sys) {
+    const ollama      = sys?.ollama  || {};
+    const backups     = sys?.backups || {};
+    const ollamaOn    = !!ollama.running;
+    const ollamaModel = ollama.model || "gemma2:2b";
+    const bkCount     = backups.count  != null ? backups.count  : "—";
+    const bkLatest    = backups.latest ? backups.latest.slice(0, 10) : "—";
+
     return `
         <div class="pp-panel">
             <div class="pp-panel-title">
@@ -339,30 +360,25 @@ function _ppSetSystemCard() {
             </div>
             <div class="pp-sys-grid pp-sys-grid--4">
                 <div class="pp-sys-cell">
-                    <div class="pp-sys-label">App version</div>
-                    <div class="mono pp-sys-val">v0.9.4</div>
-                </div>
-                <div class="pp-sys-cell">
                     <div class="pp-sys-label">AI engine</div>
                     <div class="pp-sys-val pp-sys-val--flex">
-                        <span class="pp-sys-dot is-on"></span>
-                        Running
+                        <span class="pp-sys-dot ${ollamaOn ? "is-on" : "is-off"}"></span>
+                        ${ollamaOn ? "Running" : "Offline"}
                     </div>
-                    <div class="pp-sys-meta mono">gemma2:2b</div>
+                    <div class="pp-sys-meta mono">${escapeHtml(ollamaModel)}</div>
                 </div>
                 <div class="pp-sys-cell">
                     <div class="pp-sys-label">Database backups</div>
                     <div class="pp-sys-val pp-sys-val--flex">
-                        <i data-lucide="check-circle" class="pp-sys-icon-ok"></i>
-                        <span class="mono">today</span>
+                        <i data-lucide="archive" class="pp-sys-icon-ok"></i>
+                        <span class="mono">${escapeHtml(bkLatest)}</span>
                     </div>
-                    <div class="pp-sys-meta">7-day rolling</div>
+                    <div class="pp-sys-meta">${bkCount} backup${bkCount !== 1 ? "s" : ""} kept</div>
                 </div>
                 <div class="pp-sys-cell">
-                    <div class="pp-sys-label">Asset check</div>
+                    <div class="pp-sys-label" id="pp-update-label">Updates</div>
                     <div class="pp-sys-val">
-                        <span class="mono pp-sys-asset-ok">—</span>
-                        <span class="pp-sys-asset-sub">ready</span>
+                        <span class="mono" id="pp-update-val">—</span>
                     </div>
                 </div>
             </div>
@@ -404,7 +420,7 @@ async function _ppSaveTestMode(checked) {
 /** Save island_on toggle (PIN-gated POST). @tag PARENT ISLAND */
 async function _ppSaveIslandToggle(checked) {
     try {
-        const res = await window._ppFetch("/api/island/config", {
+        const res = await window._ppFetch("/api/island/config/update", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ island_on: checked }),
@@ -449,7 +465,7 @@ async function _ppSendReportNow() {
 /** Trigger backup. @tag PARENT SYSTEM BACKUP */
 async function _ppRunBackup() {
     try {
-        const res = await window._ppFetch("/api/system/backup", { method: "POST" });
+        const res = await window._ppFetch("/api/system/backups", { method: "POST" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         if (window.showToast) window.showToast("Backup created.", "success");
     } catch (err) {
@@ -468,9 +484,24 @@ async function _ppRestartOllama() {
     }
 }
 
-/** Stub: check for updates. @tag PARENT SYSTEM */
-function _ppCheckUpdates() {
-    if (window.showToast) window.showToast("Update checker not implemented.", "info");
+/** Check for app updates via /api/system/check-update. @tag PARENT SYSTEM */
+async function _ppCheckUpdates() {
+    const val   = document.getElementById("pp-update-val");
+    const label = document.getElementById("pp-update-label");
+    if (val) val.textContent = "checking…";
+    try {
+        const data = await apiFetchJSON("/api/system/check-update");
+        const available = !!data.update_available;
+        const text = available
+            ? `Update available (${(data.local_head || "").slice(0, 7)})`
+            : "Up to date";
+        if (val)   val.textContent   = text;
+        if (label) label.textContent = available ? "Update!" : "Updates";
+        if (window.showToast) window.showToast(text, available ? "info" : "success");
+    } catch (err) {
+        if (val) val.textContent = "check failed";
+        if (window.showToast) window.showToast("Update check failed.", "error");
+    }
 }
 
 window._ppSettings         = _ppSettings;
