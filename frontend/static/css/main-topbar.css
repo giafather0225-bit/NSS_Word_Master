@@ -126,8 +126,10 @@
 .sidebar-toggle--floating {
     position: fixed;
     top: 14px;
-    /* When sidebar open (240px), sit just outside its right edge */
-    left: 254px;
+    /* Sit on the sidebar's right edge (half inside, half outside) so it
+       never overlaps content. Sidebar = var(--sidebar-width, 240px);
+       button = 40px wide → center at 240px means left = 220px. */
+    left: calc(var(--sidebar-width, 240px) - 20px);
     z-index: 101;
     width: 40px;
     height: 40px;
