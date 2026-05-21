@@ -1,4 +1,93 @@
 /* ================================================================
+
+function _wiLoop(ts) {
+  if (!_wi || !_wi.running) return;
+  if (document.hidden) { requestAnimationFrame(_wiLoop); return; }
+  if (ts - _wi.lastTs < 1000 / 30) { requestAnimationFrame(_wiLoop); return; } // 30fps cap
+  const dt = Math.min(100, ts - _wi.lastTs) / 1000;
+  _wi.lastTs = ts;
+  const elapsedSec = (ts - _wi.startedAt) / 1000;
+
+  const lv = WI_LEVELS[_wiLevel];
+  // Ramp speed over time, apply slow if active
+  let speed = lv.fallPxPerSec + elapsedSec * lv.speedRampPerSec;
+  if (ts < _wi.slowUntil) speed *= WI_CFG.slowFactor;
+  _wi.fallSpeed = speed;
+
+  // Spawn cadence
+  if (ts - _wi.lastSpawnAt > _wi.nextSpawnDelay) {
+    _wiSpawn();
+    _wi.lastSpawnAt = ts;
+    const rampFactor = Math.max(0.55, 1 - elapsedSec / 90);
+    _wi.nextSpawnDelay =
+      (lv.spawnMinMs + Math.random() * (lv.spawnMaxMs - lv.spawnMinMs)) *
+      rampFactor;
+  }
+
+  // Move + collide with floor
+  const floorY = (_wi.viewH || _wi.canvas.height) - 60;
+  for (let i = _wi.active.length - 1; i >= 0; i--) {
+    const en = _wi.active[i];
+    en.y += _wi.fallSpeed * dt;
+    if (en.y >= floorY) {
+      _wi.active.splice(i, 1);
+      _wi.streak = 0;
+      _wi.total += 1;
+      if (_wi.shieldCharges > 0) {
+        _wi.shieldCharges -= 1;
+        _wiBurst(en.x, floorY, WI_COLORS.success);
+        _wi.banner = { text: 'SHIELD ACTIVE', until: ts + 900, duration: 900 };
+        if (typeof sfxCombo === 'function') sfxCombo();
+      } else {
+        _wiBurst(en.x, floorY, WI_COLORS.error);
+        _wi.lives -= 1;
+        _wi.shakeUntil = ts + 280;
+        if (typeof sfxExplode === 'function') sfxExplode();
+      }
+      _wiUpdateHUD();
+      if (_wi.lives <= 0) {
+        _wiGameOver();
+        return;
+      }
+    }
+  }
+
+  // Update power-up pickups (slow fall; vanish at floor)
+  for (let i = _wi.powerups.length - 1; i >= 0; i--) {
+    const p = _wi.powerups[i];
+    p.y += WI_CFG.powerupFallPxPerSec * dt;
+    if (p.y >= floorY) _wi.powerups.splice(i, 1);
+  }
+
+  // Update rings
+  for (let i = _wi.rings.length - 1; i >= 0; i--) {
+    const rg = _wi.rings[i];
+    rg.life -= dt;
+    if (rg.life <= 0) _wi.rings.splice(i, 1);
+  }
+
+  // Update particles
+  for (let i = _wi.particles.length - 1; i >= 0; i--) {
+    const p = _wi.particles[i];
+    p.x += p.vx * dt;
+    p.y += p.vy * dt;
+    p.vy += 260 * dt;
+    p.life -= dt;
+    if (p.life <= 0) _wi.particles.splice(i, 1);
+  }
+
+  // Update floating score labels
+  for (let i = _wi.floats.length - 1; i >= 0; i--) {
+    const f = _wi.floats[i];
+    f.y += f.vy * dt;
+    f.life -= dt;
+    if (f.life <= 0) _wi.floats.splice(i, 1);
+  }
+
+  _wiDraw(ts);
+  requestAnimationFrame(_wiLoop);
+}
+
    arcade-word-invaders-render.js — Canvas rendering + game-over handler
    Section: Arcade
    Dependencies: arcade-word-invaders.js (shares _wi state), arcade.js, core.js
