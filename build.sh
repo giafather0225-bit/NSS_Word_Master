@@ -171,6 +171,7 @@ cat \
   $JS/arcade-definition-match.js \
   $JS/arcade-spell-rush.js \
   $JS/arcade-crossword.js \
+  $JS/arcade-crossword-ui.js \
   $JS/arcade-math-invaders.js \
   $JS/arcade-sudoku.js \
   $JS/arcade-make24.js \

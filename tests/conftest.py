@@ -22,6 +22,19 @@ def engine():
         poolclass=StaticPool,
     )
     Base.metadata.create_all(bind=eng)
+    # Tables managed outside ORM (raw SQL migrations) — create manually
+    with eng.connect() as conn:
+        conn.execute(
+            __import__("sqlalchemy").text(
+                "CREATE TABLE IF NOT EXISTS streak_freezes ("
+                "  id           INTEGER PRIMARY KEY,"
+                "  used_date    TEXT NOT NULL,"
+                "  used_at      TEXT NOT NULL DEFAULT (datetime('now')),"
+                "  inventory_id INTEGER"
+                ")"
+            )
+        )
+        conn.commit()
     yield eng
     Base.metadata.drop_all(bind=eng)
 

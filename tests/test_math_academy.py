@@ -9,7 +9,7 @@ from backend.models import (
     StreakLog,
     XPLog,
 )
-from backend.routers.math_academy import (
+from backend.routers._math_academy_common import (
     _answers_equivalent,
     _normalize_math_answer,
 )
