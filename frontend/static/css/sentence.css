@@ -400,3 +400,23 @@ p:has(em):not(.feedback-content) {
   color: var(--text-secondary);
   border-bottom: 1px solid var(--border-default);
 }
+
+/* ── Skip step button ── */
+.sm-skip-row {
+  text-align: center;
+  margin-top: 10px;
+}
+.sm-skip-btn {
+  background: none;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  padding: 4px 14px;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+.sm-skip-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}

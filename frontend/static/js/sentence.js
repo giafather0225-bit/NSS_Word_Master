@@ -149,6 +149,9 @@ function renderSentenceScramble(el, item) {
         </div>
         <p id="sm-scr-feedback" class="sm-scr-feedback"></p>
         <p class="st-prog">${current} / ${total} &nbsp;·&nbsp; Phase 1 / 2</p>
+        <p class="sm-skip-row">
+            <button type="button" id="sm-scr-skip" class="sm-skip-btn">Skip this step</button>
+        </p>
     `;
 
     const bankEl   = el.querySelector('#sm-scr-bank');
@@ -197,6 +200,9 @@ function renderSentenceScramble(el, item) {
         });
         refreshCheck();
     }
+
+    const scrSkipBtn = el.querySelector('#sm-scr-skip');
+    if (scrSkipBtn) scrSkipBtn.addEventListener('click', () => { advanceToNextStage(); });
 
     resetBtn.addEventListener('click', () => { placed.length = 0; render(); });
 
@@ -250,11 +256,8 @@ function renderSentenceItem(el, item) {
             <button type="button" class="st-btn" id="sent-submit">Submit</button>
         </div>
         <p class="st-prog">${current} / ${total}</p>
-        <p style="text-align:center;margin-top:8px;">
-            <button type="button" id="sent-skip"
-                    style="background:none;border:none;color:var(--text-hint);font-size:var(--font-size-sm);cursor:pointer;text-decoration:underline;padding:4px 8px;">
-                Skip this step
-            </button>
+        <p class="sm-skip-row">
+            <button type="button" id="sent-skip" class="sm-skip-btn">Skip this step</button>
         </p>
     `;
 
