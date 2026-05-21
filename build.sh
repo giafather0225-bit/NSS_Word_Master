@@ -50,6 +50,7 @@ cat \
   $JS/home.js \
   $JS/home-tasks.js \
   $JS/home-stats.js \
+  $JS/parent-panel-charts.js \
   $JS/parent-panel.js \
   $JS/parent-panel-settings.js \
   $JS/parent-panel-habits.js \
