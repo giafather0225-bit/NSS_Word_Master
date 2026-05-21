@@ -162,9 +162,12 @@ cat \
 # Bundle C: word-manager + arcade
 cat \
   $JS/word-manager.js \
+  $JS/word-manager-words.js \
+  $JS/word-manager-test.js \
   $JS/arcade-sfx.js \
   $JS/arcade.js \
   $JS/arcade-word-invaders.js \
+  $JS/arcade-word-invaders-render.js \
   $JS/arcade-definition-match.js \
   $JS/arcade-spell-rush.js \
   $JS/arcade-crossword.js \

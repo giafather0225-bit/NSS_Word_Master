@@ -6,7 +6,7 @@
    ================================================================ */
 
 /** @tag SYSTEM @tag PWA @tag OFFLINE */
-const SW_VERSION = 'gia-sw-v11';
+const SW_VERSION = 'gia-sw-v12';
 const STATIC_CACHE = `${SW_VERSION}-static`;
 const DATA_CACHE   = `${SW_VERSION}-data`;
 
@@ -30,6 +30,9 @@ const APP_SHELL = [
     '/static/css/main-responsive.css',
     '/static/css/main-layout.css',
     '/static/css/toast.css',
+    // Splash + XP
+    '/static/css/splash.css',
+    '/static/css/xp.css',
     // Home + the primary subjects (Home is the default landing view;
     // CKLA + Diary are the most common navigation targets).
     '/static/css/home.css',
@@ -37,6 +40,22 @@ const APP_SHELL = [
     '/static/css/ckla.css',
     '/static/css/diary.css',
     '/static/css/diary-home.css',
+    '/static/css/diary-write.css',
+    '/static/css/diary-entry.css',
+    '/static/css/diary-calendar.css',
+    '/static/css/diary-sub.css',
+    // Review + Word Manager + Arcade
+    '/static/css/review.css',
+    '/static/css/review-hub.css',
+    '/static/css/word-manager.css',
+    '/static/css/arcade.css',
+    // Study stages
+    '/static/css/preview.css',
+    '/static/css/wordmatch.css',
+    '/static/css/fillblank.css',
+    '/static/css/spelling.css',
+    '/static/css/sentence.css',
+    '/static/css/finaltest.css',
     // Math academy core
     '/static/css/math-academy-sidebar.css',
     '/static/css/math-academy-stages.css',
@@ -53,6 +72,7 @@ const APP_SHELL = [
     // Feature bundles
     '/static/js/bundle-a.min.js',
     '/static/js/bundle-b.min.js',
+    '/static/js/bundle-c.min.js',
 ];
 
 // Precache APP_SHELL on install so the app boots offline after the very
