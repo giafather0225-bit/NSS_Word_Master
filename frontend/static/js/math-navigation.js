@@ -88,10 +88,19 @@ async function loadMathUnits(grade) {
         const data = await apiFetchJSON(`/api/math/academy/${encodeURIComponent(grade)}/units`);
         (data.units || []).forEach(u => {
             const opt = document.createElement('option');
-            opt.value = u;
-            opt.textContent = u.replace(/_/g, ' ');
+            opt.value = u.name;
+            if (u.is_locked) {
+                opt.textContent = u.name.replace(/_/g, ' ') + ' [locked]';
+                opt.disabled = true;
+                opt.dataset.locked = '1';
+            } else {
+                opt.textContent = u.name.replace(/_/g, ' ');
+            }
             sel.appendChild(opt);
         });
+        // Auto-select first unlocked unit if none selected
+        const firstUnlocked = (data.units || []).find(u => !u.is_locked);
+        if (firstUnlocked && !sel.value) sel.value = firstUnlocked.name;
     } catch (err) {
         console.warn('[math] Failed to load units:', err);
     }

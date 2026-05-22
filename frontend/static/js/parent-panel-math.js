@@ -114,21 +114,23 @@ function _ppMathUnitGrid(grade, units, summary) {
         return `<div class="pp-stage-chip ${cls}">${isDone ? `<i data-lucide="check"></i>` : ""}${escapeHtml(label)}</div>${i < _PP_MATH_STAGES.length - 1 ? `<span class="pp-stage-arrow">→</span>` : ""}`;
     }).join("");
 
-    // Per-unit cards
-    const cards = units.map(unitKey => {
+    // Per-unit cards — units is now [{name, is_locked, unit_test_passed}]
+    const cards = units.map(u => {
+        const unitKey = (typeof u === 'object' && u.name) ? u.name : u; // compat
+        const isLocked = typeof u === 'object' ? !!u.is_locked : false;
+        const unitPassed = typeof u === 'object' ? !!u.unit_test_passed : false;
         const num = unitKey.split("_")[0]; // e.g. "U1" or "misconceptions"
         const label = unitKey.split("_").slice(1).map(w => w[0]?.toUpperCase() + w.slice(1)).join(" ") || unitKey;
         const isWeak = weakAreas.some(l => l.startsWith(unitKey + "_") || l.startsWith(unitKey.replace("U", "L")));
-        // Without more API info we can't tell locked/current/done exactly.
         return `
-            <div class="pp-unit-card ${isWeak ? "pp-unit-card--weak" : ""}">
+            <div class="pp-unit-card ${isWeak ? "pp-unit-card--weak" : ""} ${isLocked ? "pp-unit-card--locked" : ""}">
                 <div class="pp-unit-card-head">
                     <span class="mono pp-unit-key">${escapeHtml(num.toUpperCase())}</span>
-                    ${isWeak ? `<i data-lucide="alert-triangle" class="pp-unit-icon-weak"></i>` : ""}
+                    ${isLocked ? `<i data-lucide="lock" class="pp-unit-icon-lock"></i>` : unitPassed ? `<i data-lucide="check-circle" class="pp-unit-icon-done"></i>` : isWeak ? `<i data-lucide="alert-triangle" class="pp-unit-icon-weak"></i>` : ""}
                 </div>
                 <div class="pp-unit-name">${escapeHtml(label || unitKey)}</div>
                 <div class="pp-unit-row">
-                    <div class="pp-unit-bar"><div class="pp-unit-bar-fill" style="width:0%"></div></div>
+                    <div class="pp-unit-bar"><div class="pp-unit-bar-fill" style="width:${unitPassed ? 100 : 0}%"></div></div>
                 </div>
             </div>`;
     }).join("");

@@ -51,10 +51,54 @@ def get_grades() -> dict:
 
 # @tag MATH @tag ACADEMY
 @router.get("/api/math/academy/{grade}/units")
-def get_units(grade: str) -> dict:
-    """List all units for a grade."""
+def get_units(grade: str, db: Session = Depends(get_db)) -> dict:
+    """
+    List all units for a grade with per-unit lock status.
+
+    Lock policy (MATH_SPEC): Unit N is locked until Unit N-1's unit test is
+    passed. Unit 1 (index 0) is always accessible. Test mode bypasses all locks.
+
+    Returns:
+        {
+          "grade": str,
+          "units": [{"name": str, "is_locked": bool, "unit_test_passed": bool}]
+        }
+    """
     grade = _validate_safe_id(grade, "grade", max_len=10)
-    units = _list_dirs(_safe_math_path(grade))
+    unit_names = _list_dirs(_safe_math_path(grade))
+
+    # Test mode check — bypass all locks.
+    tm_row = db.query(AppConfig).filter_by(key="test_mode").first()
+    test_mode = tm_row and tm_row.value == "true"
+
+    # Fetch all unit_test_passed flags in one query.
+    passed_units: set[str] = set()
+    if unit_names:
+        passed_rows = (
+            db.query(MathProgress.unit)
+            .filter(
+                MathProgress.grade == grade,
+                MathProgress.unit.in_(unit_names),
+                MathProgress.unit_test_passed == True,  # noqa: E712
+            )
+            .distinct()
+            .all()
+        )
+        passed_units = {r.unit for r in passed_rows}
+
+    units = []
+    for i, name in enumerate(unit_names):
+        if test_mode or i == 0:
+            is_locked = False
+        else:
+            # Locked until the previous unit's test was passed.
+            is_locked = unit_names[i - 1] not in passed_units
+        units.append({
+            "name": name,
+            "is_locked": is_locked,
+            "unit_test_passed": name in passed_units,
+        })
+
     return {"grade": grade, "units": units}
 
 

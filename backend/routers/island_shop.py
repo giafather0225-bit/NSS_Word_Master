@@ -317,7 +317,7 @@ def inventory_sell(body: SellBody, db: Session = Depends(get_db)):
     if inv.quantity <= 0:
         db.delete(inv)
 
-    balance = le.earn_lumi(db, refund, source=f"sell_decor_{si.id}")
+    balance = le.earn_lumi(db, source=f"sell_decor_{si.id}", amount=refund)
 
     db.commit()
     return {

@@ -324,8 +324,8 @@ def apply_study_gain(
 
     db.flush()
     return {
-        "hunger": new_hunger,
-        "happiness": new_happiness,
+        "hunger": prog.hunger,
+        "happiness": prog.happiness,
         "hunger_change": actual_hunger_change,
         "happiness_change": actual_happiness_change,
         "xp_gained": xp_gained,
@@ -437,9 +437,10 @@ def run_daily_batch(db: Session) -> dict:
             _log_care(
                 db,
                 character_progress_id=char_prog.id,
-                source="legend_streak_break",
+                action="decay",
                 hunger_change=0,
                 happiness_change=-10,
+                source="legend_streak_break",
             )
         legend_broken.append({
             "character_id": lp.character_id,
