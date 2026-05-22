@@ -74,6 +74,9 @@ XP_RULES_DEFAULT: dict[str, int] = {
     "math_kangaroo_complete":  5,
     "math_kangaroo_80":        5,
     "math_kangaroo_perfect":  10,
+    # Collocation — no per-day dedup (replayable bonus stage, similar to word_correct)
+    "collocation_correct":     3,  # per correct answer in collocation stage
+    "collocation_perfect":     5,  # bonus when all answers correct in one session
     # CKLA — dedup by action+date+detail(lesson_id or domain_num or grade)
     "ckla_lesson_complete":   15,  # lesson fully complete (Read+Words+WordWork)
     "ckla_domain_test_pass":  30,  # domain test passed
@@ -142,7 +145,7 @@ def get_arcade_daily_cap(db: Session) -> int:
 #   _DETAIL_DEDUP — dedup by (action + date + detail) so the same item can't be awarded twice
 #                   but different items of the same action type can each earn once
 #   all others   — dedup by (action + date) — awarded at most once per day globally
-_NO_DEDUP: frozenset[str] = frozenset({"word_correct"})
+_NO_DEDUP: frozenset[str] = frozenset({"word_correct", "collocation_correct"})
 _DETAIL_DEDUP: frozenset[str] = frozenset({
     "ckla_lesson_complete",   # once per lesson (detail = lesson_id)
     "ckla_domain_test_pass",  # once per domain (detail = domain_num)

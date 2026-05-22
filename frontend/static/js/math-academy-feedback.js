@@ -133,7 +133,11 @@ function showMathFeedback(result, problem, onNext, onRetry) {
         <div class="math-feedback-card">
             <div class="math-feedback-result" id="${titleId}">${result.is_correct ? '<i data-lucide="check-circle"></i> Correct!' : '<i data-lucide="x-circle"></i> Not quite'}</div>
             ${!result.is_correct ? `<div class="math-feedback-answer">Answer: ${result.correct_answer}</div>` : ''}
-            ${result.feedback ? `<div class="math-feedback-text">${_mathEsc(result.feedback)}</div>` : ''}
+            ${result.feedback
+                ? `<div class="math-feedback-text">${_mathEsc(result.feedback)}</div>`
+                : result.is_correct
+                    ? `<div class="math-feedback-text">Great work! Keep it up.</div>`
+                    : `<div class="math-feedback-text">Review the solution below and try the next one.</div>`}
             ${interactiveHtml}
             ${stepsHtml}
             ${cpaHtml}

@@ -125,6 +125,23 @@ def get_domains(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)
             len(ids) > 0 and all(lid in completed_set for lid in ids)
         )
 
+    # Bulk-fetch domain test histories from AppConfig in one query
+    history_keys = [f"ckla_domain_test_history_d{d.domain_num}_g{grade}" for d in domains]
+    history_rows = (
+        db.query(AppConfig)
+        .filter(AppConfig.key.in_(history_keys))
+        .all()
+    ) if domain_ids else []
+    history_map: dict[int, list] = {}
+    for row in history_rows:
+        # key format: ckla_domain_test_history_d{n}_g{grade}
+        try:
+            parts = row.key.split("_d")[1].split("_g")
+            dnum = int(parts[0])
+            history_map[dnum] = json.loads(row.value or "[]")
+        except (IndexError, ValueError, json.JSONDecodeError):
+            pass
+
     domain_list = []
     for d in domains:
         ids = all_lesson_ids_by_domain[d.id]
@@ -138,6 +155,9 @@ def get_domains(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)
             and not all_complete_by_num[prev_num]
         )
 
+        test_history = history_map.get(d.domain_num, [])
+        best_entry = max(test_history, key=lambda e: e.get("score_pct", 0)) if test_history else None
+
         domain_list.append({
             "id":              d.id,
             "domain_num":      d.domain_num,
@@ -147,6 +167,8 @@ def get_domains(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)
             "completed_count": sum(1 for lid in ids if lid in completed_set),
             "all_complete":    is_all_complete,
             "locked":          locked,
+            "test_history":    test_history[:3],   # last 3 attempts for UI
+            "best_score_pct":  best_entry["score_pct"] if best_entry else None,
         })
 
     return {

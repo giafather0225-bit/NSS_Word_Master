@@ -370,7 +370,27 @@ function renderSentenceItem(el, item) {
             if (inp) inp.disabled = false;
             si.disabled = false;
             si.textContent = "Submit";
-            setStatus("Tutor is sleeping — try again!");
+            setStatus("Tutor is sleeping — try again or continue.");
+            // Show a one-time "Continue without AI check" button so the student isn't blocked
+            const skipId = 'sm-skip-btn-' + item.id;
+            if (!el.querySelector('#' + skipId)) {
+                const skipBtn = document.createElement('button');
+                skipBtn.id = skipId;
+                skipBtn.className = 'sm-btn sm-btn-ghost';
+                skipBtn.textContent = 'Continue without AI check';
+                skipBtn.style.marginTop = '8px';
+                skipBtn.addEventListener('click', function() {
+                    skipBtn.remove();
+                    const inputRow = el.querySelector('#sm-input-row');
+                    if (inputRow) inputRow.remove();
+                    setStatus('Continuing — great effort!');
+                    smState.done[item.id] = true;
+                    const nextBtn = el.querySelector('#sm-next-btn');
+                    if (nextBtn) nextBtn.disabled = false;
+                });
+                const feedbackArea = el.querySelector('#sm-feedback-area') || si.parentNode;
+                if (feedbackArea) feedbackArea.appendChild(skipBtn);
+            }
         }
     });
 }

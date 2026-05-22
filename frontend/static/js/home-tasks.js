@@ -21,13 +21,19 @@ async function renderReminders() {
     clearTimeout(timer);
     if (!res.ok) return;
     const banners = await res.json();
+    const todayDate = new Date().toISOString().slice(0, 10);
     banners.forEach(b => {
+      // Skip banners the user dismissed today
+      if (b.key && localStorage.getItem('gia_dismissed_' + b.key + '_' + todayDate)) return;
       const div = document.createElement('div');
       div.className = 'reminder-banner' + (b.severity === 'danger' ? ' danger' : '');
       const closeBtn = document.createElement('button');
       closeBtn.className = 'reminder-close';
       closeBtn.setAttribute('aria-label', 'Dismiss');
-      closeBtn.addEventListener('click', () => div.remove());
+      closeBtn.addEventListener('click', () => {
+        div.remove();
+        if (b.key) localStorage.setItem('gia_dismissed_' + b.key + '_' + todayDate, '1');
+      });
       closeBtn.textContent = '×';
       div.appendChild(document.createTextNode(b.message || ''));
       div.appendChild(closeBtn);

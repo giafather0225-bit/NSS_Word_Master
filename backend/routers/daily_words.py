@@ -143,6 +143,12 @@ def daily_words_complete(body: DailyCompleteIn, db: Session = Depends(get_db)):
     """
     try:
         today_payload = dwe.get_today_words(db)
+
+        # Guard: if already completed today, skip all side-effects to avoid
+        # double SM-2 registration, double XP, and double streak mark.
+        if today_payload.get("already_done_today"):
+            return {"ok": True, "xp_awarded": 0}
+
         dwe.mark_daily_complete(db, body.learned_count)
 
         # Register today's studied words into the unified SM-2 Review queue.

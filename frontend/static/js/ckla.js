@@ -163,9 +163,15 @@ function _renderDomains(domains, rank, completionPct) {
           <div class="ckla-domain-num">Domain ${d.domain_num}</div>
           <div class="ckla-domain-title">${escapeHtml(d.title)}</div>
           <div class="ckla-domain-lessons">${d.completed_count != null ? `${d.completed_count}/` : ''}${d.lesson_count} lessons</div>
-          ${d.all_complete ? `<div class="ckla-domain-test-link"
-            onclick="event.stopPropagation(); openDomainTest(${d.domain_num})">
-            Domain Test →</div>` : ''}
+          ${d.all_complete ? `
+            <div class="ckla-domain-test-link"
+              onclick="event.stopPropagation(); openDomainTest(${d.domain_num})">
+              Domain Test →</div>
+            ${d.best_score_pct != null ? `
+            <div class="ckla-domain-test-score ${d.best_score_pct >= 80 ? 'ckla-domain-test-score--pass' : 'ckla-domain-test-score--fail'}">
+              Best: ${d.best_score_pct}%${d.test_history && d.test_history[0] ? ' · ' + d.test_history[0].date : ''}
+            </div>` : ''}
+          ` : ''}
         </div>
       `).join('')}
     </div>

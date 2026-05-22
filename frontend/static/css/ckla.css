@@ -72,6 +72,21 @@
 .ckla-domain-num { font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; }
 .ckla-domain-title { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-bottom: 8px; line-height: 1.3; }
 .ckla-domain-lessons { font-size: 0.75rem; color: var(--color-primary); }
+.ckla-domain-test-link {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--english-primary);
+  margin-top: 6px;
+  cursor: pointer;
+}
+.ckla-domain-test-link:hover { text-decoration: underline; }
+.ckla-domain-test-score {
+  font-size: 0.68rem;
+  margin-top: 2px;
+  color: var(--text-hint);
+}
+.ckla-domain-test-score--pass { color: var(--math-ink); }
+.ckla-domain-test-score--fail { color: var(--review-ink); }
 /* Locked domain card */
 .ckla-domain-card--locked {
   cursor: not-allowed;
