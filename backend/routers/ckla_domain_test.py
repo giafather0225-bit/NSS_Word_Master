@@ -155,7 +155,7 @@ async def submit_domain_test(
     """Grade domain test answers. Vocab (MC/fill) graded locally; Q&A via AI.
 
     ID ranges:
-      < 10000     → Q&A       (AI graded, score 0/1/2 → correct if score == 2)
+      < 10000     → Q&A       (AI graded, score 0/1/2 → correct if score >= 1)
       10000–19999 → vocab_mc  (correct_answer exact match)
       >= 20000    → vocab_fill (case-insensitive word match)
     """
@@ -213,7 +213,7 @@ async def submit_domain_test(
                 score = result.score
             except Exception:
                 score = 0
-            if score == 2:
+            if score >= 1:  # score 1 (partial) and 2 (full) both count as correct
                 correct += 1
             results.append({"question_id": qid, "score": score})
 

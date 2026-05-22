@@ -318,7 +318,7 @@ async def submit_answer(
         db.add(response)
 
         prog.questions_attempted = (prog.questions_attempted or 0) + 1
-        if result.score == 2:
+        if result.score >= 1:  # score 1 (partial) and 2 (full) both count as correct
             prog.questions_correct = (prog.questions_correct or 0) + 1
         prog.last_active = NOW()
 

@@ -25,7 +25,11 @@ function _renderQuestions() {
   const q    = qs[_cklaQIdx];
   const resp = _cklaResponses[q.id];
   const kindCls = { Literal: 'kind-lit', Inferential: 'kind-inf', Evaluative: 'kind-eva' };
-  const scoreIcon = ['<i data-lucide="x-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i>', '△', '<i data-lucide="check-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i>'];
+  const scoreIcon = [
+    '<i data-lucide="x-circle"    style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i>', // 0: wrong
+    '<i data-lucide="check"       style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i>', // 1: partial-correct (counts as pass, tip shown)
+    '<i data-lucide="check-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i>', // 2: fully correct
+  ];
 
   el.innerHTML = `
     ${(allAnswered || qaDone) ? '<div class="ckla-done-badge" style="margin-bottom:12px">Q&amp;A complete</div>' : ''}
@@ -47,7 +51,7 @@ function _renderQuestions() {
         ${resp
           ? (() => {
               const attempts = _cklaAttempts[q.id] || 0;
-              const canRetry  = resp.ai_score < 2 && attempts < 2 && !qaDone;
+              const canRetry  = resp.ai_score === 0 && attempts < 2 && !qaDone; // only retry wrong (score=0); partial (score=1) counts as correct
               return canRetry
                 ? `<button class="ckla-retry-btn" onclick="_retryQuestion(${q.id})">Try Again</button>`
                 : `<button class="ckla-arrow-btn" onclick="_cklaQNav(1)" ${_cklaQIdx === qs.length - 1 ? 'disabled' : ''}>Next ▶</button>`;
