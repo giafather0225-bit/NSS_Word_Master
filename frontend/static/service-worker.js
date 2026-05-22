@@ -6,7 +6,7 @@
    ================================================================ */
 
 /** @tag SYSTEM @tag PWA @tag OFFLINE */
-const SW_VERSION = 'gia-sw-v13';
+const SW_VERSION = 'gia-sw-v14';
 const STATIC_CACHE = `${SW_VERSION}-static`;
 const DATA_CACHE   = `${SW_VERSION}-data`;
 
