@@ -285,10 +285,11 @@ function _svgZonesHTML(charsByZone, completedZones, zoneUnlock) {
             : `onclick="_islandZoneClick('${zone}')"`;
 
         // Label sits BELOW the circle.
-        // Anchor = circle's bottom edge (cy + r) + small gap.
+        // Anchor = circle's bottom edge (cy + r) + gap (35 gives clearance for the
+        // 84px character-bubble circle that is centred on cy).
         // CSS uses translateX(-50%) so the wrap top aligns to anchor → label flows down.
         const lx = `${(cfg.cx / W * 100).toFixed(2)}%`;
-        const ly = `${((cfg.cy + cfg.r + 6) / H * 100).toFixed(2)}%`;
+        const ly = `${((cfg.cy + cfg.r + 35) / H * 100).toFixed(2)}%`;
 
         // Order: badges first (appear above label, just below circle) → label last.
         return `
@@ -413,22 +414,24 @@ function _bubblesHTML(charsByZone) {
         const happyWarn  = happy  < 30 ? ' gim-gauge--warn' : '';
         const evoCls     = char.ready_to_evolve ? ' gim-bubble-dot--evo' : '';
 
-        // Start at zone circle center (converted to %) so initial position is inside the zone
+        // Start bubble so the circle (84px tall) is centred on the zone cx/cy.
+        // Name-tag (≈28px incl. gap+padding) sits above the circle, so the button
+        // top is offset upward by that amount: cy - 28 SVG units.
         const zc       = _ZONE_CIRCLES[b.zone];
         const initLeft = zc ? (zc.cx / 1376 * 100).toFixed(2) + '%' : b.left;
-        const initTop  = zc ? (zc.cy / 768  * 100).toFixed(2) + '%' : b.top;
+        const initTop  = zc ? ((zc.cy - 28) / 768  * 100).toFixed(2) + '%' : b.top;
 
         return `
             <button class="gim-bubble gim-float"
                     data-zone="${b.zone}"
-                    style="left:${initLeft};top:${initTop};width:96px;height:auto;animation-delay:${b.delay};display:flex;flex-direction:column;align-items:center;gap:4px;background:transparent;border:none;padding:0 0 4px;cursor:pointer;pointer-events:auto;transition:left 3.5s ease-in-out,top 3.5s ease-in-out"
+                    style="left:${initLeft};top:${initTop};width:96px;height:auto;animation-delay:${b.delay};display:flex;flex-direction:column;align-items:center;gap:4px;background:transparent;border:none;padding:4px 0 4px;cursor:pointer;pointer-events:auto;transition:left 3.5s ease-in-out,top 3.5s ease-in-out"
                     onclick="_bubbleClick(this, '${escapeHtml(name)}', '${b.zone}', ${char.id || 0}, '${char.stage || 'baby'}', ${!!char.ready_to_evolve})"
                     aria-label="${name}" title="${name}">
+                <span style="background:rgba(255,255,255,.95);border-radius:999px;padding:2px 10px;font-size:11px;font-weight:800;color:#2a1f3d;white-space:nowrap;box-shadow:0 2px 6px rgba(40,20,80,.18);letter-spacing:.01em">${name}</span>
                 <span class="gim-bubble-dot${evoCls}"
                       style="width:84px;height:84px;background:rgba(255,255,255,.92);border:3px solid #fff;border-radius:50%;display:flex;align-items:center;justify-content:center;padding:8px;box-shadow:0 6px 18px rgba(40,20,80,.30);overflow:hidden">
                     ${imgHTML}
                 </span>
-                <span style="background:rgba(255,255,255,.95);border-radius:999px;padding:2px 10px;font-size:11px;font-weight:800;color:#2a1f3d;white-space:nowrap;box-shadow:0 2px 6px rgba(40,20,80,.18);letter-spacing:.01em">${name}</span>
                 <div class="gim-bubble-gauges">
                     <div class="gim-bubble-gauge gim-bubble-gauge--hunger${hungerWarn}" style="--g-pct:${Math.round(hunger)}%"></div>
                     <div class="gim-bubble-gauge gim-bubble-gauge--happy${happyWarn}"   style="--g-pct:${Math.round(happy)}%"></div>
