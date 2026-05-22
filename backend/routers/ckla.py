@@ -188,8 +188,11 @@ def get_lessons(domain_num: int, grade: int = Query(3, ge=3, le=8), db: Session 
     if not domain:
         raise HTTPException(status_code=404, detail="Domain not found")
 
+    test_mode_cfg = db.query(AppConfig).filter_by(key="test_mode").first()
+    test_mode = test_mode_cfg and test_mode_cfg.value == "true"
+
     order_cfg = db.query(AppConfig).filter_by(key=_CFG_DOMAIN_ORDER_FIXED).first()
-    if order_cfg and order_cfg.value == "true" and domain_num > 1:
+    if not test_mode and order_cfg and order_cfg.value == "true" and domain_num > 1:
         prev_domain = db.query(CKLADomain).filter_by(
             domain_num=domain_num - 1, grade=grade, is_active=True
         ).first()
