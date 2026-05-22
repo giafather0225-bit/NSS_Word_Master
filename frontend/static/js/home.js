@@ -5,8 +5,9 @@
    API endpoints: none (delegates to home-tasks.js / home-stats.js)
    ================================================================ */
 
-// Current view state
-let currentView = 'home'; // 'home' | 'english' | 'math' | 'diary'
+// Current view state — null on first load so DOMContentLoaded's switchView('home')
+// bypasses the same-view guard and triggers renderHomeDashboard() on initial render.
+let currentView = null; // null | 'home' | 'english' | 'math' | 'diary'
 
 // Compatibility shim — bare openIsland() calls (source in minified third-party
 // or service-worker cached chunk) redirect to the real entry point.
