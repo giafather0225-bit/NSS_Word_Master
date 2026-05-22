@@ -236,13 +236,18 @@
     gap: 12px; margin-top: 4px;
 }
 
-/* Char grid */
+/* Char grid — flex so last row (2 of 5) stays centred */
 .iob-char-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 12px;
 }
 .iob-char-card {
+    width: calc(33.333% - 10px); /* ~3-per-row, centred when 2 remain */
+    min-width: 100px;
+    max-width: 160px;
+    box-sizing: border-box;
     border: 2px solid var(--border-subtle);
     border-radius: var(--radius-lg);
     padding: 16px 8px;
