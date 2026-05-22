@@ -188,6 +188,7 @@ cat \
 # server restart invalidates stale browser / service-worker caches across
 # the board. No more bumping per-file versions by hand.
 HTML="frontend/templates/child.html"
+INGEST_HTML="frontend/templates/parent_ingest.html"
 if [ -f "$HTML" ]; then
   BUILD_ID=$(cat \
     $OUT/bundle-a.min.js $OUT/bundle-b.min.js $OUT/bundle-c.min.js \
@@ -208,6 +209,11 @@ if [ -f "$HTML" ]; then
   # BSD sed (macOS) and GNU sed (Linux) both accept `-i.bak` + cleanup.
   sed -i.bak -E "s/\?v=[A-Za-z0-9]+/?v=$BUILD_ID/g" "$HTML"
   rm -f "$HTML.bak"
+  # Apply same hash to parent_ingest.html (parent-ingest.js lives outside bundles)
+  if [ -f "$INGEST_HTML" ]; then
+    sed -i.bak -E "s/\?v=[A-Za-z0-9]+/?v=$BUILD_ID/g" "$INGEST_HTML"
+    rm -f "$INGEST_HTML.bak"
+  fi
   echo "  cache-bust applied: ?v=$BUILD_ID"
 fi
 
