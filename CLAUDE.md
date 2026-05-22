@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-21 — 라우터 57개(파일 63개) · JS 126개 · CSS 66개 · 서비스 20개 · 마이그레이션 68개 (최신: 063) · Parent Dashboard 6탭 · CKLA 4번째 과목 · Top Weaknesses 홈탭 · 부모 PIN 게이트 감사 · legacy Reward 제거 · core.js → core-fx/core-stage/core-vault 3분할 (805→542줄) · word-manager 3분할 · review-hub 2분할 · arcade-word-invaders 2분할 · arcade-crossword 2분할 · parent-panel 차트 분할 · child.js 3분할 · navigation.js 2분할 · dead code 정리 (parent-island.js, test_growth_theme.py)
+> Last updated: 2026-05-22 — 라우터 57개(파일 63개) · JS 126개 · CSS 66개 · 서비스 20개 · 마이그레이션 68개 (최신: 063) · Parent Dashboard 6탭 · CKLA 4번째 과목 · Top Weaknesses 홈탭 · 부모 PIN 게이트 감사 · legacy Reward 제거 · core.js → core-fx/core-stage/core-vault 3분할 (805→583줄) · word-manager 3분할 · review-hub 2분할 · arcade-word-invaders 2분할 · arcade-crossword 2분할 · parent-panel 차트 분할 · child.js 3분할 · navigation.js 2분할 · dead code 정리 (parent-island.js, test_growth_theme.py) · P2 전체 완료 · P3 완료 · build.sh parent_ingest.html 캐시버스팅 추가
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -1312,7 +1312,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 | ~~4~~ | ~~Island CSS 4개 파일~~ | ~~Work Principle #3 위반: hex 컬러 직접 사용~~ → **✅ 완료 (commit 0aaa0c0)** — 모든 hex → CSS 변수 마이그레이션, island-specific 토큰을 `theme.css`에 추가 | ✅ 해결됨 |
 | 5 | `backend/migrations/` | 067 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전. 062 최신, 059부터 단순 증가 적용 중 | 낮음 (시스템적으로 안전) |
 | ~~6~~ | ~~`models/system.py` `Reward`~~ | ~~legacy back-compat~~ → **✅ 완료 (2026-05-19, migration 062)** — 사용처 0건 확인 후 모델/라우터/테이블 삭제 | ✅ 해결됨 |
-| ~~10~~ | ~~600줄 초과 JS~~ | 기준 600줄로 완화 (2026-05-22). ~~500줄 기준: `parent-ingest.js` 582·`arcade.js` 561·`core.js` 546·`finaltest.js` 536·`arcade-word-builder.js` 525·`parent-panel-home.js` 512·`ckla.js` 503~~ → **✅ 해소됨** — 현재 600줄 초과 파일 없음. 과거 분할: ~~arcade-crossword.js 588~~ ✅ ~~parent-panel.js 526~~ ✅ ~~child.js 683~~ ✅ ~~navigation.js 674~~ ✅ ~~arcade-word-invaders 647~~ ✅ ~~word-manager 603~~ ✅ ~~review-hub 594~~ ✅ ~~parent-panel-home.js 566~~ ✅ | ✅ 해결됨 |
+| 10 | `finaltest.js` 608줄 | P2-1 XP 코드 추가 후 600 초과 (8줄). 분할 리스크 대비 효과 낮아 보류. 기준은 "~600줄" (tilde 허용). 재측정 기준: 기존 분할 완료분 — ~~arcade-crossword.js 588~~ ✅ ~~parent-panel.js 526~~ ✅ ~~child.js 683~~ ✅ ~~navigation.js 674~~ ✅ ~~arcade-word-invaders 647~~ ✅ ~~word-manager 603~~ ✅ ~~review-hub 594~~ ✅ ~~parent-panel-home.js 566~~ ✅ | 낮음 |
 | ~~11~~ | ~~500줄 초과 Python 2개~~ | ~~`services/xp_engine.py` 530·`routers/files_voca.py` 504~~ → **✅ 해소됨** — xp_engine 381줄·files_voca 169줄 (리팩토링 후 감소) | ✅ 해결됨 |
 | ~~12~~ | ~~컴포넌트 CSS hex 직접 사용 (13건)~~ | ~~`color: #fff` 5건 + 그라데이션 끝점 8건~~ → **✅ 완료 (2026-05-17)** — 모두 `var(--text-on-primary)` / `var(--bg-card)`로 교체. 남은 hex는 fallback 또는 arcade 캔버스 면제 | ✅ 해결됨 |
 

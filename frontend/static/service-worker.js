@@ -6,7 +6,7 @@
    ================================================================ */
 
 /** @tag SYSTEM @tag PWA @tag OFFLINE */
-const SW_VERSION = 'gia-sw-v12';
+const SW_VERSION = 'gia-sw-v13';
 const STATIC_CACHE = `${SW_VERSION}-static`;
 const DATA_CACHE   = `${SW_VERSION}-data`;
 
@@ -44,6 +44,13 @@ const APP_SHELL = [
     '/static/css/diary-entry.css',
     '/static/css/diary-calendar.css',
     '/static/css/diary-sub.css',
+    // Island
+    '/static/css/island-loop.css',
+    '/static/css/island-main.css',
+    '/static/css/island-meta.css',
+    '/static/css/island-screens.css',
+    '/static/css/island-system.css',
+    '/static/css/island-zones.css',
     // Review + Word Manager + Arcade
     '/static/css/review.css',
     '/static/css/review-hub.css',
