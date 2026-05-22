@@ -19,6 +19,7 @@ from backend.models.island import (
     IslandShopItem,
 )
 from backend.models.system import AppConfig
+from backend.services import island_production_engine as _prod_engine
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -158,6 +159,14 @@ def validate_evolution(
     if prog is None:
         raise EvolutionError("Character progress not found.")
 
+    # 0. Guard: already fully evolved (evolution_count == 2).
+    #    is_completed is the canonical flag; final-stage check is a fallback for
+    #    any data-inconsistency edge cases.
+    if prog.is_completed or prog.stage in _FINAL_STAGES:
+        raise EvolutionError(
+            "This character has already reached their final form and cannot evolve further."
+        )
+
     # 1. Stage compatibility.
     allowed_stages = _STONE_ALLOWED_STAGES[stone_type]
     if prog.stage not in allowed_stages:
@@ -286,6 +295,9 @@ def execute_evolution(
         prog.boost_active = True
         prog.boost_subject = char.subject
         _rebuild_boost_cache(db)
+        # P1-10: award today's lumi immediately so the player doesn't wait for
+        # the next app-start batch to receive their first daily production.
+        _prod_engine.award_first_production(db, character_progress_id)
 
     # Care-log entry.
     db.add(IslandCareLog(

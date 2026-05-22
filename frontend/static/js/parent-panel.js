@@ -139,6 +139,94 @@ function _ppRemovePin() {
     if (bg) bg.remove();
 }
 
+// ─── PIN Re-confirmation for destructive actions ──────────────
+
+/**
+ * Show an inline PIN prompt overlay and call `onConfirmed()` only after the
+ * user successfully re-enters the parent PIN.  Used for destructive actions
+ * (XP rule reset, streak recalc) so an unattended open panel cannot be abused.
+ *
+ * @param {string} label     - Short description shown above the PIN pad.
+ * @param {Function} onConfirmed - Zero-arg callback executed on correct PIN.
+ * @tag PARENT PIN
+ */
+function _ppConfirmWithPin(label, onConfirmed) {
+    // Remove any existing re-confirm overlay.
+    const existing = document.getElementById("pp-reconfirm-bg");
+    if (existing) existing.remove();
+
+    const overlay = document.createElement("div");
+    overlay.id = "pp-reconfirm-bg";
+    overlay.style.cssText = [
+        "position:fixed;inset:0;background:rgba(43,39,34,.55);",
+        "display:flex;align-items:center;justify-content:center;z-index:3000;",
+    ].join("");
+    overlay.innerHTML = `
+        <div class="pp-pin-box" style="background:var(--bg-card);padding:28px 24px;border-radius:var(--radius-xl);min-width:260px;text-align:center;box-shadow:var(--shadow-modal)">
+            <div class="pp-pin-title">Confirm Action</div>
+            <div class="pp-pin-sub" style="font-size:var(--font-size-sm);color:var(--text-secondary);margin-bottom:16px">${escapeHtml(label)}</div>
+            <div class="pin-dots" id="pp-rc-dots">
+                ${[0,1,2,3].map(() => `<div class="pin-dot"></div>`).join("")}
+            </div>
+            <div class="pin-error" id="pp-rc-err" style="min-height:18px"></div>
+            <div class="pin-pad">
+                ${[1,2,3,4,5,6,7,8,9].map(n =>
+                    `<button class="pin-key" onclick="_ppRcKey('${n}')">${n}</button>`
+                ).join("")}
+                <button class="pin-key" aria-label="Clear" onclick="_ppRcKey('clear')"><i data-lucide="eraser" style="width:18px;height:18px"></i></button>
+                <button class="pin-key" onclick="_ppRcKey('0')">0</button>
+                <button class="pin-key delete" aria-label="Backspace" onclick="_ppRcKey('del')"><i data-lucide="delete" style="width:18px;height:18px"></i></button>
+            </div>
+            <button class="pp-btn secondary" style="margin-top:12px;width:100%" onclick="document.getElementById('pp-reconfirm-bg').remove()">Cancel</button>
+        </div>`;
+    document.body.appendChild(overlay);
+    window._ppRcDigits = "";
+    window._ppRcCallback = onConfirmed;
+    if (typeof lucide !== "undefined") lucide.createIcons();
+}
+window._ppConfirmWithPin = _ppConfirmWithPin;
+
+/** Handle keypad input for the re-confirm PIN overlay. @tag PARENT PIN */
+function _ppRcKey(key) {
+    const d = window._ppRcDigits || "";
+    if (key === "del")        window._ppRcDigits = d.slice(0, -1);
+    else if (key === "clear") { window._ppRcDigits = ""; const e = document.getElementById("pp-rc-err"); if (e) e.textContent = ""; }
+    else if (d.length < 4)    window._ppRcDigits = d + key;
+
+    // Update dots.
+    const rc = window._ppRcDigits || "";
+    document.querySelectorAll("#pp-rc-dots .pin-dot").forEach((el, i) => el.classList.toggle("filled", i < rc.length));
+
+    if (rc.length === 4) setTimeout(_ppRcVerify, 200);
+}
+window._ppRcKey = _ppRcKey;
+
+/** Verify the re-confirm PIN, then run the stored callback. @tag PARENT PIN */
+async function _ppRcVerify() {
+    const pin = window._ppRcDigits || "";
+    try {
+        const res = await fetch("/api/parent/verify-pin", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ pin }),
+        });
+        if (res.ok) {
+            const bg = document.getElementById("pp-reconfirm-bg");
+            if (bg) bg.remove();
+            if (typeof window._ppRcCallback === "function") window._ppRcCallback();
+        } else {
+            window._ppRcDigits = "";
+            document.querySelectorAll("#pp-rc-dots .pin-dot").forEach(el => el.classList.remove("filled"));
+            const err = document.getElementById("pp-rc-err");
+            if (err) err.textContent = "Wrong PIN.";
+        }
+    } catch (_) {
+        window._ppRcDigits = "";
+        document.querySelectorAll("#pp-rc-dots .pin-dot").forEach(el => el.classList.remove("filled"));
+    }
+}
+window._ppRcVerify = _ppRcVerify;
+
 // ─── Shell ────────────────────────────────────────────────────
 
 /**

@@ -159,8 +159,16 @@ async function _ppSaveXPRules() {
 }
 
 /** Reset all XP overrides to defaults. @tag PARENT XP */
-async function _ppResetXPRules() {
-    if (!confirm("Reset all XP rules (and arcade cap) to defaults?")) return;
+function _ppResetXPRules() {
+    // Require PIN re-entry for this destructive action.
+    if (typeof window._ppConfirmWithPin === "function") {
+        window._ppConfirmWithPin("Confirm reset all XP rules to defaults", _ppDoResetXPRules);
+    } else {
+        _ppDoResetXPRules();
+    }
+}
+
+async function _ppDoResetXPRules() {
     const msg = document.getElementById("pp-xp-msg");
     try {
         const res = await window._ppFetch("/api/parent/xp-rules/reset", { method: "POST" });

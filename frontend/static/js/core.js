@@ -189,15 +189,52 @@ function $(id) {
 /**
  * fetch + res.ok check + res.json() as one atomic op.
  * Throws Error(`METHOD URL → STATUS STATUSTEXT: <body preview>`) on non-2xx.
+ * Automatically aborts after 15 seconds (AbortController timeout).
+ * Handles 401 → redirect to root; 5xx → server-error toast.
  * Callers can no longer forget the status check — that is the point.
  * @tag SYSTEM @tag API
  */
 async function apiFetchJSON(url, opts) {
-    const res = await fetch(url, opts);
+    // 15-second timeout via AbortController to prevent hung requests.
+    const controller = new AbortController();
+    const timerId = setTimeout(function() { controller.abort(); }, 15000);
+
+    // Merge caller signal if provided; prefer caller's own abort handling.
+    const mergedOpts = Object.assign({}, opts, {
+        signal: (opts && opts.signal) ? opts.signal : controller.signal,
+    });
+
+    let res;
+    try {
+        res = await fetch(url, mergedOpts);
+    } catch (err) {
+        clearTimeout(timerId);
+        if (err && err.name === "AbortError") {
+            const msg = "Request timed out. Please check your connection.";
+            if (typeof showToast === "function") showToast(msg, "error");
+            throw new Error("AbortError: " + url);
+        }
+        throw err;
+    }
+    clearTimeout(timerId);
+
     if (!res.ok) {
         let detail = "";
         try { detail = (await res.text()).slice(0, 200); } catch (_) {}
         const method = (opts && opts.method) || "GET";
+
+        // 401 Unauthorized → redirect to root (session expired / not logged in).
+        if (res.status === 401) {
+            window.location.href = "/";
+            throw new Error("401 Unauthorized — redirecting");
+        }
+
+        // 5xx Server Error → show a user-friendly toast.
+        if (res.status >= 500) {
+            const msg = "Server error. Please try again in a moment.";
+            if (typeof showToast === "function") showToast(msg, "error");
+        }
+
         throw new Error(`${method} ${url} → ${res.status} ${res.statusText}${detail ? ": " + detail : ""}`);
     }
     return res.json();

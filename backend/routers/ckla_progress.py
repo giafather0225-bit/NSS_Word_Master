@@ -41,6 +41,7 @@ from backend.services.streak_engine import mark_ckla_done
 from backend.services.island_care_engine import apply_subject_gain as _island_apply_gain
 from backend.routers._ckla_common import (
     _CFG_DAILY_GOAL,
+    _CFG_DOMAIN_ORDER_FIXED,
     NOW,
     ProgressUpdate, DifficultyRating, AnswerSubmit,
     _get_or_create_progress, _progress_dict, _badge_dict,
@@ -70,6 +71,30 @@ def update_lesson_progress(
     lesson = db.query(CKLALesson).filter_by(id=lesson_id).first()
     if not lesson:
         raise HTTPException(status_code=404, detail="Lesson not found")
+
+    # ── Server-side domain lock validation (prevent direct-POST bypass) ───────
+    order_cfg = db.query(AppConfig).filter_by(key=_CFG_DOMAIN_ORDER_FIXED).first()
+    if order_cfg and order_cfg.value == "true":
+        domain = db.query(CKLADomain).filter_by(id=lesson.domain_id).first()
+        if domain and domain.domain_num and domain.domain_num > 1:
+            prev_domain = db.query(CKLADomain).filter_by(
+                domain_num=domain.domain_num - 1, grade=domain.grade, is_active=True
+            ).first()
+            if prev_domain:
+                prev_lesson_ids = [
+                    r.id for r in
+                    db.query(CKLALesson.id).filter_by(domain_id=prev_domain.id, is_active=True).all()
+                ]
+                if prev_lesson_ids:
+                    prev_completed = db.query(CKLALessonProgress).filter(
+                        CKLALessonProgress.lesson_id.in_(prev_lesson_ids),
+                        CKLALessonProgress.completed == True,
+                    ).count()
+                    if prev_completed < len(prev_lesson_ids):
+                        raise HTTPException(
+                            status_code=403,
+                            detail=f"Complete Domain {domain.domain_num - 1} first.",
+                        )
 
     try:
         prog = _get_or_create_progress(db, lesson_id)

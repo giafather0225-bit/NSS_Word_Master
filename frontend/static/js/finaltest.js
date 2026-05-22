@@ -19,15 +19,16 @@
     var REQUIRED       = ['PREVIEW', 'A', 'B', 'C', 'D'];
 
     /* ── State ──────────────────────────────────────────────── */
-    var words       = [];
-    var mcOptions   = [];   // [[opt,opt,opt,opt], …] per word
-    var mcAnswers   = {};   // word.id → selected answer string
-    var fillAnswers = [];   // user's typed answers
-    var mcIndex     = 0;
-    var timerID     = null;
-    var secsLeft    = TIMER_SEC;
-    var phase       = null; // 'mc' | 'fill' | 'result'
-    var ctx         = {};   // {subject, textbook, lesson}
+    var words            = [];
+    var mcOptions        = [];   // [[opt,opt,opt,opt], …] per word
+    var mcAnswers        = {};   // word.id → selected answer string
+    var fillAnswers      = [];   // user's typed answers
+    var mcIndex          = 0;
+    var timerID          = null;
+    var secsLeft         = TIMER_SEC;
+    var phase            = null; // 'mc' | 'fill' | 'result'
+    var ctx              = {};   // {subject, textbook, lesson}
+    var sessionStartTime = null; // epoch ms — persisted in sessionStorage
 
     /* ── DOM helpers ────────────────────────────────────────── */
     function $id(id)  { return document.getElementById(id); }
@@ -80,6 +81,33 @@
     }
     function clearStages(c) {
         if (c.lesson) localStorage.removeItem(doneKey(c));
+    }
+
+    /* ── Session persistence (tab-reload protection) ────────── */
+    function _sessKey(c) {
+        return 'nss_ft_sess_' + c.subject + '_' + c.textbook + '_' + c.lesson;
+    }
+    function saveSession() {
+        if (!ctx.lesson || phase === 'result') return;
+        try {
+            sessionStorage.setItem(_sessKey(ctx), JSON.stringify({
+                startTime:   sessionStartTime,
+                phase:       phase,
+                mcIndex:     mcIndex,
+                mcAnswers:   mcAnswers,
+                fillAnswers: fillAnswers,
+                wordIds:     words.map(function(w) { return w.id; })
+            }));
+        } catch(e) {}
+    }
+    function loadSession() {
+        try {
+            var raw = sessionStorage.getItem(_sessKey(ctx));
+            return raw ? JSON.parse(raw) : null;
+        } catch(e) { return null; }
+    }
+    function clearSession() {
+        try { sessionStorage.removeItem(_sessKey(ctx)); } catch(e) {}
     }
 
     /* ── btn-exam: keep enabled if ever passed ──────────────── */
@@ -135,11 +163,15 @@
     }
 
     /* ── Timer ──────────────────────────────────────────────── */
-    function startTimer() {
-        secsLeft = TIMER_SEC;
+    function startTimer(savedStartTime) {
+        sessionStartTime = savedStartTime || Date.now();
+        var elapsed = Math.floor((Date.now() - sessionStartTime) / 1000);
+        secsLeft = Math.max(0, TIMER_SEC - elapsed);
         renderTimer();
+        if (secsLeft <= 0) { onTimeUp(); return; }
         timerID = setInterval(function() {
             secsLeft--;
+            saveSession();   // persist elapsed time every second
             renderTimer();
             if (secsLeft <= 0) {
                 clearInterval(timerID);
@@ -206,32 +238,64 @@
 
         // (pass flag saved only on 90%+ score, not here)
 
-        // Build MC option sets (1 correct + 3 random wrong)
-        words = shuffle(words);
+        // Restore in-progress session if one exists for this lesson
+        var saved = loadSession();
+        var savedStartTime = null;
+        var restoreToFill  = false;
+
+        if (saved && Array.isArray(saved.wordIds) && saved.wordIds.length === words.length) {
+            // Re-order words to match saved shuffle
+            var idMap = {};
+            words.forEach(function(w) { idMap[w.id] = w; });
+            var restored = saved.wordIds.map(function(id) { return idMap[id]; }).filter(Boolean);
+            if (restored.length === words.length) {
+                words        = restored;
+                mcAnswers    = saved.mcAnswers   || {};
+                fillAnswers  = saved.fillAnswers || new Array(words.length).fill('');
+                mcIndex      = Math.min(saved.mcIndex || 0, words.length);
+                savedStartTime  = saved.startTime   || null;
+                restoreToFill   = (saved.phase === 'fill');
+            }
+        }
+
+        // (Re-)build MC option sets — deterministic per word so restored answers still match
+        if (!saved || !Array.isArray(saved.wordIds)) {
+            // Fresh session — shuffle words first
+            words = shuffle(words);
+        }
         mcOptions = words.map(function(w) {
             var pool = shuffle(words.filter(function(x) { return x.id !== w.id; }));
             var wrong = pool.slice(0, 3).map(function(x) { return x.answer; });
             return shuffle([w.answer].concat(wrong));
         });
 
-        // Reset state
-        mcAnswers   = {};
-        fillAnswers = new Array(words.length).fill('');
-        mcIndex     = 0;
+        if (!saved || !Array.isArray(saved.wordIds)) {
+            // Fresh session — reset state
+            mcAnswers   = {};
+            fillAnswers = new Array(words.length).fill('');
+            mcIndex     = 0;
+        }
 
-        startTimer();
-        showMC();
+        startTimer(savedStartTime);
+        if (restoreToFill) showFill(); else showMC();
     }
 
     /* ── Part 1: Multiple Choice ────────────────────────────── */
     function showMC() {
         phase = 'mc';
+        saveSession();
         updateProgress();
         eo('part-label').textContent = 'Part 1 — Multiple Choice  ' + (mcIndex + 1) + ' / ' + words.length;
 
         var w    = words[mcIndex];
         var opts = mcOptions[mcIndex];
         var def  = getDef(w);
+        // If this question was already answered in a previous session, auto-advance
+        if (mcAnswers[w.id] !== undefined) {
+            mcIndex++;
+            if (mcIndex >= words.length) { showFill(); return; }
+            else { showMC(); return; }
+        }
 
         var optHTML = opts.map(function(opt, i) {
             return '<button class="eo-mc-opt" data-val="' + esc(opt) + '">' +
@@ -328,6 +392,7 @@
     /* ── Submit & Score ─────────────────────────────────────── */
     function submitFill() {
         stopTimer();
+        clearSession();   // test submitted — session no longer needed
         // Flush any un-saved inputs
         if (eo('body')) {
             eo('body').querySelectorAll('.eo-fill-inp').forEach(function(inp) {
@@ -503,6 +568,7 @@
     /* ── Close overlay ──────────────────────────────────────── */
     function closeExam() {
         stopTimer();
+        if (phase === 'result') clearSession();  // completed — purge session
         var overlay = $id('exam-overlay');
         if (!overlay) return;
         overlay.classList.add('closing');

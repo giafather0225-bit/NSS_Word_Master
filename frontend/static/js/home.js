@@ -32,6 +32,9 @@ let _englishReviewDue = 0;
  * @param {'home'|'english'|'math'|'diary'} view
  */
 function switchView(view) {
+  // P1-11: race-condition guard — bail out if we're already on this view to
+  // prevent duplicate API calls and state resets on rapid navigation clicks.
+  if (view === currentView) return;
   currentView = view;
   document.body.dataset.view = view;
 

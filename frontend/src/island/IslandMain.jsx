@@ -75,15 +75,23 @@ async function openIslandMain() {
         fetch('/api/xp/summary').then(r => r.json()),
         fetch('/api/island/daily').then(r => r.json()).catch(() => null),
     ]).then(([statusData, xpData, dailyData]) => {
-        _islandStatus = statusData;
-        _islandStreak = xpData.streak_days ?? 0;
-        _islandDaily  = dailyData;
-        _renderIslandMap();
-        _startCharWandering();
-        if (typeof lucide !== 'undefined') lucide.createIcons();
-        if (typeof checkIslandNotifications === 'function') checkIslandNotifications();
-        _scheduleNightSwitch();
-    }).catch(() => _renderIslandError());
+        try {
+            _islandStatus = statusData;
+            _islandStreak = xpData.streak_days ?? 0;
+            _islandDaily  = dailyData;
+            _renderIslandMap();
+            _startCharWandering();
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            if (typeof checkIslandNotifications === 'function') checkIslandNotifications();
+            _scheduleNightSwitch();
+        } catch (renderErr) {
+            console.error('[Island] render error:', renderErr);
+            _renderIslandError();
+        }
+    }).catch((fetchErr) => {
+        console.error('[Island] fetch error:', fetchErr);
+        _renderIslandError();
+    });
 }
 
 /** @tag SHOP */

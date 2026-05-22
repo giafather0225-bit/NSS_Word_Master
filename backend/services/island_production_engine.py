@@ -85,6 +85,52 @@ def run_daily_production(db: Session) -> dict:
     return {"produced": total_lumi, "characters": processed, "skipped": skipped}
 
 
+# @tag ISLAND @tag AWARD
+def award_first_production(db: Session, character_progress_id: int) -> int:
+    """
+    Immediately award today's Lumi for a character that just became completed.
+
+    Called from island_service.execute_evolution() when is_completed is first
+    set True, so the player doesn't have to wait for the next app-start batch.
+
+    Returns:
+        Amount of Lumi awarded (0 if already awarded today or no production value).
+    """
+    from backend.models.island import IslandCharacter  # local to avoid circular
+
+    prog = db.get(IslandCharacterProgress, character_progress_id)
+    if prog is None:
+        return 0
+
+    today_str = str(_today())
+    today_date = _today()
+
+    # Already produced today (e.g. batch ran earlier this same startup).
+    if prog.last_production_date == today_str:
+        return 0
+
+    char = db.get(IslandCharacter, prog.character_id) if prog.character_id else None
+    if char is None:
+        return 0
+
+    amount = char.lumi_production
+    if prog.stage == "final_b":
+        amount += int(char.xp_boost_b_pct)
+    if amount <= 0:
+        return 0
+
+    earn_lumi(
+        db,
+        source="production",
+        amount=amount,
+        character_progress_id=prog.id,
+        earned_date=today_date,
+    )
+    prog.last_production_date = today_str
+    db.flush()
+    return amount
+
+
 # @tag ISLAND
 def get_production_summary(db: Session) -> dict:
     """

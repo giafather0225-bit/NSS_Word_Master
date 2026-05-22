@@ -8,6 +8,7 @@ API endpoints: called by study/math/diary/review routers + main.py lifespan
 from datetime import date, datetime, timedelta, timezone
 from typing import Optional
 
+from sqlalchemy import func as sqla_func, update as sqla_update
 from sqlalchemy.orm import Session
 
 from backend.models.island import (
@@ -180,8 +181,6 @@ def apply_decay(db: Session, character_progress_id: int) -> dict:
 
     # ── Hunger decay ──────────────────────────────────────────────────────
     hunger_delta = -int(elapsed_days * hunger_decay_rate)
-    new_hunger = _clamp(prog.hunger + hunger_delta)
-    actual_hunger_change = new_hunger - prog.hunger
 
     # ── Happiness decay ───────────────────────────────────────────────────
     # Find how many days have passed without any study activity.
@@ -197,13 +196,27 @@ def apply_decay(db: Session, character_progress_id: int) -> dict:
     max_events = elapsed_days // 2
     happiness_decay_events = min(happiness_decay_events, max_events)
     happiness_delta = -int(happiness_decay_events * happiness_decay_rate)
-    new_happiness = _clamp(prog.happiness + happiness_delta)
-    actual_happiness_change = new_happiness - prog.happiness
 
-    # ── Apply ─────────────────────────────────────────────────────────────
-    prog.hunger = new_hunger
-    prog.happiness = new_happiness
-    prog.last_decay_date = str(today)
+    # Snapshot before-state for accurate delta calculation.
+    old_hunger = prog.hunger
+    old_happiness = prog.happiness
+
+    # ── Apply (atomic UPDATE to prevent lost-write race) ──────────────────
+    db.execute(
+        sqla_update(IslandCharacterProgress)
+        .where(IslandCharacterProgress.id == character_progress_id)
+        .values(
+            hunger=sqla_func.min(100, sqla_func.max(0, IslandCharacterProgress.hunger + hunger_delta)),
+            happiness=sqla_func.min(100, sqla_func.max(0, IslandCharacterProgress.happiness + happiness_delta)),
+            last_decay_date=str(today),
+        )
+        .execution_options(synchronize_session=False)
+    )
+    db.refresh(prog)
+    new_hunger = prog.hunger
+    new_happiness = prog.happiness
+    actual_hunger_change = new_hunger - old_hunger
+    actual_happiness_change = new_happiness - old_happiness
 
     if actual_hunger_change != 0 or actual_happiness_change != 0:
         _log_care(
@@ -260,13 +273,24 @@ def apply_study_gain(
     # Completed characters keep their gauges maxed; gains still apply (no decay).
     hunger_delta, happiness_delta = gains
 
-    new_hunger = _clamp(prog.hunger + hunger_delta)
-    new_happiness = _clamp(prog.happiness + happiness_delta)
-    actual_hunger_change = new_hunger - prog.hunger
-    actual_happiness_change = new_happiness - prog.happiness
+    # Snapshot before-state for accurate delta calculation.
+    old_hunger = prog.hunger
+    old_happiness = prog.happiness
 
-    prog.hunger = new_hunger
-    prog.happiness = new_happiness
+    # Atomic clamped UPDATE — prevents lost-update race with concurrent requests.
+    db.execute(
+        sqla_update(IslandCharacterProgress)
+        .where(IslandCharacterProgress.id == character_progress_id)
+        .values(
+            hunger=sqla_func.min(100, sqla_func.max(0, IslandCharacterProgress.hunger + hunger_delta)),
+            happiness=sqla_func.min(100, sqla_func.max(0, IslandCharacterProgress.happiness + happiness_delta)),
+        )
+        .execution_options(synchronize_session=False)
+    )
+    db.refresh(prog)
+
+    actual_hunger_change = prog.hunger - old_hunger
+    actual_happiness_change = prog.happiness - old_happiness
 
     action = "feed" if hunger_delta > 0 else "play"
     if happiness_delta > 0 and hunger_delta == 0:

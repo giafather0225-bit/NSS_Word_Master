@@ -202,6 +202,22 @@ def character_evolve(body: EvolveBranchBody, db: Session = Depends(get_db)):
     prog = db.get(IslandCharacterProgress, body.character_progress_id)
     if prog is None:
         raise HTTPException(404, "Character progress not found.")
+
+    # ── P1-12 router-level guards (defense-in-depth before calling the service) ──
+    _FINAL = {"final_a", "final_b"}
+    if prog.is_completed or (prog.stage in _FINAL):
+        raise HTTPException(400, "This character has already reached their final form.")
+    if not prog.is_legend_type and ((prog.hunger or 0) < 20 or (prog.happiness or 0) < 20):
+        low = []
+        if (prog.hunger or 0) < 20:
+            low.append(f"Hunger ({prog.hunger})")
+        if (prog.happiness or 0) < 20:
+            low.append(f"Happiness ({prog.happiness})")
+        raise HTTPException(
+            400,
+            f"Both gauges must be at least 20 to evolve. Low: {', '.join(low)}.",
+        )
+
     stage = prog.stage or "baby"
     branch = (body.branch or "a").lower()
     if prog.is_legend_type:

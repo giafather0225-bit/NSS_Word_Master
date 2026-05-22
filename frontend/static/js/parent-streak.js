@@ -160,8 +160,16 @@ async function _ppSaveStreakRule() {
     }
 }
 
-/** POST recalc last 7d, then reload the tab. @tag PARENT STREAK */
-async function _ppRecalcStreak() {
+/** POST recalc last 7d, then reload the tab. PIN re-verification required. @tag PARENT STREAK */
+function _ppRecalcStreak() {
+    if (typeof window._ppConfirmWithPin === "function") {
+        window._ppConfirmWithPin("Confirm recalculate streak (last 7 days)", _ppDoRecalcStreak);
+    } else {
+        _ppDoRecalcStreak();
+    }
+}
+
+async function _ppDoRecalcStreak() {
     const msg = document.getElementById("pp-streak-msg");
     try {
         const res = await window._ppFetch("/api/parent/streak-recalc?days=7", { method: "POST" });

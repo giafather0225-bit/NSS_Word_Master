@@ -23,6 +23,7 @@ from backend.models.island import (
 )
 from backend.models.gamification import XPLog
 from backend.models.goals import WeeklyGoal
+from backend.models.system import AppConfig
 from backend.services import lumi_engine as le
 from backend.services import island_care_engine as care
 from backend.services import island_production_engine as prod
@@ -128,11 +129,42 @@ def zone_unlock(body: ZoneUnlockBody, db: Session = Depends(get_db)):
 # ─────────────────────────────────────────────────────────────────────────────
 
 # @tag ISLAND
+_BATCH_COOLDOWN_HOURS = 12
+_BATCH_LAST_RUN_KEY   = "island_batch_last_run"
+
 @router.post("/daily")
 def daily_batch(db: Session = Depends(get_db)):
-    """App-open batch: decay all active characters + run lumi production."""
+    """App-open batch: decay all active characters + run lumi production.
+    Skipped if called within _BATCH_COOLDOWN_HOURS to prevent double-decay on
+    rapid app restarts.
+    """
+    now = datetime.now(timezone.utc)
+    cfg_row = db.query(AppConfig).filter_by(key=_BATCH_LAST_RUN_KEY).first()
+    if cfg_row:
+        try:
+            last_run = datetime.fromisoformat(cfg_row.value)
+            if last_run.tzinfo is None:
+                last_run = last_run.replace(tzinfo=timezone.utc)
+            elapsed_hours = (now - last_run).total_seconds() / 3600
+            if elapsed_hours < _BATCH_COOLDOWN_HOURS:
+                return {
+                    "decay": {"processed": 0, "skipped": 0, "legend_streak_broken": []},
+                    "production": {"produced": 0},
+                    "ok": True,
+                    "skipped_reason": "cooldown",
+                }
+        except (ValueError, TypeError):
+            pass
+
     decay_result = care.run_daily_batch(db)
     prod_result = prod.run_daily_production(db)
+
+    # Update last-run timestamp.
+    if cfg_row:
+        cfg_row.value = now.isoformat()
+    else:
+        db.add(AppConfig(key=_BATCH_LAST_RUN_KEY, value=now.isoformat()))
+
     db.commit()
     return {"decay": decay_result, "production": prod_result, "ok": True}
 
