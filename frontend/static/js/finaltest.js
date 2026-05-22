@@ -437,6 +437,12 @@
         // Save permanent pass on 90%+ — unlocks exam button forever
         if (passed) {
             savePass(ctx);
+            // Award XP for passing the final test (P2-1: was missing)
+            fetch('/api/xp/award', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ action: 'final_test_pass', detail: ctx.lesson }),
+            }).catch(function() {}); // fire-and-forget; ignore network errors
             // Cheer from the Island guide character (L2): one final bounce
             // on top of the existing particle burst + Perfect banner.
             if (window.IslandGuide && typeof window.IslandGuide.celebrate === 'function') {
