@@ -144,6 +144,13 @@ self.addEventListener('fetch', (event) => {
     // Same-origin only.
     if (url.origin !== self.location.origin) return;
 
+    // CSS — network-first so style changes apply immediately without
+    // requiring a manual cache clear (Safari cannot easily clear SW cache).
+    if (req.method === 'GET' && url.pathname.startsWith('/static/css/')) {
+        event.respondWith(networkFirst(req, STATIC_CACHE));
+        return;
+    }
+
     if (isStaticAsset(url)) {
         event.respondWith(cacheFirst(req, STATIC_CACHE));
         return;
