@@ -46,10 +46,16 @@ async function ppRenderReport(body) {
 
                 <p class="pp-form-hint">${emailHint}</p>
 
-                <div style="display:flex;gap:8px;flex-wrap:wrap">
-                    <button class="pp-btn primary"   onclick="_ppSaveReportSchedule()">Save Schedule</button>
-                    <button class="pp-btn secondary" onclick="_ppSendReportNow()">Send Now</button>
-                    <button class="pp-btn secondary" onclick="_ppPreviewReport()">Preview Data</button>
+                <button class="pp-btn primary pp-btn--full" onclick="_ppSaveReportSchedule()">
+                    <i data-lucide="save"></i>Save Schedule
+                </button>
+                <div class="pp-report-actions">
+                    <button class="pp-btn ghost pp-btn--sm" onclick="_ppPreviewReport()">
+                        <i data-lucide="eye"></i>Preview Data
+                    </button>
+                    <button class="pp-btn ghost pp-btn--sm pp-btn--warn" onclick="_ppSendReportNow()">
+                        <i data-lucide="send"></i>Send Now
+                    </button>
                 </div>
                 <p id="pp-rep-msg" class="pp-form-msg"></p>
                 <pre id="pp-rep-preview" class="pp-rep-preview" hidden></pre>
