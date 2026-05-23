@@ -83,14 +83,24 @@ def onboarding_complete(db: Session = Depends(get_db)):
 
     Zone 1-4 sequential opening is a UX-only onboarding effect; all main zones
     must be playable immediately after onboarding completes.
+
+    Upserts zone rows in case migration 018 seed was skipped (e.g. DB created
+    before migration ran or seed was interrupted).
     """
     set_cfg(db, "island_initialized", "true")
     now = datetime.now(timezone.utc)
     for zone in ZONE_UNLOCK_CHAIN:
         row = db.query(IslandZoneStatus).filter_by(zone=zone).first()
-        if row and not row.is_unlocked:
+        if row is None:
+            # Row missing — insert it as unlocked (covers DB with missing seed)
+            db.add(IslandZoneStatus(zone=zone, is_unlocked=True, unlocked_at=now))
+        elif not row.is_unlocked:
             row.is_unlocked = True
             row.unlocked_at = now
+    # Also ensure the legend zone row exists (locked — not part of ZONE_UNLOCK_CHAIN)
+    legend = db.query(IslandZoneStatus).filter_by(zone="legend").first()
+    if legend is None:
+        db.add(IslandZoneStatus(zone="legend", is_unlocked=False))
     db.commit()
     return {"ok": True}
 
