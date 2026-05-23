@@ -8,8 +8,9 @@
 
 /** Settings tab entry. @tag PARENT SETTINGS */
 async function _ppSettings(body) {
+    let _step = "fetch";
     try {
-        const _safe = (p, fb) => p.catch(() => fb);
+        const _safe = (p, fb) => p.catch((e) => { console.warn("[parent-settings] _safe caught:", e); return fb; });
         const [testMode, streak, xpRules, reportSched, islandCfg, sysStatus, sectionsResp] = await Promise.all([
             _safe(apiFetchJSON("/api/parent/test-mode"),          { test_mode: false }),
             _safe(apiFetchJSON("/api/parent/streak"),             { rule: {} }),
@@ -20,22 +21,38 @@ async function _ppSettings(body) {
             _safe(apiFetchJSON("/api/parent/home-sections"),      { sections: {} }),
         ]);
 
+        console.log("[parent-settings] fetched:", { testMode, streak, xpRules, reportSched, islandCfg, sysStatus, sectionsResp });
+
+        _step = "render-access";
+        const _accessCard    = _ppSetAccessCard(testMode, islandCfg);
+        _step = "render-sections";
+        const _sectionsCard  = _ppSetHomeSectionsCard(sectionsResp.sections || {});
+        _step = "render-streak";
+        const _streakCard    = _ppSetStreakRuleCard(streak.rule || {});
+        _step = "render-xp";
+        const _xpCard        = _ppSetXpRulesCard(xpRules.rules || {});
+        _step = "render-report";
+        const _reportCard    = _ppSetReportCard(reportSched);
+        _step = "render-system";
+        const _sysCard       = _ppSetSystemCard(sysStatus);
+        _step = "inject";
+
         body.innerHTML = `
             <div class="pp-set-grid pp-set-grid--top">
-                ${_ppSetAccessCard(testMode, islandCfg)}
-                ${_ppSetHomeSectionsCard(sectionsResp.sections || {})}
+                ${_accessCard}
+                ${_sectionsCard}
             </div>
             <div class="pp-set-grid pp-set-grid--mid">
-                ${_ppSetStreakRuleCard(streak.rule || {})}
-                ${_ppSetXpRulesCard(xpRules.rules || {})}
+                ${_streakCard}
+                ${_xpCard}
             </div>
-            ${_ppSetReportCard(reportSched)}
-            ${_ppSetSystemCard(sysStatus)}`;
+            ${_reportCard}
+            ${_sysCard}`;
 
         if (typeof lucide !== "undefined") lucide.createIcons();
     } catch (err) {
-        console.error("[parent-settings] load failed:", err);
-        body.innerHTML = `<p class="pp-error-pad">Failed to load Settings.</p>`;
+        console.error(`[parent-settings] FAILED at step="${_step}":`, err);
+        body.innerHTML = `<p class="pp-error-pad">Failed to load Settings. [${_step}]</p>`;
     }
 }
 

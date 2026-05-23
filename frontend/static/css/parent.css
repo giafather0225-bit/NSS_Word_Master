@@ -338,19 +338,8 @@
 .pp-btn--full     { width: 100%; justify-content: center; }
 .pp-btn-pin-cancel { margin-top: 14px; width: 100%; background: none; border: 1px solid var(--line); color: var(--ink-3); border-radius: var(--r-sm); padding: 8px; font-size: 13px; font-weight: 600; cursor: pointer; }
 
-/* ─── Toggle switch ───────────────────────────────────────────── */
-.pp-toggle { position: relative; width: 40px; height: 22px; flex-shrink: 0; display: inline-block; }
-.pp-toggle input { opacity: 0; width: 0; height: 0; }
-.pp-toggle-track {
-  position: absolute; inset: 0; background: var(--line);
-  border-radius: 999px; cursor: pointer; transition: background 0.15s;
-}
-.pp-toggle input:checked + .pp-toggle-track { background: var(--ink-1); }
-.pp-toggle-track::after {
-  content: ""; position: absolute; width: 16px; height: 16px; left: 3px; top: 3px;
-  background: var(--paper); border-radius: 50%; transition: transform 0.15s;
-}
-.pp-toggle input:checked + .pp-toggle-track::after { transform: translateX(18px); }
+/* ─── Toggle switch (consolidated — see lines ~1896 for full definition) ── */
+/* Removed old conflicting rules; .pp-toggle is defined once below. */
 
 /* ─── Form rows ───────────────────────────────────────────────── */
 .pp-form-row {
@@ -667,6 +656,25 @@
 }
 .pp-streak-radio input { cursor: pointer; }
 .pp-streak-actions { display: flex; align-items: center; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+
+/* Streak Rule card — new class variant used in _ppSetStreakRuleCard */
+.pp-streak-check-label {
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+  padding: 5px 10px; border: 1px solid var(--line); border-radius: var(--r-sm);
+  background: var(--line-2); font-size: 13px; color: var(--ink-1);
+  user-select: none; transition: background 0.15s, border-color 0.15s, color 0.15s;
+}
+.pp-streak-check-label:has(.pp-streak-check-input:checked) {
+  background: rgba(16,185,129,0.12); border-color: var(--ok); color: var(--ok-ink);
+}
+.pp-streak-check-input { display: none; }
+.pp-streak-check-icon { width: 14px; height: 14px; flex-shrink: 0; }
+.pp-streak-mode-row { display: flex; flex-direction: column; gap: 6px; }
+.pp-streak-mode-label {
+  display: flex; align-items: flex-start; gap: 8px; font-size: 13px;
+  color: var(--ink-2); cursor: pointer; line-height: 1.4;
+}
+.pp-streak-mode-label input[type="radio"] { margin-top: 2px; flex-shrink: 0; accent-color: var(--ok); }
 .pp-streak-msg { font-size: 12px; font-weight: 600; }
 .pp-streak-msg--ok  { color: var(--ok); }
 .pp-streak-msg--err { color: var(--bad); }
@@ -942,6 +950,19 @@
 .pp-rail-icon-warn    { color: var(--warn);            }
 .pp-rail-icon-diary   { color: var(--diary-primary);   }
 .pp-rail-icon-rewards { color: var(--rewards-primary); }
+
+/* ─── Alert list items (home rail) ───────────────────────────── */
+.pp-alert-list { display: flex; flex-direction: column; }
+.pp-alert {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 20px; font-size: 12.5px; font-weight: 600;
+  border-top: 1px solid var(--line-2);
+}
+.pp-alert i { width: 13px; height: 13px; flex-shrink: 0; }
+.pp-alert--warn { color: var(--warn-ink); }
+.pp-alert--warn i { color: var(--warn); }
+.pp-alert--info { color: var(--ink-2); }
+.pp-alert--info i { color: var(--english-primary); }
 
 .pp-rail-row {
   padding: 14px 20px; border-top: 1px solid var(--line-2);
