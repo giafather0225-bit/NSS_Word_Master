@@ -38,19 +38,24 @@ function _ppHomeMathCard() {
 /** Defer-load mini Reading + Math card bodies. @tag PARENT */
 async function _ppHomeLoadMiniCards() {
     const [ckla, math] = await Promise.all([
-        apiFetchJSON("/api/parent/ckla-summary").catch(() => null),
+        apiFetchJSON("/api/parent/ckla-summary?grade=3").catch(() => null),
         apiFetchJSON("/api/parent/math-summary").catch(() => null),
     ]);
 
     const readingEl = document.getElementById("pp-home-reading-mini");
     if (readingEl) {
         if (ckla && Array.isArray(ckla.domains)) {
-            const rows = ckla.domains.slice(0, 4).map(d => `
+            const rows = ckla.domains.slice(0, 4).map(d => {
+                const done  = d.completed_count || 0;
+                const total = d.lesson_count    || 0;
+                const pct   = total ? Math.round(done / total * 100) : 0;
+                return `
                 <div class="pp-mini-row">
-                    <span class="pp-mini-row-label">${escapeHtml(d.name || d.domain_name || "")}</span>
-                    <span class="mono pp-mini-row-val">${d.lessons_done || 0}/${d.lessons_total || 0}</span>
-                    <div class="pp-mini-bar"><div class="pp-mini-bar-fill" style="width:${Math.round((d.progress || 0) * 100)}%;background:var(--english-primary)"></div></div>
-                </div>`).join("");
+                    <span class="pp-mini-row-label">${escapeHtml(d.title || `Domain ${d.domain_num}` || "")}</span>
+                    <span class="mono pp-mini-row-val">${done}/${total}</span>
+                    <div class="pp-mini-bar"><div class="pp-mini-bar-fill" style="width:${pct}%;background:var(--english-primary)"></div></div>
+                </div>`;
+            }).join("");
             readingEl.innerHTML = `
                 <div class="pp-mini-kick">CKLA · G3</div>
                 <div class="pp-mini-rows">${rows}</div>`;
@@ -76,7 +81,7 @@ async function _ppHomeLoadMiniCards() {
                     </div>
                 </div>
                 <div class="pp-mini-3">
-                    <div><div class="pp-mini-kick">7d Accuracy</div><div class="mono pp-mini-val">${accStr}</div></div>
+                    <div><div class="pp-mini-kick">Last 7 Days</div><div class="mono pp-mini-val">${accStr}</div></div>
                     <div><div class="pp-mini-kick">Exit Quiz</div><div class="mono pp-mini-val">${eqRate}</div></div>
                     <div><div class="pp-mini-kick">Weak Areas</div><div class="mono pp-mini-val">${weakCount}</div></div>
                 </div>`;

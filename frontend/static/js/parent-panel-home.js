@@ -61,6 +61,9 @@ async function _ppHome(body) {
         const range = window._ppGetRange ? window._ppGetRange() : "weekly";
         const daily = act30.daily || [];
 
+        // Cache child name for _ppSendCheer and other callers.
+        window._ppChildName = sum.child_name || "your child";
+
         body.innerHTML = `
             ${_ppHomeHeadline(range, sum, ov, daily, xpSum)}
             <div class="pp-home-grid">
@@ -127,7 +130,8 @@ function _ppHomeHeadline(range, sum, ov, daily, xpSum) {
 }
 window._ppSendCheer = function () {
     // Placeholder — could POST to /api/parent/cheer in future.
-    if (window.toast) window.toast("Cheer sent to Gia!", "success");
+    const name = window._ppChildName || "your child";
+    if (window.toast) window.toast(`Cheer sent to ${name}!`, "success");
 };
 
 /** 4-column KPI row, accent colors per metric. @tag PARENT */
