@@ -164,6 +164,11 @@ function _ppMathRowsCard(summary) {
     const kang = (summary.kangaroo || [])[0] || {};
     const wrong = summary.wrong_review || {};
 
+    const todayIso = new Date().toISOString().slice(0, 10);
+    const dailyDoneCount = dailyArr.slice(0, 7).filter(d => d.completed_at).length;
+    const dailyOf = Math.min(dailyArr.length, 7);
+    const dailyDoneSub = dailyOf > 0 ? ` · ${dailyDoneCount}/${dailyOf} last ${dailyOf}d` : "";
+
     const row = (label, val, sub, accent) => `
         <div class="pp-rev-row">
             <div class="pp-rev-row-head">
@@ -184,7 +189,9 @@ function _ppMathRowsCard(summary) {
                        `Pass rate ${Math.round(academy.eq_pass_rate || 0)}% · ${academy.unit_tests_passed || 0} unit tests passed`,
                        "var(--math-primary)")}
                 ${row("Daily Challenge", dailyToday.score != null ? `${dailyToday.score}/${dailyToday.total || 5}` : "—",
-                       dailyToday.completed_at ? `Done ${dailyToday.completed_at.slice(0,10)}` : "Pending today",
+                       dailyToday.completed_at
+                           ? `${dailyToday.completed_at.slice(0,10) === todayIso ? "Completed today" : `Done ${dailyToday.completed_at.slice(0,10)}`}${dailyDoneSub}`
+                           : `Pending today${dailyDoneSub}`,
                        dailyToday.completed_at ? "var(--ok)" : "var(--warn)")}
                 ${row("Kangaroo",        `${kang.score || 0}/${kang.total || 0}`,
                        `Recent ${escapeHtml(kang.set_id || "—")} · ${kang.completed_at?.slice(0,10) || ""}`)}
