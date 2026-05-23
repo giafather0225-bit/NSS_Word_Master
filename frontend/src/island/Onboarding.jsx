@@ -207,8 +207,17 @@ function _obZoneConfirm() {
 
 /** Character pick sub-step. @tag SHOP */
 function _obRenderCharPick(el) {
-    const z        = _OB_ZONES[_obPickZone] || {};
+    const z         = _OB_ZONES[_obPickZone] || {};
     const zoneChars = _obChars.filter(c => c.zone === _obPickZone);
+
+    // Auto-select the available (adoptable) starter if nothing is picked yet.
+    // Each zone has exactly one is_available=true character (the starter).
+    // Non-available chars cannot be adopted — auto-selecting the starter
+    // ensures the "Next zone" button is always enabled from the start.
+    if (!_obPickCharId) {
+        const starter = zoneChars.find(c => c.is_available);
+        if (starter) _obPickCharId = starter.id;
+    }
 
     const charCards = zoneChars.length
         ? zoneChars.map(c => {
@@ -218,9 +227,21 @@ function _obRenderCharPick(el) {
             const visual = rel
                 ? `<img class="iob-char-img" src="/static/img/island/${rel}" alt="${escapeHtml(c.name)}" onerror="this.style.display='none';this.nextElementSibling.style.display=''"><i data-lucide="${z.lucideIcon || 'smile'}" style="display:none"></i>`
                 : `<i data-lucide="${z.lucideIcon || 'smile'}"></i>`;
+
+            // Non-available chars are shown greyed out with a lock icon — cannot be tapped.
+            // They will be unlocked later as the player progresses through the zone.
+            const locked = !c.is_available;
+            const cardCls = [
+                'iob-char-card',
+                _obPickCharId === c.id ? 'iob-char-card--selected' : '',
+                locked ? 'iob-char-card--locked' : '',
+            ].filter(Boolean).join(' ');
+            const onclickAttr = locked ? '' : `onclick="_obSelectChar(${c.id})"`;
+            const lockIcon    = locked ? `<div class="iob-char-lock"><i data-lucide="lock"></i></div>` : '';
+
             return `
-            <div class="iob-char-card${_obPickCharId === c.id ? ' iob-char-card--selected' : ''}"
-                 onclick="_obSelectChar(${c.id})">
+            <div class="${cardCls}" ${onclickAttr}>
+                ${lockIcon}
                 <div class="iob-char-sil">${visual}</div>
                 <div class="iob-char-name">${escapeHtml(c.name)}</div>
             </div>`;

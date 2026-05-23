@@ -52,6 +52,10 @@ async function openIslandMain() {
     const el = document.getElementById('island-overlay');
     if (!el) return;
 
+    // Guard: if onboarding is already visible and in progress, don't interrupt/reset it.
+    const _obGuardEl = document.getElementById('isl-onboarding');
+    if (_obGuardEl && !_obGuardEl.classList.contains('hidden')) return;
+
     try {
         const ob = await apiFetchJSON('/api/island/onboarding/status');
         if (ob.initialized === false) {
