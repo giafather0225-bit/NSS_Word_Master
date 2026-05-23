@@ -15,25 +15,6 @@ const _PP_STREAK_SUBJECTS = [
 const _ICON = (name, size = 16) =>
     `<i data-lucide="${name}" style="width:${size}px;height:${size}px;vertical-align:-3px"></i>`;
 
-/** Render Streak tab: stats cards + rule config + 30-day calendar + milestones. @tag PARENT STREAK */
-async function _ppStreak(body) {
-    try {
-        const data = await apiFetchJSON("/api/parent/streak");
-        window._ppStreakData = data;
-
-        body.innerHTML =
-            _ppStreakCards(data) +
-            _ppStreakRule(data.rule) +
-            _ppStreakCalendar(data.last_30d || []) +
-            _ppStreakMilestones(data);
-
-        if (typeof lucide !== "undefined") lucide.createIcons();
-    } catch (err) {
-        console.error("[parent-streak] load failed:", err);
-        body.innerHTML = `<p class="pp-error-pad">Failed to load streak.</p>`;
-    }
-}
-
 /** Top stat cards: current / longest / day-offs / streak shields. @tag PARENT STREAK */
 function _ppStreakCards(data) {
     return `
@@ -183,10 +164,5 @@ async function _ppDoRecalcStreak() {
     }
 }
 
-window._ppStreak           = _ppStreak;
-window._ppStreakCards      = _ppStreakCards;
-window._ppStreakRule       = _ppStreakRule;
-window._ppStreakMilestones = _ppStreakMilestones;
-window._ppStreakCalendar   = _ppStreakCalendar;
 window._ppSaveStreakRule   = _ppSaveStreakRule;
 window._ppRecalcStreak     = _ppRecalcStreak;

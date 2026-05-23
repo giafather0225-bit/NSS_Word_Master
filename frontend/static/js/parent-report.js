@@ -7,65 +7,6 @@
                   GET  /api/parent/report/preview
    ================================================================ */
 
-const _PP_REPORT_DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-/** Render Weekly Report form. @tag PARENT REPORT SETTINGS */
-async function ppRenderReport(body) {
-    try {
-        const res  = await window._ppFetch("/api/parent/report/schedule");
-        if (!res.ok) {
-            body.innerHTML = `<p class="pp-form-hint">Schedule available after PIN re-verify.</p>`;
-            return;
-        }
-        const data = await res.json();
-        const dayOpts = _PP_REPORT_DAYS.map((d, i) =>
-            `<option value="${i}" ${i === data.day_of_week ? "selected" : ""}>${d}</option>`
-        ).join("");
-        const emailHint = data.parent_email
-            ? `Sends to <strong>${escapeHtml(data.parent_email)}</strong>`
-            : `<span style="color:var(--color-error)">No parent email set — configure it in Account.</span>`;
-
-        body.innerHTML = `
-            <div class="pp-form-stack">
-                <label class="pp-toggle-row">
-                    <input id="pp-rep-enabled" type="checkbox" ${data.enabled ? "checked" : ""}>
-                    <span>Enable weekly auto-send</span>
-                </label>
-
-                <div class="pp-form-row">
-                    <div style="flex:1">
-                        <label class="pp-form-label">Send on</label>
-                        <select id="pp-rep-day" class="pp-input">${dayOpts}</select>
-                    </div>
-                    <div style="flex:2">
-                        <label class="pp-form-label">Child name in report</label>
-                        <input id="pp-rep-name" class="pp-input" type="text" maxlength="40"
-                               value="${escapeHtml(data.child_name || "Gia")}">
-                    </div>
-                </div>
-
-                <p class="pp-form-hint">${emailHint}</p>
-
-                <button class="pp-btn primary pp-btn--full" onclick="_ppSaveReportSchedule()">
-                    <i data-lucide="save"></i>Save Schedule
-                </button>
-                <div class="pp-report-actions">
-                    <button class="pp-btn ghost pp-btn--sm" onclick="_ppPreviewReport()">
-                        <i data-lucide="eye"></i>Preview Data
-                    </button>
-                    <button class="pp-btn ghost pp-btn--sm pp-btn--warn" onclick="_ppSendReportNow()">
-                        <i data-lucide="send"></i>Send Now
-                    </button>
-                </div>
-                <p id="pp-rep-msg" class="pp-form-msg"></p>
-                <pre id="pp-rep-preview" class="pp-rep-preview" hidden></pre>
-            </div>`;
-    } catch (err) {
-        console.error("[parent-report] load failed:", err);
-        body.innerHTML = `<p style="color:var(--color-error);padding:12px">Failed to load report settings.</p>`;
-    }
-}
-
 /** Save schedule (enabled + day + name). @tag PARENT REPORT */
 async function _ppSaveReportSchedule() {
     const msg     = document.getElementById("pp-rep-msg");
@@ -133,7 +74,6 @@ async function _ppPreviewReport() {
     }
 }
 
-window.ppRenderReport       = ppRenderReport;
 window._ppSaveReportSchedule = _ppSaveReportSchedule;
 window._ppSendReportNow      = _ppSendReportNow;
 window._ppPreviewReport      = _ppPreviewReport;
