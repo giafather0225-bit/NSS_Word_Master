@@ -582,7 +582,7 @@ function _refreshIslandHomeUI(zone) {
         forest:  { id: 'island-widget-english', zone: 'forest'  },
         ocean:   { id: 'island-widget-math',    zone: 'ocean'   },
         savanna: { id: 'island-widget-diary',   zone: 'savanna' },
-        space:   { id: 'island-widget-english', zone: 'space'   }, // space uses review — no dedicated widget yet
+        space:   null, // no subject widget for space/review zone yet — skip silently
     };
     const entry = zone ? zoneWidgetMap[zone] : null;
     if (entry && typeof _renderIslandSubjectWidget === 'function') {
