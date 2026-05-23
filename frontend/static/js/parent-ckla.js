@@ -195,7 +195,7 @@ async function _ppCKLA(body) {
                                             id="pp-ckla-range-${r}"
                                             class="pp-ckla-range-btn"
                                             style="background:${r === 'week' ? 'var(--english-primary)' : 'var(--bg-card)'};color:${r === 'week' ? 'var(--text-on-primary)' : 'var(--text-secondary)'}">
-                                        ${r === 'week' ? '7d' : r === 'month' ? '30d' : 'All'}
+                                        ${r === 'week' ? 'Week' : r === 'month' ? 'Month' : 'All'}
                                     </button>`).join('')}
                             </span>
                         </div>
