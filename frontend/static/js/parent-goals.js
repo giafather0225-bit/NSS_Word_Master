@@ -8,7 +8,7 @@
 /** @tag PARENT GOALS */
 async function _ppGoals(body) {
     try {
-        const data  = await apiFetchJSON("/api/goals/weekly");
+        const data  = await window._ppFetch("/api/goals/weekly").then(r => r.json());
         const goals = (data.goals || []).filter(g => g.is_active);
 
         const achieved = goals.filter(g => g.achieved).length;
@@ -56,7 +56,7 @@ function _ppGoalCard(g) {
 /** Show inline edit form for goal targets — including active toggle. @tag PARENT GOALS */
 async function _ppGoalsEditMode() {
     try {
-        const data  = await apiFetchJSON("/api/goals/weekly");
+        const data  = await window._ppFetch("/api/goals/weekly").then(r => r.json());
         const goals = data.goals || [];
 
         const editArea = document.getElementById("pp-goals-edit-area");

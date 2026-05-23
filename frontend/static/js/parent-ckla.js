@@ -42,7 +42,7 @@ async function _ppCKLA(body) {
                 </div>
                 <div class="pp-stat">
                     <div class="pp-stat-num">${pct}%</div>
-                    <div class="pp-stat-label">G3 Progress</div>
+                    <div class="pp-stat-label">G${_grade} Progress</div>
                 </div>
                 <div class="pp-stat">
                     <div class="pp-stat-num">
@@ -69,7 +69,7 @@ async function _ppCKLA(body) {
         const progressBar = `
             <div class="pp-ckla-progress-wrap">
                 <div class="pp-ckla-progress-head">
-                    <span>Grade 3 Overall</span><span>${pct}%</span>
+                    <span>Grade ${_grade} Overall</span><span>${pct}%</span>
                 </div>
                 <div class="pp-ckla-track">
                     <div class="pp-ckla-fill" style="width:${pct}%"></div>
@@ -174,7 +174,7 @@ async function _ppCKLA(body) {
         body.innerHTML = `
             <div class="pp-ckla-outer">
                 <div class="pp-section-title pp-section-title--icon pp-section-title--mb16">
-                    <i data-lucide="book-open" style="width:15px;height:15px"></i> CKLA Grade 3
+                    <i data-lucide="book-open" style="width:15px;height:15px"></i> CKLA Grade ${_grade}
                 </div>
                 ${hero}
                 ${progressBar}

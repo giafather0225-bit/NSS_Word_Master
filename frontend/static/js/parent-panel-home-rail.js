@@ -58,7 +58,7 @@ async function _ppHomeLoadMiniCards() {
                 </div>`;
             }).join("");
             readingEl.innerHTML = `
-                <div class="pp-mini-kick">CKLA · G3</div>
+                <div class="pp-mini-kick">CKLA · G${_grade}</div>
                 <div class="pp-mini-rows">${rows}</div>`;
         } else {
             readingEl.innerHTML = `<p class="pp-text-hint" style="padding:12px">No reading data yet.</p>`;
