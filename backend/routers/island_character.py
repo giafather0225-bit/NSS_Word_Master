@@ -220,6 +220,8 @@ def character_evolve(body: EvolveBranchBody, db: Session = Depends(get_db)):
 
     stage = prog.stage or "baby"
     branch = (body.branch or "a").lower()
+    if branch not in ("a", "b"):
+        raise HTTPException(status_code=400, detail="branch must be 'a' or 'b'.")
     if prog.is_legend_type:
         stone = "legend_first_a" if stage == "baby" and branch == "a" else \
                 "legend_first_b" if stage == "baby" and branch == "b" else \

@@ -54,7 +54,10 @@ function _issRender() {
     const wrap = document.getElementById('isl-detail-overlay');
     if (!wrap) return;
 
-    const navItems = _ISS_SECTIONS.map(s => `
+    const _visibleSections = _ISS_SECTIONS.filter(
+        s => s.id !== 'dev' || (typeof isTestMode === 'function' && isTestMode())
+    );
+    const navItems = _visibleSections.map(s => `
         <button class="iss-nav-item ${_issSection === s.id ? 'iss-nav-item--active' : ''}"
                 onclick="_issSwitchSection('${s.id}')">
             <i data-lucide="${s.icon}"></i>

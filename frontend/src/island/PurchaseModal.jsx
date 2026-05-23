@@ -9,7 +9,7 @@
 /** @tag SHOP */
 let _ipcItem     = null; // { id, name, icon, price_lumi, price_type }
 let _ipcBalance  = 0;
-let _ipcState    = 'confirm'; // 'confirm' | 'success' | 'insufficient'
+let _ipcState    = 'confirm'; // 'confirm' | 'success' | 'insufficient' | 'error'
 let _ipcResult   = null;
 let _ipcOnDone   = null; // callback after successful purchase
 
@@ -61,6 +61,7 @@ function _ipcModalInner() {
         case 'confirm':      return _ipcConfirmHTML();
         case 'success':      return _ipcSuccessHTML();
         case 'insufficient': return _ipcInsufficientHTML();
+        case 'error':        return _ipcErrorHTML();
         default:             return '';
     }
 }
@@ -151,7 +152,35 @@ function _ipcInsufficientHTML() {
         </div>`;
 }
 
+/** @tag SHOP */
+function _ipcErrorHTML() {
+    const msg = (_ipcResult?.error) || 'Something went wrong. Please try again.';
+    return `
+        <div class="ipc-item-preview">
+            <div class="ipc-item-ico ipc-item-ico--err">
+                <i data-lucide="alert-circle"></i>
+            </div>
+            <span class="ipc-item-name">Purchase Failed</span>
+        </div>
+        <p class="ipc-insuff-msg">${escapeHtml(msg)}</p>
+        <div class="ipc-actions">
+            <button class="ipc-btn ipc-btn--ghost" onclick="_ipcClose()">
+                Cancel
+            </button>
+            <button class="ipc-btn ipc-btn--primary" onclick="_ipcRetry()">
+                <i data-lucide="refresh-cw"></i> Try Again
+            </button>
+        </div>`;
+}
+
 // ─── Buy ────────────────────────────────────────────────────────
+
+/** @tag SHOP */
+function _ipcRetry() {
+    _ipcState  = 'confirm';
+    _ipcResult = null;
+    _ipcRender();
+}
 
 /** @tag SHOP */
 async function _ipcConfirmBuy() {
@@ -171,7 +200,9 @@ async function _ipcConfirmBuy() {
         if (_ipcOnDone) _ipcOnDone(data);
         if (typeof _showShopToast === 'function') _showShopToast(`Purchased ${_ipcItem?.name || 'item'}!`);
     } catch (e) {
-        _ipcState = 'insufficient';
+        const msg = (e.message || '').toLowerCase();
+        const isLumiError = msg.includes('lumi') || msg.includes('insufficient') || msg.includes('enough');
+        _ipcState  = isLumiError ? 'insufficient' : 'error';
         _ipcResult = { error: e.message || 'Purchase failed.' };
     }
 
