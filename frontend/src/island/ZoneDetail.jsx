@@ -59,6 +59,8 @@ function _closeZoneDetail() {
     const el = document.getElementById('isl-detail-overlay');
     if (el) { el.classList.add('hidden'); el.innerHTML = ''; }
     _zdZone = _zdProg = _zdCareData = null;
+    // Refresh map so adoption / feeding / evolution changes appear immediately
+    if (typeof _refreshIslandMap === 'function') _refreshIslandMap();
 }
 
 // ─── Data loading ────────────────────────────────────────────────

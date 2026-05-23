@@ -138,6 +138,30 @@ function _renderIslandError() {
     if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
+// ─── Map refresh (called after zone-detail actions) ─────────────
+
+/**
+ * Re-fetch island status and re-render the map in place.
+ * Called by _closeZoneDetail() so adoption / feeding / evolution
+ * are reflected on the map immediately without a full page reload.
+ * @tag SHOP
+ */
+async function _refreshIslandMap() {
+    try {
+        const [statusData, xpData] = await Promise.all([
+            fetch('/api/island/status').then(r => r.json()),
+            fetch('/api/xp/summary').then(r => r.json()),
+        ]);
+        _islandStatus = statusData;
+        _islandStreak = xpData.streak_days ?? 0;
+        _renderIslandMap();
+        _startCharWandering();
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+    } catch (err) {
+        console.warn('[Island] map refresh failed:', err);
+    }
+}
+
 // ─── Main render ─────────────────────────────────────────────────
 
 /** @tag SHOP */
@@ -313,7 +337,8 @@ function _svgZonesHTML(charsByZone, completedZones, zoneUnlock) {
 
     return `
         <svg class="gim-zones-svg" viewBox="0 0 1376 768"
-             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+             xmlns="http://www.w3.org/2000/svg" aria-hidden="true"
+             preserveAspectRatio="none">
             ${circles}
         </svg>
         ${lockOverlays}
