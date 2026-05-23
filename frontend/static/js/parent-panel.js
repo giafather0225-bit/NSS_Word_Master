@@ -291,7 +291,7 @@ function _ppRenderShell() {
                     <span class="pp-live-dot"></span>Studying now
                 </span>
                 <div style="flex:1"></div>
-                <div class="pp-seg">
+                <div class="pp-seg" id="pp-seg" style="${_ppTab !== 'home' ? 'display:none' : ''}">
                     <button class="pp-seg-btn${range === "daily"   ? " active" : ""}" onclick="_ppSetRange('daily')">Daily</button>
                     <button class="pp-seg-btn${range === "weekly"  ? " active" : ""}" onclick="_ppSetRange('weekly')">Weekly</button>
                     <button class="pp-seg-btn${range === "monthly" ? " active" : ""}" onclick="_ppSetRange('monthly')">Monthly</button>
@@ -421,6 +421,8 @@ async function _ppLoadTab(tab) {
     const tabName = (PP_TABS.find(([k]) => k === tab) || ["", tab])[1];
     const bc = document.getElementById("pp-breadcrumb");
     if (bc) bc.textContent = tabName;
+    const seg = document.getElementById("pp-seg");
+    if (seg) seg.style.display = tab === "home" ? "" : "none";
 
     const body = document.getElementById("pp-body");
     if (!body) return;
