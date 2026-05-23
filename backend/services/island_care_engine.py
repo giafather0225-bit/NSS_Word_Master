@@ -197,9 +197,9 @@ def apply_decay(db: Session, character_progress_id: int) -> dict:
     happiness_decay_events = min(happiness_decay_events, max_events)
     happiness_delta = -int(happiness_decay_events * happiness_decay_rate)
 
-    # Snapshot before-state for accurate delta calculation.
-    old_hunger = prog.hunger
-    old_happiness = prog.happiness
+    # Snapshot before-state for accurate delta calculation (guard against NULL columns).
+    old_hunger    = prog.hunger    or 0
+    old_happiness = prog.happiness or 0
 
     # ── Apply (atomic UPDATE to prevent lost-write race) ──────────────────
     db.execute(
@@ -273,9 +273,9 @@ def apply_study_gain(
     # Completed characters keep their gauges maxed; gains still apply (no decay).
     hunger_delta, happiness_delta = gains
 
-    # Snapshot before-state for accurate delta calculation.
-    old_hunger = prog.hunger
-    old_happiness = prog.happiness
+    # Snapshot before-state for accurate delta calculation (guard against NULL columns).
+    old_hunger    = prog.hunger    or 0
+    old_happiness = prog.happiness or 0
 
     # Atomic clamped UPDATE — prevents lost-update race with concurrent requests.
     db.execute(
@@ -353,7 +353,8 @@ def get_xp_multiplier(db: Session, character_progress_id: int) -> float:
     if prog.is_legend_type or prog.is_completed:
         return 1.0
 
-    h, hp = prog.hunger, prog.happiness
+    h  = prog.hunger    or 0
+    hp = prog.happiness or 0
 
     if h < 20 and hp < 20:
         return 0.2

@@ -10,6 +10,7 @@ from typing import Optional
 
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import update as sqla_update
 
 from backend.models.island import IslandCurrency, IslandLumiLog
 from backend.models.system import AppConfig
@@ -145,15 +146,24 @@ def spend_lumi(db: Session, amount: int, source: str) -> dict:
     if amount <= 0:
         raise ValueError(f"spend_lumi: amount must be positive, got {amount}")
 
-    row = _get_currency(db)
-    if row.lumi < amount:
+    now = datetime.now(timezone.utc)
+    # Atomic conditional deduction — WHERE lumi >= amount prevents overdraft
+    # even under concurrent requests (single-row CAS pattern).
+    result = db.execute(
+        sqla_update(IslandCurrency)
+        .where(IslandCurrency.id == 1, IslandCurrency.lumi >= amount)
+        .values(lumi=IslandCurrency.lumi - amount, updated_at=now)
+        .execution_options(synchronize_session=False)
+    )
+    if result.rowcount == 0:
+        # Either row missing or insufficient balance — fetch to distinguish.
+        row = _get_currency(db)
         raise InsufficientLumiError(
             f"Need {amount} Lumi but only {row.lumi} available."
         )
 
-    row.lumi -= amount
-    row.updated_at = datetime.now(timezone.utc)
-
+    db.flush()
+    row = db.get(IslandCurrency, 1)
     _log(
         db,
         currency_type="lumi",
@@ -210,15 +220,21 @@ def spend_legend_lumi(db: Session, amount: int, source: str) -> dict:
     if amount <= 0:
         raise ValueError(f"spend_legend_lumi: amount must be positive, got {amount}")
 
-    row = _get_currency(db)
-    if row.legend_lumi < amount:
+    now = datetime.now(timezone.utc)
+    result = db.execute(
+        sqla_update(IslandCurrency)
+        .where(IslandCurrency.id == 1, IslandCurrency.legend_lumi >= amount)
+        .values(legend_lumi=IslandCurrency.legend_lumi - amount, updated_at=now)
+        .execution_options(synchronize_session=False)
+    )
+    if result.rowcount == 0:
+        row = _get_currency(db)
         raise InsufficientLumiError(
             f"Need {amount} Legend Lumi but only {row.legend_lumi} available."
         )
 
-    row.legend_lumi -= amount
-    row.updated_at = datetime.now(timezone.utc)
-
+    db.flush()
+    row = db.get(IslandCurrency, 1)
     _log(
         db,
         currency_type="legend_lumi",
