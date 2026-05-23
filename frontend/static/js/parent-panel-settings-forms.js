@@ -164,7 +164,8 @@ function _ppSetSystemCard(sys) {
     const ollamaOn    = !!ollama.running;
     const ollamaModel = ollama.model || "gemma2:2b";
     const bkCount     = backups.count  != null ? backups.count  : "—";
-    const bkLatest    = backups.latest ? backups.latest.slice(0, 10) : "—";
+    const bkLatest    = backups.latest?.modified ? backups.latest.modified.slice(0, 10)
+                      : typeof backups.latest === "string" ? backups.latest.slice(0, 10) : "—";
 
     return `
         <div class="pp-panel">
