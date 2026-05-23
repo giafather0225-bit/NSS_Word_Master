@@ -292,7 +292,6 @@ function _ppRenderShell() {
                 </span>
                 <div style="flex:1"></div>
                 <div class="pp-seg" id="pp-seg" style="${_ppTab !== 'home' ? 'display:none' : ''}">
-                    <button class="pp-seg-btn${range === "daily"   ? " active" : ""}" onclick="_ppSetRange('daily')">Daily</button>
                     <button class="pp-seg-btn${range === "weekly"  ? " active" : ""}" onclick="_ppSetRange('weekly')">Weekly</button>
                     <button class="pp-seg-btn${range === "monthly" ? " active" : ""}" onclick="_ppSetRange('monthly')">Monthly</button>
                 </div>
@@ -360,9 +359,10 @@ function _ppSetRange(range) {
     if (body) _ppLoadTab(_ppTab);
 }
 
-/** Returns current range string ("daily" | "weekly" | "monthly"). @tag PARENT */
+/** Returns current range string ("weekly" | "monthly"). @tag PARENT */
 function _ppGetRange() {
-    return localStorage.getItem("pp.range") || "weekly";
+    const r = localStorage.getItem("pp.range") || "weekly";
+    return r === "daily" ? "weekly" : r;
 }
 window._ppGetRange = _ppGetRange;
 

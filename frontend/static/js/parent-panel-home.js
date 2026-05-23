@@ -104,10 +104,7 @@ function _ppHomeHeadline(range, sum, ov, daily, xpSum) {
     const monthSessions = last30.reduce((a, d) => a + (d.sessions || 0), 0);
 
     let title, body;
-    if (range === "daily") {
-        title = "How is Gia doing today";
-        body = `<b class="mono">${todayMin}m</b> learned · <b class="mono">${todaySessions}</b> session${todaySessions === 1 ? "" : "s"} · <b class="mono">${streak}</b>-day streak`;
-    } else if (range === "monthly") {
+    if (range === "monthly") {
         const now = new Date();
         const monthName = now.toLocaleDateString("en", { month: "long", year: "numeric" });
         title = monthName;
@@ -141,18 +138,7 @@ function _ppHomeKpiRow(range, sum, ov, daily, xpSum) {
     const last30 = daily.slice(-30);
 
     let kpis;
-    if (range === "daily") {
-        const todayRow = daily[daily.length - 1] || {};
-        const todayMin = todayRow.minutes || 0;
-        const todayXP = ov.today_xp || xpSum.today_xp || 0;
-        const todaySessions = todayRow.sessions || 0;
-        kpis = [
-            _ppKpi("Today's minutes", todayMin, { unit: "min", sub: "Goal 60m", accent: "var(--english-primary)", colorful: true }),
-            _ppKpi("Sessions today",  todaySessions, { sub: "completed",        accent: "var(--math-primary)",   colorful: true }),
-            _ppKpi("XP today",        todayXP, { unit: "XP", sub: `Total ${(xpSum.total_xp || 0).toLocaleString()}`, accent: "var(--legend-primary)", colorful: true }),
-            _ppKpi("Streak",          streak, { unit: "days", sub: `Best ${best}d`, accent: "var(--diary-primary)", colorful: true }),
-        ];
-    } else if (range === "monthly") {
+    if (range === "monthly") {
         const totalMin = last30.reduce((a, d) => a + (d.minutes || 0), 0);
         const totalSessions = last30.reduce((a, d) => a + (d.sessions || 0), 0);
         const totalXP = last30.reduce((a, d) => a + (d.xp || 0), 0);
@@ -224,16 +210,7 @@ function _ppHomeTasksCard(tasks) {
 /** Range-aware bar chart card. @tag PARENT */
 function _ppHomeChartCard(range, daily, ov) {
     let series, totalLabel, xLabel, goalLine, goalLabel, isDaily;
-    if (range === "daily") {
-        // Daily view: show last 7 sessions today — for now use last hour buckets (placeholder = today single bar)
-        const today = (daily[daily.length - 1] || {});
-        series = [{ label: "Now", v: today.minutes || 0, today: true, color: "var(--english-primary)" }];
-        totalLabel = "today";
-        xLabel = "Today's sessions";
-        goalLine = 15;
-        goalLabel = "avg/session";
-        isDaily = true;
-    } else if (range === "monthly") {
+    if (range === "monthly") {
         const last4w = [];
         for (let w = 3; w >= 0; w--) {
             const slice = daily.slice(-7 * (w + 1), daily.length - 7 * w);
@@ -283,7 +260,7 @@ function _ppHomeChartCard(range, daily, ov) {
                     <div class="pp-chart-totals">
                         <span class="mono pp-chart-big">${total}</span>
                         <span class="pp-chart-sub">min · ${totalLabel} total</span>
-                        ${_ppTrend(range === "monthly" ? 7 : range === "daily" ? 18 : 14)}
+                        ${_ppTrend(range === "monthly" ? 7 : 14)}
                     </div>
                     <div class="pp-chart-meta">
                         ${isDaily
