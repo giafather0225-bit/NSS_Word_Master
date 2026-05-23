@@ -47,7 +47,7 @@ async function _ppCKLA(body) {
                     <div class="pp-stat-num">
                         <span class="pp-stage-acc pp-stage-acc--${acc7dClass}">${acc7d}%</span>
                     </div>
-                    <div class="pp-stat-label">7d Accuracy · ${d.qa_7d_total || 0} Q&amp;As</div>
+                    <div class="pp-stat-label">Last 7 Days · ${d.qa_7d_total || 0} Q&amp;As</div>
                 </div>
                 <div class="pp-stat">
                     <div class="pp-stat-num">${d.qa_accuracy}%</div>
