@@ -109,13 +109,18 @@ async function _ppGoalsSave() {
             skipped++;
             continue;
         }
-        const res = await window._ppFetch(`/api/goals/weekly/${key}`, {
-            method:  "PUT",
-            headers: { "Content-Type": "application/json" },
-            body:    JSON.stringify({ target, is_active: active }),
-        });
-        if (res.ok) { saved++;  row?.classList.add("saved"); }
-        else        { failed++; row?.classList.add("error"); }
+        try {
+            const res = await window._ppFetch(`/api/goals/weekly/${key}`, {
+                method:  "PUT",
+                headers: { "Content-Type": "application/json" },
+                body:    JSON.stringify({ target, is_active: active }),
+            });
+            if (res.ok) { saved++;  row?.classList.add("saved"); }
+            else        { failed++; row?.classList.add("error"); }
+        } catch (_err) {
+            failed++;
+            row?.classList.add("error");
+        }
     }
 
     if (msg) {

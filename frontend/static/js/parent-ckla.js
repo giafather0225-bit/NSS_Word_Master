@@ -10,9 +10,10 @@ let _ppCKLAChartRange = "week";
 
 /** Render the CKLA parent summary tab. @tag PARENT CKLA */
 async function _ppCKLA(body) {
-    _ppCKLAChartRange = "week";      // reset on tab open
+    const _grade = parseInt((window._ppCurrentGrade || "G3").replace(/\D/g, ""), 10); // e.g. "G3" → 3
+    _ppCKLAChartRange = localStorage.getItem("pp-ckla-range") || "week"; // restore persisted range
     try {
-        const d = await window._ppFetch("/api/parent/ckla-summary?grade=3").then(r => r.json());
+        const d = await window._ppFetch(`/api/parent/ckla-summary?grade=${_grade}`).then(r => r.json());
 
         const pct = d.total_lessons
             ? Math.round(d.completed_lessons / d.total_lessons * 100)
@@ -91,7 +92,7 @@ async function _ppCKLA(body) {
                     <div class="pp-ckla-domain-inner">
                         <div class="pp-ckla-domain-num">${dom.domain_num}</div>
                         <div class="pp-ckla-domain-info">
-                            <div class="pp-ckla-domain-title">${_ppEsc(dom.title)}</div>
+                            <div class="pp-ckla-domain-title">${escapeHtml(dom.title)}</div>
                             <div class="pp-ckla-domain-bar-row">
                                 <div class="pp-ckla-domain-track">
                                     <div class="pp-ckla-domain-fill" style="width:${dpct}%"></div>
@@ -126,7 +127,7 @@ async function _ppCKLA(body) {
             <div class="pp-ckla-alert-row">
                 <i data-lucide="alert-triangle" style="width:14px;height:14px;flex-shrink:0"></i>
                 <span class="pp-ckla-alert-domain">Domain ${a.domain_num}</span>
-                <span class="pp-ckla-alert-title">${_ppEsc(a.title)}</span>
+                <span class="pp-ckla-alert-title">${escapeHtml(a.title)}</span>
                 <span class="pp-ckla-alert-count">${a.consec_fails} failed attempts</span>
             </div>`).join('');
         const alertSection = failAlerts ? `
@@ -152,7 +153,7 @@ async function _ppCKLA(body) {
             <div class="pp-ckla-time-list">
                 ${timePattern.map(t => `
                     <div class="pp-ckla-time-chip">
-                        <div class="pp-ckla-time-label">${_ppEsc(t.label)}</div>
+                        <div class="pp-ckla-time-label">${escapeHtml(t.label)}</div>
                         <div class="pp-ckla-time-sub">${t.count} sessions · ${t.pct}%</div>
                     </div>`).join('')}
             </div>` : '';
@@ -165,8 +166,8 @@ async function _ppCKLA(body) {
             <div class="pp-ckla-review-list">
                 ${d.needs_review.slice(0, 5).map(r => `
                     <div class="pp-ckla-review-item">
-                        <div class="pp-ckla-review-answer">"${_ppEsc(r.answer)}"</div>
-                        <div class="pp-ckla-review-feedback">${_ppEsc(r.feedback)}</div>
+                        <div class="pp-ckla-review-answer">"${escapeHtml(r.answer)}"</div>
+                        <div class="pp-ckla-review-feedback">${escapeHtml(r.feedback)}</div>
                     </div>`).join('')}
             </div>` : '';
 
@@ -229,6 +230,7 @@ function _ppCKLAChartShell() {
 /** Fetch chart data and re-render for the given range. @tag PARENT CKLA */
 async function _ppCKLALoadChart(range) {
     _ppCKLAChartRange = range;
+    localStorage.setItem("pp-ckla-range", range); // persist across tab switches
     const wrap = document.getElementById("pp-ckla-chart-wrap");
     if (!wrap) return;
     wrap.innerHTML = `<span class="pp-ckla-chart-hint">Loading…</span>`;
@@ -243,7 +245,8 @@ async function _ppCKLALoadChart(range) {
     });
 
     try {
-        const res = await window._ppFetch(`/api/parent/ckla-chart?range=${range}&grade=3`);
+        const _g  = parseInt((window._ppCurrentGrade || "G3").replace(/\D/g, ""), 10);
+        const res = await window._ppFetch(`/api/parent/ckla-chart?range=${range}&grade=${_g}`);
         if (!res.ok) throw new Error(res.status);
         const data = await res.json();
         wrap.innerHTML = _ppCKLAChart(data.chart || [], data.grouped_by || "day");
@@ -297,7 +300,7 @@ function _ppTestHistory(history) {
     const dots = history.slice(0, 10).map(h => {
         const color = h.passed ? 'var(--math-primary)' : 'var(--review-primary)';
         const title = `${h.date}: ${h.correct}/${h.total} (${h.score_pct}%) ${h.passed ? 'Pass' : 'Fail'}`;
-        return `<div title="${_ppEsc(title)}" class="pp-ckla-hist-dot" style="background:${color}"></div>`;
+        return `<div title="${escapeHtml(title)}" class="pp-ckla-hist-dot" style="background:${color}"></div>`;
     }).join('');
     const last = history[0];
     return `
@@ -306,16 +309,6 @@ function _ppTestHistory(history) {
             <div class="pp-ckla-hist-dots">${dots}</div>
             <span class="pp-ckla-hist-latest">Latest: ${last.score_pct}% ${last.passed ? '(Pass)' : '(Fail)'}</span>
         </div>`;
-}
-
-/** HTML-escape helper (scoped to this module). @tag SYSTEM */
-function _ppEsc(str) {
-    if (!str) return '';
-    return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
 }
 
 window._ppCKLA         = _ppCKLA;

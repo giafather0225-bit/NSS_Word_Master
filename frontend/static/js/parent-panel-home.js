@@ -61,16 +61,22 @@ async function _ppHome(body) {
         const range = window._ppGetRange ? window._ppGetRange() : "weekly";
         const daily = act30.daily || [];
 
-        // Cache child name for _ppSendCheer and other callers.
-        window._ppChildName = sum.child_name || "your child";
+        // Cache child info for _ppSendCheer and grade-aware modules.
+        window._ppChildName    = sum.child_name    || "your child";
+        // _ppCurrentGrade: "G3" format — single source of truth for all parent-panel files.
+        // Initialized once here; other modules read it. Parent settings can override later.
+        if (!window._ppCurrentGrade) window._ppCurrentGrade = "G3";
+
+        // Extract weekly minutes goal from goals API (key="study_minutes", default 420m).
+        const weekGoalMin = (goalsResp?.goals || []).find(g => g.key === "study_minutes")?.target ?? 420;
 
         body.innerHTML = `
             ${_ppHomeHeadline(range, sum, ov, daily, xpSum)}
             <div class="pp-home-grid">
                 <div class="pp-home-main">
-                    ${_ppHomeKpiRow(range, sum, ov, daily, xpSum)}
+                    ${_ppHomeKpiRow(range, sum, ov, daily, xpSum, weekGoalMin)}
                     ${_ppHomeTasksCard(tasks)}
-                    ${_ppHomeChartCard(range, daily, ov)}
+                    ${_ppHomeChartCard(range, daily, ov, weekGoalMin)}
                     <div class="pp-2col pp-2col--top">
                         ${_ppHomeReadingCard()}
                         ${_ppHomeMathCard()}
@@ -135,7 +141,7 @@ window._ppSendCheer = function () {
 };
 
 /** 4-column KPI row, accent colors per metric. @tag PARENT */
-function _ppHomeKpiRow(range, sum, ov, daily, xpSum) {
+function _ppHomeKpiRow(range, sum, ov, daily, xpSum, weekGoalMin = 420) {
     const streak = sum.current_streak || 0;
     const best = sum.longest_streak || 0;
     const last7 = daily.slice(-7);
@@ -158,7 +164,7 @@ function _ppHomeKpiRow(range, sum, ov, daily, xpSum) {
         const weekSessions = last7.reduce((a, d) => a + (d.sessions || 0), 0);
         const weekXP = last7.reduce((a, d) => a + (d.xp || 0), 0);
         kpis = [
-            _ppKpi("Week minutes", weekMin, { unit: "min", sub: "Goal 420m/week", accent: "var(--english-primary)", colorful: true }),
+            _ppKpi("Week minutes", weekMin, { unit: "min", sub: `Goal ${weekGoalMin}m/week`, accent: "var(--english-primary)", colorful: true }),
             _ppKpi("Sessions",     weekSessions, { sub: "this week",              accent: "var(--math-primary)",   colorful: true }),
             _ppKpi("XP this week", weekXP, { unit: "XP", sub: `Total ${(xpSum.total_xp || 0).toLocaleString()}`, accent: "var(--legend-primary)", colorful: true }),
             _ppKpi("Streak",       streak, { unit: "days", sub: `Best ${best}d`, accent: "var(--diary-primary)", colorful: true }),
@@ -212,7 +218,7 @@ function _ppHomeTasksCard(tasks) {
 }
 
 /** Range-aware bar chart card. @tag PARENT */
-function _ppHomeChartCard(range, daily, ov) {
+function _ppHomeChartCard(range, daily, ov, weekGoalMin = 420) {
     let series, totalLabel, xLabel, goalLine, goalLabel, isDaily;
     if (range === "monthly") {
         const last4w = [];
@@ -224,8 +230,8 @@ function _ppHomeChartCard(range, daily, ov) {
         series = last4w;
         totalLabel = "this month";
         xLabel = "Last 4 weeks";
-        goalLine = 300;
-        goalLabel = "goal 300m/week";
+        goalLine = weekGoalMin;
+        goalLabel = `goal ${weekGoalMin}m/week`;
         isDaily = false;
     } else {
         const last7 = daily.slice(-7);
@@ -236,8 +242,8 @@ function _ppHomeChartCard(range, daily, ov) {
         }));
         totalLabel = "this week";
         xLabel = "Last 7 days";
-        goalLine = 60;
-        goalLabel = "goal 60m/day";
+        goalLine = Math.round(weekGoalMin / 7);
+        goalLabel = `goal ${Math.round(weekGoalMin / 7)}m/day`;
         isDaily = false;
     }
 

@@ -37,8 +37,9 @@ function _ppHomeMathCard() {
 
 /** Defer-load mini Reading + Math card bodies. @tag PARENT */
 async function _ppHomeLoadMiniCards() {
+    const _grade = parseInt((window._ppCurrentGrade || "G3").replace(/\D/g, ""), 10);
     const [ckla, math] = await Promise.all([
-        apiFetchJSON("/api/parent/ckla-summary?grade=3").catch(() => null),
+        apiFetchJSON(`/api/parent/ckla-summary?grade=${_grade}`).catch(() => null),
         apiFetchJSON("/api/parent/math-summary").catch(() => null),
     ]);
 

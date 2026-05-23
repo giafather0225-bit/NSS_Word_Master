@@ -8,11 +8,14 @@
 
 const _PP_MATH_STAGES = ["pretest", "learn", "try", "practice_r1", "practice_r2", "practice_r3", "unit_test"];
 
+/** Convert grade string ("G3") to integer (3) for numeric comparison. @tag PARENT MATH */
+function _ppGradeNum(g) { return parseInt((g || "G3").replace(/\D/g, ""), 10); }
+
 /** Math tab entry. @tag PARENT MATH */
 async function _ppMathSummary(body) {
     try {
         const _safe = (p, fb) => p.catch(() => fb);
-        const grade = "G3";
+        const grade = window._ppCurrentGrade || "G3";
 
         const [summary, placement, unitsResp] = await Promise.all([
             _safe(apiFetchJSON("/api/parent/math-summary"),               {}),
@@ -57,7 +60,7 @@ function _ppMathPlacementStrip(results) {
     const gradeCounts = {};
     results.forEach(r => { gradeCounts[r.estimated_grade] = (gradeCounts[r.estimated_grade] || 0) + 1; });
     const suggested = Object.keys(gradeCounts).sort((a, b) => gradeCounts[b] - gradeCounts[a])[0] || "G3";
-    const weakDomains = results.filter(r => (r.estimated_grade || "G3") < suggested);
+    const weakDomains = results.filter(r => _ppGradeNum(r.estimated_grade) < _ppGradeNum(suggested));
 
     const date = (results[0]?.test_date || "").slice(0, 10);
     const subText = `Taken ${date}` + (weakDomains.length ? ` · Weak: ${weakDomains.map(d => _ppHumanDomain(d.domain)).join(", ")}` : "");
