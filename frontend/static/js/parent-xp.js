@@ -26,13 +26,10 @@ const _PP_XP_ACTIONS = [
 /** Render XP tab: rule editor + arcade cap + 7-day report. @tag PARENT XP */
 async function _ppXP(body) {
     try {
-        const [rulesRes, reportRes] = await Promise.all([
-            fetch("/api/parent/xp-rules"),
-            fetch("/api/parent/xp-report?days=7"),
+        const [rules, report] = await Promise.all([
+            apiFetchJSON("/api/parent/xp-rules"),
+            apiFetchJSON("/api/parent/xp-report?days=7"),
         ]);
-        if (!rulesRes.ok || !reportRes.ok) throw new Error("fetch failed");
-        const rules  = await rulesRes.json();
-        const report = await reportRes.json();
         window._ppXPData = { rules, report };
 
         body.innerHTML =
