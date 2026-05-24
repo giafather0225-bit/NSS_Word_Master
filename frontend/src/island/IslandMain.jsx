@@ -33,8 +33,7 @@ const _CHAR_BUBBLES = [
     { zone: 'forest',  left: '16%', top: '42%', delay: '0s'   },
     { zone: 'space',   left: '86%', top: '40%', delay: '.5s'  },
     { zone: 'ocean',   left: '16%', top: '78%', delay: '.8s'  },
-    { zone: 'savanna', left: '83%', top: '60%', delay: '1.2s' },
-    { zone: 'legend',  left: '48%', top: '50%', delay: '1.6s' },
+    { zone: 'savanna', left: '85%', top: '78%', delay: '1.2s' },
 ];
 
 // ─── State ──────────────────────────────────────────────────────
