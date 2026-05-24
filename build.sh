@@ -193,18 +193,9 @@ if [ -f "$HTML" ]; then
   BUILD_ID=$(cat \
     $OUT/bundle-a.min.js $OUT/bundle-b.min.js $OUT/bundle-c.min.js \
     frontend/static/css/*.css \
-    frontend/static/js/splash.js \
-    frontend/static/js/sound.js \
-    frontend/static/js/offline-indicator.js \
-    frontend/static/js/toast.js \
-    frontend/static/js/core.js \
-    frontend/static/js/core-fx.js \
-    frontend/static/js/core-stage.js \
-    frontend/static/js/core-vault.js \
-    frontend/static/js/tts-client.js \
-    frontend/static/js/analytics.js \
-    frontend/static/js/navigation.js \
-    frontend/static/js/update-banner.js \
+    $JS/splash.js $JS/sound.js $JS/offline-indicator.js $JS/toast.js \
+    $JS/core.js $JS/core-fx.js $JS/core-stage.js $JS/core-vault.js \
+    $JS/tts-client.js $JS/analytics.js $JS/navigation.js $JS/update-banner.js \
     | shasum | cut -c1-8)
   # BSD sed (macOS) and GNU sed (Linux) both accept `-i.bak` + cleanup.
   sed -i.bak -E "s/\?v=[A-Za-z0-9]+/?v=$BUILD_ID/g" "$HTML"
