@@ -35,6 +35,15 @@ def _cfg(db: Session, key: str, default: str = "") -> str:
     return row.value if row else default
 
 
+def _bulk_cfg(db: Session, keys: list[str], defaults: dict[str, str] | None = None) -> dict[str, str]:
+    """Load multiple AppConfig keys in a single IN query. Faster than repeated _cfg() calls."""
+    rows = db.query(AppConfig).filter(AppConfig.key.in_(keys)).all()
+    result = {k: (defaults or {}).get(k, "") for k in keys}
+    for row in rows:
+        result[row.key] = row.value
+    return result
+
+
 # ── Send now ──────────────────────────────────────────────
 
 @router.post("/api/parent/report/send")
@@ -44,13 +53,14 @@ def send_report_now(
     _pin: bool    = Depends(require_parent_pin),
 ):
     """Send the weekly report email immediately. @tag PARENT REPORT"""
-    email = _cfg(db, "parent_email")
+    cfg = _bulk_cfg(db, ["parent_email", "report_child_name"], {"report_child_name": "Gia"})
+    email = cfg["parent_email"]
     if not email or "@" not in email:
         raise HTTPException(
             status_code=400,
             detail="parent_email not configured. Set it in Parent Settings.",
         )
-    child_name = _cfg(db, "report_child_name", "Gia")
+    child_name = cfg["report_child_name"]
     background_tasks.add_task(report_engine.send_weekly_report, db, email, child_name)
     return {"ok": True, "message": f"Report queued to {email}"}
 
@@ -74,11 +84,13 @@ def get_schedule(
     _pin: bool    = Depends(require_parent_pin),
 ):
     """Get the current automatic report send schedule. @tag PARENT REPORT"""
+    cfg = _bulk_cfg(db, ["report_enabled", "report_day_of_week", "report_child_name", "parent_email"],
+                    {"report_enabled": "0", "report_day_of_week": "1", "report_child_name": "Gia"})
     return {
-        "enabled":      _cfg(db, "report_enabled",     "0") == "1",
-        "day_of_week":  int(_cfg(db, "report_day_of_week", "1")),
-        "child_name":   _cfg(db, "report_child_name",  "Gia"),
-        "parent_email": _cfg(db, "parent_email",       ""),
+        "enabled":      cfg["report_enabled"] == "1",
+        "day_of_week":  int(cfg["report_day_of_week"]),
+        "child_name":   cfg["report_child_name"],
+        "parent_email": cfg["parent_email"],
     }
 
 

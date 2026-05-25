@@ -249,7 +249,7 @@ async def submit_grade_final_test(
             ]
             ans_lower = user_ans_stripped.lower()
             copied_hint = any(
-                SequenceMatcher(None, ans_lower, h.lower()).ratio() >= 0.8
+                SequenceMatcher(None, ans_lower, h.lower()).ratio() >= 0.6
                 for h in hint_texts
             )
             is_correct = (not copied_hint) and len(user_ans_stripped) >= 8

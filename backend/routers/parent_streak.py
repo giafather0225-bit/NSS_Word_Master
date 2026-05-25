@@ -38,7 +38,7 @@ class StreakRuleIn(BaseModel):
 
 
 @router.get("/api/parent/streak")
-def parent_streak(db: Session = Depends(get_db)):
+def parent_streak(db: Session = Depends(get_db), _pin: bool = Depends(require_parent_pin)):
     """Streak dashboard payload: current, longest, rule, last-30-days. @tag PARENT STREAK"""
     subjects, mode = streak_engine.get_streak_config(db)
     current = streak_engine.get_current_streak(db)

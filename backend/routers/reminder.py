@@ -29,12 +29,12 @@ router = APIRouter(prefix="/api/reminders", tags=["reminders"])
 
 # @tag REMINDER HOME_DASHBOARD
 def _review_due_count(db: Session, today_iso: str) -> int:
-    """Return the number of words whose SM-2 next_review_date is on or before today."""
+    """Return the number of words whose SM-2 next_review is on or before today."""
     try:
         return (
             db.query(WordReview)
-              .filter(WordReview.next_review_date != None)  # noqa: E711
-              .filter(WordReview.next_review_date <= today_iso)
+              .filter(WordReview.next_review != None)  # noqa: E711
+              .filter(WordReview.next_review <= today_iso)
               .count()
         )
     except Exception:
@@ -123,7 +123,7 @@ def today_reminders(db: Session = Depends(get_db)) -> List[dict]:
         banners.append({
             "key": "review_due",
             "severity": "info",
-            "message": f"⏰ {due} word{'s' if due != 1 else ''} ready for review today!",
+            "message": f"{due} word{'s' if due != 1 else ''} ready for review today!",
         })
 
     # 2. Streak at risk — yesterday wasn't maintained
@@ -131,7 +131,7 @@ def today_reminders(db: Session = Depends(get_db)) -> List[dict]:
         banners.append({
             "key": "streak_at_risk",
             "severity": "warning",
-            "message": "🔥 Your streak is at risk — finish today's tasks to keep it alive!",
+            "message": "Your streak is at risk — finish today's tasks to keep it alive!",
         })
 
     # 3. Stale academy lesson — auto-reset coming
@@ -140,7 +140,7 @@ def today_reminders(db: Session = Depends(get_db)) -> List[dict]:
         banners.append({
             "key": "stale_lesson",
             "severity": "warning",
-            "message": f"📕 Lesson '{stale.lesson}' has been idle for 2+ days. Continue today or it'll reset!",
+            "message": f"Lesson '{stale.lesson}' has been idle for 2+ days. Continue today or it'll reset!",
         })
 
     # 4. Lesson reset notification (last 24h)
@@ -149,7 +149,7 @@ def today_reminders(db: Session = Depends(get_db)) -> List[dict]:
         banners.append({
             "key": "lesson_reset",
             "severity": "danger",
-            "message": f"🔄 {reset.title or 'A lesson was reset'}. Time to start fresh!",
+            "message": f"{reset.title or 'A lesson was reset'}. Time to start fresh!",
         })
 
     # 5. Pending day-off request awaiting parent decision
@@ -158,7 +158,7 @@ def today_reminders(db: Session = Depends(get_db)) -> List[dict]:
         banners.append({
             "key": "day_off_pending",
             "severity": "info",
-            "message": f"🏖️ Day off request for {pending.request_date} is pending parent approval.",
+            "message": f"Day off request for {pending.request_date} is pending parent approval.",
         })
 
     return banners

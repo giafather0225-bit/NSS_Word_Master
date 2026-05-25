@@ -41,15 +41,18 @@ def parent_math_summary(db: Session = Depends(get_db)):
     exit_quiz_passed  = sum(1 for r in progress_rows if r.exit_quiz_passed)
     eq_pass_rate      = round(exit_quiz_passed / completed * 100, 1) if completed else 0.0
 
-    # Attempts — last 7 days
+    # Attempts — last 7 days (SQL aggregation avoids loading all rows into Python)
     week_ago = (date.today() - timedelta(days=7)).isoformat()
-    recent_attempts = (
-        db.query(MathAttempt)
+    attempt_stats = (
+        db.query(
+            func.count(MathAttempt.id).label("total"),
+            func.sum(case((MathAttempt.is_correct == True, 1), else_=0)).label("correct"),  # noqa: E712
+        )
         .filter(MathAttempt.attempted_at >= week_ago)
-        .all()
+        .first()
     )
-    total_attempts = len(recent_attempts)
-    correct_attempts = sum(1 for a in recent_attempts if a.is_correct)
+    total_attempts   = attempt_stats.total   or 0
+    correct_attempts = attempt_stats.correct or 0
     accuracy_7d = round(correct_attempts * 100 / total_attempts, 1) if total_attempts else 0.0
 
     # Weak concepts (top 5 by wrong count, with accuracy from all attempts)
@@ -127,9 +130,14 @@ def parent_math_summary(db: Session = Depends(get_db)):
         MathSpacedReview.next_review_date > today_str,
         MathSpacedReview.next_review_date <= seven_days,
     ).count()
-    sr_total       = db.query(MathSpacedReview).count()
-    sr_scores      = [r.exit_quiz_score for r in db.query(MathSpacedReview).all() if r.exit_quiz_score is not None]
-    sr_avg_score   = round(sum(sr_scores) / len(sr_scores) * 20, 1) if sr_scores else 0.0  # /5 * 100
+    # Single aggregation query replaces separate .count() + .all() calls.
+    sr_agg = db.query(
+        func.count(MathSpacedReview.id).label("total"),
+        func.avg(MathSpacedReview.exit_quiz_score).label("avg_score"),  # AVG ignores NULLs
+    ).first()
+    sr_total     = sr_agg.total or 0
+    raw_avg      = sr_agg.avg_score
+    sr_avg_score = round(float(raw_avg) * 20, 1) if raw_avg is not None else 0.0  # /5 * 100
 
     # Exit quiz history — last 20 attempted lessons (passed + stuck), newest first.
     # "Stuck" = exit_quiz_attempts >= 1 and not yet passed (3-attempt limit reached).

@@ -15,10 +15,12 @@ try:
     from ..database import get_db
     from ..models import Schedule
     from ..schemas_common import Str30, Str200
+    from .parent import require_parent_pin
 except ImportError:
     from database import get_db
     from models import Schedule
     from schemas_common import Str30, Str200
+    from routers.parent import require_parent_pin  # type: ignore
 
 router = APIRouter()
 
@@ -45,7 +47,7 @@ def get_schedules(db: Session = Depends(get_db)):
 
 # @tag SCHEDULES
 @router.post("/api/schedules")
-def create_schedule(req: ScheduleCreate, db: Session = Depends(get_db)):
+def create_schedule(req: ScheduleCreate, db: Session = Depends(get_db), _pin: bool = Depends(require_parent_pin)):
     """Create a new test schedule entry."""
     req.clean()
     new_sch = Schedule(test_date=req.test_date, memo=req.memo)
@@ -57,7 +59,7 @@ def create_schedule(req: ScheduleCreate, db: Session = Depends(get_db)):
 
 # @tag SCHEDULES
 @router.delete("/api/schedules/{schedule_id}")
-def delete_schedule(schedule_id: int, db: Session = Depends(get_db)):
+def delete_schedule(schedule_id: int, db: Session = Depends(get_db), _pin: bool = Depends(require_parent_pin)):
     """Delete a schedule by id."""
     db.query(Schedule).filter(Schedule.id == schedule_id).delete()
     db.commit()

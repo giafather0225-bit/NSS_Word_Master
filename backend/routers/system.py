@@ -75,7 +75,7 @@ def ollama_restart(_pin: bool = Depends(require_parent_pin)) -> dict:
 
 # @tag BACKUP SYSTEM
 @router.get("/backups")
-def list_db_backups() -> dict:
+def list_db_backups(_pin: bool = Depends(require_parent_pin)) -> dict:
     """List all DB backup files in ~/NSS_Learning/backups/."""
     return {"backups": backup_engine.list_backups()}
 
