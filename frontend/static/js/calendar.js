@@ -51,7 +51,7 @@ async function _drawCalendar() {
         .toLocaleDateString("en-US", { month: "long", year: "numeric" });
 
     // Fetch calendar data — backend returns a flat array of day objects
-    let dayMap = {}; // "YYYY-MM-DD" → {marker, streak, journal, day_off}
+    let dayMap = {}; // "YYYY-MM-DD" → {marker_type, streak, journal, day_off}
     try {
         const res = await fetch(`/api/calendar/${_calYear}/${m2}`);
         if (res.ok) {
@@ -74,15 +74,23 @@ async function _drawCalendar() {
     const dayCells = Array.from({ length: daysInMon }, (_, i) => {
         const d = i + 1;
         const dateStr  = `${_calYear}-${m2}-${String(d).padStart(2, "0")}`;
-        const info     = dayMap[dateStr] || {};
-        const marker   = info.marker || "";
-        const isToday  = dateStr === today;
-        const isFuture = dateStr > today;
-        const cls      = `cal-day${isToday ? " today" : ""}${isFuture ? " future" : " clickable"}`;
-        const handler  = isFuture ? "" : ` onclick="_openCalendarDay('${dateStr}')"`;
+        const info       = dayMap[dateStr] || {};
+        const markerType = info.marker_type || "";
+        const isToday    = dateStr === today;
+        const isFuture   = dateStr > today;
+        const cls        = `cal-day${isToday ? " today" : ""}${isFuture ? " future" : " clickable"}`;
+        const handler    = isFuture ? "" : ` onclick="_openCalendarDay('${dateStr}')"`;
+        // Marker icon — Lucide only, no emoji
+        const _markerIcon = {
+            day_off:  "umbrella",
+            all_done: "check-circle",
+            streak:   "flame",
+            journal:  "edit-3",
+            missed:   "square",
+        }[markerType] || "";
         return `<div class="${cls}"${handler}>
             <span class="cal-day-num">${d}</span>
-            ${marker ? `<span class="cal-day-marker">${marker}</span>` : ""}
+            ${_markerIcon ? `<span class="cal-day-marker"><i data-lucide="${_markerIcon}"></i></span>` : ""}
         </div>`;
     }).join("");
 

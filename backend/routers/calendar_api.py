@@ -39,20 +39,20 @@ def get_calendar_month(year: int, month: int, db: Session = Depends(get_db)):
 
     Each object shape:
       {
-        "date":      "YYYY-MM-DD",
-        "streak":    bool,
-        "journal":   bool,
-        "day_off":   bool,
-        "all_done":  bool,
-        "marker":    "✅" | "🔥" | "🏖️" | "📝" | "⬜" | ""
+        "date":        "YYYY-MM-DD",
+        "streak":      bool,
+        "journal":     bool,
+        "day_off":     bool,
+        "all_done":    bool,
+        "marker_type": "day_off" | "all_done" | "streak" | "journal" | "missed" | ""
       }
 
-    Marker priority (first match wins):
-      1. Approved day-off request for that date  → "🏖️"
-      2. All active Today's Tasks complete       → "✅"
-      3. StreakLog.streak_maintained == True     → "🔥"
-      4. DiaryEntry exists for that date         → "📝"
-      5. Past date with StreakLog but streak_maintained == False → "⬜"
+    marker_type priority (first match wins):
+      1. Approved day-off request for that date  → "day_off"
+      2. All active Today's Tasks complete       → "all_done"
+      3. StreakLog.streak_maintained == True     → "streak"
+      4. DiaryEntry exists for that date         → "journal"
+      5. Past date with StreakLog but streak_maintained == False → "missed"
       6. Today or future                         → ""
     """
     if not (1 <= month <= 12):
@@ -152,27 +152,27 @@ def get_calendar_month(year: int, month: int, db: Session = Depends(get_db)):
         journal_flag  = date_str in journal_days
         all_done_flag = _all_done(date_str, not_future)
 
-        # Marker priority
+        # marker_type priority (first match wins)
         if day_off_flag:
-            marker = "🏖️"
+            marker_type = "day_off"
         elif all_done_flag:
-            marker = "✅"
+            marker_type = "all_done"
         elif streak_flag:
-            marker = "🔥"
+            marker_type = "streak"
         elif journal_flag:
-            marker = "📝"
+            marker_type = "journal"
         elif is_past and date_str in streak_map and not streak_map[date_str]:
-            marker = "⬜"
+            marker_type = "missed"
         else:
-            marker = ""
+            marker_type = ""
 
         result.append({
-            "date":     date_str,
-            "streak":   streak_flag,
-            "journal":  journal_flag,
-            "day_off":  day_off_flag,
-            "all_done": all_done_flag,
-            "marker":   marker,
+            "date":        date_str,
+            "streak":      streak_flag,
+            "journal":     journal_flag,
+            "day_off":     day_off_flag,
+            "all_done":    all_done_flag,
+            "marker_type": marker_type,
         })
 
     return result

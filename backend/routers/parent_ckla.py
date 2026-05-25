@@ -13,6 +13,7 @@ from collections import Counter
 from datetime import date as _date, timedelta
 
 from fastapi import APIRouter, Depends, Query
+from sqlalchemy import case, func
 from sqlalchemy.orm import Session
 
 from backend.database import get_db
@@ -126,17 +127,24 @@ def ckla_summary(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db
             "domain_test_history": domain_test_history.get(d.domain_num, []),
         })
 
-    # ── Q&A accuracy ───────────────────────────────────────────
-    qa_rows = db.query(CKLAQuestionResponse).all()
-    qa_total   = len(qa_rows)
-    qa_correct = sum(1 for r in qa_rows if r.ai_score >= 1)
+    # ── Q&A accuracy — SQL aggregation avoids loading all rows into Python ──────
+    _correct_expr = func.sum(case((CKLAQuestionResponse.ai_score >= 1, 1), else_=0))
+    qa_agg = db.query(
+        func.count(CKLAQuestionResponse.id).label("total"),
+        _correct_expr.label("correct"),
+    ).first()
+    qa_total    = qa_agg.total   or 0
+    qa_correct  = qa_agg.correct or 0
     qa_accuracy = round(qa_correct / qa_total * 100) if qa_total else 0
 
     # 7-day Q&A accuracy
     cutoff_7d = (today - timedelta(days=7)).isoformat()
-    qa_7d = [r for r in qa_rows if r.created_at and str(r.created_at)[:10] >= cutoff_7d]
-    qa_7d_total   = len(qa_7d)
-    qa_7d_correct = sum(1 for r in qa_7d if r.ai_score >= 1)
+    qa_7d_agg = db.query(
+        func.count(CKLAQuestionResponse.id).label("total"),
+        _correct_expr.label("correct"),
+    ).filter(CKLAQuestionResponse.created_at >= cutoff_7d).first()
+    qa_7d_total    = qa_7d_agg.total   or 0
+    qa_7d_correct  = qa_7d_agg.correct or 0
     qa_7d_accuracy = round(qa_7d_correct / qa_7d_total * 100) if qa_7d_total else 0
 
     # ── Needs parent review ────────────────────────────────────
@@ -147,8 +155,9 @@ def ckla_summary(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db
             "feedback":    r.ai_feedback[:120] if r.ai_feedback else "",
             "created_at":  r.created_at,
         }
-        for r in qa_rows
-        if r.needs_parent_review
+        for r in db.query(CKLAQuestionResponse).filter(
+            CKLAQuestionResponse.needs_parent_review == True  # noqa: E712
+        ).all()
     ]
 
     # ── Weekly chart (last 14 days) ────────────────────────────

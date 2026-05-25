@@ -128,7 +128,7 @@ def _purchase_dict(pr: PurchasedReward, item: Optional[RewardItem]) -> dict:
         "name": item.name if item else "Unknown",
         "description": getattr(item, "description", "") if item else "",
         "category": getattr(item, "category", "badge") if item else "badge",
-        "icon": item.icon if item else "🎁",
+        "icon": item.icon if item else "gift",
         "xp_spent": pr.xp_spent,
         "is_used": pr.is_used,
         "is_equipped": getattr(pr, "is_equipped", False) or False,

@@ -33,6 +33,7 @@ from backend.routers._island_common import (
     cfg, set_cfg, prog_dict,
     island_today, island_today_start,
 )
+from backend.routers.parent import require_parent_pin
 
 router = APIRouter(prefix="/api/island", tags=["island"])
 
@@ -370,7 +371,12 @@ def island_config(db: Session = Depends(get_db)):
 
 # @tag ISLAND
 @router.post("/config/update")
-def config_update(body: ConfigUpdateBody, db: Session = Depends(get_db)):
+def config_update(
+    body:  ConfigUpdateBody,
+    db:    Session = Depends(get_db),
+    _pin:  bool    = Depends(require_parent_pin),
+):
+    """Update an island config value. PIN-gated — parent only."""
     if body.key not in ISLAND_CONFIG_KEYS:
         raise HTTPException(400, f"Config key '{body.key}' is not editable here.")
     set_cfg(db, body.key, body.value)
