@@ -210,8 +210,8 @@ def update_lesson_progress(
             mark_ckla_done(db, commit=False)
             try:
                 _island_apply_gain(db, "english", "english_stage")
-            except Exception:
-                pass
+            except Exception as exc:
+                logger.warning("CKLA lesson: island gain failed (non-fatal): %s", exc)
 
             today_str = _date.today().isoformat()
             daily_goal_cfg = db.query(AppConfig).filter_by(key=_CFG_DAILY_GOAL).first()

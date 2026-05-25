@@ -168,7 +168,7 @@ def get_domains(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)
             "all_complete":    is_all_complete,
             "locked":          locked,
             "test_history":    test_history[:3],   # last 3 attempts for UI
-            "best_score_pct":  best_entry["score_pct"] if best_entry else None,
+            "best_score_pct":  best_entry.get("score_pct") if best_entry else None,
         })
 
     return {

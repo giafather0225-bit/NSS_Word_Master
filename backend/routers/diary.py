@@ -274,8 +274,8 @@ async def create_or_update_diary_entry(
     try:
         from backend.services import island_care_engine as _care
         island = _care.apply_subject_gain(db, "diary", "diary")
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.warning("Diary island gain failed (non-fatal): %s", exc)
 
     response = _entry_to_dict(entry)
     response["island"] = island
