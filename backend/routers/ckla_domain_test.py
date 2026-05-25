@@ -211,7 +211,8 @@ async def submit_domain_test(
                     user_answer=user_ans,
                 )
                 score = result.score
-            except Exception:
+            except Exception as exc:
+                logger.warning("CKLA domain-test: AI grading failed for qid=%s, defaulting score=0: %s", qid, exc)
                 score = 0
             if score >= 1:  # score 1 (partial) and 2 (full) both count as correct
                 correct += 1
@@ -229,12 +230,12 @@ async def submit_domain_test(
         xp_awarded = award_xp(db, "ckla_domain_test_pass", detail=f"domain_{domain_num}_grade_{grade}", commit=False)
         try:
             _island_apply_gain(db, "english", "english_final_test")
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("CKLA domain-test: island gain failed (non-fatal): %s", exc)
         try:
             mark_ckla_done(db, commit=False)
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("CKLA domain-test: mark_ckla_done failed (non-fatal): %s", exc)
         if fail_cfg:
             fail_cfg.value = "0"
     else:

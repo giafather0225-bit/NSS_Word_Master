@@ -53,8 +53,8 @@ def legend_daily(db: Session = Depends(get_db)):
     today = island_today()
     today_start = island_today_start()
     today_actions = {
-        r.action for r in
-        db.query(XPLog).filter(XPLog.created_at >= today_start).all()
+        row[0] for row in
+        db.query(XPLog.action).filter(XPLog.created_at >= today_start).distinct().all()
     }
     subjects_done = {
         subj: bool(today_actions & actions)

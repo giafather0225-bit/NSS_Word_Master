@@ -213,8 +213,8 @@ def save_learning_log(body: LearningLogCreate, db: Session = Depends(get_db)):
             from backend.services import island_care_engine as _care
             _source = "english_final_test" if "final" in body.stage.lower() else "english_stage"
             island = _care.apply_subject_gain(db, "english", _source)
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("island_care_engine failed (non-fatal): %s", exc)
         return {"ok": True, "island": island}
     except SQLAlchemyError as e:
         db.rollback()

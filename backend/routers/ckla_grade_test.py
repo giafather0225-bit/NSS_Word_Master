@@ -298,7 +298,8 @@ async def submit_grade_final_test(
                     user_answer=user_ans_stripped,
                 )
                 score = result.score
-            except Exception:
+            except Exception as exc:
+                logger.warning("CKLA grade-final-test: AI grading failed for qid=%s, defaulting score=0: %s", qid, exc)
                 score = 0
             if score == 2:
                 correct += 1
@@ -322,8 +323,8 @@ async def submit_grade_final_test(
         xp_awarded = award_xp(db, "ckla_grade_final_pass", detail=f"grade_{grade}", commit=False)
         try:
             _island_apply_gain(db, "english", "english_final_test")
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("CKLA grade-final-test: island gain failed (non-fatal): %s", exc)
         if cfg:
             cfg.value = ""
     else:
