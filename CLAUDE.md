@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-22 — 라우터 57개(파일 63개) · JS 126개 · CSS 66개 · 서비스 20개 · 마이그레이션 68개 (최신: 063) · Parent Dashboard 6탭 · CKLA 4번째 과목 · Top Weaknesses 홈탭 · 부모 PIN 게이트 감사 · legacy Reward 제거 · core.js → core-fx/core-stage/core-vault 3분할 (805→583줄) · word-manager 3분할 · review-hub 2분할 · arcade-word-invaders 2분할 · arcade-crossword 2분할 · parent-panel 차트 분할 · child.js 3분할 · navigation.js 2분할 · dead code 정리 (parent-island.js, test_growth_theme.py) · P2 전체 완료 · P3 완료 · build.sh parent_ingest.html 캐시버스팅 추가
+> Last updated: 2026-05-25 — 라우터 57개(파일 63개) · JS 128개 · CSS 66개 · 서비스 19개 · 마이그레이션 69개 (최신: 064) · child-pin/child-guide 추가 (bundle 외부 로딩) · 064 island_zone_status seed 수정 · Parent Dashboard 6탭 · CKLA 4번째 과목 · Top Weaknesses 홈탭 · 부모 PIN 게이트 감사 · legacy Reward 제거 · core.js → core-fx/core-stage/core-vault 3분할 · P2 전체 완료 · P3 완료
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -999,7 +999,7 @@ Hub UI is calm (`bg-page` + cards only). Energy/SFX (`arcade-sfx.js`) only insid
 025a ai_call_log · 025b ckla_review_to_word_reviews · 026 ckla_aux_content · 027 fix_d1_lesson_titles · 028 fix_qa_model_answers · 029 fix_d4l9_evaluative · 030 audio_url_backfill · 031 fix_ocr_artifacts · 032 fix_data_quality_round2 · 033a add_qa_done · 033b math_progress_mastery · 034a math_attempt_misconception · 034b strip_wordnet_tags · 035 fix_bad_definitions · 036 fix_short_definitions · 037 fix_mw_colon_definitions · 038 fix_pos_and_short_definitions · 039 fix_circular_and_misc
 
 **040~056 (DUX 사전 정규화 + Island 확장)**
-040a fix_compound_noun_pos · 040b math_unique_constraints · 041a fix_relating_to_definitions · 041b math_daily_unique_date · 042 fix_examples_bold_and_wrong · 043 lowercase_definition_starts · 044 fix_structural_and_content_p1 · 045 expand_short_definitions · 046 fill_sort_order · 047 drop_us_academy_passages · 048 drop_us_academy_session_results · 049 fix_lesson14_progress · 050 generate_missing_audio · 051 normalize_pretest_stage · 052 island_zone_sequential_lock · 053 island_zone_first_evo_unlock · 054 xplog_composite_index · 055 island_evo_food_image_paths · 056 word_reviews_easiness_real · 057 normalize_pos_tags · 058 fix_words_bad_entries · 059 fix_reward_items_category_icons · 060 island_character_images · 061 top_weaknesses_indexes · 062 drop_legacy_rewards · **063 streak_freeze** ← latest
+040a fix_compound_noun_pos · 040b math_unique_constraints · 041a fix_relating_to_definitions · 041b math_daily_unique_date · 042 fix_examples_bold_and_wrong · 043 lowercase_definition_starts · 044 fix_structural_and_content_p1 · 045 expand_short_definitions · 046 fill_sort_order · 047 drop_us_academy_passages · 048 drop_us_academy_session_results · 049 fix_lesson14_progress · 050 generate_missing_audio · 051 normalize_pretest_stage · 052 island_zone_sequential_lock · 053 island_zone_first_evo_unlock · 054 xplog_composite_index · 055 island_evo_food_image_paths · 056 word_reviews_easiness_real · 057 normalize_pos_tags · 058 fix_words_bad_entries · 059 fix_reward_items_category_icons · 060 island_character_images · 061 top_weaknesses_indexes · 062 drop_legacy_rewards · 063 streak_freeze · **064 seed_island_zone_status** ← latest (island_zone_status 5행 + app_config island_initialized/lumi_exchange_rate 보정)
 
 ---
 
@@ -1274,7 +1274,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 ---
 
-## Codebase Health Snapshot (2026-05-17 풀 스캔 기준)
+## Codebase Health Snapshot (2026-05-25 풀 스캔 기준)
 
 > 이 섹션은 실제 파일시스템과 grep 결과로 생성된 검증된 수치다. 추정치 없음.
 
@@ -1284,12 +1284,12 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 |------|------|----------|
 | 등록된 FastAPI 라우터 | 57 | `grep -c "app.include_router" backend/main.py` (rewards 제거 -1, streak_freeze 추가 +1, 2026-05-19~20) |
 | routers/ 파일 수 | 63 | `ls backend/routers/*.py` (5개 유틸 + streak_freeze.py 추가 — 미등록 상태) |
-| JS 소스 파일 | 126 | `ls frontend/static/js/*.js \| grep -v bundle` (word-manager 3분할 + review-hub 2분할 + arcade-word-invaders 2분할 + arcade-crossword 2분할 + parent-panel-charts 분할 + child 3분할 + navigation 2분할; parent-island.js 삭제) |
+| JS 소스 파일 | 128 | `ls frontend/static/js/*.js \| grep -v bundle` (child-pin.js + child-guide.js 추가 — bundle 외부 로딩; child-{calendar,keyboard,text,bootstrap}.js 분할 포함) |
 | CSS 파일 | 66 | `ls frontend/static/css/*.css` (island-guide.css 추가) |
 | Island JSX 컴포넌트 | 17 | `ls frontend/src/island/*.jsx` |
-| 마이그레이션 파일 | 68 | `ls backend/migrations/[0-9]*.py` (최신: 063) |
+| 마이그레이션 파일 | 69 | `ls backend/migrations/[0-9]*.py` (최신: 064_seed_island_zone_status) |
 | ORM 모델 파일 | 11 | `ls backend/models/*.py` (\_base, \_\_init\_\_ 제외) |
-| 서비스 파일 | 20 | `ls backend/services/*.py` (xp_lumi_bridge + streak_freeze_engine 추가) |
+| 서비스 파일 | 19 | `ls backend/services/*.py` (xp_lumi_bridge + streak_freeze_engine 추가; pin_guard/pin_hash 각각 1개씩) |
 | Island 라우터 파일 수 | 5 | island.py + island_{character,dev,legend,shop}.py |
 | `__all__` 내보낸 클래스 | 61 | `backend/models/__init__.py` |
 
@@ -1323,6 +1323,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 | ~~7~~ | ~~`frontend/static/mockups/home-v2.html`~~ | ~~개발용 목업 파일이 static에 노출됨~~ → **✅ 완료** — `frontend/static/mockups/` 전체 삭제됨 |
 | 8 | `parent-ingest.js` | bundle에 포함되지 않고 `parent_ingest.html` 전용 — 의도적이나 빌드 파이프라인 외부에 있음 |
 | 9 | CKLA ckla-spelling.js | `ckla-spelling.js` 가 bundle-a에 포함되어 있으나 `build.sh`에서 JSX 파일과 함께 처리되는지 확인 필요 |
+| 10 | `child-pin.js`, `child-guide.js` | bundle-a에 포함되지 않음 — `child.html`에서 개별 `<script>` 태그로 로딩 (의도적: 스플래시/PIN 화면은 bundle 이전에 실행 필요) |
 
 ---
 
