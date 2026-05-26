@@ -249,7 +249,8 @@ def active_guide(subject: str = "english", db: Session = Depends(get_db)):
 
     try:
         images = _json.loads(char.images or "{}")
-    except Exception:
+    except Exception as exc:
+        logger.debug("Failed to parse character images JSON for char %s: %s", char.id, exc)
         images = {}
     image_url = images.get(stage) or images.get("baby") or ""
 

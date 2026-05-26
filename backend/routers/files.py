@@ -142,7 +142,7 @@ async def upload_lesson_file(
     """
     lesson = db.query(Lesson).filter(Lesson.id == lesson_id).first()
     if not lesson:
-        raise HTTPException(status_code=404, detail=f"Lesson id={lesson_id} 없음")
+        raise HTTPException(status_code=404, detail=f"Lesson id={lesson_id} not found")
 
     original_name = file.filename or "upload.bin"
     # Stream to a temp file first, then hand off bytes to save_lesson_file.
@@ -182,7 +182,7 @@ def list_uploaded_files(lesson_id: int, db: Session = Depends(get_db)):
     """Return the list of files uploaded for lesson_id."""
     lesson = db.query(Lesson).filter(Lesson.id == lesson_id).first()
     if not lesson:
-        raise HTTPException(status_code=404, detail=f"Lesson id={lesson_id} 없음")
+        raise HTTPException(status_code=404, detail=f"Lesson id={lesson_id} not found")
 
     files = list_lesson_files(lesson_id)
     return {
@@ -199,7 +199,7 @@ def remove_lesson_file(lesson_id: int, filename: str, db: Session = Depends(get_
     """Delete an uploaded file from storage for lesson_id."""
     lesson = db.query(Lesson).filter(Lesson.id == lesson_id).first()
     if not lesson:
-        raise HTTPException(status_code=404, detail=f"Lesson id={lesson_id} 없음")
+        raise HTTPException(status_code=404, detail=f"Lesson id={lesson_id} not found")
 
     try:
         deleted = delete_lesson_file(lesson_id, filename)
@@ -207,7 +207,7 @@ def remove_lesson_file(lesson_id: int, filename: str, db: Session = Depends(get_
         raise HTTPException(status_code=400, detail=str(e))
 
     if not deleted:
-        raise HTTPException(status_code=404, detail=f"파일 '{filename}' 없음")
+        raise HTTPException(status_code=404, detail=f"File '{filename}' not found")
 
     return {"deleted": True, "filename": filename, "lesson_id": lesson_id}
 
@@ -231,13 +231,13 @@ async def trigger_ocr(
 
     lesson = db.query(Lesson).filter(Lesson.id == lesson_id).first()
     if not lesson:
-        raise HTTPException(status_code=404, detail=f"Lesson id={lesson_id} 없음")
+        raise HTTPException(status_code=404, detail=f"Lesson id={lesson_id} not found")
 
     try:
         result = await run_ocr_pipeline(lesson_id=lesson_id, db=db, lang=safe_lang, model=model)
     except FileNotFoundError as e:
         raise HTTPException(status_code=404, detail=str(e))
     except Exception as e:
-        raise HTTPException(status_code=502, detail=f"OCR 파이프라인 오류: {e!s}")
+        raise HTTPException(status_code=502, detail=f"OCR pipeline error: {e!s}")
 
     return result

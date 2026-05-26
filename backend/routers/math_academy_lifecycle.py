@@ -64,8 +64,8 @@ async def complete_lesson(req: CompleteLessonIn, db: Session = Depends(get_db)):
     try:
         from backend.services import island_care_engine as _care
         island = _care.apply_subject_gain(db, "math", "math_lesson")
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.warning("Failed to apply island care gain on lesson complete: %s", exc)
 
     return {"status": "ok", "is_completed": True, "island": island}
 
@@ -81,8 +81,8 @@ async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get
         try:
             unit_data = _read_json_cached(str(unit_path), unit_path.stat().st_mtime)
             threshold = float(unit_data.get("pass_threshold", 0.8))
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.debug("Could not read pass_threshold from unit_test.json: %s", exc)
 
     passed = (pct / 100) >= threshold
 
@@ -136,8 +136,8 @@ async def submit_unit_test_body(req: SubmitUnitTestIn, db: Session = Depends(get
         try:
             from backend.services import island_care_engine as _care
             result["island"] = _care.apply_subject_gain(db, "math", "math_unit_test")
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("Failed to apply island care gain on unit test pass: %s", exc)
 
     if not passed:
         try:

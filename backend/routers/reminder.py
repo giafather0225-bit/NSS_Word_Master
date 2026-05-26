@@ -5,6 +5,7 @@ Dependencies: models.py (StreakLog, WordReview, AcademySession, GrowthEvent, Day
 API: GET /api/reminders/today
 """
 
+import logging
 from datetime import date, datetime, timedelta
 from typing import List, Optional
 
@@ -25,6 +26,7 @@ except ImportError:
     from services import academy_session as academy_sess  # type: ignore
 
 router = APIRouter(prefix="/api/reminders", tags=["reminders"])
+logger = logging.getLogger(__name__)
 
 
 # @tag REMINDER HOME_DASHBOARD
@@ -37,7 +39,8 @@ def _review_due_count(db: Session, today_iso: str) -> int:
               .filter(WordReview.next_review <= today_iso)
               .count()
         )
-    except Exception:
+    except Exception as exc:
+        logger.warning("_review_due_count query failed: %s", exc)
         return 0
 
 
@@ -68,7 +71,8 @@ def _stale_lesson(db: Session) -> Optional[AcademySession]:
               .order_by(AcademySession.last_active_date.asc())
               .first()
         )
-    except Exception:
+    except Exception as exc:
+        logger.warning("_stale_lesson query failed: %s", exc)
         return None
 
 
@@ -82,7 +86,8 @@ def _pending_day_off(db: Session) -> Optional[DayOffRequest]:
               .order_by(DayOffRequest.created_at.desc())
               .first()
         )
-    except Exception:
+    except Exception as exc:
+        logger.warning("_pending_day_off query failed: %s", exc)
         return None
 
 
@@ -98,7 +103,8 @@ def _recent_lesson_reset(db: Session) -> Optional[GrowthEvent]:
               .order_by(GrowthEvent.created_at.desc())
               .first()
         )
-    except Exception:
+    except Exception as exc:
+        logger.warning("_recent_lesson_reset query failed: %s", exc)
         return None
 
 

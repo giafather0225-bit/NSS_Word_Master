@@ -165,7 +165,8 @@ def _check_kangaroo_pdf() -> dict:
         for jf in kangaroo_data_dir.glob("*.json"):
             try:
                 d = json.loads(jf.read_text(encoding="utf-8"))
-            except Exception:
+            except Exception as exc:
+                logger.debug("Skipping kangaroo JSON %s: %s", jf.name, exc)
                 continue
             pdf = d.get("pdf_file")
             if pdf:
@@ -202,7 +203,8 @@ def _check_island_png() -> dict:
                 continue
             try:
                 imgs = json.loads(raw)
-            except Exception:
+            except Exception as exc:
+                logger.debug("Skipping island character %s images JSON: %s", c.id, exc)
                 continue
             for path in imgs.values():
                 if path:

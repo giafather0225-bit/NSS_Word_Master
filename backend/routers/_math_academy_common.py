@@ -296,14 +296,14 @@ def _grade_answer(problem: dict, user_answer: str) -> tuple[bool, str]:
 
 def _decide_next_after_round(prog: "MathProgress", current_round: str,
                              score: int, total: int) -> tuple[str, bool]:
-    """Mastery Gating 결정.
+    """Determine next practice stage after completing a round (Mastery Gating).
 
-    규칙
-    - R1 perfect (100%) AND PT mastery (PT 100%) → R2 skip → R3 직행
-    - 그 외 정상 진행: R1 → R2 → R3 → complete
-    - R3 완료 시 → complete
+    Rules:
+    - R1 perfect (100%) AND PT mastery (PT 100%) → skip R2 → go directly to R3
+    - Otherwise normal path: R1 → R2 → R3 → complete
+    - R3 done → complete
 
-    반환 (next_stage, mastery_skip_applied)
+    Returns (next_stage, mastery_skip_applied)
     """
     r_pct = (score / total * 100) if total else 0
     if current_round == "practice_r1":
