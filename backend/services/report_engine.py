@@ -26,7 +26,7 @@ from backend.services.report_engine_html import build_html_report  # noqa: E402
 # ─────────────────────────────────────────────────────────
 
 def collect_weekly_data(db: Session, days: int = 7) -> dict:
-    """지난 N일 학습 데이터 집계 → 리포트용 dict 반환."""
+    """Aggregate the last N days of learning data and return a report dict."""
     from backend.models import (
         LearningLog, WordAttempt, XPLog,
         MathAttempt, MathDailyChallenge, MathWrongReview, MathFactFluency,
@@ -48,10 +48,10 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
         .scalar() or 0
     )
 
-    # ── 스트릭 ──────────────────────────────────────────
+    # ── Streak ──────────────────────────────────────────
     streak = streak_engine.get_current_streak(db)
 
-    # ── 학습 시간 / 세션 ─────────────────────────────────
+    # ── Study time / sessions ────────────────────────────
     row = (
         db.query(
             func.count(LearningLog.id).label("cnt"),
@@ -63,7 +63,7 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
     total_sessions = row.cnt or 0
     total_minutes  = round((row.sec or 0) / 60)
 
-    # ── 단어 성취 ────────────────────────────────────────
+    # ── Word achievement ─────────────────────────────────
     words_attempted = int(
         db.query(func.count(func.distinct(WordAttempt.word)))
         .filter(WordAttempt.attempted_at >= start)
@@ -75,7 +75,7 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
         .scalar() or 0
     )
 
-    # ── 평균 정답률 ──────────────────────────────────────
+    # ── Average accuracy ──────────────────────────────────────
     avg_acc = round(
         db.query(
             func.avg(
@@ -88,7 +88,7 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
         1,
     )
 
-    # ── 스테이지별 정확도 ────────────────────────────────
+    # ── Per-stage accuracy ────────────────────────────────
     _STAGE_ORDER = ["PREVIEW", "A", "B", "C", "D", "exam"]
     _STAGE_LABEL = {
         "PREVIEW": "Preview", "A": "Word Match", "B": "Fill Blank",
@@ -121,7 +121,7 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
         ) if x["label"] in _STAGE_LABEL.values() else 99,
     )
 
-    # ── 취약 단어 TOP 5 ──────────────────────────────────
+    # ── Weakest words TOP 5 ──────────────────────────────
     correct_expr = func.sum(case((WordAttempt.is_correct == True, 1), else_=0))
     weak_rows = (
         db.query(
@@ -145,7 +145,7 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
         for r in weak_rows
     ]
 
-    # ── 일별 활동 ────────────────────────────────────────
+    # ── Daily activity ────────────────────────────────────
     daily_rows = (
         db.query(
             func.substr(LearningLog.completed_at, 1, 10).label("day"),
@@ -173,7 +173,7 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
         for i in range(days)
     ]
 
-    # ── 학습 레슨 목록 ───────────────────────────────────
+    # ── Lessons studied ───────────────────────────────────
     lesson_rows = (
         db.query(LearningLog.textbook, LearningLog.lesson,
                  func.count(func.distinct(LearningLog.stage)).label("stages"))
@@ -188,7 +188,7 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
         for r in lesson_rows
     ]
 
-    # ── Math 데이터 ──────────────────────────────────────
+    # ── Math data ─────────────────────────────────────
     math_row = (
         db.query(
             func.count(MathAttempt.id).label("total"),
@@ -228,7 +228,7 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
     fluency_rows = db.query(MathFactFluency).all()
     best_fluency = max((r.best_score or 0 for r in fluency_rows), default=0)
 
-    # ── CKLA 데이터 ──────────────────────────────────────────
+    # ── CKLA data ─────────────────────────────────────────
     from backend.models.ckla import (
         CKLADomain, CKLALesson, CKLALessonProgress, CKLAQuestionResponse,
     )
@@ -359,7 +359,7 @@ def collect_weekly_data(db: Session, days: int = 7) -> dict:
 # ─────────────────────────────────────────────────────────
 
 def send_weekly_report(db: Session, to_email: str, child_name: str = "Gia") -> bool:
-    """데이터 집계 → HTML 생성 → SMTP 발송."""
+    """Aggregate data, build HTML, and send via SMTP."""
     from backend.services.email_sender import _smtp_config
 
     try:

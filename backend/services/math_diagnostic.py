@@ -1,16 +1,16 @@
 """
-backend/services/math_diagnostic.py — 수학 오답 진단 엔진.
+backend/services/math_diagnostic.py — Math wrong-answer diagnostic engine.
 
-학습자가 오답을 냈을 때:
-1) 어느 선택지(A/B/C/D)를 골랐는지 추출
-2) 해당 항목의 expected_errors[choice]에서 error_type + misconception_id 조회
-3) misconception_id가 비어 있으면 후보(misconception_candidates)에서 error_type 기반 추론
-4) 라이브러리에서 short_label/description/example 끌어와 진단 결과 합성
+When a learner answers incorrectly:
+1) Extract which choice (A/B/C/D) was selected
+2) Look up error_type + misconception_id from problem.expected_errors[choice]
+3) If misconception_id is missing, infer from misconception_candidates using error_type
+4) Synthesize diagnosis result with short_label/description/example from the library
 
-설계 원칙
-- 순수 함수 (DB 없음): in/out으로 단위 테스트 용이
-- 라이브러리는 모듈 임포트 시 한 번 로드 후 LRU 캐싱
-- 매칭 실패 시 안전한 fallback (error_type='concept_gap', misconception_id=None)
+Design principles:
+- Pure function (no DB): easy unit testing via in/out
+- Library loaded once on module import, then LRU-cached
+- Safe fallback on match failure (error_type='concept_gap', misconception_id=None)
 """
 
 import json

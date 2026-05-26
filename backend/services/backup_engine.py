@@ -101,7 +101,8 @@ def list_backups() -> List[dict]:
                 "size_bytes": stat.st_size,
                 "modified": datetime.fromtimestamp(stat.st_mtime).isoformat(timespec="seconds"),
             })
-        except Exception:
+        except Exception as exc:
+            logger.warning("Failed to stat backup %s: %s", p.name, exc)
             continue
     return out
 

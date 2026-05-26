@@ -141,7 +141,8 @@ def apply_boost(xp: int, action: str, db: Session) -> int:
         if pct <= 0:
             return xp
         return int(xp * (1.0 + pct / 100.0))
-    except Exception:
+    except Exception as exc:
+        logger.warning("apply_boost failed for action=%s: %s", action, exc)
         return xp
 
 
@@ -154,7 +155,8 @@ def award_lumi_for_action(db: Session, action: str) -> None:
     try:
         rules  = _get_lumi_rules(db)
         amount = rules.get(cfg_key, _LUMI_DEFAULTS.get(cfg_key, 0))
-    except Exception:
+    except Exception as exc:
+        logger.warning("Failed to read lumi rules for action=%s: %s", action, exc)
         amount = _LUMI_DEFAULTS.get(cfg_key, 0)
     if amount <= 0:
         return

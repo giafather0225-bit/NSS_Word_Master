@@ -43,7 +43,8 @@ def _ping() -> bool:
     try:
         r = httpx.get(f"{OLLAMA_HOST}/api/tags", timeout=PING_TIMEOUT)
         return r.status_code == 200
-    except Exception:
+    except Exception as exc:
+        logger.debug("Ollama ping failed: %s", exc)
         return False
 
 
@@ -57,7 +58,8 @@ def _model_available() -> bool:
         names = {m.get("name", "") for m in r.json().get("models", [])}
         # Match either exact tag or family prefix (e.g. "gemma2:2b" → "gemma2:2b")
         return any(n == OLLAMA_MODEL or n.startswith(OLLAMA_MODEL.split(":")[0]) for n in names)
-    except Exception:
+    except Exception as exc:
+        logger.debug("Model availability check failed: %s", exc)
         return False
 
 

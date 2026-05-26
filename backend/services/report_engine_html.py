@@ -166,10 +166,10 @@ def _section_header(title: str, color: str, light: str, ink: str) -> str:
 # ── Public API ────────────────────────────────────────────────────────────────
 
 def build_html_report(data: dict, child_name: str = "Gia") -> str:
-    """HTML 이메일 템플릿 생성. 이모지 없음, 컬러 바로 섹션 구분."""
+    """Build the HTML email template. No emoji; section bars provide color separation."""
     c = _C
 
-    # 일별 XP 바
+    # Daily XP bars
     max_xp  = max((d["xp"] for d in data["daily_activity"]), default=1) or 1
     day_bars = ""
     for d in data["daily_activity"]:
@@ -184,12 +184,12 @@ def build_html_report(data: dict, child_name: str = "Gia") -> str:
           <div style="font-size:9px;color:{c['text_hint']};margin-top:1px;">{d['xp']}xp</div>
         </td>"""
 
-    # 스테이지 정확도 행
+    # Stage accuracy rows
     stage_rows = "".join(_acc_row(s["label"], s["accuracy"], s["count"]) for s in data["stage_stats"])
     if not stage_rows:
         stage_rows = f'<tr><td colspan="4" style="color:{c["text_hint"]};font-size:13px;padding:8px 0;">No stage data this week.</td></tr>'
 
-    # 취약 단어 행
+    # Weak word rows
     weak_rows = ""
     for w in data["weak_words"]:
         acc   = w["accuracy"]
@@ -203,7 +203,7 @@ def build_html_report(data: dict, child_name: str = "Gia") -> str:
     if not weak_rows:
         weak_rows = f'<tr><td colspan="3" style="font-size:13px;color:{c["success_ink"]};padding:8px 0;">No weak words this week — great work!</td></tr>'
 
-    # 레슨 태그
+    # Lesson tags
     lesson_tags = ""
     for l in data["lessons_studied"][:6]:
         lesson_tags += (
@@ -214,7 +214,7 @@ def build_html_report(data: dict, child_name: str = "Gia") -> str:
     if not lesson_tags:
         lesson_tags = f'<span style="color:{c["text_hint"]};font-size:13px;">No lessons this week.</span>'
 
-    # Math 취약 개념
+    # Math weak concept rows
     math_weak_rows = ""
     for w in data["math"]["weak_areas"]:
         math_weak_rows += f"""
