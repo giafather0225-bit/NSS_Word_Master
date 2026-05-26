@@ -51,8 +51,8 @@ def kangaroo_sets(db: Session = Depends(get_db)) -> dict[str, Any]:
     for path in sorted(helpers.KANGAROO_DIR.glob("*.json")):
         try:
             data = helpers.read_set_cached(str(path), path.stat().st_mtime)
-        except Exception:
-            logger.warning("Skipping unreadable set %s", path.name)
+        except (OSError, ValueError, json.JSONDecodeError) as exc:
+            logger.warning("Skipping unreadable set %s: %s", path.name, exc)
             continue
         set_id = data.get("set_id") or path.stem
         prog = progress_by_id.get(set_id)

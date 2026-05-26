@@ -112,7 +112,7 @@ async def _stream_save_upload(
                 out.write(chunk)
     except HTTPException:
         raise
-    except Exception as e:
+    except OSError as e:
         dest.unlink(missing_ok=True)
         logger.error("Upload save failed for %s: %s", dest.name, e)
         raise HTTPException(status_code=500, detail="File upload failed. Please try again.") from e

@@ -51,7 +51,7 @@ def _load_all_words(grade_key: str) -> list[dict]:
         for week in data.get("weeks", []):
             words.extend(week.get("words", []))
         return words
-    except Exception as exc:
+    except (json.JSONDecodeError, OSError) as exc:
         logger.error("Collocation: failed to load %s: %s", path, exc)
         return []
 
