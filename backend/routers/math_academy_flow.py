@@ -273,8 +273,8 @@ def submit_exit_quiz(req: ExitQuizSubmitIn, db: Session = Depends(get_db)):
         try:
             from backend.services import island_care_engine as _care
             island = _care.apply_subject_gain(db, "math", "math_lesson")
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("Failed to apply island care gain on math lesson complete: %s", exc)
 
     unit_test_ready = False
     if passed:

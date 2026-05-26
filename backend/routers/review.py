@@ -355,8 +355,8 @@ def get_hub_status(db: Session = Depends(get_db)):
         )
         if _math_acc_row is not None:
             math_accuracy_7d = round(_math_acc_row / 5 * 100)
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.warning("Failed to load math spaced review stats: %s", exc)
 
     # Detect sessions completed today via XPLog
     english_done_today = db.query(XPLog).filter(
@@ -476,8 +476,8 @@ def complete_review_session(req: SessionCompleteRequest, db: Session = Depends(g
     try:
         from backend.models.math import MathSpacedReview as _MSR
         math_due = db.query(_MSR).filter(_MSR.next_review_date <= today_str).count()
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.warning("Failed to count math spaced review due: %s", exc)
 
     ckla_due = db.query(WordReview).filter(
         WordReview.next_review <= today_str,
@@ -490,8 +490,8 @@ def complete_review_session(req: SessionCompleteRequest, db: Session = Depends(g
         try:
             from backend.services import island_care_engine as _care
             island = _care.apply_subject_gain(db, "review", "review")
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("Failed to apply island care gain on review complete: %s", exc)
 
     return {
         "type":      req.type,

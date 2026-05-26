@@ -77,14 +77,14 @@ def create_manual_word(
     """Add a manually typed word to lesson_id (source_type='manual'); saves to words + study_items."""
     lesson = db.query(Lesson).filter(Lesson.id == lesson_id).first()
     if not lesson:
-        raise HTTPException(status_code=404, detail=f"Lesson id={lesson_id} 없음")
+        raise HTTPException(status_code=404, detail=f"Lesson id={lesson_id} not found")
 
     req = body.clean()
 
     if db.query(Word).filter(Word.lesson_id == lesson_id, Word.word == req.word).first():
         raise HTTPException(
             status_code=409,
-            detail=f"'{req.word}' 는 이미 lesson_id={lesson_id} 에 존재합니다.",
+            detail=f"'{req.word}' already exists in lesson_id={lesson_id}",
         )
 
     now = datetime.now(timezone.utc).isoformat()
@@ -133,7 +133,7 @@ def update_manual_word(
     """Update definition/example/pos for a stored word and sync to study_items."""
     word_obj = db.query(Word).filter(Word.id == word_id, Word.lesson_id == lesson_id).first()
     if not word_obj:
-        raise HTTPException(status_code=404, detail=f"word_id={word_id} 없음")
+        raise HTTPException(status_code=404, detail=f"word_id={word_id} not found")
 
     req = body.clean()
     if req.definition is not None:
@@ -170,7 +170,7 @@ def delete_manual_word(
     """Delete a word (and its linked study_item) from a lesson."""
     word_obj = db.query(Word).filter(Word.id == word_id, Word.lesson_id == lesson_id).first()
     if not word_obj:
-        raise HTTPException(status_code=404, detail=f"word_id={word_id} 없음")
+        raise HTTPException(status_code=404, detail=f"word_id={word_id} not found")
 
     if word_obj.study_item_id:
         item = db.query(StudyItem).filter(StudyItem.id == word_obj.study_item_id).first()
@@ -187,7 +187,7 @@ def get_lesson_words(lesson_id: int, db: Session = Depends(get_db)):
     """Return all words stored in the words table for a given lesson_id."""
     lesson = db.query(Lesson).filter(Lesson.id == lesson_id).first()
     if not lesson:
-        raise HTTPException(status_code=404, detail=f"Lesson id={lesson_id} 없음")
+        raise HTTPException(status_code=404, detail=f"Lesson id={lesson_id} not found")
 
     words = (
         db.query(Word)

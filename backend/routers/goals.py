@@ -3,8 +3,8 @@ routers/goals.py — Weekly learning goals API
 Section: Parent
 Dependencies: models/goals.py, models (XPLog, WordAttempt, LearningLog),
               services/streak_engine
-API: GET  /api/goals/weekly          — 목표 + 현재 달성도
-     PUT  /api/goals/weekly/{key}    — 목표 수정 (PIN)
+API: GET  /api/goals/weekly          — weekly goals + current progress
+     PUT  /api/goals/weekly/{key}    — update goal target (PIN required)
 """
 
 import logging
@@ -33,9 +33,9 @@ class GoalUpdateIn(BaseModel):
 
 
 def _current_progress(db: Session) -> dict[str, int]:
-    """이번 주 실제 달성값 계산."""
+    """Calculate actual progress values for the current week."""
     today = date.today()
-    start = (today - timedelta(days=today.weekday())).isoformat()  # 이번 주 월요일
+    start = (today - timedelta(days=today.weekday())).isoformat()  # Monday of this week
 
     # words_correct
     words_correct = int(
@@ -51,7 +51,7 @@ def _current_progress(db: Session) -> dict[str, int]:
         .scalar() or 0
     )
 
-    # streak_days (현재 스트릭)
+    # streak_days (current streak count)
     streak_days = streak_engine.get_current_streak(db)
 
     # study_minutes
@@ -68,7 +68,7 @@ def _current_progress(db: Session) -> dict[str, int]:
 
 @router.get("/api/goals/weekly")
 def get_weekly_goals(db: Session = Depends(get_db)):
-    """이번 주 목표 목록 + 달성 현황 반환. @tag PARENT SETTINGS"""
+    """Return weekly goals list and current achievement status. @tag PARENT SETTINGS"""
     goals    = db.query(WeeklyGoal).order_by(WeeklyGoal.id).all()
     progress = _current_progress(db)
 
@@ -104,7 +104,7 @@ def update_goal(
     db:   Session = Depends(get_db),
     _pin: bool    = Depends(require_parent_pin),
 ):
-    """목표 수치 및 활성 여부 수정 (PIN 필요). @tag PARENT SETTINGS"""
+    """Update goal target and active status (PIN required). @tag PARENT SETTINGS"""
     if key not in _KEYS:
         raise HTTPException(status_code=400, detail=f"Unknown goal key: {key}")
     if body.target < 0 or body.target > 10_000:

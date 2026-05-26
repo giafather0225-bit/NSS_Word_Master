@@ -276,8 +276,8 @@ Reply in this exact JSON format only:
                     if isinstance(obj, dict) and obj.get("definition"):
                         obj["provider"] = "ollama"
                         return obj
-                except Exception:
-                    pass
+                except Exception as exc:
+                    logger.debug("Ollama response JSON parse failed: %s", exc)
     except Exception as e:
         logger.warning("Ollama failed: %s", e)
 
@@ -307,8 +307,8 @@ Reply in this exact JSON format only:
                         if isinstance(obj, dict) and obj.get("definition"):
                             obj["provider"] = "gemini"
                             return obj
-                    except Exception:
-                        pass
+                    except Exception as exc:
+                        logger.debug("Gemini response JSON parse failed: %s", exc)
         except Exception as e:
             logger.warning("Gemini fallback failed: %s", e)
 
