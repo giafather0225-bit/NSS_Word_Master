@@ -10,7 +10,7 @@ from ._base import Base
 
 
 class Lesson(Base):
-    """레슨(단원) 메타데이터 — 수동 입력/OCR 구분 및 교재·단원 관리."""
+    """Lesson (unit) metadata — distinguishes manual/OCR entry and manages textbook/unit."""
     __tablename__ = "lessons"
 
     id          = Column(Integer, primary_key=True, index=True)
@@ -62,7 +62,7 @@ class Progress(Base):
 
 
 class UserPracticeSentence(Base):
-    """Step 2에서 학생이 작성한 문장 — Perfect Challenge 출제 풀."""
+    """Sentences the student wrote in Step 2 — pool for Perfect Challenge questions."""
     __tablename__ = "user_practice_sentences"
 
     id       = Column(Integer, primary_key=True, index=True)
@@ -79,10 +79,10 @@ class UserPracticeSentence(Base):
 
 
 class Word(Base):
-    """OCR 파이프라인이 추출한 단어 원본 레코드.
+    """Raw word record extracted by the OCR pipeline.
 
-    study_items 와 1:1 연결 가능 (study_item_id).
-    단순한 word/definition/example 스키마 유지 — 앱 학습 흐름은 study_items 사용.
+    Can link 1:1 to study_items (study_item_id).
+    Keeps a simple word/definition/example schema — the app's study flow uses study_items.
     """
     __tablename__ = "words"
 

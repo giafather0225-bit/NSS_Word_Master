@@ -156,20 +156,20 @@ def _save_index(lesson_id: int, index: list[dict]) -> None:
 # ──────────────────────────────────────────────────────────────
 
 def save_lesson_file(lesson_id: int, raw: bytes, original_name: str) -> FileRecord:
-    """파일을 storage/lessons/{lesson_id}/ 에 저장.
+    """Save a file to storage/lessons/{lesson_id}/.
 
-    - HEIC → JPG 자동 변환 후 저장
-    - PDF → 그대로 저장 (스캔본 보존), 페이지 수 기록
-    - 중복 파일명: _1, _2 suffix로 자동 처리
+    - HEIC → JPG: auto-converted before saving
+    - PDF: saved as-is (scanned copy preserved), page count recorded
+    - Duplicate filenames: auto-suffixed with _1, _2
     """
     if len(raw) == 0:
-        raise ValueError("빈 파일입니다.")
+        raise ValueError("Empty file.")
     if len(raw) > MAX_FILE_BYTES:
-        raise ValueError(f"파일 크기 초과 (최대 {MAX_FILE_BYTES // 1024 // 1024} MB)")
+        raise ValueError(f"File too large (max {MAX_FILE_BYTES // 1024 // 1024} MB)")
 
     ext = Path(original_name).suffix.lower()
     if ext not in ALLOWED_EXTS:
-        raise ValueError(f"허용되지 않는 파일 형식: {ext or '(없음)'}")
+        raise ValueError(f"Unsupported file type: {ext or '(none)'}")
 
     stem = _safe_stem(original_name)
     converted = False
@@ -182,16 +182,16 @@ def save_lesson_file(lesson_id: int, raw: bytes, original_name: str) -> FileReco
             ext = ".jpg"
             converted = True
         elif not _check_image_magic(raw, ext):
-            raise ValueError(f"파일 내용이 확장자({ext})와 일치하지 않습니다.")
+            raise ValueError(f"File content does not match its extension ({ext}).")
         content_type = "image/jpeg" if ext in (".jpg", ".jpeg") else f"image/{ext.lstrip('.')}"
 
     else:  # PDF
         if not raw.startswith(b"%PDF"):
-            raise ValueError("유효한 PDF 파일이 아닙니다.")
+            raise ValueError("Not a valid PDF file.")
         pages = _pdf_page_count(raw)
         content_type = "application/pdf"
 
-    # 중복 파일명 처리
+    # Handle duplicate filenames
     lesson_dir = _lesson_dir(lesson_id)
     target = lesson_dir / f"{stem}{ext}"
     counter = 1
@@ -211,7 +211,7 @@ def save_lesson_file(lesson_id: int, raw: bytes, original_name: str) -> FileReco
         "path":          str(target),
     }
 
-    # _index.json 업데이트
+    # Update _index.json
     index = _load_index(lesson_id)
     index.append({
         **record,
@@ -223,7 +223,7 @@ def save_lesson_file(lesson_id: int, raw: bytes, original_name: str) -> FileReco
 
 
 def list_lesson_files(lesson_id: int) -> list[dict]:
-    """저장된 파일 목록 반환 (_index.json 기반, 실제 파일 존재 여부 검증)."""
+    """Return the list of stored files (from _index.json, verifying each file exists)."""
     index = _load_index(lesson_id)
     valid = []
     changed = False
@@ -231,23 +231,23 @@ def list_lesson_files(lesson_id: int) -> list[dict]:
         if Path(entry.get("path", "")).exists():
             valid.append(entry)
         else:
-            changed = True  # 삭제된 파일은 인덱스에서 제거
+            changed = True  # Drop deleted files from the index
     if changed:
         _save_index(lesson_id, valid)
     return valid
 
 
 def delete_lesson_file(lesson_id: int, filename: str) -> bool:
-    """파일 삭제. 성공 여부 반환."""
+    """Delete a file. Returns whether the deletion succeeded."""
     if not _SAFE_FNAME_RE.match(filename):
-        raise ValueError("유효하지 않은 파일명")
+        raise ValueError("Invalid filename")
 
     lesson_dir = _lesson_dir(lesson_id)
     target = lesson_dir / filename
 
-    # 경로 이탈 방지
+    # Prevent path traversal
     if lesson_dir not in target.parents and target.parent != lesson_dir:
-        raise ValueError("유효하지 않은 파일 경로")
+        raise ValueError("Invalid file path")
 
     if not target.exists():
         return False

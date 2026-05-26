@@ -10,7 +10,7 @@ from ._base import Base
 
 
 class XPLog(Base):
-    """XP 획득 기록"""
+    """XP earning record"""
     __tablename__ = "xp_logs"
     id = Column(Integer, primary_key=True)
     action = Column(String)
@@ -29,7 +29,7 @@ class XPLog(Base):
 
 
 class StreakLog(Base):
-    """Streak 기록"""
+    """Streak record"""
     __tablename__ = "streak_logs"
     id = Column(Integer, primary_key=True)
     date = Column(String, unique=True, index=True)
@@ -42,7 +42,7 @@ class StreakLog(Base):
 
 
 class TaskSetting(Base):
-    """부모가 설정한 Today's Tasks"""
+    """Today's Tasks configured by the parent"""
     __tablename__ = "task_settings"
     id = Column(Integer, primary_key=True)
     task_key = Column(String, unique=True, index=True)
@@ -52,7 +52,7 @@ class TaskSetting(Base):
 
 
 class RewardItem(Base):
-    """보상 상점 아이템"""
+    """Reward shop item"""
     __tablename__ = "reward_items"
     id = Column(Integer, primary_key=True)
     name = Column(String)
@@ -66,7 +66,7 @@ class RewardItem(Base):
 
 
 class PurchasedReward(Base):
-    """구매된 보상"""
+    """Purchased reward"""
     __tablename__ = "purchased_rewards"
     id = Column(Integer, primary_key=True)
     reward_item_id = Column(Integer, ForeignKey("reward_items.id"))

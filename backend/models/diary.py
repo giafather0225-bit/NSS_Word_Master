@@ -39,7 +39,7 @@ class FreeWriting(Base):
 
 
 class GrowthEvent(Base):
-    """My Growth — Growth Timeline 이벤트"""
+    """My Growth — Growth Timeline event"""
     __tablename__ = "growth_events"
     id = Column(Integer, primary_key=True)
     event_type = Column(String, index=True)
@@ -50,7 +50,7 @@ class GrowthEvent(Base):
 
 
 class DayOffRequest(Base):
-    """Day Off 사유서"""
+    """Day Off request form"""
     __tablename__ = "day_off_requests"
     id = Column(Integer, primary_key=True)
     request_date = Column(String, index=True)

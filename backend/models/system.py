@@ -18,7 +18,7 @@ class Schedule(Base):
 
 
 class AppConfig(Base):
-    """앱 전역 설정 (PIN, 이메일, 테마 등)"""
+    """App-wide settings (PIN, email, theme, etc.)"""
     __tablename__ = "app_config"
     id = Column(Integer, primary_key=True)
     key = Column(String, unique=True, index=True)

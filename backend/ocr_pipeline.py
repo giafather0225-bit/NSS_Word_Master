@@ -236,7 +236,7 @@ def save_words_to_db(
 
     db.commit()
 
-    # word_obj → study_item_id 연결 (후처리)
+    # Link word_obj → study_item_id (post-processing)
     _link_word_study_items(db, lesson_id)
 
     return words_saved, items_saved
@@ -292,7 +292,7 @@ async def run_ocr_pipeline(
     target_files = sorted(
         p for p in lesson_dir.iterdir()
         if p.suffix.lower() in IMAGE_EXTS | PDF_EXTS
-        and not p.name.startswith("_")  # _index.json 제외
+        and not p.name.startswith("_")  # exclude _index.json
     )
 
     if not target_files:

@@ -10,7 +10,7 @@ from ._base import Base
 
 
 class DailyWordsProgress(Base):
-    """Daily Words 학습 진행"""
+    """Daily Words study progress"""
     __tablename__ = "daily_words_progress"
     id = Column(Integer, primary_key=True)
     grade = Column(String)
@@ -22,7 +22,7 @@ class DailyWordsProgress(Base):
 
 
 class AcademySession(Base):
-    """Academy 레슨 진행 세션"""
+    """Academy lesson progress session"""
     __tablename__ = "academy_sessions"
     id = Column(Integer, primary_key=True)
     subject = Column(String)
@@ -36,7 +36,7 @@ class AcademySession(Base):
 
 
 class LearningLog(Base):
-    """학습 로그"""
+    """Learning log"""
     __tablename__ = "learning_logs"
     id = Column(Integer, primary_key=True)
     subject = Column(String, default="English")
@@ -52,7 +52,7 @@ class LearningLog(Base):
 
 
 class WordAttempt(Base):
-    """단어별 시도 기록"""
+    """Per-word attempt record"""
     __tablename__ = "word_attempts"
     id = Column(Integer, primary_key=True)
     study_item_id = Column(Integer, ForeignKey("study_items.id"), nullable=True)
@@ -67,7 +67,7 @@ class WordAttempt(Base):
 
 
 class AcademySchedule(Base):
-    """학원 시험 스케줄"""
+    """Academy exam schedule"""
     __tablename__ = "academy_schedules"
     id = Column(Integer, primary_key=True)
     day_of_week = Column(Integer)

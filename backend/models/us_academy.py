@@ -19,7 +19,7 @@ from ._base import Base
 
 
 class USAcademyWord(Base):
-    """300개 학술 단어 — Merriam-Webster + WordNet 데이터 포함"""
+    """300 academic words — includes Merriam-Webster + WordNet data"""
     __tablename__ = "us_academy_words"
 
     id              = Column(Integer, primary_key=True)
@@ -29,11 +29,11 @@ class USAcademyWord(Base):
     sort_order      = Column(Integer, default=0)                    # order within category
 
     # Merriam-Webster Elementary API data
-    definition      = Column(Text)       # 영영 정의 (child-friendly)
+    definition      = Column(Text)       # English-to-English definition (child-friendly)
     part_of_speech  = Column(String)     # noun, verb, adjective ...
-    audio_url       = Column(String)     # MW 발음 오디오 URL
-    example_1       = Column(Text)       # 교과 예문 1
-    example_2       = Column(Text)       # 교과 예문 2 (다른 과목 맥락)
+    audio_url       = Column(String)     # MW pronunciation audio URL
+    example_1       = Column(Text)       # curriculum example sentence 1
+    example_2       = Column(Text)       # curriculum example sentence 2 (different subject context)
 
     # WordNet data
     synonyms_json   = Column(String)     # JSON list of synonyms
@@ -47,7 +47,7 @@ class USAcademyWord(Base):
 
 
 class USAcademyWordProgress(Base):
-    """단어별 5단계 학습 진행 + SM-2 간격반복"""
+    """Per-word 5-step study progress + SM-2 spaced repetition"""
     __tablename__ = "us_academy_word_progress"
 
     id              = Column(Integer, primary_key=True)
@@ -55,11 +55,11 @@ class USAcademyWordProgress(Base):
     word            = Column(String, nullable=False)
 
     # 5-step completion flags
-    step_meet_it    = Column(Boolean, default=False)   # ① 정의 읽기
-    step_see_it     = Column(Boolean, default=False)   # ② 예문 읽기
-    step_use_it     = Column(Boolean, default=False)   # ③ 빈칸 채우기
-    step_know_it    = Column(Boolean, default=False)   # ④ 동의어/반의어 선택
-    step_own_it     = Column(Boolean, default=False)   # ⑤ 올바른 사용 선택
+    step_meet_it    = Column(Boolean, default=False)   # (1) read the definition
+    step_see_it     = Column(Boolean, default=False)   # (2) read example sentences
+    step_use_it     = Column(Boolean, default=False)   # (3) fill in the blank
+    step_know_it    = Column(Boolean, default=False)   # (4) pick synonym/antonym
+    step_own_it     = Column(Boolean, default=False)   # (5) pick the correct usage
     steps_completed = Column(Integer, default=0)       # 0-5
 
     # SM-2 fields (reusing sm2.py logic)

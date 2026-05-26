@@ -68,7 +68,7 @@ class MathProgress(Base):
     exit_quiz_passed = Column(Boolean, default=False)
     exit_quiz_attempts = Column(Integer, default=0)
     completed_at = Column(String, nullable=True)
-    # Mastery Gating (migration 033) — PT 만점 시 R2 자동 면제
+    # Mastery Gating (migration 033) — perfect pre-test auto-exempts R2
     pretest_mastery = Column(Boolean, default=False)
     skipped_stages = Column(String, nullable=True)  # JSON list, e.g. '["practice_r2"]'
 
@@ -92,7 +92,7 @@ class MathAttempt(Base):
     error_type = Column(String, default="concept_gap")
     time_spent_sec = Column(Integer, default=0)
     attempted_at = Column(String)
-    # 진단 엔진 (migration 034): 오답 시 misconception 라이브러리 매칭 결과
+    # Diagnostic engine (migration 034): misconception library match result on wrong answers
     misconception_id = Column(String, nullable=True, index=True)
     diagnostic_note = Column(String, nullable=True)
 

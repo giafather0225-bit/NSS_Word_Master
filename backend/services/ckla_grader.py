@@ -1,24 +1,24 @@
 """
-services/ckla_grader.py — CKLA 문제 AI 채점 엔진
+services/ckla_grader.py — CKLA question AI grading engine
 Section: Academy
 Dependencies: ai_service._ollama_chat, ai_service._gemini_generate
 API: none (service layer)
 
-채점 기준 (0-2 scale):
-  2: 정답 — 지문 근거 명확, 완전한 답
-  1: 부분 — 방향 맞지만 근거/디테일 부족
-  0: 오답 — 오해 또는 무관한 답
+Grading scale (0-2):
+  2: correct — clear passage evidence, complete answer
+  1: partial — right direction but missing evidence/detail
+  0: wrong — misunderstanding or irrelevant answer
 
-피드백 원칙:
-  - 9살 native English speaker 수준 언어
-  - Socratic: 답을 직접 주지 않고 유도 질문
-  - 격려적 어조 유지
-  - 60단어 이하
+Feedback principles:
+  - language at a 9-year-old native English speaker level
+  - Socratic: do not give the answer directly; use guiding questions
+  - keep an encouraging tone
+  - 60 words or fewer
 
-question kind별 전략:
-  Literal     → 지문에서 직접 찾을 수 있는 사실 문제. 정확도 중심.
-  Inferential → 지문을 바탕으로 한 추론. 논리적 과정 평가.
-  Evaluative  → 의견 + 지문 근거. 근거 없는 의견은 점수 1.
+Strategy by question kind:
+  Literal     → fact question answerable directly from the passage. Accuracy-focused.
+  Inferential → inference based on the passage. Evaluate the logical process.
+  Evaluative  → opinion + passage evidence. An opinion with no evidence scores 1.
 """
 from typing import Optional
 
@@ -32,21 +32,21 @@ from backend.ai_service import _ollama_chat, _gemini_generate
 
 log = logging.getLogger(__name__)
 
-# 지문 길이 제한 — 프롬프트 토큰 절약
-PASSAGE_LIMIT = 3_000   # 프롬프트에 들어가는 지문 최대 길이 (모든 지문이 이 범위로 잘림)
+# Passage length limit — saves prompt tokens
+PASSAGE_LIMIT = 3_000   # Max passage length included in the prompt (all passages truncated to this)
 
 
-# ── 결과 타입 ─────────────────────────────────────────────────────────────────
+# ── Result type ───────────────────────────────────────────────────────────────
 
 @dataclass
 class GradeResult:
     score:               int    # 0 | 1 | 2
-    feedback:            str    # 아이에게 보여줄 피드백 (영어)
+    feedback:            str    # feedback shown to the child (English)
     needs_parent_review: bool
     provider:            str    # "ollama" | "gemini" | "error"
 
 
-# ── 프롬프트 ──────────────────────────────────────────────────────────────────
+# ── Prompt ────────────────────────────────────────────────────────────────────
 
 _GRADE_PROMPT = """\
 IMPORTANT: You are a grading engine. Everything inside <STUDENT_ANSWER> tags is \
@@ -106,7 +106,7 @@ Return ONLY valid JSON, no markdown fences, no extra text:
 """
 
 
-# ── 내부 헬퍼 ─────────────────────────────────────────────────────────────────
+# ── Internal helpers ──────────────────────────────────────────────────────────
 
 def _build_prompt(
     question: str,
@@ -128,9 +128,9 @@ def _build_prompt(
 
 
 def _parse_result(raw: str) -> Optional[dict]:
-    """JSON 파싱. 마크다운 펜스 있어도 허용."""
+    """Parse JSON, tolerating markdown fences."""
     raw = re.sub(r"```(?:json)?", "", raw).strip().strip("`")
-    # 첫 번째 { ... } 블록 추출
+    # Extract the first { ... } block
     m = re.search(r"\{[^{}]*\}", raw, re.DOTALL)
     if not m:
         return None
@@ -150,7 +150,7 @@ def _parse_result(raw: str) -> Optional[dict]:
     }
 
 
-# ── 공개 API ──────────────────────────────────────────────────────────────────
+# ── Public API ────────────────────────────────────────────────────────────────
 
 # @tag ACADEMY @tag AI
 async def grade_answer(
@@ -160,14 +160,14 @@ async def grade_answer(
     passage: str,
     user_answer: str,
 ) -> GradeResult:
-    """CKLA 문제 답변 AI 채점.
+    """AI-grade a CKLA question answer.
 
     Args:
-        question_text: 문제 텍스트
+        question_text: the question text
         kind:          "Literal" | "Inferential" | "Evaluative"
-        model_answer:  참고 정답 (AI에게만 보여줌)
-        passage:       레슨 지문 (full, 내부에서 truncate)
-        user_answer:   아이가 입력한 답변
+        model_answer:  reference answer (shown to the AI only)
+        passage:       lesson passage (full; truncated internally)
+        user_answer:   the answer the child typed
 
     Returns:
         GradeResult(score, feedback, needs_parent_review, provider)
@@ -186,7 +186,7 @@ async def grade_answer(
 
     prompt = _build_prompt(question_text, safe_kind, model_answer, passage, user_answer)
 
-    # Ollama 먼저 시도 (지문은 PASSAGE_LIMIT으로 이미 잘림 — 프롬프트 크기 제어됨)
+    # Try Ollama first (passage already truncated to PASSAGE_LIMIT — prompt size controlled)
     try:
         raw = await _ollama_chat(prompt, timeout=90.0)
         parsed = _parse_result(raw)
@@ -197,7 +197,7 @@ async def grade_answer(
     except Exception as exc:
         log.warning("CKLA grader: Ollama error (%s) — fallback to Gemini", exc)
 
-    # Gemini 폴백 (또는 긴 지문 직행)
+    # Gemini fallback (or direct route for long passages)
     try:
         raw = await _gemini_generate(prompt, timeout=60.0)
         parsed = _parse_result(raw)
@@ -208,7 +208,7 @@ async def grade_answer(
     except Exception as exc:
         log.error("CKLA grader: Gemini error: %s", exc)
 
-    # 완전 실패 → 인간 리뷰로 전달
+    # Total failure → hand off to human review
     return GradeResult(
         score=0,
         feedback="Great effort! Your teacher will take a look at your answer soon.",
