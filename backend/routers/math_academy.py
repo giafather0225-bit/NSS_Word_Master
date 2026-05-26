@@ -355,7 +355,7 @@ def complete_round(req: RoundCompleteIn, db: Session = Depends(get_db)):
             skipped = _json.loads(prog.skipped_stages)
             if not isinstance(skipped, list):
                 skipped = []
-        except Exception:
+        except ValueError:
             skipped = []
 
     if mastery_skip and "practice_r2" not in skipped:

@@ -56,7 +56,7 @@ def dashboard_stats(db: Session = Depends(get_db)):
                     if data_json.is_file():
                         try:
                             words_count += len(_json.loads(data_json.read_text("utf-8")))
-                        except Exception:
+                        except (ValueError, OSError):
                             pass
                 textbook_map[tb_name] = {"name": tb_name, "lessons": lessons_count, "words": words_count}
                 total_words += words_count
@@ -154,7 +154,7 @@ def dashboard_analytics(db: Session = Depends(get_db)):
                     streak_days += 1
                 else:
                     break
-            except Exception:
+            except ValueError:
                 break
 
     return {

@@ -32,7 +32,7 @@ def _serialize(item: StudyItem) -> dict:
 
 @router.patch("/api/study-items/{item_id}/star")
 def toggle_star(item_id: int, db: Session = Depends(get_db)):
-    """단어 즐겨찾기 토글. @tag ENGLISH ACADEMY"""
+    """Toggle star/favourite on a study item. @tag ENGLISH ACADEMY"""
     item = db.query(StudyItem).filter(StudyItem.id == item_id).first()
     if not item:
         raise HTTPException(status_code=404, detail="Study item not found")
@@ -44,7 +44,7 @@ def toggle_star(item_id: int, db: Session = Depends(get_db)):
 
 @router.get("/api/study-items/starred")
 def list_starred(db: Session = Depends(get_db)):
-    """즐겨찾기된 단어 전체 목록. @tag ENGLISH ACADEMY"""
+    """Return all starred study items ordered by textbook, lesson, word. @tag ENGLISH ACADEMY"""
     items = (
         db.query(StudyItem)
         .filter(StudyItem.is_starred == 1)

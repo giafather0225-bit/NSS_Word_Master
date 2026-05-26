@@ -37,8 +37,8 @@ def get_diary_sentences(subject: str, textbook: str, db: Session = Depends(get_d
     Returns:
         Dict with lessons (list of {lesson, sentences}) and total_sentences.
     """
-    # JOIN으로 N+1 쿼리 제거 — item_cache 루프 방식 대비 DB 왕복 횟수를
-    # rows 수에서 1회로 줄임. StudyItem이 없는 문장은 word="" 로 처리.
+    # JOIN eliminates N+1 queries — reduces DB round-trips from O(rows) to 1.
+    # Sentences with no matching StudyItem get word="".
     query = (
         db.query(UserPracticeSentence, StudyItem.answer)
         .outerjoin(StudyItem, StudyItem.id == UserPracticeSentence.item_id)

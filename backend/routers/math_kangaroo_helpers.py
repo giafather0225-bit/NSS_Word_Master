@@ -63,7 +63,7 @@ def _range_str_to_labels(range_str: str) -> list[str]:
     try:
         start, end = range_str.split("-")
         return [str(n) for n in range(int(start), int(end) + 1)]
-    except Exception:
+    except (ValueError, AttributeError):
         return []
 
 

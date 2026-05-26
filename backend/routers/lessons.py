@@ -130,9 +130,9 @@ def lesson_lookup(
     )
 
     if not row:
-        # INSERT OR IGNORE 패턴 — 동시 요청 race condition 방지.
-        # 두 요청이 동시에 first()=None을 보고 insert를 시도할 때
-        # 두 번째 insert가 IntegrityError를 내면 기존 row를 반환한다.
+        # INSERT OR IGNORE pattern — guards against race conditions on concurrent requests.
+        # If two requests both see first()=None and attempt to insert simultaneously,
+        # the second insert raises IntegrityError; we roll back and return the existing row.
         try:
             row = Lesson(
                 subject=subject_key,
@@ -145,7 +145,8 @@ def lesson_lookup(
             db.add(row)
             db.commit()
             db.refresh(row)
-        except Exception:
+        except Exception as exc:
+            logger.debug("Concurrent lesson insert race condition, fetching existing row: %s", exc)
             db.rollback()
             row = (
                 db.query(Lesson)

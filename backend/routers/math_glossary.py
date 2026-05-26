@@ -60,7 +60,8 @@ def glossary_grades():
     for f in sorted(_GLOSSARY_DIR.glob("*.json")):
         try:
             data = _read_json_cached(str(f), f.stat().st_mtime)
-        except Exception:
+        except Exception as exc:
+            logger.warning("Failed to read glossary file %s: %s", f, exc)
             continue
         grades.append({
             "grade": data.get("grade", f.stem.upper()),

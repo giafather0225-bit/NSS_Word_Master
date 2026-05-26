@@ -179,7 +179,7 @@ def submit_spaced_review(req: SpacedReviewSubmitIn, db: Session = Depends(get_db
         try:
             due_date = date.fromisoformat(sr.next_review_date)
             days_overdue = max(0, (today - due_date).days)
-        except Exception:
+        except ValueError:
             pass
 
         intervals = _spaced_schedule(

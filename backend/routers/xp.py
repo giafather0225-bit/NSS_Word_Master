@@ -80,7 +80,7 @@ def xp_summary(db: Session = Depends(get_db)) -> dict:
     for lg in logs:
         try:
             d = date.fromisoformat(lg.date)
-        except Exception:
+        except ValueError:
             continue
         if not lg.streak_maintained:
             run = 0
