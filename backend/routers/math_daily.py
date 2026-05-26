@@ -76,7 +76,8 @@ def _collect_practice_problems() -> list[dict]:
             for lesson_file in sorted(unit_dir.glob("*.json")):
                 try:
                     data = json.loads(lesson_file.read_text("utf-8"))
-                except Exception:
+                except Exception as exc:
+                    logger.warning("Failed to parse math daily problem file %s: %s", lesson_file, exc)
                     continue
                 for key in ("practice_r1", "practice_r2", "practice_r3"):
                     for p in data.get(key) or []:

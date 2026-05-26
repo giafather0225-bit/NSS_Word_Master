@@ -214,9 +214,7 @@ def submit_review_answer(req: ReviewSubmitIn, db: Session = Depends(get_db)):
             days_overdue = max(0, (today - due).days)
         except (ValueError, TypeError):
             pass
-    if days_overdue >= 2:
-        row.consecutive_correct = 0
-    elif days_overdue == 1:
+    if days_overdue >= 1:
         row.consecutive_correct = 0
 
     xp_earned = 0
