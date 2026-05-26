@@ -2,11 +2,11 @@ from sqlalchemy import create_engine, event
 from sqlalchemy.orm import sessionmaker, declarative_base
 from pathlib import Path
 
-# ~/NSS_Learning/ — 과목/교재/레슨 파일 루트
+# ~/NSS_Learning/ — root for subject/textbook/lesson files
 LEARNING_ROOT = Path.home() / "NSS_Learning"
 LEARNING_ROOT.mkdir(parents=True, exist_ok=True)
 
-# DB는 ~/NSS_Learning/database/voca.db
+# DB lives at ~/NSS_Learning/database/voca.db
 DB_PATH = LEARNING_ROOT / "database" / "voca.db"
 DB_PATH.parent.mkdir(parents=True, exist_ok=True)
 

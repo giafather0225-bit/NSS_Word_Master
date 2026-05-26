@@ -1,8 +1,8 @@
-"""파일 저장 모듈 — HEIC/PDF 업로드 처리 및 storage/lessons/{lesson_id}/ 관리.
+"""File storage module — HEIC/PDF upload handling and storage/lessons/{lesson_id}/ management.
 
-저장 경로: ~/NSS_Learning/storage/lessons/{lesson_id}/
-HEIC → JPG 변환: macOS sips (기본) / pillow-heif (선택적 fallback)
-PDF: 스캔본으로 저장, 페이지 수 메타데이터 포함
+Storage path: ~/NSS_Learning/storage/lessons/{lesson_id}/
+HEIC → JPG conversion: macOS sips (primary) / pillow-heif (optional fallback)
+PDF: saved as scanned copy with page-count metadata.
 """
 
 import io
@@ -18,7 +18,7 @@ from backend.database import LEARNING_ROOT
 
 STORAGE_ROOT = LEARNING_ROOT / "storage" / "lessons"
 
-# 허용 확장자
+# Allowed extensions
 ALLOWED_IMAGE_EXTS = {".heic", ".jpg", ".jpeg", ".png", ".webp", ".bmp"}
 ALLOWED_PDF_EXTS   = {".pdf"}
 ALLOWED_EXTS       = ALLOWED_IMAGE_EXTS | ALLOWED_PDF_EXTS
@@ -53,13 +53,13 @@ _SAFE_FNAME_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_\-. ]{0,99}$")
 
 
 class FileRecord(TypedDict):
-    filename: str          # 저장된 파일명 (변환 후)
-    original_name: str     # 업로드 원본 파일명
-    content_type: str      # 저장된 파일의 MIME
-    size: int              # 저장된 파일 크기 (bytes)
-    converted: bool        # HEIC→JPG 변환 여부
-    pages: Optional[int]      # PDF 페이지 수 (이미지는 None)
-    path: str              # 절대 경로
+    filename: str          # stored filename (after any conversion)
+    original_name: str     # original uploaded filename
+    content_type: str      # MIME type of stored file
+    size: int              # stored file size in bytes
+    converted: bool        # True if HEIC was converted to JPG
+    pages: Optional[int]   # PDF page count (None for images)
+    path: str              # absolute filesystem path
 
 
 def _lesson_dir(lesson_id: int) -> Path:
@@ -69,14 +69,14 @@ def _lesson_dir(lesson_id: int) -> Path:
 
 
 def _safe_stem(name: str) -> str:
-    """파일명에서 위험 문자 제거 — Path Traversal 방지."""
+    """Strip dangerous characters from a filename to prevent path traversal."""
     stem = Path(name).stem
     safe = re.sub(r"[^A-Za-z0-9_\-. ]", "_", stem)[:80].strip("._- ")
     return safe or "upload"
 
 
 def _heic_to_jpg_sips(raw: bytes) -> bytes:
-    """macOS sips를 이용해 HEIC bytes → JPEG bytes 변환."""
+    """Convert HEIC bytes to JPEG bytes using macOS sips."""
     with tempfile.NamedTemporaryFile(suffix=".heic", delete=False) as src_f:
         src_path = Path(src_f.name)
         src_f.write(raw)
@@ -90,14 +90,14 @@ def _heic_to_jpg_sips(raw: bytes) -> bytes:
         )
         return dst_path.read_bytes()
     except subprocess.CalledProcessError as e:
-        raise RuntimeError(f"HEIC 변환 실패 (sips): {e.stderr.decode(errors='replace')}") from e
+        raise RuntimeError(f"HEIC conversion failed (sips): {e.stderr.decode(errors='replace')}") from e
     finally:
         src_path.unlink(missing_ok=True)
         dst_path.unlink(missing_ok=True)
 
 
 def _heic_to_jpg(raw: bytes) -> bytes:
-    """pillow-heif 우선 시도, 없으면 sips로 fallback."""
+    """Try pillow-heif first; fall back to sips if unavailable."""
     try:
         import pillow_heif                          # type: ignore[import]
         from PIL import Image                       # type: ignore[import]
@@ -111,22 +111,22 @@ def _heic_to_jpg(raw: bytes) -> bytes:
 
 
 def _pdf_page_count(raw: bytes) -> Optional[int]:
-    """PDF 페이지 수 반환. pymupdf 없거나 파싱 불가 시 None."""
+    """Return PDF page count; None if pymupdf is unavailable or parsing fails."""
     try:
         import fitz                                 # type: ignore[import]
         doc = fitz.open(stream=raw, filetype="pdf")
         return doc.page_count
     except ImportError:
         pass
-    except Exception:
+    except (ValueError, RuntimeError, OSError):
         return None
-    # 경량 fallback: /Count 바이트 스캔
+    # Lightweight fallback: scan raw bytes for /Count entries.
     try:
         text = raw.decode("latin-1", errors="replace")
         counts = re.findall(r"/Count\s+(\d+)", text)
         if counts:
             return max(int(c) for c in counts)
-    except Exception:
+    except (UnicodeDecodeError, ValueError, OverflowError):
         pass
     return None
 

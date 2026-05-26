@@ -63,7 +63,8 @@ async def voca_ocr_preview(files: list[UploadFile] = File(...)):
                 if key and key not in seen:
                     seen.add(key)
                     all_words.append(w)
-        except Exception:
+        except Exception as exc:
+            logger.warning("OCR failed for uploaded file: %s", exc)
             continue
     if not all_words:
         raise HTTPException(422, "OCR extracted no vocabulary words from any image.")

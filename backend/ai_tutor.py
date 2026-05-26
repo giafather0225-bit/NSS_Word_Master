@@ -118,7 +118,7 @@ async def get_tutor_feedback(word: str, sentence: str) -> str:
 
 
 async def vision_extract_vocab(image_bytes: bytes, prompt: str) -> str:
-    """Gemini 우선, 없으면 Ollama qwen2.5vl:3b 사용."""
+    """Try Gemini Vision first; fall back to Ollama qwen2.5vl:3b."""
     if GEMINI_API_KEY:
         try:
             return await gemini_vision_extract_vocab(image_bytes, prompt)
@@ -234,7 +234,7 @@ Input JSON: {payload_json}
 
 
 async def gemini_vision_extract_vocab(image_bytes: bytes, prompt: str) -> str:
-    """Gemini Vision API로 이미지에서 어휘 추출."""
+    """Extract vocabulary from an image using the Gemini Vision API."""
     if not GEMINI_API_KEY:
         raise ValueError("GEMINI_API_KEY not set")
     b64 = base64.b64encode(image_bytes).decode("ascii")

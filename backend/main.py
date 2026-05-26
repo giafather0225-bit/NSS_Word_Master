@@ -285,8 +285,8 @@ async def lifespan(application: FastAPI):
     # Only kill Ollama if WE spawned it — don't disrupt a daemon the user was running
     try:
         ollama_manager.shutdown_ollama()
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.warning("Ollama shutdown failed (non-fatal): %s", exc)
 
 
 # ── App setup ──────────────────────────────────────────────

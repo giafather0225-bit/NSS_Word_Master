@@ -46,7 +46,7 @@ def voca_save_reviewed(
     """Save user-reviewed/edited words to data.json and sync to DB."""
     try:
         words = json.loads(words_json)
-    except Exception:
+    except ValueError:
         raise HTTPException(422, "Invalid JSON")
     lesson_key = _validate_lesson(lesson)
     textbook   = _validate_name(textbook, "textbook")

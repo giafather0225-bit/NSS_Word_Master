@@ -1,15 +1,15 @@
-"""OCR 파이프라인 — 이미지/PDF → 텍스트 → Ollama 정제 → words + study_items 저장.
+"""OCR pipeline — image/PDF → text → Ollama refine → words + study_items save.
 
-흐름:
-  1. 이미지(JPG/PNG): Tesseract → raw text
-     PDF(스캔): pymupdf 페이지 → 이미지 → Tesseract → raw text
+Flow:
+  1. Image (JPG/PNG): Tesseract → raw text
+     PDF (scanned): pymupdf pages → images → Tesseract → raw text
   2. raw text → Ollama gemma2:2b → [{word, definition, example, pos}] JSON
-  3. DB 저장: words 테이블(원본 레코드) + study_items 테이블(앱 학습용)
+  3. DB save: words table (source records) + study_items table (app study items)
 
-환경 변수:
-  TESSERACT_CMD  — tesseract 바이너리 경로 (기본: 자동 탐지)
-  OLLAMA_HOST    — Ollama 서버 (기본: http://127.0.0.1:11434)
-  OLLAMA_OCR_MODEL — 정제용 모델 (기본: gemma2:2b)
+Environment variables:
+  TESSERACT_CMD    — tesseract binary path (default: auto-detect)
+  OLLAMA_HOST      — Ollama server (default: http://127.0.0.1:11434)
+  OLLAMA_OCR_MODEL — refinement model (default: gemma2:2b)
 """
 from typing import Optional
 
@@ -27,7 +27,7 @@ from backend.file_storage import STORAGE_ROOT
 from backend.utils import parse_json_array, strip_json_fences
 
 # ──────────────────────────────────────────────
-# 설정
+# Configuration
 # ──────────────────────────────────────────────
 OLLAMA_HOST      = os.environ.get("OLLAMA_HOST",      "http://127.0.0.1:11434")
 OLLAMA_OCR_MODEL = os.environ.get("OLLAMA_OCR_MODEL", "gemma2:2b")
@@ -39,7 +39,7 @@ _TESSERACT_CANDIDATES = [
     "/usr/bin/tesseract",
 ]
 
-# pytesseract 설정
+# Configure pytesseract
 try:
     import pytesseract
     _cmd = next((c for c in _TESSERACT_CANDIDATES if c and Path(c).is_file()), None)
@@ -49,7 +49,7 @@ try:
 except ImportError:
     _TESSERACT_AVAILABLE = False
 
-# pymupdf (PDF → 이미지)
+# pymupdf (PDF → images)
 try:
     import fitz as _fitz   # type: ignore[import]
     _PYMUPDF_AVAILABLE = True
@@ -58,7 +58,7 @@ except ImportError:
 
 
 # ──────────────────────────────────────────────
-# 1. OCR 레이어
+# 1. OCR layer
 # ──────────────────────────────────────────────
 
 def _image_bytes_to_pil(image_bytes: bytes):
@@ -68,50 +68,50 @@ def _image_bytes_to_pil(image_bytes: bytes):
 
 
 def ocr_image_tesseract(image_bytes: bytes, lang: str = "eng") -> str:
-    """Tesseract로 이미지에서 텍스트 추출.
+    """Extract text from an image using Tesseract.
 
     Args:
-        image_bytes: JPEG/PNG 등 이미지 바이트
-        lang: Tesseract 언어 코드 (기본 'eng')
+        image_bytes: JPEG/PNG or other image bytes
+        lang: Tesseract language code (default 'eng')
     Returns:
-        추출된 원시 텍스트
+        Raw extracted text
     Raises:
-        RuntimeError: Tesseract 미설치 또는 오류
+        RuntimeError: Tesseract not installed or OCR error
     """
     if not _TESSERACT_AVAILABLE:
-        raise RuntimeError("pytesseract 미설치. pip install pytesseract")
+        raise RuntimeError("pytesseract is not installed. Run: pip install pytesseract")
 
     import pytesseract
     from PIL import Image
 
     img = Image.open(io.BytesIO(image_bytes))
-    # 그레이스케일 변환 → OCR 정확도 향상
+    # Convert to grayscale for better OCR accuracy
     if img.mode not in ("L", "1"):
         img = img.convert("L")
 
-    config = "--oem 3 --psm 6"   # 단일 블록 텍스트 모드
+    config = "--oem 3 --psm 6"   # single uniform text block mode
     text = pytesseract.image_to_string(img, lang=lang, config=config)
     return text.strip()
 
 
 def pdf_to_images(pdf_bytes: bytes, dpi: int = 200) -> list[bytes]:
-    """PDF 각 페이지를 JPEG bytes 목록으로 변환 (pymupdf 사용).
+    """Convert each PDF page to a JPEG bytes list using pymupdf.
 
     Args:
-        pdf_bytes: PDF 파일 바이트
-        dpi: 렌더링 해상도 (스캔본 권장: 200~300)
+        pdf_bytes: PDF file bytes
+        dpi: rendering resolution (200–300 recommended for scanned pages)
     Returns:
-        페이지별 JPEG bytes 리스트
+        List of JPEG bytes, one per page
     Raises:
-        RuntimeError: pymupdf 미설치
+        RuntimeError: pymupdf not installed
     """
     if not _PYMUPDF_AVAILABLE:
-        raise RuntimeError("pymupdf 미설치. pip install pymupdf")
+        raise RuntimeError("pymupdf is not installed. Run: pip install pymupdf")
 
     import fitz
 
     doc = fitz.open(stream=pdf_bytes, filetype="pdf")
-    mat = fitz.Matrix(dpi / 72, dpi / 72)  # 72dpi 기준 배율
+    mat = fitz.Matrix(dpi / 72, dpi / 72)  # scale factor relative to 72 dpi base
 
     pages: list[bytes] = []
     for page in doc:
@@ -123,14 +123,14 @@ def pdf_to_images(pdf_bytes: bytes, dpi: int = 200) -> list[bytes]:
 
 
 def ocr_pdf_tesseract(pdf_bytes: bytes, lang: str = "eng", max_pages: int = 30) -> str:
-    """PDF 스캔본 → 페이지별 Tesseract OCR → 전체 텍스트 결합.
+    """Run Tesseract OCR on each page of a scanned PDF and join the results.
 
     Args:
-        pdf_bytes: PDF 파일 바이트
-        lang: Tesseract 언어 코드
-        max_pages: 처리할 최대 페이지 수 (안전 제한)
+        pdf_bytes: PDF file bytes
+        lang: Tesseract language code
+        max_pages: maximum pages to process (safety cap)
     Returns:
-        전체 추출 텍스트 (페이지 구분선 포함)
+        Full extracted text with page separators
     """
     images = pdf_to_images(pdf_bytes)[:max_pages]
     parts: list[str] = []
@@ -140,17 +140,17 @@ def ocr_pdf_tesseract(pdf_bytes: bytes, lang: str = "eng", max_pages: int = 30) 
             if text:
                 parts.append(f"--- Page {i} ---\n{text}")
         except Exception as e:
-            parts.append(f"--- Page {i} [OCR 오류: {e}] ---")
+            parts.append(f"--- Page {i} [OCR error: {e}] ---")
     return "\n\n".join(parts)
 
 
 # ──────────────────────────────────────────────
-# 2. Ollama 정제 레이어
+# 2. Ollama refinement layer
 # ──────────────────────────────────────────────
 
 
 # ──────────────────────────────────────────────
-# 3. DB 저장 레이어
+# 3. DB save layer
 # ──────────────────────────────────────────────
 
 def save_words_to_db(
@@ -159,12 +159,12 @@ def save_words_to_db(
     lesson_id: int,
     ocr_engine: str = "tesseract",
 ) -> tuple[int, int]:
-    """정제된 단어 목록을 words + study_items 테이블에 저장.
+    """Save refined vocabulary entries to the words + study_items tables.
 
-    중복 단어(같은 lesson_id + word)는 덮어씁니다.
+    Duplicate words (same lesson_id + word) are overwritten.
 
     Returns:
-        (words_saved, study_items_saved) 저장 건수 튜플
+        (words_saved, study_items_saved) tuple of saved row counts
     """
     now = datetime.now(timezone.utc).isoformat()
 
@@ -179,7 +179,7 @@ def save_words_to_db(
     for entry in entries:
         w = entry["word"]
 
-        # ── words 테이블 ──────────────────────────
+        # ── words table ───────────────────────────
         existing_word = (
             db.query(Word)
             .filter(Word.word == w, Word.lesson_id == lesson_id)
@@ -205,7 +205,7 @@ def save_words_to_db(
             db.add(word_obj)
         words_saved += 1
 
-        # ── study_items 테이블 ────────────────────
+        # ── study_items table ─────────────────────
         existing_item = (
             db.query(StudyItem)
             .filter(
@@ -243,7 +243,7 @@ def save_words_to_db(
 
 
 def _link_word_study_items(db, lesson_id: int) -> None:
-    """words.study_item_id ← study_items.id 역참조 채우기."""
+    """Backfill words.study_item_id ← study_items.id back-reference."""
     words = db.query(Word).filter(Word.lesson_id == lesson_id, Word.study_item_id == None).all()
     for word_obj in words:
         item = (
@@ -260,7 +260,7 @@ def _link_word_study_items(db, lesson_id: int) -> None:
 
 
 # ──────────────────────────────────────────────
-# 4. 전체 파이프라인 진입점
+# 4. Full pipeline entry point
 # ──────────────────────────────────────────────
 
 async def run_ocr_pipeline(
@@ -269,9 +269,9 @@ async def run_ocr_pipeline(
     lang: str = "eng",
     model: Optional[str] = None,
 ) -> dict:
-    """저장된 파일들에 OCR을 실행하고 DB에 저장하는 메인 파이프라인.
+    """Main pipeline: run OCR on stored files and save results to DB.
 
-    storage/lessons/{lesson_id}/ 의 이미지/PDF 파일을 순서대로 처리.
+    Processes image/PDF files in storage/lessons/{lesson_id}/ in order.
 
     Returns:
         {
@@ -284,7 +284,7 @@ async def run_ocr_pipeline(
     """
     lesson_dir = STORAGE_ROOT / str(lesson_id)
     if not lesson_dir.exists():
-        raise FileNotFoundError(f"storage/lessons/{lesson_id}/ 없음")
+        raise FileNotFoundError(f"storage/lessons/{lesson_id}/ does not exist")
 
     IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".webp", ".bmp"}
     PDF_EXTS   = {".pdf"}
@@ -296,7 +296,7 @@ async def run_ocr_pipeline(
     )
 
     if not target_files:
-        raise FileNotFoundError(f"처리할 이미지/PDF 파일 없음 (lesson_id={lesson_id})")
+        raise FileNotFoundError(f"No image/PDF files to process (lesson_id={lesson_id})")
 
     all_entries: list[dict] = []
     errors: list[str] = []
@@ -316,10 +316,10 @@ async def run_ocr_pipeline(
                 engine = "tesseract"
 
             if not ocr_text.strip():
-                errors.append(f"{fpath.name}: OCR 결과 없음 (빈 텍스트)")
+                errors.append(f"{fpath.name}: OCR produced no text (empty result)")
                 continue
 
-            # ── 하이브리드 AI 정제 (Ollama → Gemini 폴백) ──
+            # ── Hybrid AI refinement (Ollama → Gemini fallback) ──
             from backend.ai_service import smart_refine
             result  = await smart_refine(ocr_text)
             entries = result["entries"]
@@ -341,7 +341,7 @@ async def run_ocr_pipeline(
             "errors":          errors,
         }
 
-    # 중복 단어 제거 (word 소문자 기준, 마지막 항목 우선)
+    # Deduplicate by lowercase word — last entry wins
     seen: dict[str, dict] = {}
     for e in all_entries:
         seen[e["word"].lower()] = e

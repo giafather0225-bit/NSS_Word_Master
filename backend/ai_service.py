@@ -1,21 +1,21 @@
-"""하이브리드 AI 서비스 — Ollama(로컬) 우선, Gemini(클라우드) 폴백.
+"""Hybrid AI service — Ollama (local) first, Gemini (cloud) fallback.
 
-라우팅 규칙
-───────────
-항상 Ollama 먼저 시도:
-  1. JSON 파싱 성공  → 품질 점수 계산
-  2. 품질 점수 ≥ 0.55 → Ollama 결과 반환
-  3. 품질 점수  < 0.55 → Gemini로 재시도
-  4. Ollama 타임아웃·오류 → Gemini로 즉시 재시도
+Routing rules
+─────────────
+Always try Ollama first:
+  1. JSON parse succeeds  → compute quality score
+  2. Quality score ≥ 0.55 → return Ollama result
+  3. Quality score  < 0.55 → retry with Gemini
+  4. Ollama timeout/error  → fall back to Gemini immediately
 
-Gemini를 직접 사용하는 경우:
-  - 입력 텍스트 > LONG_TEXT_THRESHOLD 글자 (복잡한 문맥)
-  - 호출 시 force_gemini=True 전달
+Gemini is used directly when:
+  - Input text > LONG_TEXT_THRESHOLD chars (complex context)
+  - Caller passes force_gemini=True
 
-환경 변수 (.env):
-  GEMINI_API_KEY  — Gemini REST API 키
-  OLLAMA_HOST     — Ollama 서버 URL (기본 http://127.0.0.1:11434)
-  OLLAMA_OCR_MODEL — 텍스트 정제 모델 (기본 gemma2:2b)
+Environment variables (.env):
+  GEMINI_API_KEY   — Gemini REST API key
+  OLLAMA_HOST      — Ollama server URL (default http://127.0.0.1:11434)
+  OLLAMA_OCR_MODEL — Text-refinement model (default gemma2:2b)
 """
 
 import json
@@ -36,7 +36,7 @@ load_dotenv()
 
 log = logging.getLogger(__name__)
 
-# ── 설정 ─────────────────────────────────────────────────────────
+# ── Configuration ────────────────────────────────────────────────
 _AI_LOG_DB = Path.home() / "NSS_Learning" / "database" / "voca.db"
 OLLAMA_HOST      = os.environ.get("OLLAMA_HOST",      "http://127.0.0.1:11434")
 OLLAMA_OCR_MODEL = os.environ.get("OLLAMA_OCR_MODEL", "gemma2:2b")
@@ -47,14 +47,14 @@ GEMINI_ENDPOINT  = (
     f"{GEMINI_MODEL}:generateContent"
 )
 
-# 이 길이 초과 시 Gemini 직행 (복잡한 문맥 처리)
+# Route directly to Gemini when input exceeds this length (complex context).
 LONG_TEXT_THRESHOLD = 3_000
-# Ollama 품질 점수가 이 값 미만이면 Gemini로 폴백
+# Fall back to Gemini when Ollama quality score is below this threshold.
 QUALITY_THRESHOLD = 0.55
 
 
 # ══════════════════════════════════════════════════════════════════
-# AI 호출 감사 로그
+# AI call audit log
 # ══════════════════════════════════════════════════════════════════
 
 def _log_ai_call(
@@ -69,7 +69,7 @@ def _log_ai_call(
     fallback_used: bool = False,
     error_message: Optional[str] = None,
 ) -> None:
-    """ai_call_log 테이블에 fire-and-forget insert. 절대 예외를 올리지 않음."""
+    """Fire-and-forget insert into ai_call_log. Never raises."""
     try:
         conn = sqlite3.connect(str(_AI_LOG_DB), timeout=3)
         conn.execute(
@@ -86,15 +86,15 @@ def _log_ai_call(
         conn.commit()
         conn.close()
     except Exception:
-        pass  # 로깅이 메인 흐름을 방해해서는 안 됨
+        pass  # audit log must never disrupt the main flow
 
 
 # ══════════════════════════════════════════════════════════════════
-# 공통 유틸
+# Common utilities
 # ══════════════════════════════════════════════════════════════════
 
 def _normalize_entry(e: dict) -> dict:
-    """각 항목의 필드를 string으로 정규화."""
+    """Normalise all fields of a vocabulary entry to stripped strings."""
     return {
         "word":       (e.get("word")       or "").strip(),
         "pos":        (e.get("pos")        or "").strip(),
@@ -104,13 +104,13 @@ def _normalize_entry(e: dict) -> dict:
 
 
 def quality_score(entries: list[dict]) -> float:
-    """0.0 ~ 1.0 품질 점수.
+    """Return a 0.0–1.0 quality score for a list of vocabulary entries.
 
-    채점 기준 (항목별):
-    - definition 길이 < 8       → 0.0 (사실상 없음)
-    - definition 이 word 로 시작 → 0.3 (단순 반복)
-    - example 에 word 포함      → +0.4 보너스
-    - 그 외                     → 0.6
+    Per-entry scoring:
+    - definition length < 8       → 0.0 (effectively missing)
+    - definition starts with word → 0.3 (circular / trivial)
+    - example contains word       → +0.4 bonus
+    - otherwise                   → 0.6
     """
     if not entries:
         return 0.0
@@ -131,7 +131,7 @@ def quality_score(entries: list[dict]) -> float:
 
 
 # ══════════════════════════════════════════════════════════════════
-# Ollama 레이어
+# Ollama layer
 # ══════════════════════════════════════════════════════════════════
 
 _REFINE_PROMPT = """You are a STRICT vocabulary extractor for a Korean kids' English textbook (Voca 8000).
@@ -191,7 +191,7 @@ Reply with ONLY the sentence, no quotes, no explanation.
 
 
 async def _ollama_chat(prompt: str, model: Optional[str] = None, timeout: float = 90.0) -> str:
-    """Ollama /api/chat 호출 → 응답 문자열 반환."""
+    """Call Ollama /api/chat and return the response string."""
     url = f"{OLLAMA_HOST.rstrip('/')}/api/chat"
     payload = {
         "model":   model or OLLAMA_OCR_MODEL,
@@ -206,13 +206,13 @@ async def _ollama_chat(prompt: str, model: Optional[str] = None, timeout: float 
 
 
 # ══════════════════════════════════════════════════════════════════
-# Gemini 레이어
+# Gemini layer
 # ══════════════════════════════════════════════════════════════════
 
 async def _gemini_generate(prompt: str, timeout: float = 60.0) -> str:
-    """Gemini REST API 호출 → 응답 문자열 반환."""
+    """Call Gemini REST API and return the response string."""
     if not GEMINI_API_KEY:
-        raise RuntimeError("GEMINI_API_KEY 미설정 — .env 파일을 확인하세요.")
+        raise RuntimeError("GEMINI_API_KEY is not set — check your .env file.")
     body = {
         "contents": [{"parts": [{"text": prompt}]}],
         "generationConfig": {"temperature": 0.2, "maxOutputTokens": 2048},
@@ -230,13 +230,13 @@ async def _gemini_generate(prompt: str, timeout: float = 60.0) -> str:
             raise RuntimeError(f"Gemini request failed: {type(exc).__name__}") from None
         candidates = resp.json().get("candidates", [])
         if not candidates:
-            raise ValueError("Gemini 응답에 candidates 없음")
+            raise ValueError("Gemini response contained no candidates")
         parts = candidates[0].get("content", {}).get("parts", [])
         return (parts[0].get("text") or "").strip() if parts else ""
 
 
 # ══════════════════════════════════════════════════════════════════
-# 공개 API
+# Public API
 # ══════════════════════════════════════════════════════════════════
 
 async def refine_ocr_text(
@@ -244,15 +244,15 @@ async def refine_ocr_text(
     *,
     force_gemini: bool = False,
 ) -> tuple[list[dict], str]:
-    """OCR raw text → 정제된 단어 목록.
+    """Refine raw OCR text into a cleaned vocabulary entry list.
 
     Returns:
         (entries, provider) — provider: "ollama" | "gemini"
 
-    동작:
-        1. 텍스트가 LONG_TEXT_THRESHOLD 초과이거나 force_gemini=True → Gemini 직행
-        2. Ollama 시도 → 품질 점수 ≥ QUALITY_THRESHOLD → 반환
-        3. 품질 미달 or 오류 → Gemini 재시도
+    Behaviour:
+        1. If text exceeds LONG_TEXT_THRESHOLD or force_gemini=True → go directly to Gemini
+        2. Try Ollama → quality score ≥ QUALITY_THRESHOLD → return result
+        3. Quality too low or error → retry with Gemini
     """
     prompt = _REFINE_PROMPT.format(ocr_text=ocr_text[:5_000])
     use_gemini_first = force_gemini or (len(ocr_text) > LONG_TEXT_THRESHOLD)
@@ -302,7 +302,7 @@ async def refine_ocr_text(
                 fallback_used=True, error_message=str(exc)[:200],
             )
 
-    # Gemini 폴백 (또는 직행)
+    # Gemini fallback (or direct route)
     provider = "gemini"
     t0 = time.monotonic()
     try:
@@ -325,7 +325,7 @@ async def refine_ocr_text(
             success=False, latency_ms=latency,
             fallback_used=(not use_gemini_first), error_message="JSON parse failed",
         )
-        raise ValueError(f"Gemini 응답을 JSON으로 파싱 실패:\n{raw[:400]}")
+        raise ValueError(f"Failed to parse Gemini response as JSON:\n{raw[:400]}")
     normalized = [_normalize_entry(e) for e in entries if e.get("word")]
     if not normalized:
         _log_ai_call(
@@ -334,7 +334,7 @@ async def refine_ocr_text(
             success=False, latency_ms=latency,
             fallback_used=(not use_gemini_first), error_message="no valid entries",
         )
-        raise ValueError("정제 결과에 유효한 단어 항목 없음")
+        raise ValueError("No valid vocabulary entries in refined result")
     score = quality_score(normalized)
     _log_ai_call(
         provider="gemini", caller="ai_service.refine_ocr_text",
@@ -350,7 +350,7 @@ async def enrich_words(
     *,
     force_gemini: bool = False,
 ) -> tuple[list[dict], str]:
-    """단어 목록에 definition + example 채우기 (word + pos 만 있는 경우).
+    """Fill in definition + example for a word list that only has word + pos.
 
     Returns:
         (enriched_entries, provider)
@@ -419,7 +419,7 @@ async def enrich_words(
             success=False, latency_ms=latency,
             fallback_used=(not force_gemini), error_message="JSON parse failed",
         )
-        raise ValueError("Gemini enrich 파싱 실패")
+        raise ValueError("Failed to parse Gemini enrich response")
     normalized = [_normalize_entry(e) for e in entries if e.get("word")]
     _log_ai_call(
         provider="gemini", caller="ai_service.enrich_words",
@@ -437,7 +437,7 @@ async def generate_example(
     *,
     force_gemini: bool = False,
 ) -> tuple[str, str]:
-    """단어에 대한 예문 한 문장 생성.
+    """Generate a single example sentence for a word.
 
     Returns:
         (example_sentence, provider)
@@ -461,21 +461,21 @@ async def generate_example(
 async def smart_refine(
     ocr_text: str,
 ) -> dict[str, Any]:
-    """단일 진입점: OCR 텍스트 → 완전한 단어 목록.
+    """Single entry point: OCR text → complete vocabulary entry list.
 
-    내부적으로 refine_ocr_text → (필요시) enrich_words 를 순서대로 호출.
+    Internally calls refine_ocr_text → enrich_words (if needed) in sequence.
 
     Returns:
         {
           "entries":   list[dict],   # word/pos/definition/example
-          "providers": list[str],    # 각 단계에서 사용된 provider
-          "quality":   float,        # 최종 품질 점수
+          "providers": list[str],    # provider used at each stage
+          "quality":   float,        # final quality score
         }
     """
     entries, p1 = await refine_ocr_text(ocr_text)
     providers = [p1]
 
-    # definition/example 이 전부 비어있으면 enrich
+    # Enrich if all entries are missing both definition and example
     needs_enrich = all(
         not e.get("definition") and not e.get("example")
         for e in entries

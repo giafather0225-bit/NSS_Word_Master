@@ -1,6 +1,6 @@
-"""DB 마이그레이션 스크립트 — lessons 테이블 추가 및 study_items 컬럼 확장.
+"""DB migration script — add lessons table and extend study_items columns.
 
-실행: python -m backend.migrate_db
+Usage: python -m backend.migrate_db
 """
 import sqlite3
 import sys
@@ -26,7 +26,7 @@ def run_migration() -> None:
     con = sqlite3.connect(DB_PATH)
     cur = con.cursor()
 
-    # ── 1. lessons 테이블 생성 ──────────────────────────────────────────────
+    # ── 1. Create lessons table ─────────────────────────────────────────────
     if not table_exists(cur, "lessons"):
         print("[migrate] Creating table: lessons")
         cur.execute("""
@@ -49,7 +49,7 @@ def run_migration() -> None:
     else:
         print("[migrate] Table 'lessons' already exists — skipped.")
 
-    # ── 2. study_items 에 lesson_id 컬럼 추가 ──────────────────────────────
+    # ── 2. Add lesson_id column to study_items ──────────────────────────────
     if not column_exists(cur, "study_items", "lesson_id"):
         print("[migrate] Adding column: study_items.lesson_id")
         cur.execute("ALTER TABLE study_items ADD COLUMN lesson_id INTEGER REFERENCES lessons(id)")
@@ -59,7 +59,7 @@ def run_migration() -> None:
     else:
         print("[migrate] Column 'study_items.lesson_id' already exists — skipped.")
 
-    # ── 3. study_items 에 source_type 컬럼 추가 ────────────────────────────
+    # ── 3. Add source_type column to study_items ────────────────────────────
     if not column_exists(cur, "study_items", "source_type"):
         print("[migrate] Adding column: study_items.source_type")
         cur.execute("ALTER TABLE study_items ADD COLUMN source_type TEXT DEFAULT 'ocr'")
@@ -68,8 +68,8 @@ def run_migration() -> None:
     else:
         print("[migrate] Column 'study_items.source_type' already exists — skipped.")
 
-    # ── 4. 기존 study_items → lessons 데이터 이전 ──────────────────────────
-    # (subject, textbook, lesson) 조합마다 Lesson 레코드 하나씩 생성
+    # ── 4. Migrate existing study_items → lessons table ────────────────────
+    # One Lesson row per unique (subject, textbook, lesson) combination.
     cur.execute("""
         SELECT DISTINCT subject, textbook, lesson
         FROM study_items
@@ -81,7 +81,7 @@ def run_migration() -> None:
         print(f"[migrate] Migrating {len(groups)} lesson group(s) into 'lessons' table...")
         now = datetime.now(timezone.utc).isoformat()
         for subject, textbook, lesson_name in groups:
-            # 이미 lessons 에 동일 항목이 있으면 재사용
+            # Reuse existing Lesson row if present.
             cur.execute(
                 "SELECT id FROM lessons WHERE subject=? AND textbook=? AND lesson_name=?",
                 (subject, textbook, lesson_name),
@@ -97,7 +97,7 @@ def run_migration() -> None:
                 )
                 lesson_id = cur.lastrowid
 
-            # study_items.lesson_id 업데이트
+            # Backfill study_items.lesson_id.
             cur.execute(
                 "UPDATE study_items SET lesson_id=?, source_type='ocr'"
                 " WHERE subject=? AND textbook=? AND lesson=? AND lesson_id IS NULL",
