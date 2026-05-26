@@ -99,7 +99,8 @@ def _get_test_words(prog: DailyWordsProgress) -> list[str]:
     """Parse the test_words_json column (list of words that failed Day 1)."""
     try:
         return json.loads(prog.test_words_json or "[]")
-    except Exception:
+    except Exception as exc:
+        logger.warning("Failed to parse test_words_json: %s", exc)
         return []
 
 

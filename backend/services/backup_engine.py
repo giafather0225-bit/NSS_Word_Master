@@ -5,11 +5,14 @@ Dependencies: shutil, pathlib (stdlib only)
 API: backup_database(), list_backups(), restore_backup(filename)
 """
 
+import logging
 import shutil
 import sqlite3
 from datetime import datetime
 from pathlib import Path
 from typing import List, Optional
+
+logger = logging.getLogger(__name__)
 
 try:
     from ..database import DB_PATH, LEARNING_ROOT
@@ -50,7 +53,8 @@ def backup_database() -> dict:
             dst.close()
             src.close()
             created = True
-        except Exception:
+        except Exception as exc:
+            logger.warning("sqlite3.backup() failed, falling back to shutil.copy2: %s", exc)
             # Fall back to a raw file copy — slightly less safe but better than nothing
             try:
                 shutil.copy2(DB_PATH, target)
@@ -75,7 +79,8 @@ def _prune_old_backups() -> List[str]:
         try:
             old.unlink()
             pruned.append(old.name)
-        except Exception:
+        except Exception as exc:
+            logger.warning("Failed to remove old backup %s: %s", old.name, exc)
             continue
     return pruned
 

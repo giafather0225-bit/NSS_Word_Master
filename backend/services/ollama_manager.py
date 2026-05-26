@@ -5,12 +5,15 @@ Dependencies: httpx, subprocess
 API: ensure_ollama(), ensure_ollama_once(), get_status(), shutdown_ollama()
 """
 
+import logging
 import os
 import shutil
 import subprocess
 import threading
 import time
 from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 import httpx
 
@@ -153,8 +156,8 @@ def shutdown_ollama() -> None:
                 _proc.wait(timeout=3.0)
             except subprocess.TimeoutExpired:
                 _proc.kill()
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("ollama shutdown error (non-fatal): %s", exc)
     _proc = None
     _started_by_us = False
     _status["running"] = False

@@ -191,7 +191,7 @@ def _generic_fallback() -> dict:
         "error_type": "concept_gap",
         "misconception_id": None,
         "short_label": None,
-        "note": "개념을 다시 확인하고 풀이 단계를 점검해보자.",
+        "note": "Review the concept and check each solution step carefully.",
         "candidates": [],
     }
 

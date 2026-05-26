@@ -5,8 +5,11 @@ Dependencies: models.island
 API endpoints: called by study/math/diary/review routers + main.py lifespan
 """
 
+import logging
 from datetime import date, datetime, timedelta, timezone
 from typing import Optional
+
+logger = logging.getLogger(__name__)
 
 from sqlalchemy import func as sqla_func, update as sqla_update
 from sqlalchemy.orm import Session
@@ -396,7 +399,8 @@ def run_daily_batch(db: Session) -> dict:
         try:
             apply_decay(db, prog.id)
             processed += 1
-        except Exception:
+        except Exception as exc:
+            logger.warning("Decay failed for character progress %d: %s; skipping", prog.id, exc)
             skipped += 1
 
     db.flush()
@@ -476,7 +480,8 @@ def apply_subject_gain(db: Session, subject: str, source: str) -> dict:
             )
             .all()
         )
-    except Exception:
+    except Exception as exc:
+        logger.warning("apply_subject_gain: DB query failed for subject=%s: %s", subject, exc)
         return {"xp_multiplier": 1.0, "level_up": False, "new_level": 1}
 
     xp_multiplier = 1.0
@@ -491,15 +496,15 @@ def apply_subject_gain(db: Session, subject: str, source: str) -> dict:
             if result.get("level_up"):
                 aggregated_level_up = True
                 aggregated_new_level = result.get("new_level", 1)
-        except Exception:
-            pass
+        except Exception as exc:
+            logger.warning("apply_study_gain failed for progress %d source=%s: %s", prog.id, source, exc)
         if not prog.is_completed and not prog.is_legend_type:
             try:
                 xp_multiplier = get_xp_multiplier(db, prog.id)
                 if not aggregated_level_up:
                     aggregated_new_level = prog.level or 1
-            except Exception:
-                pass
+            except Exception as exc:
+                logger.warning("get_xp_multiplier failed for progress %d: %s", prog.id, exc)
 
     return {
         "xp_multiplier": xp_multiplier,

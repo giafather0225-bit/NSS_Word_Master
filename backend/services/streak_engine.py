@@ -193,16 +193,16 @@ def _award_streak_lumi(db: Session) -> None:
             return
         from backend.services.lumi_engine import earn_lumi
         earn_lumi(db, source="streak", amount=amount)
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.warning("Failed to award streak lumi (non-fatal): %s", exc)
 
     # Apply streak study gain to all active island characters (ISLAND_SPEC §4.3).
     # Happiness +10, XP +10 for every active character (source="streak").
     try:
         from backend.services.island_care_engine import apply_subject_gain
         apply_subject_gain(db, subject="all", source="streak")
-    except Exception:
-        pass
+    except Exception as exc:
+        logger.warning("Failed to apply island character streak gain (non-fatal): %s", exc)
 
 
 # ─── Subject evaluation ───────────────────────────────────────

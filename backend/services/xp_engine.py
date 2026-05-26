@@ -113,7 +113,7 @@ def get_xp_rules(db: Session) -> dict[str, int]:
             try:
                 rules[action] = int(r.value)
             except (TypeError, ValueError):
-                pass
+                logger.warning("Invalid xp_rule_%s value %r in app_config: using default %d", action, r.value, rules[action])
     _xp_rules_cache = rules
     _xp_rules_at    = time.monotonic()
     return rules
@@ -134,7 +134,7 @@ def get_arcade_daily_cap(db: Session) -> int:
         try:
             cap = max(0, int(row.value))
         except (TypeError, ValueError):
-            pass
+            logger.warning("Invalid arcade_daily_cap value %r in app_config: using default %d", row.value, ARCADE_DAILY_CAP_DEFAULT)
     _arcade_cap_cache = cap
     _arcade_cap_at    = time.monotonic()
     return cap
