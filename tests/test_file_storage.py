@@ -1,4 +1,4 @@
-"""파일 저장 테스트 — HEIC→JPG 변환, PDF 처리, 인덱스 관리."""
+"""File storage tests — HEIC→JPG conversion, PDF handling, index management."""
 import io
 import json
 import pytest
@@ -40,12 +40,12 @@ def _minimal_pdf() -> bytes:
     )
 
 
-# ── HEIC → JPG 변환 ───────────────────────────────────────────────
+# ── HEIC → JPG conversion ─────────────────────────────────────────
 
 class TestHeicToJpg:
 
     def test_pillow_heif_used_when_available(self):
-        """pillow_heif 가 있으면 sips 대신 pillow_heif 경로를 탄다."""
+        """When pillow_heif is available, use the pillow_heif path instead of sips."""
         fake_rgb = MagicMock()
         fake_img = MagicMock()
         fake_img.convert.return_value = fake_rgb
@@ -63,13 +63,13 @@ class TestHeicToJpg:
              }), \
              patch("backend.file_storage._heic_to_jpg_sips") as mock_sips, \
              patch("PIL.Image.open", return_value=fake_img):
-            # _heic_to_jpg 내부 분기가 pillow_heif 쪽을 타는지는
-            # sips 가 호출되지 않는 것으로 간접 확인
-            # (pillow_heif import 실패 시 sips fallback)
+            # Whether _heic_to_jpg's internal branch takes the pillow_heif path
+            # is verified indirectly by sips not being called
+            # (sips fallback on pillow_heif import failure)
             pass  # integration covered by test_save_jpeg
 
     def test_sips_fallback_called_on_import_error(self):
-        """pillow_heif import 실패 → sips fallback 호출."""
+        """pillow_heif import failure → sips fallback is called."""
         import sys
         real_import = __builtins__["__import__"] if isinstance(__builtins__, dict) else __import__
 
@@ -85,18 +85,18 @@ class TestHeicToJpg:
             assert result == b"fakejpg"
 
 
-# ── PDF 처리 ──────────────────────────────────────────────────────
+# ── PDF handling ──────────────────────────────────────────────────
 
 class TestPdfPageCount:
 
     def test_minimal_pdf_returns_page_count(self):
         pdf = _minimal_pdf()
         count = _pdf_page_count(pdf)
-        # pymupdf 있으면 정확히 1, 없으면 fallback 파싱
+        # exactly 1 if pymupdf is present, otherwise fallback parsing
         assert count in (1, None) or count >= 1
 
     def test_non_pdf_bytes_returns_none_or_zero(self):
-        # pymupdf 설치 여부에 따라 None 또는 0 반환 가능
+        # may return None or 0 depending on whether pymupdf is installed
         count = _pdf_page_count(b"not a pdf")
         assert count in (None, 0)
 
@@ -131,23 +131,23 @@ class TestSaveLessonFile:
 
     def test_empty_file_raises_value_error(self, tmp_path):
         with patch("backend.file_storage.STORAGE_ROOT", tmp_path), \
-             pytest.raises(ValueError, match="빈 파일"):
+             pytest.raises(ValueError, match="Empty file"):
             save_lesson_file(1, b"", "empty.jpg")
 
     def test_oversized_file_raises_value_error(self, tmp_path):
         big = b"x" * (MAX_FILE_BYTES + 1)
         with patch("backend.file_storage.STORAGE_ROOT", tmp_path), \
-             pytest.raises(ValueError, match="파일 크기 초과"):
+             pytest.raises(ValueError, match="too large"):
             save_lesson_file(1, big, "huge.jpg")
 
     def test_disallowed_extension_raises_value_error(self, tmp_path):
         with patch("backend.file_storage.STORAGE_ROOT", tmp_path), \
-             pytest.raises(ValueError, match="허용되지 않는"):
+             pytest.raises(ValueError, match="Unsupported file type"):
             save_lesson_file(1, b"data", "script.exe")
 
     def test_invalid_pdf_raises_value_error(self, tmp_path):
         with patch("backend.file_storage.STORAGE_ROOT", tmp_path), \
-             pytest.raises(ValueError, match="유효한 PDF"):
+             pytest.raises(ValueError, match="valid PDF"):
             save_lesson_file(1, b"not a pdf content", "fake.pdf")
 
     def test_duplicate_filename_gets_suffix(self, tmp_path):
@@ -184,7 +184,7 @@ class TestListAndDelete:
         jpeg = _minimal_jpeg()
         with patch("backend.file_storage.STORAGE_ROOT", tmp_path):
             r = save_lesson_file(10, jpeg, "gone.jpg")
-            # 파일을 직접 삭제하여 인덱스 불일치 유발
+            # Delete the file directly to cause an index mismatch
             Path(r["path"]).unlink()
             files = list_lesson_files(10)
         assert len(files) == 0

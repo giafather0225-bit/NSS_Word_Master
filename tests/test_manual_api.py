@@ -1,4 +1,4 @@
-"""수동 단어 입력 API 테스트 — POST/PATCH/DELETE /api/lessons/{id}/words."""
+"""Manual word entry API tests — POST/PATCH/DELETE /api/lessons/{id}/words."""
 import pytest
 from tests.conftest import MOCK_VOCAB_JSON
 
@@ -30,7 +30,7 @@ class TestCreateManualWord:
         assert res.json()["source_type"] == "manual"
 
     def test_study_item_id_is_linked(self, client, sample_lesson):
-        """words 저장 시 study_items 도 생성되어 study_item_id 가 연결돼야 함."""
+        """Saving a word must also create a study_items row and link study_item_id."""
         res = client.post(
             f"/api/words/lesson/{sample_lesson.id}",
             json={"word": "swift", "definition": "moving with great speed",
@@ -57,7 +57,7 @@ class TestCreateManualWord:
             f"/api/words/lesson/{sample_lesson.id}",
             json={"word": "test"},
         )
-        # definition 은 필수이므로 422
+        # definition is required, so 422
         assert res.status_code == 422
 
     def test_nonexistent_lesson_returns_404(self, client):

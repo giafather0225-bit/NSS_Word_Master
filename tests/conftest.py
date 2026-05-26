@@ -1,4 +1,4 @@
-"""pytest 공유 픽스처 — DB, FastAPI 테스트 클라이언트, 모의 응답."""
+"""Shared pytest fixtures — DB, FastAPI test client, mock responses."""
 import json
 import pytest
 from fastapi.testclient import TestClient
@@ -10,8 +10,8 @@ from backend.database import Base, get_db
 from backend.main import app
 from backend.models import Lesson
 
-# ── 인메모리 SQLite (테스트 전용) ─────────────────────────────────
-# StaticPool: 모든 연결이 동일한 인메모리 DB를 공유 (세션 간 테이블 유지)
+# ── In-memory SQLite (test only) ──────────────────────────────────
+# StaticPool: all connections share the same in-memory DB (tables persist across sessions)
 TEST_DB_URL = "sqlite://"
 
 @pytest.fixture(scope="session")
@@ -50,7 +50,7 @@ def db_session(engine):
 
 @pytest.fixture
 def client(db_session):
-    """FastAPI TestClient — DB 세션을 인메모리 세션으로 교체."""
+    """FastAPI TestClient — replace the DB session with the in-memory session."""
     def _override_db():
         yield db_session
 
@@ -109,7 +109,7 @@ def ckla_seed(db_session):
 
 @pytest.fixture
 def sample_lesson(db_session) -> Lesson:
-    """테스트용 Lesson 레코드."""
+    """A Lesson record for tests."""
     from datetime import datetime, timezone
     lesson = Lesson(
         subject="English",
@@ -125,7 +125,7 @@ def sample_lesson(db_session) -> Lesson:
     return lesson
 
 
-# ── Ollama / Gemini 모의 응답 ─────────────────────────────────────
+# ── Ollama / Gemini mock responses ────────────────────────────────
 
 MOCK_VOCAB_JSON = json.dumps([
     {

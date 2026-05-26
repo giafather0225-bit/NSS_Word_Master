@@ -1,12 +1,14 @@
 """
-033_math_progress_mastery.py — math_progress에 Mastery Gating 컬럼 추가.
+033_math_progress_mastery.py — add Mastery Gating columns to math_progress.
 
-배경
-- 35문항/차시는 G3 8-9세 집중 한계(20~30분) 초과 (Singapore 6-12, Eureka 15-25 대비).
-- PT 만점 시 R2를 자동 면제해 drill-and-kill 비판 해소. R3는 전이 학습이라 항상 유지.
+Background
+- 35 problems/lesson exceeds the G3 (age 8-9) attention limit (20-30 min)
+  (vs. Singapore 6-12, Eureka 15-25).
+- A perfect pre-test auto-exempts R2, addressing the drill-and-kill critique.
+  R3 is transfer learning, so it is always kept.
 
-추가 컬럼
-- pretest_mastery   BOOLEAN: PT 100% 시 True (R2 skip 자격)
+Added columns
+- pretest_mastery   BOOLEAN: True on a 100% pre-test (qualifies to skip R2)
 - skipped_stages    TEXT   : JSON list of skipped stage names
 
 Idempotent.

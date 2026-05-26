@@ -1,5 +1,5 @@
 """
-migrations/010_us_academy_tables.py — US Academy (미국학교 대비) 테이블 생성
+migrations/010_us_academy_tables.py — Create US Academy (US-school prep) tables
 Section: Academy
 Dependencies: database.py
 API: none (run directly)

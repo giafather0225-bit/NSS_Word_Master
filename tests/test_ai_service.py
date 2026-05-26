@@ -1,4 +1,4 @@
-"""AI 서비스 테스트 — 품질 점수, 라우팅, Gemini 폴백."""
+"""AI service tests — quality score, routing, Gemini fallback."""
 import json
 import pytest
 import pytest_asyncio
@@ -75,7 +75,7 @@ class TestQualityScore:
 class TestRefineOcrText:
 
     async def test_uses_ollama_when_quality_good(self):
-        """Ollama 결과가 품질 기준 통과 → Gemini 미호출."""
+        """Ollama result passes the quality bar → Gemini not called."""
         with patch("backend.ai_service._ollama_chat", new_callable=AsyncMock) as mock_ollama, \
              patch("backend.ai_service._gemini_generate", new_callable=AsyncMock) as mock_gemini:
 
@@ -88,7 +88,7 @@ class TestRefineOcrText:
             mock_gemini.assert_not_called()
 
     async def test_falls_back_to_gemini_on_poor_ollama_quality(self):
-        """Ollama 품질 미달 → Gemini 호출."""
+        """Ollama quality too low → Gemini called."""
         with patch("backend.ai_service._ollama_chat", new_callable=AsyncMock) as mock_ollama, \
              patch("backend.ai_service._gemini_generate", new_callable=AsyncMock) as mock_gemini:
 
@@ -102,7 +102,7 @@ class TestRefineOcrText:
             mock_gemini.assert_called_once()
 
     async def test_falls_back_to_gemini_on_ollama_error(self):
-        """Ollama 오류 → Gemini 폴백."""
+        """Ollama error → Gemini fallback."""
         with patch("backend.ai_service._ollama_chat", new_callable=AsyncMock) as mock_ollama, \
              patch("backend.ai_service._gemini_generate", new_callable=AsyncMock) as mock_gemini:
 
@@ -115,7 +115,7 @@ class TestRefineOcrText:
             mock_gemini.assert_called_once()
 
     async def test_force_gemini_skips_ollama(self):
-        """force_gemini=True → Ollama 미호출."""
+        """force_gemini=True → Ollama not called."""
         with patch("backend.ai_service._ollama_chat", new_callable=AsyncMock) as mock_ollama, \
              patch("backend.ai_service._gemini_generate", new_callable=AsyncMock) as mock_gemini:
 
@@ -127,7 +127,7 @@ class TestRefineOcrText:
             mock_ollama.assert_not_called()
 
     async def test_long_text_skips_ollama(self):
-        """긴 텍스트(>LONG_TEXT_THRESHOLD) → Ollama 미호출."""
+        """Long text (>LONG_TEXT_THRESHOLD) → Ollama not called."""
         from backend.ai_service import LONG_TEXT_THRESHOLD
         long_text = "word definition example. " * (LONG_TEXT_THRESHOLD // 20 + 10)
 
@@ -141,7 +141,7 @@ class TestRefineOcrText:
             mock_ollama.assert_not_called()
 
     async def test_returns_normalized_entries(self):
-        """반환된 항목은 word/pos/definition/example 키를 가져야 함."""
+        """Returned entries must have word/pos/definition/example keys."""
         with patch("backend.ai_service._ollama_chat", return_value=MOCK_VOCAB_JSON):
             entries, _ = await refine_ocr_text("text")
             for e in entries:
@@ -164,11 +164,11 @@ class TestGenerateExample:
             assert "abundant" in sentence.lower()
 
     async def test_falls_back_to_gemini_when_word_missing(self):
-        """Ollama 예문에 단어 미포함 → Gemini."""
+        """Word missing from the Ollama example → Gemini."""
         with patch("backend.ai_service._ollama_chat", new_callable=AsyncMock) as mock_ollama, \
              patch("backend.ai_service._gemini_generate", new_callable=AsyncMock) as mock_gemini:
 
-            mock_ollama.return_value  = "It was very nice."   # 'abundant' 없음
+            mock_ollama.return_value  = "It was very nice."   # no 'abundant'
             mock_gemini.return_value  = "There is abundant food at the feast."
 
             sentence, provider = await generate_example("abundant", "existing in large quantities")

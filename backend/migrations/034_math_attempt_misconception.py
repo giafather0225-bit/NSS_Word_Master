@@ -1,14 +1,17 @@
 """
-034_math_attempt_misconception.py — math_attempts에 misconception_id 컬럼 추가.
+034_math_attempt_misconception.py — add a misconception_id column to math_attempts.
 
-번호 변경 이력: 원래 032로 작성했으나 원격 main의 032(CKLA round2)와 충돌해
-                머지 후 034로 재번호. DB 적용은 이미 완료(idempotent 재실행 안전).
+Renumbering history: originally written as 032, but it collided with remote
+                     main's 032 (CKLA round2), so it was renumbered to 034
+                     after merging. The DB change is already applied
+                     (idempotent — safe to re-run).
 
-진단 엔진(backend/services/math_diagnostic.py)이 오답을 misconception 라이브러리와
-조인한 결과를 attempt 레코드에 영구 저장하기 위함. 후속 분석(코칭/대시보드)이
-간단해진다.
+Purpose: the diagnostic engine (backend/services/math_diagnostic.py) joins a
+wrong answer against the misconception library and permanently stores the
+result on the attempt record. This simplifies downstream analysis
+(coaching/dashboard).
 
-Idempotent: 컬럼 존재 여부 체크 후 ALTER.
+Idempotent: checks whether the column exists before ALTER.
 """
 import sqlite3
 from pathlib import Path

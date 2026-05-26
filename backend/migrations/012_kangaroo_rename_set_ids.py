@@ -1,12 +1,12 @@
 """
 012_kangaroo_rename_set_ids.py
 ================================
-MathKangarooProgress.set_id 마이그레이션
+MathKangarooProgress.set_id migration
   usa_YYYY_gr34 → usa_YYYY_ecolier
   usa_YYYY_gr56 → usa_YYYY_benjamin
   usa_YYYY_gr78 → usa_YYYY_cadet
 
-배경: 파일 명칭 통일 (grXX 표기 → 레벨명 표기)
+Background: unify the file naming (grXX notation → level-name notation)
 """
 
 import sqlite3
@@ -25,7 +25,7 @@ def run(db_path: Path = DB_PATH) -> None:
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
 
-    # MathKangarooProgress 테이블 존재 확인
+    # Check the MathKangarooProgress table exists
     cur.execute(
         "SELECT name FROM sqlite_master WHERE type='table' AND name='mathkangarooprogress'"
     )
@@ -36,7 +36,7 @@ def run(db_path: Path = DB_PATH) -> None:
 
     total = 0
     for grade, level in RENAMES.items():
-        # usa_YYYY_grXX 패턴 찾기
+        # Find the usa_YYYY_grXX pattern
         cur.execute(
             "SELECT set_id FROM mathkangarooprogress WHERE set_id LIKE ?",
             (f"usa_%_{grade}",),
