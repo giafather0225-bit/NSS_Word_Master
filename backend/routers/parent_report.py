@@ -7,6 +7,7 @@ API: POST /api/parent/report/send      (PIN required)
      GET  /api/parent/report/schedule  (PIN required)
      POST /api/parent/report/schedule  (PIN required)
 """
+from __future__ import annotations
 
 import logging
 from datetime import datetime
