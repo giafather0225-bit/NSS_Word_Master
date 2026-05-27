@@ -3,6 +3,7 @@ APP_DIR="$HOME/NSS_Learning/NSS_Word_Master"
 LOG_DIR="$HOME/NSS_Learning/logs"
 mkdir -p "$LOG_DIR"
 cd "$APP_DIR" || exit 1
+[ -f "$APP_DIR/.venv/bin/activate" ] && source "$APP_DIR/.venv/bin/activate"
 /usr/sbin/lsof -ti:8000 | xargs kill -9 2>/dev/null
 sleep 1
 git checkout -- frontend/templates/child.html 2>/dev/null || true
