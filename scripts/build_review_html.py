@@ -1,10 +1,10 @@
 """
-G3 단원별 리뷰 HTML 생성기.
-- 단원당 HTML 1개 (docs/review/G3_U{n}_{slug}.html)
-- 인덱스 페이지 1개 (docs/review/index.html)
-- 각 항목: stage, id, CCSS, difficulty, 질문, 선택지(정답 강조), expected_errors, hints, solution_steps
-- 다크모드 친화 (모바일 가독성)
-- "Mark issue" 빠른 메모 영역 (localStorage)
+G3 per-unit review HTML generator.
+- 1 HTML per unit (docs/review/G3_U{n}_{slug}.html)
+- 1 index page (docs/review/index.html)
+- Each item: stage, id, CCSS, difficulty, question, choices (correct highlighted), expected_errors, hints, solution_steps
+- Dark-mode friendly (mobile readability)
+- "Mark issue" quick-note area (localStorage)
 """
 from __future__ import annotations
 import json
@@ -16,12 +16,12 @@ OUT = Path('/Users/markjhlee/NSS_Word_Master/docs/review')
 OUT.mkdir(parents=True, exist_ok=True)
 
 STAGES = [
-    ('pretest', 'PT', '🎯 사전평가'),
-    ('learn', 'LEARN', '📖 개념 학습'),
-    ('try', 'TRY', '🔧 시도'),
-    ('practice_r1', 'R1', '💪 연습 R1'),
-    ('practice_r2', 'R2', '🏃 연습 R2'),
-    ('practice_r3', 'R3', '🏆 연습 R3 (워드)'),
+    ('pretest', 'PT', '🎯 Pre-test'),
+    ('learn', 'LEARN', '📖 Learn'),
+    ('try', 'TRY', '🔧 Try'),
+    ('practice_r1', 'R1', '💪 Practice R1'),
+    ('practice_r2', 'R2', '🏃 Practice R2'),
+    ('practice_r3', 'R3', '🏆 Practice R3 (word problems)'),
 ]
 
 CSS = """
@@ -128,7 +128,7 @@ def render_item(item: dict, stage_code: str) -> str:
         head_tags.append(f'<span class="tag">{esc(cpa)}</span>')
     diff = item.get('difficulty')
     if diff is not None:
-        head_tags.append(f'<span class="tag diff-{esc(diff)}">난이도 {esc(diff)}</span>')
+        head_tags.append(f'<span class="tag diff-{esc(diff)}">difficulty {esc(diff)}</span>')
     skill = item.get('skill_tag')
     if skill:
         head_tags.append(f'<span class="tag">{esc(skill)}</span>')
@@ -137,7 +137,7 @@ def render_item(item: dict, stage_code: str) -> str:
     parts.append(f'<span class="flag" onclick="toggleFlag(\'{esc(full_id)}\')">🚩 mark</span>')
     parts.append(f'<div class="item-head">{"".join(head_tags)}</div>')
 
-    # LEARN 카드
+    # LEARN card
     if stage_code == 'LEARN':
         title = esc(item.get('title', ''))
         content = esc(item.get('content', ''))
@@ -145,14 +145,14 @@ def render_item(item: dict, stage_code: str) -> str:
     else:
         q = esc(item.get('question', ''))
         parts.append(f'<div class="q">{q}</div>')
-        # 선택지
+        # choices
         choices = item.get('choices') or []
         correct = item.get('correct_answer', '')
         if choices:
             parts.append('<ul class="choices">')
             for c in choices:
                 cs = esc(c)
-                # 정답 매칭: "B) 588" 또는 "B" 또는 전체 문자열
+                # match correct answer: "B) 588" or "B" or the whole string
                 is_correct = False
                 if correct:
                     if cs.startswith(f'{correct})') or cs.startswith(f'{correct} '):
@@ -164,12 +164,12 @@ def render_item(item: dict, stage_code: str) -> str:
                 parts.append(f'<li{cls}>{cs}{marker}</li>')
             parts.append('</ul>')
         elif correct:
-            parts.append(f'<div class="solution">정답: {esc(correct)}</div>')
+            parts.append(f'<div class="solution">Answer: {esc(correct)}</div>')
 
         # expected_errors
         ee = item.get('expected_errors')
         if isinstance(ee, dict) and ee:
-            parts.append('<div class="errors"><b style="font-size:0.85rem;color:#787B86;">예상 함정</b>')
+            parts.append('<div class="errors"><b style="font-size:0.85rem;color:#787B86;">Expected pitfalls</b>')
             for ch, info in ee.items():
                 if isinstance(info, dict):
                     et = esc(info.get('error_type', ''))
@@ -187,18 +187,18 @@ def render_item(item: dict, stage_code: str) -> str:
         # solution_steps
         steps = item.get('solution_steps') or []
         if steps:
-            parts.append('<div class="solution"><b style="font-size:0.85rem">풀이</b><ol>')
+            parts.append('<div class="solution"><b style="font-size:0.85rem">Solution</b><ol>')
             for s in steps:
                 parts.append(f'<li>{esc(s)}</li>')
             parts.append('</ol></div>')
 
-    # misconception_candidates 표시
+    # show misconception_candidates
     cands = item.get('misconception_candidates') or []
     if cands:
         parts.append(f'<div class="meta" style="margin-top:6px">candidates: {esc(", ".join(cands))}</div>')
 
-    # 메모 박스
-    parts.append(f'<textarea class="notes" placeholder="메모…" oninput="setNote(\'{esc(full_id)}\', this.value)"></textarea>')
+    # note box
+    parts.append(f'<textarea class="notes" placeholder="Note…" oninput="setNote(\'{esc(full_id)}\', this.value)"></textarea>')
     parts.append('</div>')
     return ''.join(parts)
 
@@ -214,14 +214,14 @@ def render_lesson(lesson_path: Path) -> str:
     out = [f'<h2 id="{lesson_id}">{title} <span class="meta">— {lesson_id}</span></h2>']
     meta_bits = []
     if ccss: meta_bits.append(f'CCSS: {esc(ccss)}')
-    if eq: meta_bits.append(f'질문: {eq}')
+    if eq: meta_bits.append(f'Question: {eq}')
     if meta_bits:
         out.append(f'<div class="summary">{" · ".join(meta_bits)}</div>')
 
     for key, code, label in STAGES:
         items = d.get(key) or []
         if not items: continue
-        out.append(f'<div class="stage">{label} ({len(items)}문항)</div>')
+        out.append(f'<div class="stage">{label} ({len(items)} items)</div>')
         for it in items:
             out.append(render_item(it, code))
     return '\n'.join(out)
@@ -243,19 +243,19 @@ def render_unit(unit_dir: Path) -> str:
         body.append('<h2 id="unit_test">📝 Unit Test</h2>')
         body.append(render_lesson(unit_test))
 
-    page = f"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
+    page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{esc(unit_name)} — G3 리뷰</title>
+<title>{esc(unit_name)} — G3 review</title>
 <style>{CSS}</style></head><body>
 <div class="wrap">
 <div class="nav">
-  <a href="index.html">← 인덱스</a>
+  <a href="index.html">← Index</a>
   <span id="flag-count" style="color:#E8736A"></span>
-  <button class="export-btn" onclick="exportFlags()" style="float:right">📥 flag 내보내기</button>
+  <button class="export-btn" onclick="exportFlags()" style="float:right">📥 Export flags</button>
 </div>
 <h1>{esc(unit_name)}</h1>
 <div class="toc">
-<b>레슨 목차</b>
+<b>Lesson contents</b>
 {''.join(toc_links)}
 </div>
 {''.join(body)}
@@ -267,13 +267,13 @@ def render_unit(unit_dir: Path) -> str:
 
 def build_index(unit_names):
     items = '\n'.join(f'<a href="{u}.html">{u}</a>' for u in unit_names)
-    page = f"""<!doctype html><html lang="ko"><head><meta charset="utf-8">
+    page = f"""<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>G3 콘텐츠 리뷰</title>
+<title>G3 content review</title>
 <style>{CSS}</style></head><body>
 <div class="wrap">
-<h1>📚 G3 콘텐츠 리뷰</h1>
-<div class="summary">단원별 모든 항목을 한 페이지로 — 정답·함정·힌트까지 한눈에. 이상한 거 발견하면 🚩 mark, 메모 적고 📥 내보내기.</div>
+<h1>📚 G3 content review</h1>
+<div class="summary">All items per unit on one page — answers, pitfalls, and hints at a glance. Spot something odd? 🚩 mark it, jot a note, and 📥 export.</div>
 <div class="toc">{items}</div>
 </div></body></html>"""
     return page

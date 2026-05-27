@@ -34,7 +34,7 @@ DATA_ROOT = ROOT / "backend" / "data" / "math"
 def load_attempts(db_path, start, end, grade):
     """Extract pilot period attempts from math_attempts table."""
     if not db_path.exists():
-        print(f"⚠️  DB 미존재: {db_path}", file=sys.stderr)
+        print(f"⚠️  DB not found: {db_path}", file=sys.stderr)
         return []
     conn = sqlite3.connect(str(db_path))
     cur = conn.cursor()
@@ -53,7 +53,7 @@ def load_attempts(db_path, start, end, grade):
 
 
 def load_problem_meta(grade):
-    """레슨 JSON에서 expected_errors 메타 추출."""
+    """Extract expected_errors metadata from lesson JSON."""
     meta = {}  # problem_id → {expected_errors, lesson, unit}
     grade_dir = DATA_ROOT / grade
     if not grade_dir.exists():
@@ -77,7 +77,7 @@ def load_problem_meta(grade):
                         "section": section,
                         "expected_errors": item.get("expected_errors", []),
                     }
-            # unit_test도 포함
+            # include unit_test too
             for p in d.get("problems", []) + d.get("questions", []):
                 pid = p.get("id", "")
                 if not pid:
@@ -92,7 +92,7 @@ def load_problem_meta(grade):
 
 
 def accuracy_distribution(attempts):
-    """문항별 정답률 산출."""
+    """Compute accuracy per problem."""
     counts = defaultdict(lambda: {"correct": 0, "total": 0})
     for a in attempts:
         key = a["problem_id"]
@@ -101,13 +101,13 @@ def accuracy_distribution(attempts):
             counts[key]["correct"] += 1
     result = {}
     for k, c in counts.items():
-        if c["total"] >= 3:  # 최소 3회 이상 시도된 문항만
+        if c["total"] >= 3:  # only problems attempted at least 3 times
             result[k] = c["correct"] / c["total"]
     return result
 
 
 def misconception_match_rate(attempts, meta):
-    """오답의 error_type이 expected_errors와 매칭되는 비율."""
+    """Rate at which a wrong answer's error_type matches expected_errors."""
     wrong = [a for a in attempts if not a["is_correct"]]
     matched = 0
     has_expected = 0
@@ -122,7 +122,7 @@ def misconception_match_rate(attempts, meta):
         if isinstance(expected, list) and a.get("error_type") in expected:
             matched += 1
         elif isinstance(expected, dict):
-            # U11-U13: expected_errors가 dict 형태 (key=선택지)
+            # U11-U13: expected_errors is a dict (key=choice)
             if a.get("user_answer") in expected:
                 matched += 1
     rate = matched / has_expected if has_expected else 0.0
@@ -130,7 +130,7 @@ def misconception_match_rate(attempts, meta):
 
 
 def learning_effect(attempts):
-    """레슨별 PT 평균 vs R3 평균 차이."""
+    """Per-lesson difference between PT average and R3 average."""
     by_lesson = defaultdict(lambda: {"pt": [], "r3": []})
     for a in attempts:
         key = f"{a['grade']}/{a['unit']}/{a['lesson']}"
@@ -149,11 +149,11 @@ def learning_effect(attempts):
 
 
 def time_distribution(attempts):
-    """단계별 시간 분포 (평균/p50/p95)."""
+    """Time distribution per stage (mean/p50/p95)."""
     by_stage = defaultdict(list)
     for a in attempts:
         t = a.get("time_spent_sec", 0)
-        if t and t > 0 and t < 600:  # 0 또는 비정상치 제외
+        if t and t > 0 and t < 600:  # exclude 0 or abnormal values
             by_stage[a.get("stage", "?")].append(t)
     result = {}
     for s, ts in by_stage.items():
@@ -170,14 +170,14 @@ def time_distribution(attempts):
 
 
 def outliers(acc_dist, low=0.20, high=0.95):
-    """이상치 문항 (정답률 <20% 또는 >95%)."""
+    """Outlier problems (accuracy <20% or >95%)."""
     lows = [(k, v) for k, v in acc_dist.items() if v < low]
     highs = [(k, v) for k, v in acc_dist.items() if v > high]
     return sorted(lows, key=lambda x: x[1]), sorted(highs, key=lambda x: -x[1])
 
 
 def write_report(attempts, meta, output_path):
-    """모든 지표 산출 후 마크다운 리포트 작성."""
+    """Compute all metrics and write the markdown report."""
     acc = accuracy_distribution(attempts)
     mc_rate, mc_matched, mc_total = misconception_match_rate(attempts, meta)
     effects = learning_effect(attempts)
@@ -188,66 +188,66 @@ def write_report(attempts, meta, output_path):
     avg_effect = statistics.mean([e[2] for e in effects.values()]) if effects else 0
 
     lines = []
-    lines.append(f"# Stage 7 파일럿 결과 — {datetime.now():%Y-%m-%d %H:%M}\n")
-    lines.append(f"총 시도: **{len(attempts):,}**\n")
-    lines.append(f"분석 대상 문항: **{len(acc)}** (3회 이상 시도)\n")
+    lines.append(f"# Stage 7 pilot results — {datetime.now():%Y-%m-%d %H:%M}\n")
+    lines.append(f"Total attempts: **{len(attempts):,}**\n")
+    lines.append(f"Problems analyzed: **{len(acc)}** (attempted 3+ times)\n")
     lines.append("")
-    lines.append("## 1. 정답률 분포\n")
-    lines.append(f"- 평균 정답률: **{avg_acc:.1%}**")
-    lines.append(f"- 이상치 (낮음 <20%): **{len(lows)}** 문항")
-    lines.append(f"- 이상치 (높음 >95%): **{len(highs)}** 문항")
+    lines.append("## 1. Accuracy distribution\n")
+    lines.append(f"- Mean accuracy: **{avg_acc:.1%}**")
+    lines.append(f"- Outliers (low <20%): **{len(lows)}** problems")
+    lines.append(f"- Outliers (high >95%): **{len(highs)}** problems")
     lines.append("")
-    lines.append("## 2. Misconception 매칭률\n")
-    lines.append(f"- 매칭: {mc_matched} / {mc_total} = **{mc_rate:.1%}**")
-    lines.append(f"- 목표: ≥ 60% → {'✅ 통과' if mc_rate >= 0.6 else '❌ 미달'}")
+    lines.append("## 2. Misconception match rate\n")
+    lines.append(f"- Matched: {mc_matched} / {mc_total} = **{mc_rate:.1%}**")
+    lines.append(f"- Target: ≥ 60% → {'✅ pass' if mc_rate >= 0.6 else '❌ fail'}")
     lines.append("")
-    lines.append("## 3. 학습 효과 (PT → R3)\n")
-    lines.append(f"- 분석 레슨: {len(effects)}")
-    lines.append(f"- 평균 향상: **+{avg_effect:.1%}pt**")
-    lines.append(f"- 목표: ≥ +20%pt → {'✅ 통과' if avg_effect >= 0.20 else '❌ 미달'}")
+    lines.append("## 3. Learning effect (PT → R3)\n")
+    lines.append(f"- Lessons analyzed: {len(effects)}")
+    lines.append(f"- Mean improvement: **+{avg_effect:.1%}pt**")
+    lines.append(f"- Target: ≥ +20%pt → {'✅ pass' if avg_effect >= 0.20 else '❌ fail'}")
     lines.append("")
-    lines.append("## 4. 시간 분포 (단계별, 초)\n")
+    lines.append("## 4. Time distribution (per stage, seconds)\n")
     lines.append("| Stage | n | mean | p50 | p95 |")
     lines.append("|---|---|---|---|---|")
     for s, t in sorted(times.items()):
         lines.append(f"| {s} | {t['n']} | {t['mean']:.1f} | {t['p50']} | {t['p95']} |")
     lines.append("")
-    lines.append("## 5. 이상치 — 재검토 필요\n")
-    lines.append(f"### 정답률 <20% ({len(lows)}건)")
+    lines.append("## 5. Outliers — need review\n")
+    lines.append(f"### Accuracy <20% ({len(lows)})")
     for pid, rate in lows[:20]:
         lines.append(f"- `{pid}` — {rate:.1%}")
     lines.append("")
-    lines.append(f"### 정답률 >95% ({len(highs)}건)")
+    lines.append(f"### Accuracy >95% ({len(highs)})")
     for pid, rate in highs[:20]:
         lines.append(f"- `{pid}` — {rate:.1%}")
     lines.append("")
-    lines.append("## 합격 기준 체크리스트\n")
+    lines.append("## Pass-criteria checklist\n")
     in_range = sum(1 for r in acc.values() if 0.20 <= r <= 0.95)
     in_range_pct = in_range / len(acc) if acc else 0
-    lines.append(f"- [{'x' if in_range_pct >= 0.80 else ' '}] 80%+ 정상 범위: {in_range_pct:.1%}")
-    lines.append(f"- [{'x' if mc_rate >= 0.60 else ' '}] Misconception 매칭 60%+: {mc_rate:.1%}")
-    lines.append(f"- [{'x' if avg_effect >= 0.20 else ' '}] 학습 효과 +20%pt+: +{avg_effect:.1%}pt")
+    lines.append(f"- [{'x' if in_range_pct >= 0.80 else ' '}] 80%+ in normal range: {in_range_pct:.1%}")
+    lines.append(f"- [{'x' if mc_rate >= 0.60 else ' '}] Misconception match 60%+: {mc_rate:.1%}")
+    lines.append(f"- [{'x' if avg_effect >= 0.20 else ' '}] Learning effect +20%pt+: +{avg_effect:.1%}pt")
 
     pathlib.Path(output_path).write_text("\n".join(lines), encoding="utf-8")
-    print(f"✅ 리포트: {output_path}")
-    print(f"   총 시도: {len(attempts)}")
-    print(f"   정답률 평균: {avg_acc:.1%}")
-    print(f"   매칭률: {mc_rate:.1%}")
-    print(f"   학습효과: +{avg_effect:.1%}pt")
+    print(f"✅ Report: {output_path}")
+    print(f"   Total attempts: {len(attempts)}")
+    print(f"   Mean accuracy: {avg_acc:.1%}")
+    print(f"   Match rate: {mc_rate:.1%}")
+    print(f"   Learning effect: +{avg_effect:.1%}pt")
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Stage 7 파일럿 분석")
-    parser.add_argument("--start", required=True, help="시작일 (YYYY-MM-DD)")
-    parser.add_argument("--end", required=True, help="종료일 (YYYY-MM-DD)")
-    parser.add_argument("--grade", default="G3", help="학년 (G3)")
-    parser.add_argument("--db", default=str(DB_PATH), help="SQLite DB 경로")
-    parser.add_argument("--output", default="docs/pilot_results.md", help="출력 경로")
+    parser = argparse.ArgumentParser(description="Stage 7 pilot analysis")
+    parser.add_argument("--start", required=True, help="start date (YYYY-MM-DD)")
+    parser.add_argument("--end", required=True, help="end date (YYYY-MM-DD)")
+    parser.add_argument("--grade", default="G3", help="grade (G3)")
+    parser.add_argument("--db", default=str(DB_PATH), help="SQLite DB path")
+    parser.add_argument("--output", default="docs/pilot_results.md", help="output path")
     args = parser.parse_args()
 
     attempts = load_attempts(pathlib.Path(args.db), args.start, args.end, args.grade)
     if not attempts:
-        print("⚠️  시도 데이터 없음 — 분석 종료.")
+        print("⚠️  No attempt data — ending analysis.")
         return
 
     meta = load_problem_meta(args.grade)
