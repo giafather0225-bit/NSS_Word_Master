@@ -1,19 +1,19 @@
 """
-Stage 7 학습자 파일럿 데이터 분석 스크립트.
+Stage 7 Pilot Learner Data Analysis Script.
 ==============================================================================
-math_attempts 테이블에서 파일럿 기간 데이터를 추출하여 5개 측정 지표를 산출.
+Extract pilot period data from math_attempts table and calculate 5 key metrics.
 
-사용법:
+Usage:
     python3 scripts/stage7_pilot_analyze.py \\
         --start 2026-06-13 --end 2026-06-19 \\
         --grade G3 --output docs/pilot_2026_06_results.md
 
-출력 (마크다운):
-1. 정답률 분포 (단원/레슨/단계별)
-2. Misconception 매칭률
-3. 학습 효과 (PT vs R3)
-4. 시간 분포 (평균/p50/p95)
-5. 이상치 목록 (정답률 <20% 또는 >95%)
+Output (markdown):
+1. Accuracy distribution (by unit/lesson/stage)
+2. Misconception match rate
+3. Learning effect (PT vs R3)
+4. Time distribution (mean/p50/p95)
+5. Outlier list (accuracy <20% or >95%)
 """
 
 import argparse
@@ -27,12 +27,12 @@ from datetime import datetime
 
 
 ROOT = pathlib.Path(__file__).parent.parent
-DB_PATH = ROOT / "data" / "app.db"  # 실제 경로는 환경에 맞춰 조정
+DB_PATH = ROOT / "data" / "app.db"  # Actual path should be adjusted per environment
 DATA_ROOT = ROOT / "backend" / "data" / "math"
 
 
 def load_attempts(db_path, start, end, grade):
-    """math_attempts에서 파일럿 기간 시도 추출."""
+    """Extract pilot period attempts from math_attempts table."""
     if not db_path.exists():
         print(f"⚠️  DB 미존재: {db_path}", file=sys.stderr)
         return []

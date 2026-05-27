@@ -270,7 +270,7 @@ def run(grade: str, verbose: bool) -> int:
     for f in root.rglob("*.json"):
         if any(part.startswith("_") for part in f.relative_to(root).parts): continue
         try: d = json.loads(f.read_text("utf-8"))
-        except: continue
+        except (json.JSONDecodeError, OSError, UnicodeDecodeError): continue
         rel = f.relative_to(root)
         def chk(p, stage, idx):
             nonlocal verified, skipped

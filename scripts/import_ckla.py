@@ -1,13 +1,13 @@
 """
-scripts/import_ckla.py — CKLA G3 JSON → DB 임포트
+scripts/import_ckla.py — import CKLA G3 JSON → DB
 Section: Academy
 Dependencies: data/academy/ckla_g3/D1~D11.json, voca.db
 API: none (CLI)
 
 Usage:
-    python3 scripts/import_ckla.py              # 전체 11개 도메인
-    python3 scripts/import_ckla.py --dry-run    # DB 건드리지 않고 통계만 출력
-    python3 scripts/import_ckla.py --domain 3   # 특정 도메인만
+    python3 scripts/import_ckla.py              # all 11 domains
+    python3 scripts/import_ckla.py --dry-run    # print stats only, without touching the DB
+    python3 scripts/import_ckla.py --domain 3   # a specific domain only
 """
 
 from __future__ import annotations
@@ -24,7 +24,7 @@ DATA_DIR  = Path(__file__).resolve().parent.parent / "data" / "academy" / "ckla_
 
 # @tag ACADEMY @tag SYSTEM
 def import_domain(conn: sqlite3.Connection, data: dict, dry_run: bool = False) -> dict:
-    """한 도메인 JSON을 domains / lessons / questions / words / word_lesson에 삽입.
+    """Insert one domain's JSON into domains / lessons / questions / words / word_lesson.
 
     Returns stats dict.
     """
@@ -44,7 +44,7 @@ def import_domain(conn: sqlite3.Connection, data: dict, dry_run: bool = False) -
             stats["words_new"] += len(l.get("vocabulary", []))
         return stats
 
-    # 1. 도메인 upsert
+    # 1. domain upsert
     conn.execute("""
         INSERT INTO us_academy_domains (domain_num, title, source_pdf, lesson_count)
         VALUES (?, ?, ?, ?)
@@ -66,7 +66,7 @@ def import_domain(conn: sqlite3.Connection, data: dict, dry_run: bool = False) -
     domain_num = _domain_num(data["source_pdf"])
 
     for lesson in data["lessons"]:
-        # 2. 레슨 upsert
+        # 2. lesson upsert
         conn.execute("""
             INSERT INTO us_academy_lessons
                 (domain_id, domain_num, lesson_num, title,
@@ -92,7 +92,7 @@ def import_domain(conn: sqlite3.Connection, data: dict, dry_run: bool = False) -
         ).fetchone()[0]
         stats["lessons"] += 1
 
-        # 3. 문제 upsert
+        # 3. question upsert
         for q in lesson.get("questions", []):
             conn.execute("""
                 INSERT INTO us_academy_questions
@@ -111,13 +111,13 @@ def import_domain(conn: sqlite3.Connection, data: dict, dry_run: bool = False) -
             ))
             stats["questions"] += 1
 
-        # 4. 단어 upsert + 링크
+        # 4. word upsert + link
         for word in lesson.get("vocabulary", []):
             word = word.strip().lower()
             if not word:
                 continue
 
-            # 단어가 이미 있는지 확인 (word 중복 허용 — 다른 레슨에 같은 단어 가능)
+            # Check whether the word already exists (duplicates allowed — same word can appear in other lessons)
             existing = conn.execute(
                 "SELECT id FROM us_academy_words WHERE word = ? AND domain_num = ? AND lesson_num = ?",
                 (word, domain_num, lesson["lesson_num"])
@@ -138,7 +138,7 @@ def import_domain(conn: sqlite3.Connection, data: dict, dry_run: bool = False) -
                 ).fetchone()[0]
                 stats["words_new"] += 1
 
-            # 링크 테이블
+            # link table
             conn.execute("""
                 INSERT OR IGNORE INTO us_academy_word_lesson (word_id, lesson_id)
                 VALUES (?, ?)
@@ -165,7 +165,7 @@ def main() -> None:
         only_dom = int(sys.argv[idx + 1])
 
     if dry_run:
-        print("[dry-run] DB 변경 없이 통계만 출력합니다.\n")
+        print("[dry-run] printing stats only, no DB changes.\n")
 
     conn = None
     if not dry_run:
@@ -179,17 +179,17 @@ def main() -> None:
     for i in domains:
         path = DATA_DIR / f"D{i}.json"
         if not path.exists():
-            print(f"  D{i}: JSON 파일 없음 — 건너뜀")
+            print(f"  D{i}: JSON file not found — skipping")
             continue
         data = json.loads(path.read_text())
         stats = import_domain(conn, data, dry_run=dry_run)
 
         print(
             f"  D{i:>2}  {stats['domain'][:40]:<40}  "
-            f"레슨{stats['lessons']:>3}  "
-            f"문제{stats['questions']:>3}  "
-            f"단어(신규){stats['words_new']:>3}  "
-            f"링크{stats['links']:>3}"
+            f"lessons{stats['lessons']:>3}  "
+            f"questions{stats['questions']:>3}  "
+            f"words(new){stats['words_new']:>3}  "
+            f"links{stats['links']:>3}"
         )
         for k in ("lessons", "questions", "words_new", "links"):
             total[k] += stats[k]
@@ -199,11 +199,11 @@ def main() -> None:
         conn.close()
 
     print()
-    print(f"  {'합계':<44}  레슨{total['lessons']:>3}  문제{total['questions']:>3}  단어(신규){total['words_new']:>3}  링크{total['links']:>3}")
+    print(f"  {'TOTAL':<44}  lessons{total['lessons']:>3}  questions{total['questions']:>3}  words(new){total['words_new']:>3}  links{total['links']:>3}")
     if not dry_run:
-        print("\n  ✅ DB 임포트 완료")
+        print("\n  ✅ DB import complete")
     else:
-        print("\n  (dry-run 완료 — 실제 저장 안 됨)")
+        print("\n  (dry-run complete — nothing saved)")
 
 
 if __name__ == "__main__":

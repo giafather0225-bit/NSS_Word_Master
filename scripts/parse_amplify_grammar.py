@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
 parse_amplify_grammar.py
-Amplify CKLA G3 Grammar & Morphology Scope and Sequence PDF를 파싱하여
-data/ckla_source/grammar_morphology.json 으로 저장합니다.
-라이선스: 공개 URL에서 다운로드, 교육 목적 비상업적 사용
+Parses the Amplify CKLA G3 Grammar & Morphology Scope and Sequence PDF
+and saves it to data/ckla_source/grammar_morphology.json.
+License: downloaded from a public URL, non-commercial educational use
 """
 
 import json
@@ -68,8 +68,8 @@ def extract_text_pypdf(pdf_bytes: bytes) -> str:
 
 
 def parse_units(text: str) -> list:
-    """텍스트에서 Unit별 Grammar / Morphology 항목을 추출합니다."""
-    # 검증된 데이터 (이전 Claude Code 실행 결과)
+    """Extracts per-Unit Grammar / Morphology items from the text."""
+    # Verified data (from a previous Claude Code run)
     verified_data = [
         {"unit": 1, "domain": DOMAIN_NAMES[1], "grammar": [], "morphology": []},
         {"unit": 2, "domain": DOMAIN_NAMES[2],
@@ -105,7 +105,7 @@ def parse_units(text: str) -> list:
     ]
 
     if not text or len(text) < 200:
-        print("    [!] PDF 텍스트 추출 실패 → 검증된 데이터 사용")
+        print("    [!] PDF text extraction failed → using verified data")
         return verified_data
 
     results = []
@@ -160,8 +160,8 @@ def main():
     try:
         pdf_bytes = download_pdf(PDF_URL)
     except Exception as e:
-        print(f"[!] PDF 다운로드 실패: {e}")
-        print("    → 검증된 데이터로 JSON 생성")
+        print(f"[!] PDF download failed: {e}")
+        print("    → generating JSON from verified data")
         pdf_bytes = b""
 
     text = ""
@@ -170,21 +170,21 @@ def main():
         if not text:
             text = extract_text_pypdf(pdf_bytes)
         if text:
-            print(f"[+] 텍스트 추출 성공: {len(text):,} 자")
+            print(f"[+] Text extraction succeeded: {len(text):,} chars")
         else:
-            print("[!] pdfplumber/pypdf 모두 실패 → 검증된 데이터 사용")
+            print("[!] Both pdfplumber and pypdf failed → using verified data")
 
     units = parse_units(text)
 
     with open(OUT_PATH, "w", encoding="utf-8") as f:
         json.dump(units, f, ensure_ascii=False, indent=2)
 
-    print(f"\n[OK] 저장 완료: {OUT_PATH}")
-    print(f"     총 {len(units)}개 Unit 처리")
+    print(f"\n[OK] Saved: {OUT_PATH}")
+    print(f"     Processed {len(units)} units total")
     for u in units:
         g = len(u["grammar"])
         m = len(u["morphology"])
-        print(f"     Unit {u['unit']:2d} | Grammar {g}개 | Morphology {m}개")
+        print(f"     Unit {u['unit']:2d} | Grammar {g} | Morphology {m}")
 
 
 if __name__ == "__main__":

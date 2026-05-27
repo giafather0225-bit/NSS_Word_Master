@@ -1,27 +1,27 @@
 """
-G3 검증 메타 일괄 보강 — main schema v2 호환.
+G3 metadata enhancement in bulk — main schema v2 compatibility.
 ==============================================================================
-main의 Phase 1-3 / 4-A·E 표준화된 schema 위에 검증 메타를 추가:
+Add verification metadata on top of standardized Phase 1-3 / 4-A·E schema:
 
-1. 항목별:
-   - cpa_stage 추가 (cpa_phase 동기화)
-   - verification 문자열 → 3소스 dict (original_ref 보존)
-   - feedback_correct (feedback.correct에서 추출)
-   - math_note 빈 문자열 기본
+1. Per item:
+   - Add cpa_stage (sync with cpa_phase)
+   - verification string → 3-source dict (preserve original_ref)
+   - feedback_correct (extract from feedback.correct)
+   - math_note empty string default
 
-2. 최상위:
+2. Top level:
    - vertical_alignment (prerequisite / current / successor)
    - metadata.upgraded = True
    - metadata.upgrade_version = "2.0-on-main"
 
-총 119 파일 (106 레슨 + 13 UT) × 3,690 항목 자동 처리.
+Automatically process 119 files (106 lessons + 13 unit tests) × 3,690 items.
 
-사용법:
-    python3 scripts/upgrade_g3_meta_v2.py            # 전체 실행
-    python3 scripts/upgrade_g3_meta_v2.py --unit U1  # 한 단원만
-    python3 scripts/upgrade_g3_meta_v2.py --dry-run  # 미리보기
+Usage:
+    python3 scripts/upgrade_g3_meta_v2.py            # full run
+    python3 scripts/upgrade_g3_meta_v2.py --unit U1  # single unit
+    python3 scripts/upgrade_g3_meta_v2.py --dry-run  # preview
 
-idempotent: 재실행해도 변경 없음.
+idempotent: re-running produces no changes.
 """
 
 import argparse
@@ -36,7 +36,7 @@ ROOT = pathlib.Path(__file__).parent.parent
 G3_DIR = ROOT / "backend" / "data" / "math" / "G3"
 
 
-# 단원별 verification 소스 매핑 (Go Math Ch.X)
+# Per-unit verification source mapping (Go Math Ch.X)
 UNIT_TO_CHAPTER = {
     "U1_add_sub_1000": ("Ch.1", "Module 2"),
     "U2_represent_interpret_data": ("Ch.2", "Module 6"),
@@ -78,7 +78,7 @@ def parse_unit_num(unit_name: str) -> int:
 
 
 def build_lesson_index() -> dict:
-    """전체 단원·레슨 카탈로그 구성."""
+    """Build complete unit/lesson catalog."""
     index = OrderedDict()
     units = sorted(
         [p for p in G3_DIR.iterdir() if p.is_dir() and re.match(r"U\d+_", p.name)],
@@ -101,33 +101,33 @@ def build_lesson_index() -> dict:
                     "ccss": ccss,
                 })
             except Exception as e:
-                print(f"⚠️  파싱 실패: {ls} — {e}", file=sys.stderr)
+                print(f"⚠️  parse failed: {ls} — {e}", file=sys.stderr)
     return index
 
 
 def make_vert_align(index: dict, unit: str, lesson_idx: int) -> dict:
-    """단원·레슨 인덱스로 prereq/current/successor 자동 생성."""
+    """Auto-generate prereq/current/successor from the unit/lesson index."""
     lessons = index[unit]
     cur = lessons[lesson_idx]
     unit_order = list(index.keys())
     unit_pos = unit_order.index(unit)
 
-    # 이전 레슨
+    # previous lesson
     if lesson_idx > 0:
         prev = lessons[lesson_idx - 1]
         prerequisite = f"G3 {unit}/{prev['name']} — {prev['title']} ({prev['ccss']})"
     elif unit_pos > 0:
         prev_unit = unit_order[unit_pos - 1]
         prev_lessons = index[prev_unit]
-        # 이전 단원의 unit_test (마지막) 또는 마지막 레슨
+        # previous unit's unit_test (last) or last lesson
         prev = prev_lessons[-1]
-        prerequisite = f"G3 {prev_unit} 완료 — {prev['title']} ({prev['ccss']})"
+        prerequisite = f"G3 {prev_unit} complete — {prev['title']} ({prev['ccss']})"
     else:
-        prerequisite = "G2 — Grade 2 수학 (자릿값·덧뺄셈 100 이내, 도형 기초)"
+        prerequisite = "G2 — Grade 2 math (place value, add/subtract within 100, basic shapes)"
 
     current = f"G3 {unit}/{cur['name']} — {cur['title']} ({cur['ccss']})"
 
-    # 다음 레슨
+    # next lesson
     if lesson_idx + 1 < len(lessons):
         nxt = lessons[lesson_idx + 1]
         successor = f"G3 {unit}/{nxt['name']} — {nxt['title']} ({nxt['ccss']})"
@@ -136,7 +136,7 @@ def make_vert_align(index: dict, unit: str, lesson_idx: int) -> dict:
         nxt = index[nxt_unit][0]
         successor = f"G3 {nxt_unit}/{nxt['name']} — {nxt['title']} ({nxt['ccss']})"
     else:
-        successor = "G4 — Grade 4 수학 (각도·측정·자릿값 확장)"
+        successor = "G4 — Grade 4 math (angles, measurement, extended place value)"
 
     return {
         "prerequisite": prerequisite,
@@ -146,22 +146,22 @@ def make_vert_align(index: dict, unit: str, lesson_idx: int) -> dict:
 
 
 def normalize_item(item: dict, unit: str, lesson_id: str) -> bool:
-    """항목 보강. 변경 발생 시 True 반환."""
+    """Enrich an item. Returns True if changed."""
     changed = False
 
-    # cpa_phase → cpa_stage 동기화 (백워드 호환: 둘 다 유지)
+    # sync cpa_phase → cpa_stage (backward compatible: keep both)
     if "cpa_phase" in item and "cpa_stage" not in item:
         item["cpa_stage"] = item["cpa_phase"]
         changed = True
 
-    # feedback_correct: feedback.correct에서 추출
+    # feedback_correct: extract from feedback.correct
     if "feedback_correct" not in item:
         fb = item.get("feedback") or {}
         if isinstance(fb, dict) and fb.get("correct"):
             item["feedback_correct"] = fb["correct"]
             changed = True
-        elif item.get("hints"):  # hints는 있는데 feedback 없으면 기본값
-            item["feedback_correct"] = "정답입니다! 잘 했어요."
+        elif item.get("hints"):  # has hints but no feedback → default
+            item["feedback_correct"] = "Correct! Well done."
             changed = True
 
     # math_note
@@ -182,16 +182,16 @@ def normalize_item(item: dict, unit: str, lesson_id: str) -> bool:
 
 
 def upgrade_file(path: pathlib.Path, unit: str, vert_align: dict, dry_run: bool) -> dict:
-    """단일 파일 처리. 결과 통계 반환."""
+    """Process a single file. Returns result stats."""
     d = json.loads(path.read_text(encoding="utf-8"))
 
-    # 이미 업그레이드된 경우 skip
+    # skip if already upgraded
     if d.get("metadata", {}).get("upgraded") and d.get("metadata", {}).get("upgrade_version") == "2.0-on-main":
         return {"skipped": True, "reason": "already upgraded"}
 
     stats = {"items_changed": 0, "items_total": 0}
 
-    # 레슨 파일 (sections) vs unit_test 파일 (problems/questions)
+    # lesson file (sections) vs unit_test file (problems/questions)
     sections = ["pretest", "learn", "try", "practice_r1", "practice_r2", "practice_r3"]
     has_sections = any(k in d for k in sections)
 
@@ -209,7 +209,7 @@ def upgrade_file(path: pathlib.Path, unit: str, vert_align: dict, dry_run: bool)
                 if normalize_item(item, unit, "unit_test"):
                     stats["items_changed"] += 1
 
-    # 최상위 vertical_alignment
+    # top-level vertical_alignment
     if "vertical_alignment" not in d:
         d["vertical_alignment"] = vert_align
 
@@ -229,14 +229,14 @@ def upgrade_file(path: pathlib.Path, unit: str, vert_align: dict, dry_run: bool)
 
 
 def main():
-    parser = argparse.ArgumentParser(description="G3 검증 메타 일괄 보강 (v2, main schema)")
-    parser.add_argument("--unit", help="특정 단원만 (예: U1_add_sub_1000)")
-    parser.add_argument("--dry-run", action="store_true", help="변경 사항 보기만, 저장 안 함")
+    parser = argparse.ArgumentParser(description="Batch-enrich G3 verification metadata (v2, main schema)")
+    parser.add_argument("--unit", help="a specific unit only (e.g. U1_add_sub_1000)")
+    parser.add_argument("--dry-run", action="store_true", help="preview changes only, do not save")
     args = parser.parse_args()
 
-    print("📚 레슨 카탈로그 구성 중...")
+    print("📚 Building lesson catalog...")
     index = build_lesson_index()
-    print(f"   {len(index)} 단원, {sum(len(v) for v in index.values())} 파일")
+    print(f"   {len(index)} units, {sum(len(v) for v in index.values())} files")
     print()
 
     total_files = 0
@@ -259,13 +259,13 @@ def main():
             total_changed += 1 if stats["items_changed"] > 0 else 0
             total_items_changed += stats["items_changed"]
             tag = "🔍 DRY" if args.dry_run else "✓"
-            print(f"   {tag} {path.name}: {stats['items_changed']}/{stats['items_total']} 항목 보강")
+            print(f"   {tag} {path.name}: enriched {stats['items_changed']}/{stats['items_total']} items")
 
     print()
-    print(f"📊 결과: {total_files} 파일 처리 (skipped {skipped})")
-    print(f"   {total_changed} 파일에서 {total_items_changed} 항목 변경")
+    print(f"📊 Result: processed {total_files} files (skipped {skipped})")
+    print(f"   changed {total_items_changed} items across {total_changed} files")
     if args.dry_run:
-        print("   ⚠️  DRY-RUN — 실제 저장 없음")
+        print("   ⚠️  DRY-RUN — nothing saved")
 
 
 if __name__ == "__main__":

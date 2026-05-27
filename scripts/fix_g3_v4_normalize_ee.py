@@ -1,18 +1,18 @@
 """
-G3 v4 — expected_errors 데이터 정규화 + 의미 회복.
+G3 v4 — normalize expected_errors data + recover meaning.
 
-처리
-1) list-shape EE 182건 → dict 형태 (`_wrong` 키)
-2) generic concept_gap-only 2,697건 → 라이브러리 vocab 분배 재합성
-   - choice마다 다른 misconception_id 부착 (heuristic, synthesized=True 마크)
-   - 항목 CCSS의 라이브러리 misconception들을 wrong choices에 순환 분배
-   - 라이브러리 없는 CCSS는 그대로 둠
+Processing
+1) 182 list-shape EE entries → dict form (`_wrong` key)
+2) 2,697 generic concept_gap-only entries → re-synthesize by distributing library vocab
+   - attach a different misconception_id per choice (heuristic, marked synthesized=True)
+   - round-robin distribute the item's CCSS library misconceptions across wrong choices
+   - leave CCSS without a library entry unchanged
 
-원칙
-- 도메인 정답을 보장하지 않음 (학습자 실 데이터로 정련 필요)
-- 그러나 진단 엔진이 "concept_gap"이 아닌 구체적 misconception_id를 받아
-  학습자에게 다양한 진단 결과를 제공하는 인프라 회복
-- idempotent: 같은 misconception_id가 이미 있으면 건드리지 않음
+Principles
+- does not guarantee domain correctness (needs refinement from real learner data)
+- but restores the infrastructure so the diagnostic engine receives a concrete
+  misconception_id instead of "concept_gap", giving learners varied diagnostic results
+- idempotent: if the same misconception_id is already present, leave it alone
 """
 from __future__ import annotations
 import json, os
@@ -21,7 +21,7 @@ from pathlib import Path
 ROOT = Path('/Users/markjhlee/NSS_Word_Master/backend/data/math/G3')
 LIB_DIR = ROOT / 'misconceptions'
 
-# === 라이브러리 인덱스 ===
+# === Library index ===
 def build_lib_idx() -> dict:
     out: dict = {}
     for p in LIB_DIR.glob('*.json'):
@@ -50,11 +50,11 @@ def resolve(ccss: str, lib_idx: dict):
 
 
 def is_generic_ee(ee: dict) -> bool:
-    """진짜 generic 노이즈만 식별:
-       - 모든 wrong choice가 error_type='concept_gap'
-       - 모든 wrong choice의 note가 동일 (auto-synth 흔적)
-       - misconception_id 없음
-       원본 작성자가 'careless'로 라벨링하고 choice별로 다른 specific note를 넣은 경우는 보존.
+    """Identify only genuine generic noise:
+       - every wrong choice has error_type='concept_gap'
+       - every wrong choice has an identical note (trace of auto-synth)
+       - no misconception_id
+       Preserve cases where the original author labeled 'careless' with a different specific note per choice.
     """
     if not isinstance(ee, dict) or not ee:
         return False
@@ -66,11 +66,11 @@ def is_generic_ee(ee: dict) -> bool:
                 return False
             types.add(v.get('error_type', ''))
             notes.add(v.get('note', ''))
-    # generic = 단일 concept_gap 라벨 + 단일 (또는 공백) note
+    # generic = single concept_gap label + single (or blank) note
     return types == {'concept_gap'} and len(notes) <= 1
 
 
-# === 변환 함수 ===
+# === Transform functions ===
 
 def fix_list_ee(item: dict) -> bool:
     ee = item.get('expected_errors')
@@ -78,7 +78,7 @@ def fix_list_ee(item: dict) -> bool:
         return False
     notes = [str(x).strip() for x in ee if x]
     fb_incorrect = (item.get('feedback') or {}).get('incorrect', '')
-    note = '; '.join(notes) or fb_incorrect or '개념 재확인'
+    note = '; '.join(notes) or fb_incorrect or 'Review the concept'
     item['expected_errors'] = {
         '_wrong': {
             'error_type': 'concept_gap',
@@ -101,7 +101,7 @@ def reseed_generic(item: dict, lib_idx: dict) -> bool:
     if not miscs:
         return False
     correct = str(item.get('correct_answer', '') or '').upper()
-    # 채울 wrong choice 키 모음 (A/B/C/D 또는 _wrong)
+    # collect wrong-choice keys to fill (A/B/C/D or _wrong)
     choice_keys = [k for k in ee.keys() if k.upper() != correct]
     if not choice_keys:
         return False
@@ -112,13 +112,13 @@ def reseed_generic(item: dict, lib_idx: dict) -> bool:
             'error_type': m.get('error_type', 'concept_gap'),
             'note': m.get('short_label', '') or (m.get('description', '')[:140]),
             'misconception_id': mid,
-            'synthesized': True,  # heuristic — 학습자 실데이터로 정련 필요
+            'synthesized': True,  # heuristic — needs refinement from real learner data
         }
     item['expected_errors'] = new_ee
     return True
 
 
-# === 메인 ===
+# === Main ===
 
 def main():
     lib_idx = build_lib_idx()

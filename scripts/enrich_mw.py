@@ -1,16 +1,16 @@
 """
-scripts/enrich_mw.py — MW Elementary API로 단어 정의/발음/예문 보강
+scripts/enrich_mw.py — enrich word definitions/pronunciation/examples via the MW Elementary API
 Section: Academy
 Dependencies: backend/services/mw_api.py, MW_ELEMENTARY_API_KEY
 API: none (CLI)
 
 Usage:
-    python3 scripts/enrich_mw.py              # 전체 684개 단어
-    python3 scripts/enrich_mw.py --missing    # 정의 없는 단어만 재시도
-    python3 scripts/enrich_mw.py --dry-run    # 처음 10개만 테스트
+    python3 scripts/enrich_mw.py              # all 684 words
+    python3 scripts/enrich_mw.py --missing    # retry only words without a definition
+    python3 scripts/enrich_mw.py --dry-run    # test the first 10 only
 
-MW Elementary (sd2) 는 G3~5 수준. 684개 중 일부는 없을 수 있음.
-없는 경우: definition 빈칸 유지 (프론트에서 "No entry" 표시)
+MW Elementary (sd2) is at a G3-5 level. Some of the 684 may be missing.
+When missing: leave definition blank (frontend shows "No entry")
 """
 
 from __future__ import annotations
@@ -29,13 +29,13 @@ DB_PATH = Path.home() / "NSS_Learning" / "database" / "voca.db"
 MW_API_KEY  = os.environ.get("MW_ELEMENTARY_API_KEY", "")
 MW_BASE_URL = "https://www.dictionaryapi.com/api/v3/references/sd2/json"
 
-# MW API 호출 간격 (초) — 초당 최대 2~3회 안전
+# MW API call interval (sec) — safe at up to 2-3 calls/sec
 DELAY = 0.4
 
 
 # @tag ACADEMY
 async def fetch_mw(word: str, client: httpx.AsyncClient) -> dict:
-    """MW Elementary API 호출 → 파싱된 dict 반환.
+    """Call the MW Elementary API → return a parsed dict.
 
     Returns keys: definition, all_defs (list), part_of_speech,
                   audio_url, example_1, found (bool)
@@ -60,7 +60,7 @@ async def fetch_mw(word: str, client: httpx.AsyncClient) -> dict:
     return {
         "found":          bool(shortdefs),
         "definition":     shortdefs[0] if shortdefs else "",
-        "all_defs":       shortdefs,          # 전체 정의 목록 (맥락별 선택용)
+        "all_defs":       shortdefs,          # full list of definitions (for context-based selection)
         "part_of_speech": entry.get("fl", ""),
         "audio_url":      _audio_url(entry),
         "example_1":      _example(entry),
@@ -118,7 +118,7 @@ async def enrich_all(words: list[tuple], dry_run: bool) -> dict:
 # @tag ACADEMY @tag SYSTEM
 def main() -> None:
     if not MW_API_KEY:
-        print("❌ MW_ELEMENTARY_API_KEY 환경변수가 없습니다.")
+        print("❌ MW_ELEMENTARY_API_KEY environment variable is not set.")
         print("   export MW_ELEMENTARY_API_KEY=your-key-here")
         sys.exit(1)
 
@@ -142,13 +142,13 @@ def main() -> None:
             "ORDER BY id"
         ).fetchall()
 
-    print(f"\n{'[dry-run] ' if dry_run else ''}MW Elementary 보강 시작 — {len(rows)}개 단어")
+    print(f"\n{'[dry-run] ' if dry_run else ''}Starting MW Elementary enrichment — {len(rows)} words")
     if dry_run:
-        print("(처음 10개만 테스트)\n")
+        print("(testing the first 10 only)\n")
 
     results = asyncio.run(enrich_all(rows, dry_run))
 
-    # DB 저장
+    # Save to DB
     hit = miss = 0
     for wid, (word, r) in results.items():
         if r.get("found"):
@@ -165,7 +165,7 @@ def main() -> None:
                 r["part_of_speech"],
                 r["audio_url"],
                 r["example_1"],
-                json.dumps(r["all_defs"]),  # all_defs → synonyms_json 재활용 (임시)
+                json.dumps(r["all_defs"]),  # all_defs → reuse synonyms_json (temporary)
                 wid,
             ))
             hit += 1
@@ -177,14 +177,14 @@ def main() -> None:
 
     conn.close()
 
-    print(f"\n── 결과 ──────────────────────")
-    print(f"  ✅ MW 히트:     {hit}개")
-    print(f"  ❌ 미등재:      {miss}개")
-    print(f"  히트율:         {hit/(hit+miss)*100:.1f}%" if (hit+miss) else "")
+    print(f"\n── Results ──────────────────────")
+    print(f"  ✅ MW hits:     {hit}")
+    print(f"  ❌ not found:   {miss}")
+    print(f"  hit rate:       {hit/(hit+miss)*100:.1f}%" if (hit+miss) else "")
     if not dry_run:
-        print(f"  DB 업데이트 완료")
+        print(f"  DB update complete")
     else:
-        print(f"  (dry-run — DB 미저장)")
+        print(f"  (dry-run — DB not saved)")
 
 
 if __name__ == "__main__":

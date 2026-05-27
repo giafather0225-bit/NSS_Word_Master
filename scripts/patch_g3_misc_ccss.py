@@ -1,12 +1,12 @@
 """
-G3 패치 스크립트:
-1) CCSS 표기 정규화 — 미스컨셉션 라이브러리(파일명·standard·misconception_id)와 일부 항목 코드를 공식 CCSS 표기로 통일.
-2) misconception_id 링크 — 각 항목에 candidate ID 리스트 + expected_errors[choice]에 exact match ID 부착.
+G3 patch script:
+1) CCSS notation normalization — unify misconception library (filenames, standard, misconception_id) and item codes to official CCSS notation.
+2) misconception_id linking — attach candidate ID list to each item + exact match ID to expected_errors[choice].
 
-원칙
-- in-place 수정 (라이브러리 파일명은 git mv 수준의 rename).
-- idempotent: 두 번 돌려도 변화 없음.
-- 백업 없이 git에 의존.
+Principles:
+- In-place modification (library filenames use git mv level rename).
+- Idempotent: running twice produces no changes.
+- Backup-free; relies on git.
 """
 from __future__ import annotations
 import json, os, re, sys, glob, shutil
@@ -16,13 +16,13 @@ from collections import defaultdict
 ROOT = Path('/Users/markjhlee/NSS_Word_Master/backend/data/math/G3')
 LIB = ROOT / 'misconceptions'
 
-# === 1. CCSS 정규화 매핑 ===
-# 라이브러리·항목 양쪽에서 사용 — 좌변(현재) → 우변(정식)
+# === 1. CCSS normalization mapping ===
+# Used in both library and items — left side (current) → right side (official)
 CCSS_NORMALIZE = {
-    # 라이브러리에서 클러스터 문자 누락
+    # cluster letter missing in the library
     '3.NBT.1':   '3.NBT.A.1',
     '3.NBT.2':   '3.NBT.A.2',
-    # 항목에서 하위 표기 비정상
+    # malformed sub-notation in items
     '3.NF.A.3.A': '3.NF.A.3a',
     '3.NF.A.3.B': '3.NF.A.3b',
     '3.NF.A.3.D': '3.NF.A.3d',
@@ -31,7 +31,7 @@ CCSS_NORMALIZE = {
 def norm(code: str) -> str:
     return CCSS_NORMALIZE.get(code, code)
 
-# === 2. 라이브러리 정규화 ===
+# === 2. Library normalization ===
 def normalize_library():
     renamed = 0
     updated = 0
@@ -40,13 +40,13 @@ def normalize_library():
         new_stem = norm(stem)
         d = json.load(open(path, encoding='utf-8'))
         changed = False
-        # standard 필드
+        # standard field
         if 'standard' in d:
             ns = norm(d['standard'])
             if ns != d['standard']:
                 d['standard'] = ns
                 changed = True
-        # misconception_id prefix 갱신: "3.NBT.2.M01" → "3.NBT.A.2.M01"
+        # update misconception_id prefix: "3.NBT.2.M01" → "3.NBT.A.2.M01"
         if stem != new_stem:
             for m in d.get('misconceptions', []):
                 mid = m.get('misconception_id', '')
@@ -56,7 +56,7 @@ def normalize_library():
         if changed:
             json.dump(d, open(path, 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
             updated += 1
-        # 파일 rename
+        # rename file
         if stem != new_stem:
             new_path = LIB / f'{new_stem}.json'
             if new_path.exists():
@@ -67,7 +67,7 @@ def normalize_library():
                 print(f'  ↻ rename: {stem}.json → {new_stem}.json')
     print(f'[lib] renamed={renamed}, content-updated={updated}')
 
-# === 3. 라이브러리 인덱스 빌드 ===
+# === 3. Build library index ===
 def build_library_index() -> dict:
     """ccss → {error_types: {et: mid}, all_ids: [mid,...]}"""
     idx = {}
@@ -85,13 +85,13 @@ def build_library_index() -> dict:
         idx[ccss] = {'error_types': et_map, 'all_ids': ids}
     return idx
 
-# === 4. 항목 패치 ===
+# === 4. Item patching ===
 def resolve_lib_entry(ccss: str, lib_idx: dict):
-    """exact match → 부모(말단 소문자/숫자 제거) fallback."""
+    """exact match → parent fallback (strip trailing lowercase/digit)."""
     if ccss in lib_idx:
         return ccss, lib_idx[ccss]
-    # 자식 표준 (예: 3.NF.A.3a, 3.NF.A.2b) → 부모 (3.NF.A.3, 3.NF.A.2)
-    # 마지막 문자가 소문자면 그것만 떼고 재시도
+    # child standard (e.g. 3.NF.A.3a, 3.NF.A.2b) → parent (3.NF.A.3, 3.NF.A.2)
+    # if the last char is lowercase, drop just that and retry
     if ccss and ccss[-1].isalpha() and ccss[-1].islower():
         parent = ccss[:-1]
         if parent in lib_idx:
@@ -100,7 +100,7 @@ def resolve_lib_entry(ccss: str, lib_idx: dict):
 
 
 def patch_item(item: dict, lib_idx: dict) -> bool:
-    """단일 항목에 candidate IDs + exact-match misconception_id 부착. 변경 여부 반환."""
+    """Attach candidate IDs + an exact-match misconception_id to a single item. Returns whether it changed."""
     if not isinstance(item, dict):
         return False
     ccss_raw = item.get('ccss')
@@ -108,14 +108,14 @@ def patch_item(item: dict, lib_idx: dict) -> bool:
         return False
     ccss = norm(ccss_raw)
     changed = False
-    # ccss 자체 정규화
+    # normalize ccss itself
     if ccss != ccss_raw:
         item['ccss'] = ccss
         changed = True
     _, lib_entry = resolve_lib_entry(ccss, lib_idx)
     if not lib_entry:
-        return changed  # 라이브러리에 없는 CCSS — 그냥 통과
-    # candidate ids (CCSS 단위 soft link)
+        return changed  # CCSS not in the library — just pass through
+    # candidate ids (CCSS-level soft link)
     new_cands = lib_entry['all_ids']
     if item.get('misconception_candidates') != new_cands:
         item['misconception_candidates'] = new_cands
@@ -136,7 +136,7 @@ def patch_item(item: dict, lib_idx: dict) -> bool:
     return changed
 
 def walk_and_patch(obj, lib_idx, stats):
-    """재귀적으로 모든 dict를 보며 patch_item 시도."""
+    """Recursively walk every dict and attempt patch_item."""
     if isinstance(obj, dict):
         if patch_item(obj, lib_idx):
             stats['items_patched'] += 1

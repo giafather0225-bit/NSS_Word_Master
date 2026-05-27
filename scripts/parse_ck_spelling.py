@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
 parse_ck_spelling.py
-Core Knowledge CKLA G3 Skills Workbook PDF (Unit 2-11)에서
-Spelling 단어 목록을 파싱하여
-data/ckla_source/spelling_words.json 으로 저장합니다.
-라이선스: CC BY-NC-SA 3.0 (비상업적 교육 목적 사용)
+Parses the Core Knowledge CKLA G3 Skills Workbook PDF (Units 2-11)
+for spelling word lists and saves them to
+data/ckla_source/spelling_words.json.
+License: CC BY-NC-SA 3.0 (non-commercial educational use)
 
-PDF 구조:
-  - 각 Spelling 주차마다 "Take-Home Worksheet" 페이지가 있음
-  - 해당 페이지에 "Spelling Words" 헤더 포함
-  - 다음 페이지에 번호 목록 (1. word 12. word 형태)
-  - Challenge Words: "19. Challenge Word: give" 인라인
-  - 단어 뒤 * 는 CVC 더블링 표시 (제거)
-  - Unit 5, 6, 11: PDF 서버에서 제거됨 → 빈 데이터
+PDF structure:
+  - Each spelling week has a "Take-Home Worksheet" page
+  - That page contains a "Spelling Words" header
+  - The next page has a numbered list (1. word 12. word format)
+  - Challenge Words: "19. Challenge Word: give" inline
+  - A trailing * after a word marks CVC doubling (removed)
+  - Units 5, 6, 11: removed from the PDF server → empty data
 """
 
 import json

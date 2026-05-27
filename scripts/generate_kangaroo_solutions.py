@@ -1,24 +1,24 @@
 #!/usr/bin/env python3
-# DEPRECATED 2026-05-03 — PDF Anchor Mode 채택으로 이 스크립트는 더 이상 사용하지 않음.
-# 구 방식(PDF→PNG→Gemini Vision API) 참조용으로 보관. 삭제 금지.
-# 새 방식: JSON에 pdf_page 필드 추가, 앱이 PDF.js로 해당 페이지 직접 렌더링.
-# 전체 결정 경위: KANGAROO_DATA_PLAN.md 참조.
+# DEPRECATED 2026-05-03 — no longer used after adopting PDF Anchor Mode.
+# Kept for reference of the old approach (PDF→PNG→Gemini Vision API). Do not delete.
+# New approach: add a pdf_page field to the JSON; the app renders that page directly via PDF.js.
+# Full decision history: see KANGAROO_DATA_PLAN.md.
 """
 generate_kangaroo_solutions.py
 ==============================
-Math Kangaroo past-paper 해설 일괄 생성기
+Batch generator for Math Kangaroo past-paper solutions
 
-사용법:
+Usage:
   python3 scripts/generate_kangaroo_solutions.py --api-key YOUR_GEMINI_KEY
   python3 scripts/generate_kangaroo_solutions.py --api-key YOUR_KEY --set-id usa_2023_gr56
   python3 scripts/generate_kangaroo_solutions.py --api-key YOUR_KEY --dry-run
 
-원리:
-  1. PDF → 페이지 이미지 변환
-  2. Gemini Vision에 이미지 + "정답은 X번이야, 왜 X인지 설명해줘" 전달
-  3. 모든 문제 해설을 JSON에 저장 (solutions: {"1": "...", "2": "..."})
+How it works:
+  1. PDF → page images
+  2. Send images + "the answer is X, explain why it's X" to Gemini Vision
+  3. Save all problem solutions to JSON (solutions: {"1": "...", "2": "..."})
 
-요구사항:
+Requirements:
   pip install pdf2image pillow google-genai
   macOS: brew install poppler
 """
@@ -27,12 +27,12 @@ import argparse, json, os, sys, time, glob, base64, re
 from pathlib import Path
 from io import BytesIO
 
-# ── 경로 ─────────────────────────────────────────────────────
+# ── Paths ─────────────────────────────────────────────────────
 PROJECT = Path(__file__).parent.parent
 DATA_DIR = PROJECT / "backend" / "data" / "math" / "kangaroo"
 PDF_DIR  = PROJECT / "frontend" / "static" / "math" / "kangaroo" / "pdf"
 
-# ── 프롬프트 ──────────────────────────────────────────────────
+# ── Prompt ────────────────────────────────────────────────────
 SYSTEM_PROMPT = """You are a Math Kangaroo competition tutor explaining solutions to students aged 9-14.
 For each problem, the CORRECT ANSWER is already given — your job is to explain WHY it's correct.
 

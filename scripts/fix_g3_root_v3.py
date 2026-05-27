@@ -1,15 +1,15 @@
 """
-G3 근본 해결 패치 v3 — 3가지 결함 동시 처리.
+G3 root fix patch v3 — handle 3 defects concurrently.
 
-문제
-1) NESTED_SECTIONS (9건, U8 분수): sections.{pretest|learn|try|...} → top-level로 평탄화
-2) MISSING_EE (62건): expected_errors 누락 → 자동 합성 (오답 선지 + feedback.incorrect)
-3) EMPTY_LESSON (13건, 모든 unit_test): 단원 R1/R2/R3 풀에서 12개 샘플로 합성
+Issues
+1) NESTED_SECTIONS (9 cases, U8 fractions): sections.{pretest|learn|try|...} → flatten to top-level
+2) MISSING_EE (62 cases): missing expected_errors → auto-synthesize (wrong choices + feedback.incorrect)
+3) EMPTY_LESSON (13 cases, all unit_test): synthesize 12 samples from unit R1/R2/R3 pool
 
-원칙
-- idempotent (재실행해도 변화 없음)
-- 진짜 도메인 정확한 expected_errors는 학습자 실데이터 누적 후 정련 (지금은 진단 엔진이 "작동"하게 만드는 데 집중)
-- v2 메타(verification 등) 누락 항목엔 표준 패턴 부착
+Principles
+- idempotent (re-run with no change)
+- true domain-accurate expected_errors refined after student real-data accumulation (for now, focus on making diagnostics "work")
+- attach standard patterns to v2 metadata (verification etc.) missing items
 """
 from __future__ import annotations
 import json
@@ -40,10 +40,10 @@ UNIT_TO_MODULE = {
 STAGES = ['pretest', 'learn', 'try', 'practice_r1', 'practice_r2', 'practice_r3']
 PROBLEM_STAGES = ['pretest', 'try', 'practice_r1', 'practice_r2', 'practice_r3']
 
-# === FIX 1: sections 평탄화 ===
+# === FIX 1: flatten sections ===
 
 def flatten_sections(d: dict) -> bool:
-    """sections.{stage} → top-level. 변경 있으면 True."""
+    """sections.{stage} → top-level. True if changed."""
     secs = d.get('sections')
     if not isinstance(secs, dict):
         return False
@@ -53,36 +53,36 @@ def flatten_sections(d: dict) -> bool:
         if v is not None and k not in d:
             d[k] = v
             changed = True
-    # sections 키 제거
+    # remove the sections key
     if changed or secs:
         d.pop('sections', None)
         changed = True
     return changed
 
-# === FIX 2: expected_errors 합성 ===
+# === FIX 2: synthesize expected_errors ===
 
 def synthesize_ee_for_item(item: dict) -> bool:
-    """expected_errors 누락 항목에 합성. 변경 시 True."""
+    """Synthesize expected_errors for items missing it. True if changed."""
     if not isinstance(item, dict):
         return False
     if item.get('expected_errors'):
         return False
     itype = item.get('type', '')
     if itype == 'concept' or 'question' not in item:
-        return False  # LEARN 카드 등은 패스
+        return False  # skip LEARN cards, etc.
     fb = item.get('feedback') or {}
     incorrect_msg = fb.get('incorrect') or ''
     hints = item.get('hints') or []
     fallback_note = (
         incorrect_msg
         or (hints[0] if hints else '')
-        or '개념을 다시 확인하고 풀이 단계를 점검해보자.'
+        or 'Review the concept and check each solution step.'
     )
     correct = item.get('correct_answer', '')
     choices = item.get('choices') or []
     ee = {}
     if choices and itype == 'mc':
-        # 각 오답 선지마다 합성
+        # synthesize for each wrong choice
         for c in choices:
             if not isinstance(c, str) or len(c) < 2:
                 continue
@@ -94,7 +94,7 @@ def synthesize_ee_for_item(item: dict) -> bool:
                 'note': fallback_note,
             }
     else:
-        # input type 등: 단일 wrong 패턴
+        # input type, etc.: single wrong pattern
         ee['_wrong'] = {
             'error_type': 'concept_gap',
             'note': fallback_note,
@@ -106,7 +106,7 @@ def synthesize_ee_for_item(item: dict) -> bool:
 
 
 def ensure_verification(item: dict, unit: str, lesson_id: str) -> bool:
-    """verification dict 누락 시 표준 패턴 부착."""
+    """Attach a standard pattern when the verification dict is missing."""
     if item.get('verification'):
         return False
     if 'question' not in item and item.get('type') != 'mc':
@@ -123,7 +123,7 @@ def ensure_verification(item: dict, unit: str, lesson_id: str) -> bool:
 
 
 def ensure_cpa(item: dict) -> bool:
-    """cpa_stage / cpa_phase 동기화."""
+    """Sync cpa_stage / cpa_phase."""
     changed = False
     cp = item.get('cpa_phase')
     cs = item.get('cpa_stage')
@@ -154,7 +154,7 @@ def ensure_math_note(item: dict) -> bool:
 
 
 def ensure_ccss(item: dict, lesson_ccss) -> bool:
-    """항목에 ccss 없으면 lesson 단위 ccss 부착."""
+    """Attach the lesson-level ccss when the item has none."""
     if item.get('ccss'):
         return False
     if isinstance(lesson_ccss, list) and lesson_ccss:
@@ -165,10 +165,10 @@ def ensure_ccss(item: dict, lesson_ccss) -> bool:
         return True
     return False
 
-# === FIX 3: unit_test 합성 ===
+# === FIX 3: synthesize unit_test ===
 
 def build_unit_test(unit_dir: Path) -> dict:
-    """단원 모든 lesson에서 R2/R3 골라 12문제 unit_test 합성."""
+    """Synthesize a 12-question unit_test by picking R2/R3 items from all lessons in the unit."""
     lesson_files = sorted([p for p in unit_dir.glob('L*.json')])
     pool = []  # (lesson_id, item, source_stage)
     for lf in lesson_files:
@@ -183,10 +183,10 @@ def build_unit_test(unit_dir: Path) -> dict:
                     pool.append((lesson_id, it, stg))
     if not pool:
         return None
-    # 결정론적 샘플링 (단원명 시드)
+    # deterministic sampling (seeded by unit name)
     rng = random.Random(unit_dir.name)
     rng.shuffle(pool)
-    # 레슨별 최대 2개 (다양성)
+    # max 2 per lesson (for diversity)
     selected = []
     per_lesson = {}
     target = min(12, max(8, len(pool) // 4))
@@ -197,7 +197,7 @@ def build_unit_test(unit_dir: Path) -> dict:
         per_lesson[lesson_id] = per_lesson.get(lesson_id, 0) + 1
         if len(selected) >= target:
             break
-    # unit_test 항목 생성 (id 새로 부여, 원본 보존)
+    # create unit_test items (assign new ids, preserve originals)
     unit_test_items = []
     for i, (lesson_id, it, stg) in enumerate(selected, 1):
         new_it = json.loads(json.dumps(it))  # deep copy
@@ -209,30 +209,30 @@ def build_unit_test(unit_dir: Path) -> dict:
 
 
 def patch_unit_test_file(unit_dir: Path) -> bool:
-    """unit_test.json 빈 껍데기 → 합성 항목으로 채움."""
+    """Empty unit_test.json shell → fill with synthesized items."""
     utf = unit_dir / 'unit_test.json'
     if not utf.exists():
         return False
     d = json.load(open(utf, encoding='utf-8'))
-    # 이미 채워져 있으면 패스
+    # skip if already populated
     if any(d.get(k) for k in PROBLEM_STAGES):
         return False
     items = build_unit_test(unit_dir)
     if not items:
         return False
-    # pretest로 배치 (사후평가용)
+    # place as pretest (used for post-assessment)
     d['pretest'] = items
-    # metadata 갱신
+    # update metadata
     d.setdefault('metadata', {})
     d['metadata']['unit_test_synthesized'] = True
     d['metadata']['unit_test_synthesizer'] = 'scripts/fix_g3_root_v3.py'
     json.dump(d, open(utf, 'w', encoding='utf-8'), indent=2, ensure_ascii=False)
     return True
 
-# === 메인 패치 루프 ===
+# === Main patch loop ===
 
 def patch_lesson(path: Path, unit: str) -> dict:
-    """단일 lesson 파일 패치. 통계 dict 반환."""
+    """Patch a single lesson file. Returns a stats dict."""
     stats = {'flattened': False, 'ee_added': 0, 'verif_added': 0,
              'cpa_synced': 0, 'fbc_added': 0, 'mn_added': 0, 'ccss_added': 0}
     d = json.load(open(path, encoding='utf-8'))
@@ -253,7 +253,7 @@ def patch_lesson(path: Path, unit: str) -> dict:
             if ensure_feedback_correct(it): stats['fbc_added'] += 1
             if ensure_math_note(it): stats['mn_added'] += 1
 
-    # metadata 업데이트
+    # update metadata
     d.setdefault('metadata', {})
     d['metadata']['root_fix_v3'] = True
 
@@ -264,7 +264,7 @@ def patch_lesson(path: Path, unit: str) -> dict:
 
 
 def main():
-    print('=== STEP 1: lesson 평탄화 + 메타·EE 합성 ===')
+    print('=== STEP 1: flatten lessons + synthesize meta & EE ===')
     grand = {'files_touched': 0, 'flattened': 0, 'ee_added': 0,
              'verif_added': 0, 'cpa_synced': 0, 'fbc_added': 0,
              'mn_added': 0, 'ccss_added': 0}
@@ -289,7 +289,7 @@ def main():
     print(f"  cpa_synced: {grand['cpa_synced']}, fbc_added: {grand['fbc_added']}, "
           f"math_note_added: {grand['mn_added']}, ccss_added: {grand['ccss_added']}")
 
-    print('\n=== STEP 2: unit_test 합성 ===')
+    print('\n=== STEP 2: synthesize unit_test ===')
     ut_built = 0
     for unit_dir in sorted(ROOT.iterdir()):
         if not unit_dir.is_dir() or unit_dir.name == 'misconceptions':
