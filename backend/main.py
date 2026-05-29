@@ -229,7 +229,7 @@ async def lifespan(application: FastAPI):
                 "[security] PIN via Parent Dashboard → Settings → Account.\n" +
                 "!" * 72
             )
-            if os.getenv("STRICT_PIN") == "1":
+            if os.getenv("STRICT_PIN", "1") != "0":
                 logger.error(_msg)
                 raise SystemExit(
                     "STRICT_PIN=1 and parent PIN is weak — refusing to boot."
@@ -333,6 +333,24 @@ async def csrf_origin_guard(request: Request, call_next):
                 content={"detail": "Cross-origin state-change rejected."},
             )
     return await call_next(request)
+
+
+@app.middleware("http")
+async def add_security_headers(request: Request, call_next):
+    """Attach baseline security headers to every response.
+
+    These headers defend against common browser-level attacks (clickjacking,
+    MIME-type sniffing, reflected XSS) and are cheap to add server-side.
+    Content-Security-Policy is intentionally omitted here because the app
+    loads Google Fonts, Lucide CDN, KaTeX CDN, and inline scripts — a
+    full CSP would require per-asset tuning and is tracked as a future task.
+    """
+    response = await call_next(request)
+    response.headers.setdefault("X-Content-Type-Options", "nosniff")
+    response.headers.setdefault("X-Frame-Options", "DENY")
+    response.headers.setdefault("X-XSS-Protection", "1; mode=block")
+    response.headers.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+    return response
 
 
 # ── Validation error → child-friendly 422 JSON ───────────────

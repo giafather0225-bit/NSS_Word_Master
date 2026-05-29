@@ -279,17 +279,28 @@ def exchange_lumi(db: Session, lumi_amount: int) -> dict:
 
     legend_gained = lumi_amount // rate
 
-    row = _get_currency(db)
-    if row.lumi < lumi_amount:
+    now = datetime.now(timezone.utc)
+
+    # Atomic conditional update — WHERE lumi >= lumi_amount prevents overdraft
+    # under concurrent requests (same CAS pattern as spend_lumi).
+    # Both lumi deduction and legend_lumi credit happen in a single SQL UPDATE.
+    result = db.execute(
+        sqla_update(IslandCurrency)
+        .where(IslandCurrency.id == 1, IslandCurrency.lumi >= lumi_amount)
+        .values(
+            lumi=IslandCurrency.lumi - lumi_amount,
+            legend_lumi=IslandCurrency.legend_lumi + legend_gained,
+            updated_at=now,
+        )
+        .execution_options(synchronize_session=False)
+    )
+    if result.rowcount == 0:
+        row = _get_currency(db)
         raise InsufficientLumiError(
             f"Need {lumi_amount} Lumi to exchange but only {row.lumi} available."
         )
-
-    row.lumi -= lumi_amount
-    row.legend_lumi += legend_gained
-    row.updated_at = datetime.now(timezone.utc)
-
-    now = datetime.now(timezone.utc)
+    db.flush()
+    row = db.get(IslandCurrency, 1)
 
     # Log the spend side.
     db.add(IslandLumiLog(

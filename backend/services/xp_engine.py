@@ -192,11 +192,29 @@ def award_xp(
         xp_amount = _apply_boost(xp_amount, action, db)
 
     if action not in _NO_DEDUP:
-        filters = [XPLog.action == action, XPLog.earned_date == today]
-        if action in _DETAIL_DEDUP:
-            filters.append(XPLog.detail == detail)
-        if db.query(XPLog).filter(*filters).first():
-            return 0
+        # Guard against double-award from concurrent requests (e.g. a double-tap
+        # on the stage-complete button). BEGIN IMMEDIATE serialises the check+insert
+        # pair so a second thread cannot sneak in between them and see the same
+        # "no existing log" state before the first thread commits.
+        # Only apply when we own the commit (commit=True); when commit=False the
+        # caller already holds a transaction and manages atomicity itself.
+        from sqlalchemy import text as _text
+        if commit:
+            if db.in_transaction():
+                db.rollback()
+            db.execute(_text("BEGIN IMMEDIATE"))
+        try:
+            filters = [XPLog.action == action, XPLog.earned_date == today]
+            if action in _DETAIL_DEDUP:
+                filters.append(XPLog.detail == detail)
+            if db.query(XPLog).filter(*filters).first():
+                if commit:
+                    db.rollback()
+                return 0
+        except Exception:
+            if commit:
+                db.rollback()
+            raise
 
     log = XPLog(
         action=action,

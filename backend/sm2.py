@@ -9,7 +9,7 @@ def sm2_calculate(quality: int, repetitions: int, easiness: float, interval: int
         quality = max(0, min(5, quality))
 
     new_easiness = easiness + (0.1 - (5 - quality) * (0.08 + (5 - quality) * 0.02))
-    new_easiness = max(1.3, new_easiness)
+    new_easiness = max(1.3, min(2.5, new_easiness))
 
     if quality < 3:
         new_repetitions = 0
