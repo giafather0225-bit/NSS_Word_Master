@@ -45,11 +45,17 @@ SUBJECT_ACTIONS: dict[str, set[str]] = {
 
 
 def island_today() -> date:
-    return datetime.now(timezone.utc).date()
+    # Use local date (date.today()) — not UTC — so island date tracking stays
+    # consistent with XPLog.earned_date which is written by award_xp() using
+    # date.today(). Using UTC caused off-by-one date errors in Korea (UTC+9)
+    # between midnight and 09:00 KST: island showed yesterday as "today" and
+    # attendance checks always returned False for morning study sessions.
+    return date.today()
 
 
 def island_today_start() -> datetime:
-    return datetime.combine(island_today(), datetime.min.time()).replace(tzinfo=timezone.utc)
+    # Midnight local time (naive) — used for log timestamp range queries.
+    return datetime.combine(date.today(), datetime.min.time())
 
 
 def cfg(db: Session, key: str, default: str = "") -> str:

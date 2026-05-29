@@ -8,15 +8,15 @@ Covers:
   - run_daily_batch() return value shape
 """
 
-from datetime import datetime, timedelta, timezone
+from datetime import date, timedelta
 
-# island_care_engine uses UTC dates internally via _today() = datetime.now(timezone.utc).date()
-# Tests must use the same reference to avoid off-by-one errors in UTC+N timezones.
+# island_care_engine._today() now returns date.today() (local time), consistent
+# with XPLog.earned_date written by award_xp(). Tests must use the same reference.
 def _utc_today():
-    return datetime.now(timezone.utc).date()
+    return date.today()
 
 def _utc_yesterday():
-    return _utc_today() - timedelta(days=1)
+    return date.today() - timedelta(days=1)
 
 import pytest
 

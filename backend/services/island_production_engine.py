@@ -19,7 +19,9 @@ from backend.services.lumi_engine import earn_lumi
 
 
 def _today() -> date:
-    return datetime.now(timezone.utc).date()
+    # Use local date to stay consistent with XPLog.earned_date (award_xp uses
+    # date.today()). UTC caused attendance mismatches in UTC+N timezones.
+    return date.today()
 
 
 # @tag ISLAND @tag AWARD

@@ -80,7 +80,9 @@ def _calc_level(current_xp: int) -> int:
 
 
 def _today() -> date:
-    return datetime.now(timezone.utc).date()
+    # Use local date to stay consistent with XPLog.earned_date (award_xp uses
+    # date.today()). UTC caused attendance mismatches in UTC+N timezones.
+    return date.today()
 
 
 def _last_study_date(db: Session, character_progress_id: int) -> Optional[date]:
