@@ -183,6 +183,15 @@ async def lifespan(application: FastAPI):
             _failed += 1
             logger.warning("[migration] %s failed: %s", _mig.name, _e)
 
+    # Checkpoint the WAL into the main DB and truncate it. Without this the
+    # -wal file grows unbounded across runs (observed 3.1MB WAL vs 2.7MB DB),
+    # since a single-user local app rarely triggers SQLite's automatic
+    # checkpoint threshold. TRUNCATE resets the WAL file to zero length.
+    try:
+        _track.execute("PRAGMA wal_checkpoint(TRUNCATE)")
+    except Exception as _e:
+        logger.warning("[startup] WAL checkpoint failed: %s", _e)
+
     _track.close()
     logger.info(
         "[migration] done — applied=%d  skipped=%d  failed=%d",

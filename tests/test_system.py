@@ -32,7 +32,7 @@ def test_ollama_status_shape(client):
 # ── GET /api/system/backups ───────────────────────────────────────────
 
 def test_list_backups_shape(client):
-    resp = client.get("/api/system/backups")
+    resp = client.get("/api/system/backups", headers={"X-Parent-Pin": "0000"})
     assert resp.status_code == 200
     body = resp.json()
     assert "backups" in body

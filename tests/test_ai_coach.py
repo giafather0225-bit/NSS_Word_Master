@@ -33,12 +33,20 @@ def test_returns_message(client):
     assert len(body["message"]) > 0
 
 
-def test_canned_fallback_on_test_host(client):
-    """With no Ollama/Gemini available, the message is one of the canned set."""
+def test_canned_fallback_when_ai_unavailable(client):
+    """With HTTP patched to fail, the message falls back to canned set."""
+    from unittest.mock import patch, AsyncMock, MagicMock
     from backend.routers.ai_coach import CANNED
-    resp = client.get("/api/ai-coach/today")
-    # On the test host the message should be a canned one (≤200 chars guard
-    # in the router also keeps real responses bounded).
+
+    async def _fail(*args, **kwargs):
+        raise Exception("connection refused")
+
+    mock_ctx = MagicMock()
+    mock_ctx.__aenter__ = AsyncMock(return_value=MagicMock(post=AsyncMock(side_effect=Exception("no ai"))))
+    mock_ctx.__aexit__ = AsyncMock(return_value=False)
+
+    with patch("backend.routers.ai_coach.httpx.AsyncClient", return_value=mock_ctx):
+        resp = client.get("/api/ai-coach/today")
     assert resp.json()["message"] in CANNED
 
 

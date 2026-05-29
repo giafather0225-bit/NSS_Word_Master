@@ -31,7 +31,7 @@ def _clean_streak_tables(db_session):
 # ── GET /api/parent/streak ────────────────────────────────────────────
 
 def test_streak_empty_shape(client):
-    resp = client.get("/api/parent/streak")
+    resp = client.get("/api/parent/streak", headers=_PIN_HEADER)
     assert resp.status_code == 200
     body = resp.json()
     for key in ("current", "longest", "rule", "last_30d",
@@ -51,7 +51,7 @@ def test_streak_longest_from_logs(client, db_session):
         d = (today - timedelta(days=i)).isoformat()
         db_session.add(StreakLog(date=d, streak_maintained=True))
     db_session.commit()
-    body = client.get("/api/parent/streak").json()
+    body = client.get("/api/parent/streak", headers=_PIN_HEADER).json()
     assert body["longest"] >= 3
 
 
@@ -65,7 +65,7 @@ def test_streak_last_30d_marks_day_off(client, db_session):
         created_at=datetime.now(timezone.utc).isoformat(),
     ))
     db_session.commit()
-    body = client.get("/api/parent/streak").json()
+    body = client.get("/api/parent/streak", headers=_PIN_HEADER).json()
     day = next(d for d in body["last_30d"] if d["date"] == target)
     assert day["day_off"] is True
 
@@ -102,7 +102,7 @@ def test_streak_rule_success(client):
     assert body["subjects"] == ["english", "math"]
     assert body["mode"] == "any"
     # Reflected in the GET payload
-    rule = client.get("/api/parent/streak").json()["rule"]
+    rule = client.get("/api/parent/streak", headers=_PIN_HEADER).json()["rule"]
     assert rule["mode"] == "any"
 
 

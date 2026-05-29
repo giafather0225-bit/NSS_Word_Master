@@ -50,7 +50,7 @@ def test_day_object_shape(client):
     body = client.get("/api/calendar/2026/6").json()
     assert len(body) == 30
     for day in body:
-        for key in ("date", "streak", "journal", "day_off", "all_done", "marker"):
+        for key in ("date", "streak", "journal", "day_off", "all_done", "marker_type"):
             assert key in day
     # First day's date string is well-formed
     assert body[0]["date"] == "2026-06-01"
@@ -81,7 +81,7 @@ def test_journal_marker(client, db_session):
     body = client.get("/api/calendar/2026/6").json()
     day10 = next(d for d in body if d["date"] == "2026-06-10")
     assert day10["journal"] is True
-    assert day10["marker"] == "📝"
+    assert day10["marker_type"] == "journal"
 
 
 def test_day_off_marker_takes_priority(client, db_session):
@@ -97,7 +97,7 @@ def test_day_off_marker_takes_priority(client, db_session):
     body = client.get("/api/calendar/2026/6").json()
     day20 = next(d for d in body if d["date"] == "2026-06-20")
     assert day20["day_off"] is True
-    assert day20["marker"] == "🏖️"
+    assert day20["marker_type"] == "day_off"
 
 
 def test_pending_day_off_not_marked(client, db_session):

@@ -31,7 +31,9 @@ def lesson(db_session):
 
 
 def _png():
-    return {"file": ("x.png", b"\x89PNG\r\nfake", "image/png")}
+    # Full 8-byte PNG signature (\x89PNG\r\n\x1a\n) + filler. file_storage.py
+    # validates the complete signature, not just the \x89PNG\r\n prefix.
+    return {"file": ("x.png", b"\x89PNG\r\n\x1a\n" + b"\x00" * 8, "image/png")}
 
 
 def _spoofed_png():

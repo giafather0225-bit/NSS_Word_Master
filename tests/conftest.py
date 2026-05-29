@@ -48,6 +48,25 @@ def db_session(engine):
     session.close()
 
 
+@pytest.fixture(autouse=True)
+def _reset_pin_rate_limiter(db_session):
+    """Clear PIN rate-limit counters before each test.
+
+    pin_guard.py persists failure counters as AppConfig rows
+    (`pin_attempts_parent` / `pin_attempts_shop`) and commits them. Because the
+    test engine is a single shared in-memory DB (StaticPool), those committed
+    rows survive across tests — so tests that intentionally send wrong/no PIN
+    accumulate the counter and later tests get HTTP 429. Wiping the rows up
+    front restores per-test isolation.
+    """
+    from backend.models import AppConfig
+    db_session.query(AppConfig).filter(
+        AppConfig.key.like("pin_attempts_%")
+    ).delete(synchronize_session=False)
+    db_session.commit()
+    yield
+
+
 @pytest.fixture
 def client(db_session):
     """FastAPI TestClient — replace the DB session with the in-memory session."""

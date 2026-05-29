@@ -421,34 +421,40 @@ def daily_screen(db: Session = Depends(get_db)):
 
     streak = streak_engine.get_current_streak(db)
 
+    week_end = week_start + timedelta(days=6)
+
+    # Fetch the whole week in two queries instead of two-per-day. earned_date is
+    # a String on XPLog (compare isoformat) and a Date on IslandLumiLog.
+    attended_days = {
+        r[0] for r in db.query(XPLog.earned_date)
+        .filter(
+            XPLog.earned_date >= week_start.isoformat(),
+            XPLog.earned_date <= week_end.isoformat(),
+        )
+        .distinct().all()
+    }
+    claimed_days = {
+        r[0] for r in db.query(IslandLumiLog.earned_date)
+        .filter(
+            IslandLumiLog.source == "daily_attendance",
+            IslandLumiLog.earned_date >= week_start,
+            IslandLumiLog.earned_date <= week_end,
+        )
+        .distinct().all()
+    }
+
     attendance_week = []
     for offset in range(7):
         day = week_start + timedelta(days=offset)
-        attended = db.query(XPLog).filter(
-            XPLog.earned_date == day.isoformat()
-        ).first() is not None
-        claimed = db.query(IslandLumiLog).filter(
-            IslandLumiLog.source == "daily_attendance",
-            IslandLumiLog.earned_date == day,
-        ).first() is not None
         attendance_week.append({
             "date":     day.isoformat(),
-            "attended": attended,
-            "claimed":  claimed,
+            "attended": day.isoformat() in attended_days,
+            "claimed":  day in claimed_days,
             "today":    day == today,
         })
 
-    can_claim_today = (
-        db.query(XPLog).filter(XPLog.earned_date == today.isoformat()).first() is not None
-        and not db.query(IslandLumiLog).filter(
-            IslandLumiLog.source == "daily_attendance",
-            IslandLumiLog.earned_date == today,
-        ).first()
-    )
-    today_claimed = db.query(IslandLumiLog).filter(
-        IslandLumiLog.source == "daily_attendance",
-        IslandLumiLog.earned_date == today,
-    ).first() is not None
+    today_claimed   = today in claimed_days
+    can_claim_today = (today.isoformat() in attended_days) and not today_claimed
 
     ATTENDANCE_REWARD = 30
 
