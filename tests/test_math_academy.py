@@ -44,7 +44,9 @@ def test_get_units(client):
     body = resp.json()
     assert body["grade"] == "G3"
     assert len(body["units"]) > 0
-    assert "U1_add_sub_1000" in body["units"]
+    # units is a list of objects: {name, is_locked, unit_test_passed}
+    names = [u["name"] for u in body["units"]]
+    assert "U1_add_sub_1000" in names
 
 
 def test_get_lessons(client):
