@@ -199,6 +199,12 @@ def save_lesson_file(lesson_id: int, raw: bytes, original_name: str) -> FileReco
         target = lesson_dir / f"{stem}_{counter}{ext}"
         counter += 1
 
+    # Path-traversal guard: verify the resolved target stays inside lesson_dir.
+    # _safe_stem() strips most dangerous characters, but an explicit check
+    # against the storage root provides defence-in-depth.
+    if not str(target.resolve()).startswith(str(STORAGE_ROOT.resolve())):
+        raise ValueError("Resolved file path escapes storage root — upload rejected.")
+
     target.write_bytes(raw)
 
     record: FileRecord = {

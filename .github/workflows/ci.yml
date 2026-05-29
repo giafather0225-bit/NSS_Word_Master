@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: pytest + bandit
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      # The app uses edge-tts for TTS and esbuild for JS bundling.
+      # Neither is required for unit/integration tests — skip those.
+      # GEMINI_API_KEY is intentionally absent so AI tests fall back to canned.
+      - name: Run tests
+        env:
+          DEFAULT_PIN: "test1234"
+          STRICT_PIN: "0"          # allow weak PIN in CI (test DB, not production)
+          CORS_ORIGINS: "http://localhost:8000"
+        run: |
+          python3 -m pytest tests/ \
+            -v \
+            --tb=short \
+            -q \
+            --ignore=tests/test_manual_api.py \
+            -x
+
+      - name: Security scan (bandit)
+        run: |
+          pip install bandit
+          bandit -r backend/ -ll -q \
+            --exclude backend/migrations \
+            -s B603,B607
+        # B603/B607: subprocess with list args — intentional, safe (no shell=True)

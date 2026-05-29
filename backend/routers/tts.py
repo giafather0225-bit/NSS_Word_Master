@@ -22,7 +22,7 @@ from concurrent.futures import ThreadPoolExecutor
 from fastapi import APIRouter, Depends, Request
 from fastapi.responses import Response
 from fastapi import HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 logger = logging.getLogger(__name__)
 
@@ -47,7 +47,7 @@ _executor = ThreadPoolExecutor(max_workers=8)
 # ── Pydantic Schemas ───────────────────────────────────────
 
 class TTSLineRequest(BaseModel):
-    text: str
+    text: str = Field(..., min_length=1, max_length=500)
 
     def clean(self):
         """Sanitize text input."""
@@ -56,9 +56,9 @@ class TTSLineRequest(BaseModel):
 
 
 class PreviewTTSRequest(BaseModel):
-    word: str
-    meaning: str
-    example: str
+    word:    str = Field(..., min_length=1, max_length=100)
+    meaning: str = Field(..., min_length=1, max_length=300)
+    example: str = Field(..., min_length=1, max_length=500)
 
     def clean(self):
         """Sanitize all preview TTS fields."""
@@ -69,8 +69,8 @@ class PreviewTTSRequest(BaseModel):
 
 
 class WordMeaningTTSRequest(BaseModel):
-    word: str
-    meaning: str
+    word:    str = Field(..., min_length=1, max_length=100)
+    meaning: str = Field(..., min_length=1, max_length=300)
     rep: int = 1  # repetition number 1-3 for varied friendly phrases
 
     def clean(self):
@@ -82,7 +82,7 @@ class WordMeaningTTSRequest(BaseModel):
 
 
 class TTSWordOnlyRequest(BaseModel):
-    word: str
+    word: str = Field(..., min_length=1, max_length=100)
 
     def clean(self):
         """Sanitize word field."""
@@ -91,7 +91,7 @@ class TTSWordOnlyRequest(BaseModel):
 
 
 class TTSExampleFullRequest(BaseModel):
-    sentence: str
+    sentence: str = Field(..., min_length=1, max_length=500)
 
     def clean(self):
         """Sanitize sentence field."""

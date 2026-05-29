@@ -19,12 +19,21 @@ GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "")
 
 
 def _sanitize_prompt_input(text: str, max_len: int = 500) -> str:
-    """Strip control characters and newlines to prevent prompt injection via user input."""
+    """Strip control characters and prompt-injection markers from user input.
+
+    Removes:
+    - Control characters (Unicode category C), keeping plain spaces
+    - Square brackets [ ] — used as prompt delimiters ([WORD]/[SENTENCE])
+      so a child cannot break out of the data fence by typing e.g. [/WORD]
+    """
+    import re
     import unicodedata
     clean = "".join(
         ch for ch in (text or "")
         if unicodedata.category(ch)[0] != "C" or ch == " "
     )
+    # Remove square brackets to neutralise [WORD]/[/WORD] delimiter injection
+    clean = re.sub(r"[\[\]]", "", clean)
     return clean[:max_len].strip()
 
 

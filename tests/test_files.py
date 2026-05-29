@@ -10,6 +10,19 @@ from backend.models import Lesson
 
 
 @pytest.fixture(autouse=True)
+def _isolate_storage(tmp_path, monkeypatch):
+    """Redirect on-disk lesson storage to a temp dir.
+
+    The router writes real files via file_storage.save_lesson_file, keyed by
+    lesson_id under STORAGE_ROOT (= ~/NSS_Learning/storage/lessons). Without
+    this patch a successful upload would persist into the user's real data and
+    leak across tests (deleted-then-reinserted lesson ids reuse the same dir).
+    """
+    monkeypatch.setattr("backend.file_storage.STORAGE_ROOT", tmp_path)
+    yield
+
+
+@pytest.fixture(autouse=True)
 def _clean(db_session):
     db_session.query(Lesson).delete()
     db_session.commit()
