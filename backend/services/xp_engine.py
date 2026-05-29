@@ -179,6 +179,13 @@ def award_xp(
                 Use commit=False when award_xp is called inside a larger transaction
                 so that XP and the surrounding changes are committed atomically.
 
+                If True (default), award_xp owns the commit and uses a
+                BEGIN IMMEDIATE transaction to serialise the dedup check+insert
+                against double-award. It first COMMITS (never rolls back) any
+                pending writes the caller accumulated — stage progress, lesson
+                completion flags, etc. — so that resetting the session for the
+                exclusive lock cannot silently discard the caller's work.
+
     Returns:
         XP points actually inserted, or 0 if deduped / unknown action.
     """
