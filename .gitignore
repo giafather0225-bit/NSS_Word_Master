@@ -3,6 +3,9 @@
 # git pull만으로 최신 JS가 즉시 반영됨. dad는 JS 수정 후 반드시
 # `bash build.sh && git add frontend/static/js/bundle-*.min.js`로 함께 커밋.
 
+# esbuild 빌드 중간 산물 (임시 파일, 자동 삭제되나 간혹 잔류)
+frontend/static/js/bundle-*.min.js.*
+
 # 시스템 / 환경
 .env
 .DS_Store
