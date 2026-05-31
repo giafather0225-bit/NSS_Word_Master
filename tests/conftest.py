@@ -67,6 +67,52 @@ def _reset_pin_rate_limiter(db_session):
     yield
 
 
+# Module attributes that bind a real-filesystem path at import time. Each is
+# (dotted.module.ATTR, subpath-under-tmp-root or None for the root itself).
+# Many modules do `from ..database import LEARNING_ROOT`, which copies the Path
+# VALUE into their own namespace — so patching backend.database.LEARNING_ROOT
+# alone does NOT redirect them. Every importer must be patched individually.
+_REAL_FS_TARGETS = [
+    ("backend.database.LEARNING_ROOT", None),
+    ("backend.file_storage.LEARNING_ROOT", None),
+    ("backend.file_storage.STORAGE_ROOT", "storage/lessons"),
+    ("backend.main.VOCA_ROOT", "English/Voca_8000"),
+    ("backend.routers.files.LEARNING_ROOT", None),
+    ("backend.routers.lessons.LEARNING_ROOT", None),
+    ("backend.routers.lessons.VOCA_ROOT", "English/Voca_8000"),
+    ("backend.routers.diary_photo.LEARNING_ROOT", None),
+    ("backend.routers.diary_photo._PHOTO_DIR", "diary_photos"),
+    ("backend.routers.files_voca.LEARNING_ROOT", None),
+    ("backend.routers.files_voca_ocr.LEARNING_ROOT", None),
+    ("backend.routers.files_common.VOCA_ROOT", "English/Voca_8000"),
+    ("backend.routers.words_mywords.LEARNING_ROOT", None),
+    ("backend.routers.dashboard.LEARNING_ROOT", None),
+    ("backend.routers.study.LEARNING_ROOT", None),
+    ("backend.services.backup_engine.BACKUP_DIR", "backups"),
+]
+
+
+@pytest.fixture(autouse=True)
+def _isolate_learning_root(tmp_path, monkeypatch):
+    """Redirect every real-filesystem root to a per-test temp dir.
+
+    Without this, upload/photo/backup/voca tests write into the user's real
+    ~/NSS_Learning tree (lesson images, the child's actual diary photos, voca
+    folders, DB backups). That both risks corrupting real data and leaks state
+    across tests (observed: test_files persisting x.png into real storage;
+    test_diary_photo / test_files_voca relying on fragile sentinel cleanup).
+
+    Patching here — once, globally — guarantees no test can touch real user
+    data and removes the need for each file to remember its own isolation.
+    """
+    root = tmp_path / "learning_root"
+    for dotted, sub in _REAL_FS_TARGETS:
+        value = root if sub is None else root / sub
+        value.mkdir(parents=True, exist_ok=True)
+        monkeypatch.setattr(dotted, value, raising=False)
+    yield
+
+
 @pytest.fixture
 def client(db_session):
     """FastAPI TestClient — replace the DB session with the in-memory session."""
