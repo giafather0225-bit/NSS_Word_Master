@@ -82,9 +82,11 @@ function _kangRenderPicker() {
     stage.innerHTML = `
         <div class="kang-wrap kang-picker">
             <header class="kang-picker-head">
-                <button class="kang-btn kang-btn-ghost kang-picker-back" id="kang-picker-exit">
-                    <i data-lucide="arrow-left"></i> Back
-                </button>
+                <div class="kang-picker-topbar">
+                    <button class="kang-btn kang-btn-ghost kang-picker-back" id="kang-picker-exit">
+                        <i data-lucide="arrow-left"></i> Back
+                    </button>
+                </div>
                 <h1 class="kang-title">Math Kangaroo</h1>
                 <p class="kang-sub">Past Papers — pick your level</p>
             </header>

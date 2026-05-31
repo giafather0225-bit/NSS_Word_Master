@@ -5,6 +5,7 @@
    ================================================================ */
 
 .kang-wrap {
+    width: 100%;
     max-width: 960px;
     margin: 0 auto;
     padding: 24px 20px 64px;
@@ -64,15 +65,17 @@
 
 /* ── Picker ────────────────────────────────────────────── */
 .kang-picker-head {
-    position: relative;
     text-align: center;
     margin-bottom: 16px;
 }
+/* Back sits on its own row above the title — never overlaps it,
+   regardless of container width. */
+.kang-picker-topbar {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
 .kang-picker-back {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
     display: inline-flex;
     align-items: center;
     gap: 4px;
