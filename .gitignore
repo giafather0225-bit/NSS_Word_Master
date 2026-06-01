@@ -31,6 +31,11 @@ everything-claude-code/
 
 # 문서 / 미디어 (저작권·보안)
 *.pdf
+# EXCEPTION: Math Kangaroo past-paper PDFs ARE tracked so they reach every
+# device. The daughter's Mac syncs via `git pull` only, so a gitignored PDF
+# would leave the Past Papers feature showing "PDF not available". These are
+# official public past papers used for personal practice.
+!frontend/static/math/kangaroo/pdf/*.pdf
 *.docx
 *.pptx
 *.xlsx
