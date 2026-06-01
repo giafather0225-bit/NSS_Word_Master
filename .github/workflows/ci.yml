@@ -28,7 +28,11 @@ jobs:
       # GEMINI_API_KEY is intentionally absent so AI tests fall back to canned.
       - name: Run tests
         env:
-          DEFAULT_PIN: "test1234"
+          # Tests assume the default parent/shop PIN is "0000" (they POST
+          # {"pin": "0000"} and send X-Parent-Pin: 0000). Keep DEFAULT_PIN
+          # aligned with that assumption — STRICT_PIN=0 permits the weak PIN
+          # in this throwaway test DB.
+          DEFAULT_PIN: "0000"
           STRICT_PIN: "0"          # allow weak PIN in CI (test DB, not production)
           CORS_ORIGINS: "http://localhost:8000"
         run: |

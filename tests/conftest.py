@@ -58,21 +58,11 @@ def _reset_pin_rate_limiter(db_session):
     rows survive across tests — so tests that intentionally send wrong/no PIN
     accumulate the counter and later tests get HTTP 429. Wiping the rows up
     front restores per-test isolation.
-
-    Also seeds the parent PIN as plaintext "0000" so every test that sends
-    X-Parent-Pin: 0000 passes regardless of the DEFAULT_PIN env variable
-    (which may differ between local and CI environments).
     """
     from backend.models import AppConfig
     db_session.query(AppConfig).filter(
         AppConfig.key.like("pin_attempts_%")
     ).delete(synchronize_session=False)
-    # Seed PIN = "0000" so tests are independent of DEFAULT_PIN env var
-    pin_row = db_session.query(AppConfig).filter(AppConfig.key == "pin").first()
-    if pin_row:
-        pin_row.value = "0000"
-    else:
-        db_session.add(AppConfig(key="pin", value="0000"))
     db_session.commit()
     yield
 

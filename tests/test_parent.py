@@ -15,13 +15,8 @@ PIN = {"X-Parent-Pin": "0000"}
 @pytest.fixture(autouse=True)
 def _clean_tables(db_session):
     def _wipe():
-        # Wipe task/schedule/day-off tables but preserve the pin row so that
-        # verify-pin tests work independently of the DEFAULT_PIN env variable.
-        for model in (TaskSetting, AcademySchedule, DayOffRequest):
+        for model in (AppConfig, TaskSetting, AcademySchedule, DayOffRequest):
             db_session.query(model).delete()
-        db_session.query(AppConfig).filter(
-            AppConfig.key != "pin"
-        ).delete(synchronize_session=False)
         db_session.commit()
     _wipe()
     yield
