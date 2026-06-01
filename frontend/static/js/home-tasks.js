@@ -136,6 +136,9 @@ async function renderTodayTasks() {
 
   list.innerHTML = groupHtml || '<div class="tc-sub">No tasks for today.</div>';
 
+  // Inject CKLA domain progress bar if CKLA group is visible
+  _injectCKLAProgress(list);
+
   const total = tasks.length;
   const doneCount = tasks.filter(t => t.is_done).length;
   const totalXp  = tasks.reduce((s, t) => s + (Number(t.xp) || 0), 0);
@@ -202,6 +205,47 @@ function _navigateTask(key) {
     default:
       break;
   }
+}
+
+/**
+ * Fetch CKLA domain progress and inject a small progress bar into the CKLA
+ * task group header. No-op if the CKLA group is not visible.
+ * @tag HOME_DASHBOARD @tag CKLA
+ * @param {HTMLElement} list - the today-task-list container
+ */
+async function _injectCKLAProgress(list) {
+  const cklaGroup = list.querySelector('.tc-group[data-section="ckla"]');
+  if (!cklaGroup) return;
+
+  try {
+    const ctrl  = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 5000);
+    const res   = await fetch('/api/academy/ckla/home-summary', { signal: ctrl.signal });
+    clearTimeout(timer);
+    if (!res.ok) return;
+    const d = await res.json();
+    const domainsDone  = Number(d.domains_complete) || 0;
+    const domainsTotal = Number(d.domains_total)    || 11;
+    const pct          = domainsTotal ? Math.round(domainsDone / domainsTotal * 100) : 0;
+
+    // Build the bar element
+    const bar = document.createElement('div');
+    bar.className = 'tc-ckla-progress';
+    bar.innerHTML = `
+      <div class="tc-ckla-bar-wrap" title="${domainsDone} of ${domainsTotal} domains complete">
+        <div class="tc-ckla-bar-fill" style="width:${pct}%"></div>
+      </div>
+      <span class="tc-ckla-label">${domainsDone} / ${domainsTotal} domains</span>
+    `;
+
+    // Insert below the group header row, before task rows
+    const head = cklaGroup.querySelector('.tc-group-head');
+    if (head && head.nextSibling) {
+      cklaGroup.insertBefore(bar, head.nextSibling);
+    } else {
+      cklaGroup.appendChild(bar);
+    }
+  } catch { /* non-fatal: CKLA data unavailable */ }
 }
 
 /**

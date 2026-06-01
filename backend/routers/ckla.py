@@ -180,6 +180,73 @@ def get_domains(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)
     }
 
 
+@router.get("/home-summary")
+# @tag HOME_DASHBOARD @tag CKLA
+def get_home_summary(grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)):
+    """Lightweight CKLA progress summary for the home dashboard widget.
+
+    Returns only domain/lesson counts — no test history, no lock state.
+    Intentionally cheap: two queries total.
+    """
+    domains = (
+        db.query(CKLADomain)
+        .filter_by(is_active=True, grade=grade)
+        .all()
+    )
+    domain_ids   = [d.id for d in domains]
+    domains_total = len(domains)
+
+    if not domain_ids:
+        return {
+            "domains_total":    domains_total,
+            "domains_complete": 0,
+            "lessons_total":    0,
+            "lessons_complete": 0,
+            "completion_pct":   0,
+        }
+
+    # Lesson IDs in two queries (bulk, no N+1)
+    rows = (
+        db.query(CKLALesson.id, CKLALesson.domain_id)
+        .filter(CKLALesson.domain_id.in_(domain_ids), CKLALesson.is_active == True)
+        .all()
+    )
+    lessons_by_domain: dict[int, list[int]] = {d.id: [] for d in domains}
+    for lid, did in rows:
+        lessons_by_domain[did].append(lid)
+
+    all_ids = [lid for ids in lessons_by_domain.values() for lid in ids]
+    lessons_total = len(all_ids)
+
+    completed_set: set[int] = set()
+    if all_ids:
+        completed_set = {
+            p.lesson_id for p in
+            db.query(CKLALessonProgress.lesson_id)
+            .filter(
+                CKLALessonProgress.lesson_id.in_(all_ids),
+                CKLALessonProgress.completed == True,
+            )
+            .all()
+        }
+
+    lessons_complete  = len(completed_set)
+    domains_complete  = sum(
+        1 for d in domains
+        if lessons_by_domain[d.id]
+        and all(lid in completed_set for lid in lessons_by_domain[d.id])
+    )
+    completion_pct = round(lessons_complete / lessons_total * 100) if lessons_total else 0
+
+    return {
+        "domains_total":    domains_total,
+        "domains_complete": domains_complete,
+        "lessons_total":    lessons_total,
+        "lessons_complete": lessons_complete,
+        "completion_pct":   completion_pct,
+    }
+
+
 @router.get("/domains/{domain_num}/lessons")
 # @tag ACADEMY CKLA
 def get_lessons(domain_num: int, grade: int = Query(3, ge=3, le=8), db: Session = Depends(get_db)):

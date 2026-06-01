@@ -186,6 +186,38 @@
 .tc-group[data-section="review"]  .tc-group-label { color: var(--review-ink); }
 .tc-group[data-section="arcade"]  .tc-group-dot  { background: var(--arcade-primary); }
 .tc-group[data-section="arcade"]  .tc-group-label { color: var(--arcade-ink); }
+.tc-group[data-section="ckla"]    .tc-group-dot  { background: var(--english-primary); }
+.tc-group[data-section="ckla"]    .tc-group-label { color: var(--english-ink); }
+
+/* ── CKLA domain progress bar (inside CKLA task group) ── */
+.tc-ckla-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 10px 6px;
+}
+.tc-ckla-bar-wrap {
+    flex: 1;
+    height: 5px;
+    border-radius: var(--radius-full);
+    background: var(--english-soft);
+    overflow: hidden;
+}
+.tc-ckla-bar-fill {
+    height: 100%;
+    border-radius: var(--radius-full);
+    background: var(--english-primary);
+    transition: width 0.4s var(--ease-calm);
+    min-width: 4px;
+}
+.tc-ckla-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--english-ink);
+    white-space: nowrap;
+    opacity: 0.85;
+}
 
 /* ── Task row ── */
 .tc-row {
