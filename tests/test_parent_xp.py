@@ -24,10 +24,11 @@ def _clean_xp_tables(db_session):
     def _wipe():
         xp_engine.invalidate_xp_cache()
         db_session.query(XPLog).delete()
+        # NB: do NOT delete the "pin" row — conftest seeds it to "0000" so
+        # X-Parent-Pin auth works independently of the DEFAULT_PIN env var.
         db_session.query(AppConfig).filter(
             (AppConfig.key.like("xp_rule_%")) |
-            (AppConfig.key == "arcade_daily_cap") |
-            (AppConfig.key == "pin")
+            (AppConfig.key == "arcade_daily_cap")
         ).delete(synchronize_session=False)
         db_session.commit()
     _wipe()
