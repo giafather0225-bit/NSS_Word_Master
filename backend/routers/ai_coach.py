@@ -7,9 +7,9 @@ API:
   GET /api/ai-coach/today
 """
 
+import datetime
 import logging
 import os
-import random
 
 import httpx
 from fastapi import APIRouter, Depends
@@ -24,12 +24,80 @@ router = APIRouter()
 OLLAMA_HOST = "http://127.0.0.1:11434"
 OLLAMA_MODEL = "gemma2:2b"
 
-CANNED: list[str] = [
+# Situational canned message pools. The right pool is chosen from the student's
+# stats so the fallback still feels personal when Ollama/Gemini are unavailable.
+# A date-based seed keeps the message stable across page refreshes within a day
+# but rotates it every morning.
+CANNED_FRESH_START: list[str] = [  # today_xp == 0 — nudge to begin
     "Ready to learn today? Let's go!",
+    "A brand-new day to grow — let's start!",
+    "Your brain is ready. Pick something fun!",
+    "One small start can make a big day.",
+    "Let's earn your first XP of the day!",
+    "Today is a blank page — let's fill it with learning.",
+]
+CANNED_IN_PROGRESS: list[str] = [  # today_xp > 0, modest — keep going
+    "Great start today! Keep the spark going!",
+    "You're rolling! One more lesson?",
     "Every word you learn is a superpower!",
+    "Nice work so far — your brain loves this!",
+    "You're building something amazing, step by step!",
+    "Keep going, you're doing wonderfully!",
+]
+CANNED_STRONG_DAY: list[str] = [  # today_xp high — celebrate
+    "Wow, what a day! You're on fire today!",
+    "Incredible effort today — you should be proud!",
+    "Superstar work! Your hard work is shining!",
+    "You crushed it today! Amazing job!",
+    "That's a champion's day of learning!",
+]
+CANNED_STREAK: list[str] = [  # streak >= 3 — celebrate consistency
+    "{streak} days in a row — you're unstoppable!",
+    "A {streak}-day streak! Consistency is your superpower!",
+    "{streak} days strong! Keep the flame burning!",
+    "Look at that {streak}-day streak — incredible!",
+    "{streak} days of learning in a row. Wow!",
+]
+CANNED_GENERIC: list[str] = [
     "You're doing amazing! Keep it up!",
     "Great things happen one word at a time!",
+    "Learning a little every day adds up to a lot!",
+    "Believe in yourself — you've got this!",
+    "Curiosity is the best adventure. Let's explore!",
 ]
+
+
+def _pick_canned(total_xp: int, today_xp: int, streak: int) -> str:
+    """Choose a situational canned message based on the student's stats.
+
+    Selection is seeded by today's date so the message is stable within a day
+    (no flicker on refresh) but changes each morning.
+
+    Args:
+        total_xp: Cumulative XP earned by the student.
+        today_xp: XP earned today.
+        streak: Current consecutive-day streak.
+
+    Returns:
+        A motivational sentence with any {streak} placeholder filled in.
+    """
+    # Pick the most specific pool that applies — streak celebration wins,
+    # then today's effort level, falling back to generic encouragement.
+    if streak >= 3:
+        pool = CANNED_STREAK
+    elif today_xp == 0:
+        pool = CANNED_FRESH_START
+    elif today_xp >= 30:
+        pool = CANNED_STRONG_DAY
+    elif today_xp > 0:
+        pool = CANNED_IN_PROGRESS
+    else:
+        pool = CANNED_GENERIC
+
+    # Deterministic-by-day choice: stable across refreshes, rotates daily
+    seed = datetime.date.today().toordinal()
+    msg = pool[seed % len(pool)]
+    return msg.replace("{streak}", str(streak))
 
 
 def _build_prompt(total_xp: int, today_xp: int, streak: int) -> str:
@@ -121,5 +189,5 @@ async def ai_coach_today(db: Session = Depends(get_db)) -> dict:
         except Exception as exc:
             logger.warning("Gemini coach request failed, falling back to canned message: %s", exc)
 
-    # ── 3. Canned fallback ─────────────────────────────────────────
-    return {"message": random.choice(CANNED)}
+    # ── 3. Situational canned fallback ─────────────────────────────
+    return {"message": _pick_canned(total_xp, today_xp, streak)}
