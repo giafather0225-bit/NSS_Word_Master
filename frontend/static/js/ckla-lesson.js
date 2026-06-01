@@ -217,7 +217,7 @@ function _cklaShowError(msg) {
   }
   errEl.textContent = msg;
   errEl.style.display = 'block';
-  setTimeout(() => { if (errEl) errEl.style.display = 'none'; }, 4000);
+  setTimeout(() => { if (errEl) errEl.style.display = 'none'; }, 6000);
 }
 
 /** Escape HTML to prevent XSS. @tag SYSTEM */
