@@ -212,6 +212,8 @@ function _maybeShowDifficultyPrompt(prog) {
   if (typeof cklaNav !== 'undefined') {
     fetch(`/api/academy/ckla/badges/check?grade=${cklaNav.grade}`, { method: 'POST' }).catch(() => {});
   }
+  // Refresh the sidebar domain progress bar (a domain may have just completed)
+  if (typeof loadCKLASidebarProgress === 'function') loadCKLASidebarProgress();
   if (prog.difficulty_rating) return;
   if (document.getElementById('ckla-diff-overlay')) return;
 

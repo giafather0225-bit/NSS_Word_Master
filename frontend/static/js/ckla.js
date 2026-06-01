@@ -21,6 +21,29 @@ let cklaNav = { screen: 'domains', domainNum: null, domainTitle: '', grade: 3 };
 async function initCKLA() {
   await loadCKLAGrades();
   loadCKLAReviewBadge();
+  loadCKLASidebarProgress();
+}
+
+/**
+ * Fetch CKLA domain progress and render the sidebar mini progress bar.
+ * @tag ACADEMY CKLA
+ */
+async function loadCKLASidebarProgress() {
+  const wrap = document.getElementById('ckla-sb-progress');
+  if (!wrap) return;
+  try {
+    const res = await fetch(`/api/academy/ckla/home-summary?grade=${cklaNav.grade}`);
+    if (!res.ok) return;
+    const d = await res.json();
+    const done  = Number(d.domains_complete) || 0;
+    const total = Number(d.domains_total)    || 11;
+    const pct   = total ? Math.round(done / total * 100) : 0;
+    const fill  = document.getElementById('ckla-sb-fill');
+    const label = document.getElementById('ckla-sb-label');
+    if (fill)  fill.style.width = pct + '%';
+    if (label) label.textContent = `${done} / ${total} domains`;
+    wrap.style.display = 'flex';
+  } catch { /* non-fatal: leave hidden */ }
 }
 
 /** Fetch available grades and populate grade pills. @tag ACADEMY CKLA */
@@ -57,6 +80,7 @@ function selectGrade(grade) {
     el.classList.toggle('active', Number(el.textContent.replace('G', '')) === grade);
   });
   updateCKLATitle(grade);
+  loadCKLASidebarProgress();
 }
 
 /** Update the grade title label in the sidebar. @tag ACADEMY CKLA */

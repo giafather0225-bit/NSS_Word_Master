@@ -710,6 +710,36 @@
   color: var(--text-on-primary);
 }
 
+/* ── Sidebar: domain progress mini-bar ──────────────────────── */
+.ckla-sb-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px 2px;
+}
+.ckla-sb-bar {
+  flex: 1;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background: var(--english-soft);
+  overflow: hidden;
+}
+.ckla-sb-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: var(--english-primary);
+  transition: width 0.4s var(--ease-calm);
+  min-width: 4px;
+}
+.ckla-sb-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--english-ink);
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
 /* ── Sidebar: grade section title ───────────────────────────── */
 .ckla-section-title {
   font-size: 0.78rem;
