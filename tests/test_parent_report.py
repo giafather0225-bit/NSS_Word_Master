@@ -13,10 +13,15 @@ PIN = {"X-Parent-Pin": "0000"}
 
 @pytest.fixture(autouse=True)
 def _clean_tables(db_session):
-    db_session.query(AppConfig).delete()
+    # Preserve pin row so verify-pin works regardless of DEFAULT_PIN env var
+    db_session.query(AppConfig).filter(
+        AppConfig.key != "pin"
+    ).delete(synchronize_session=False)
     db_session.commit()
     yield
-    db_session.query(AppConfig).delete()
+    db_session.query(AppConfig).filter(
+        AppConfig.key != "pin"
+    ).delete(synchronize_session=False)
     db_session.commit()
 
 
