@@ -123,6 +123,7 @@ function _kangRenderGrid() {
     }
 
     grid.innerHTML = filtered.map(s => _kangCardHtml(s)).join('');
+    if (typeof lucide !== 'undefined') lucide.createIcons();
 
     grid.querySelectorAll('[data-action="start"]').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -148,6 +149,22 @@ function _kangCardHtml(s) {
     const best = (s.best_score != null)
         ? `<div class="kang-card-best">Best: ${s.best_score}/${maxPts}${pct != null ? ` (${pct}%)` : ''}</div>`
         : '';
+
+    // Completion grade → card accent + corner badge (only when a score exists)
+    let gradeClass = '';
+    let cornerBadge = '';
+    if (pct != null) {
+        if (pct === 100) {
+            gradeClass = 'kang-card--perfect';
+            cornerBadge = `<span class="kang-card-corner kang-card-corner--perfect"><i data-lucide="trophy"></i> Perfect</span>`;
+        } else if (pct >= 80) {
+            gradeClass = 'kang-card--great';
+            cornerBadge = `<span class="kang-card-corner kang-card-corner--great"><i data-lucide="star"></i> Great</span>`;
+        } else {
+            gradeClass = 'kang-card--done';
+            cornerBadge = `<span class="kang-card-corner kang-card-corner--done"><i data-lucide="check"></i> Done</span>`;
+        }
+    }
 
     const pdfMissing = (s.pdf_available === false);
     const pending    = !!s.answers_pending;
@@ -177,7 +194,8 @@ function _kangCardHtml(s) {
     `;
 
     return `
-        <article class="kang-card">
+        <article class="kang-card ${gradeClass}">
+            ${cornerBadge}
             <div class="kang-card-badges">${yearBadge}${compBadge}</div>
             <h3 class="kang-card-title">${_mathEsc(s.title)}</h3>
             ${levelLine}
