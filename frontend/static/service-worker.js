@@ -6,7 +6,7 @@
    ================================================================ */
 
 /** @tag SYSTEM @tag PWA @tag OFFLINE */
-const SW_VERSION = 'gia-sw-v14';
+const SW_VERSION = 'gia-sw-v15';
 const STATIC_CACHE = `${SW_VERSION}-static`;
 const DATA_CACHE   = `${SW_VERSION}-data`;
 
@@ -38,6 +38,7 @@ const APP_SHELL = [
     '/static/css/home.css',
     '/static/css/daily-words.css',
     '/static/css/ckla.css',
+    '/static/css/ckla-responsive.css',
     '/static/css/diary.css',
     '/static/css/diary-home.css',
     '/static/css/diary-write.css',
@@ -63,13 +64,26 @@ const APP_SHELL = [
     '/static/css/spelling.css',
     '/static/css/sentence.css',
     '/static/css/finaltest.css',
+    // Collocation + reward shop
+    '/static/css/collocation.css',
+    '/static/css/reward-shop.css',
     // Math academy core
+    '/static/css/math-home.css',
+    '/static/css/math-academy-shell.css',
     '/static/css/math-academy-sidebar.css',
+    '/static/css/math-academy-learn.css',
+    '/static/css/math-academy-problems.css',
     '/static/css/math-academy-stages.css',
+    '/static/css/math-academy-results.css',
     '/static/css/math-academy-fluency.css',
+    '/static/css/math-academy-manip.css',
+    '/static/css/math-academy-daily.css',
     '/static/css/math-academy-modes.css',
     '/static/css/math-academy-content.css',
     '/static/css/math-academy-anim.css',
+    '/static/css/math-academy-responsive.css',
+    '/static/css/math-placement.css',
+    '/static/css/math-kangaroo.css',
     // Core JS (loaded before bundle-a in child.html)
     '/static/js/core.js',
     '/static/js/core-fx.js',
@@ -133,6 +147,18 @@ function isCacheableApi(url, method) {
     // CKLA — read-only catalog + lesson content. POSTs (submit, mark-done)
     // are filtered out by the method !== 'GET' guard above.
     if (p.startsWith('/api/academy/ckla/')) return true;
+    // Math placement + spaced review (read-only status/start/count)
+    if (p === '/api/math/placement/status') return true;
+    if (p === '/api/math/placement/start') return true;
+    if (p === '/api/math/placement/results') return true;
+    if (p === '/api/math/spaced-review/count') return true;
+    if (p === '/api/math/spaced-review/today') return true;
+    // Home dashboard read endpoints
+    if (p === '/api/dashboard/home') return true;
+    if (p === '/api/ai-coach/today') return true;
+    if (p === '/api/xp/summary') return true;
+    if (p === '/api/review/hub-status') return true;
+    if (p === '/api/review/today') return true;
     return false;
 }
 
