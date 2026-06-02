@@ -137,7 +137,7 @@
       "section": 1,
       "points": 3,
       "pdf_page": 1,
-      "image_required": false,
+      "image_required": true,
       "question_text": "",
       "options": {
         "A": "6",
@@ -147,7 +147,7 @@
         "E": "15"
       },
       "answer": "E",
-      "solution": "Work through the problem. Answer: E.",
+      "solution": "See PDF page 1 for this question. Correct answer: E.",
       "solution_steps": [],
       "difficulty": "",
       "topic": "arithmetic"
@@ -157,7 +157,7 @@
       "section": 1,
       "points": 3,
       "pdf_page": 1,
-      "image_required": false,
+      "image_required": true,
       "question_text": "Eric had 10 equal metal strips. He has screwed pairs of them together into five long strips. Which strip is the longest?",
       "options": {
         "A": "A",
@@ -167,7 +167,7 @@
         "E": "E"
       },
       "answer": "A",
-      "solution": "Work through the problem. Answer: A.",
+      "solution": "See PDF page 1 for this question. Correct answer: A.",
       "solution_steps": [],
       "difficulty": "",
       "topic": "arithmetic"
@@ -177,7 +177,7 @@
       "section": 1,
       "points": 3,
       "pdf_page": 1,
-      "image_required": false,
+      "image_required": true,
       "question_text": "Which number is hidden behind the square?",
       "options": {
         "A": "2",
@@ -187,7 +187,7 @@
         "E": "6"
       },
       "answer": "E",
-      "solution": "Work through the problem. Answer: E.",
+      "solution": "See PDF page 1 for this question. Correct answer: E.",
       "solution_steps": [],
       "difficulty": "",
       "topic": "geometry"
@@ -247,8 +247,12 @@
         "E": "8"
       },
       "answer": "E",
-      "solution": "Work through the problem. Answer: E.",
-      "solution_steps": [],
+      "solution": "A two-digit number with digit product = 15. Since 15 = 3 × 5, the digits are 3 and 5. Their sum = 3 + 5 = 8. Answer: 8.",
+      "solution_steps": [
+        "Digits multiply to 15. Factor pairs of 15 using single digits: 3 × 5 = 15.",
+        "Digits are 3 and 5.",
+        "Sum = 3 + 5 = 8."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -327,8 +331,12 @@
         "E": "7"
       },
       "answer": "B",
-      "solution": "Work through the problem. Answer: B.",
-      "solution_steps": [],
+      "solution": "Luis starts with 7 apples, 2 bananas. He gives 2 apples away → 5 apples. He gets y bananas so that apples = bananas: 5 = 2 + y → y = 3. Answer: 3 bananas.",
+      "solution_steps": [
+        "After giving 2 apples to Yuri: Luis has 7−2 = 5 apples.",
+        "For apples = bananas: 5 = 2 + y → y = 3.",
+        "Yuri gives 3 bananas."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -367,8 +375,13 @@
         "E": "7"
       },
       "answer": "C",
-      "solution": "Work through the problem. Answer: C.",
-      "solution_steps": [],
+      "solution": "Tom's place = p. People who finished ahead (overtook Tom) = p−1. People Tom overtook = 10−p. Given (10−p) − (p−1) = 3 → 11 − 2p = 3 → p = 4. Answer: 4th place.",
+      "solution_steps": [
+        "Let p = Tom's finishing position.",
+        "Tom overtook (10−p) racers; (p−1) racers overtook Tom.",
+        "(10−p) − (p−1) = 3 → 11 − 2p = 3 → p = 4.",
+        "Tom finished 4th."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -387,8 +400,12 @@
         "E": "8"
       },
       "answer": "B",
-      "solution": "Work through the problem. Answer: B.",
-      "solution_steps": [],
+      "solution": "Car must be between ship and doll: blocks are S-C-D or D-C-S. Ball goes at either end of the block: B-S-C-D, S-C-D-B, B-D-C-S, D-C-S-B. Answer: 4 arrangements.",
+      "solution_steps": [
+        "Car must be adjacent to both ship and doll → car is between them: [S-C-D] or [D-C-S].",
+        "Place ball (B) at either end of each block: 2 blocks × 2 positions = 4 arrangements.",
+        "Answer: 4."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -417,7 +434,7 @@
       "section": 2,
       "points": 4,
       "pdf_page": 6,
-      "image_required": false,
+      "image_required": true,
       "question_text": "There are 5 ladybugs (see fig.). Two ladybugs are friends with each other if the numbers of spots that they have differ exactly by 1. On Kangaroo Day each of the ladybugs sent to each of her friends one SMS greeting. How many SMS greetings were sent?",
       "options": {
         "A": "2",
@@ -427,7 +444,7 @@
         "E": "9"
       },
       "answer": "C",
-      "solution": "Work through the problem. Answer: C.",
+      "solution": "See PDF page 6 for this question. Correct answer: C.",
       "solution_steps": [],
       "difficulty": "",
       "topic": "arithmetic"
@@ -507,8 +524,16 @@
         "E": "3, 5 or 7"
       },
       "answer": "D",
-      "solution": "Work through the problem. Answer: D.",
-      "solution_steps": [],
+      "solution": "Let center = c. Row sum = column sum = S = (23+c)/2. For S to be integer, c must be odd. c=3: S=13, remaining {2,5,6,7} cannot form two pairs summing to 10. c=5: S=14, pairs {2+7}=9≠10... wait — non-center pairs must each sum to S−c. c=5: S−c=9. Pairs from {2,3,6,7}: 2+7=9 ✓ and 3+6=9 ✓. c=7: S=15, S−c=8. Pairs from {2,3,5,6}: 2+6=8 ✓ and 3+5=8 ✓. Both 5 and 7 work. Answer: 5 or 7.",
+      "solution_steps": [
+        "All 5 numbers sum to 2+3+5+6+7 = 23.",
+        "Row sum = column sum = S. Center is counted in both: 2S = 23 + c → S = (23+c)/2.",
+        "c must be odd for S to be an integer: c ∈ {3, 5, 7}.",
+        "c=3: S=13. Need pairs from {2,5,6,7} each summing to 10. No valid pairs.",
+        "c=5: S=14. Need pairs from {2,3,6,7} each summing to 9: {2,7} and {3,6}. ✓",
+        "c=7: S=15. Need pairs from {2,3,5,6} each summing to 8: {2,6} and {3,5}. ✓",
+        "Answer: 5 or 7."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -527,8 +552,14 @@
         "E": "15"
       },
       "answer": "E",
-      "solution": "Work through the problem. Answer: E.",
-      "solution_steps": [],
+      "solution": "John's product = 0 → John has ball 0. From remaining {1–9}: George's 4 balls with product 72: {1,2,4,9} (1×2×4×9=72). Ann's 3 balls with product 90 from {3,5,6,7,8}: {3,5,6} (3×5×6=90). John's other 2 balls: {7,8}. John's sum = 0+7+8 = 15. Answer: 15.",
+      "solution_steps": [
+        "John's product = 0 → ball 0 is John's.",
+        "George (4 balls, product 72): 1×2×4×9 = 72, so George has {1,2,4,9}.",
+        "Ann (3 balls, product 90) from remaining {3,5,6,7,8}: 3×5×6 = 90, so Ann has {3,5,6}.",
+        "John's remaining balls: {7, 8}.",
+        "John's balls: {0, 7, 8}. Sum = 0+7+8 = 15."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -607,8 +638,16 @@
         "E": "Elisa"
       },
       "answer": "C",
-      "solution": "Work through the problem. Answer: C.",
-      "solution_steps": [],
+      "solution": "Each person's Saturday cookies = total ÷ multiplier. Berta (25): only divisible by 5 → k=5, Sat=5. Charlie (26): only divisible by 2 → k=2, Sat=13. David (27): only divisible by 3 → k=3, Sat=9. Elisa (28): k=4→Sat=7 (k=2 taken by Charlie). Anna (24): k=6→Sat=4. Saturday leader: Charlie with 13. Answer: Charlie.",
+      "solution_steps": [
+        "Each total = multiplier × Saturday cookies. Multipliers {2,3,4,5,6} assigned one per person.",
+        "Berta 25: divisible by 5 only → k=5, Sat=5.",
+        "Charlie 26: divisible by 2 only → k=2, Sat=13.",
+        "David 27: divisible by 3 only → k=3, Sat=9.",
+        "Elisa 28: k=4 (k=2 taken) → Sat=7.",
+        "Anna 24: k=6 (remaining) → Sat=4.",
+        "Most on Saturday: Charlie with 13 cookies."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     }

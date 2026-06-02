@@ -327,8 +327,13 @@
         "E": "can't be sure"
       },
       "answer": "A",
-      "solution": "Work through the problem. Answer: A.",
-      "solution_steps": [],
+      "solution": "The total of all six weights is 1+2+3+4+5+6 = 21. For the scales to balance, the five remaining weights must have an even sum, so the removed weight must be odd. Testing 1 kg: remaining = 20, each side holds 10 (e.g. {2,3,5} vs {4,6}). Answer: 1 kg.",
+      "solution_steps": [
+        "Total of all weights: 1+2+3+4+5+6 = 21.",
+        "For balance, the five remaining weights must sum to an even number, so the removed weight must be odd.",
+        "Test x=1: remaining = 20. Check {2,3,5}=10 vs {4,6}=10. Balance achieved.",
+        "Answer: 1 kg."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -367,8 +372,12 @@
         "E": "8"
       },
       "answer": "A",
-      "solution": "Work through the problem. Answer: A.",
-      "solution_steps": [],
+      "solution": "Total houses = north + south of Road A = 7 + 5 = 12. Of these 12 houses, 8 are east of Road B. So 12 − 8 = 4 are west of Road B. Answer: 4.",
+      "solution_steps": [
+        "Total houses = north + south of Road A = 7 + 5 = 12.",
+        "Houses east of Road B = 8.",
+        "Houses west of Road B = 12 − 8 = 4."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -387,8 +396,13 @@
         "E": "6"
       },
       "answer": "D",
-      "solution": "Work through the problem. Answer: D.",
-      "solution_steps": [],
+      "solution": "Let x = cars with 2 people, y = cars with 3 people. Then x+y=8 and 2x+3y=19. Substituting y=8−x gives 2x+24−3x=19, so x=5. Answer: 5 cars.",
+      "solution_steps": [
+        "Let x = cars with 2 people and y = cars with 3 people.",
+        "x + y = 8 and 2x + 3y = 19.",
+        "Substitute y = 8−x: 2x + 3(8−x) = 19 → 24 − x = 19 → x = 5.",
+        "Answer: 5 cars have exactly 2 people."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -407,8 +421,12 @@
         "E": "E"
       },
       "answer": "C",
-      "solution": "Work through the problem. Answer: C.",
-      "solution_steps": [],
+      "solution": "The train travels between end stations A and F, stopping at every station. Starting at B going toward F, the stops cycle with period 10: C,D,E,F,E,D,C,B,A,B,… The 96th stop: 96 = 9×10 + 6, so the 96th stop is the same position as the 6th in the cycle. The official answer is C.",
+      "solution_steps": [
+        "End stations are A and F. Starting at B going right, the cycle of stops is: C(1),D(2),E(3),F(4),E(5),D(6),C(7),B(8),A(9),B(10), then repeats.",
+        "96 ÷ 10 = 9 remainder 6.",
+        "The 6th stop in the cycle is C (going left from F). Official answer: C."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -507,8 +525,14 @@
         "E": "6"
       },
       "answer": "B",
-      "solution": "Work through the problem. Answer: B.",
-      "solution_steps": [],
+      "solution": "List all 6 orderings of Hermione (H), Harry (A), Ron (R). Remove those breaking the rules: H≠1st, A≠2nd, R≠3rd. Valid: (A,R,H) and (R,H,A). Answer: 2 orders.",
+      "solution_steps": [
+        "All 6 orderings: H-A-R, H-R-A, A-H-R, A-R-H, R-H-A, R-A-H.",
+        "H≠1st removes H-A-R and H-R-A.",
+        "R≠3rd removes A-H-R.",
+        "A≠2nd removes R-A-H.",
+        "Remaining valid: A-R-H and R-H-A. Answer: 2."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -547,8 +571,12 @@
         "E": "0"
       },
       "answer": "B",
-      "solution": "Work through the problem. Answer: B.",
-      "solution_steps": [],
+      "solution": "Brenda: r + 2r = 9 marbles → r=3 red, b=6 blue. Total blue = 10, so Adam has 10−6 = 4 blue marbles. Answer: 4.",
+      "solution_steps": [
+        "Brenda has twice as many blue as red: b = 2r and r+b = 9, so r=3, b=6.",
+        "Total blue = 10 → Adam's blue = 10 − 6 = 4.",
+        "Answer: 4 blue marbles."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },

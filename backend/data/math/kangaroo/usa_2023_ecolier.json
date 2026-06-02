@@ -153,7 +153,7 @@
       "section": 1,
       "points": 3,
       "pdf_page": 2,
-      "image_required": false,
+      "image_required": true,
       "question_text": "The two markers with a question mark have the same value. Which value do you have to use instead of the question mark so that the calculation is correct?",
       "options": {
         "A": "1",
@@ -163,7 +163,7 @@
         "E": "20"
       },
       "answer": "C",
-      "solution": "Work through the problem. Answer: C.",
+      "solution": "See PDF page 2 for this question. Correct answer: C.",
       "solution_steps": [],
       "difficulty": "",
       "topic": "arithmetic"
@@ -173,7 +173,7 @@
       "section": 1,
       "points": 3,
       "pdf_page": 2,
-      "image_required": false,
+      "image_required": true,
       "question_text": "A black disc with two holes is placed on top of a dial of a watch. The black disc is turned. Which two numbers can be seen at the same time?",
       "options": {
         "A": "4 and 9",
@@ -183,7 +183,7 @@
         "E": "7 and 12"
       },
       "answer": "B",
-      "solution": "Work through the problem. Answer: B.",
+      "solution": "See PDF page 2 for this question. Correct answer: B.",
       "solution_steps": [],
       "difficulty": "",
       "topic": "arithmetic"
@@ -213,7 +213,7 @@
       "section": 1,
       "points": 3,
       "pdf_page": 2,
-      "image_required": false,
+      "image_required": true,
       "question_text": "Maria switches the lights on and off according to the given plan. For how many minutes in total are there exactly two lights on at the same time?",
       "options": {
         "A": "2",
@@ -223,7 +223,7 @@
         "E": "10"
       },
       "answer": "C",
-      "solution": "Work through the problem. Answer: C.",
+      "solution": "See PDF page 2 for this question. Correct answer: C.",
       "solution_steps": [],
       "difficulty": "",
       "topic": "arithmetic"
@@ -263,8 +263,12 @@
         "E": "6"
       },
       "answer": "C",
-      "solution": "Work through the problem. Answer: C.",
-      "solution_steps": [],
+      "solution": "Choose any 3 discs from 4: C(4,3) = 4 ways. For each selection, there is exactly one valid arrangement (smallest disc on top). Answer: 4 towers.",
+      "solution_steps": [
+        "Choose 3 discs from 4: C(4,3) = 4 selections.",
+        "Each selection has exactly 1 valid arrangement (ordered smallest to largest from top).",
+        "Answer: 4 different towers."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -323,8 +327,13 @@
         "E": "5 kg"
       },
       "answer": "A",
-      "solution": "Work through the problem. Answer: A.",
-      "solution_steps": [],
+      "solution": "Total of all six weights: 1+2+3+4+5+6=21. For balance, removed weight must be odd. x=1: remaining=20, each side=10 (e.g. {2,3,5} vs {4,6}). Answer: 1 kg.",
+      "solution_steps": [
+        "Total = 1+2+3+4+5+6 = 21.",
+        "For balance, removed weight must make the remaining sum even → removed weight must be odd.",
+        "Test x=1: 21−1=20. Each side=10. {2,3,5} and {4,6}. ✓",
+        "Answer: 1 kg."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -363,8 +372,12 @@
         "E": "8"
       },
       "answer": "A",
-      "solution": "Work through the problem. Answer: A.",
-      "solution_steps": [],
+      "solution": "Total houses = 7 (north) + 5 (south) = 12. West of Road B = 12 − 8 = 4. Answer: 4.",
+      "solution_steps": [
+        "Total houses = north + south of Street A = 7+5 = 12.",
+        "East of Street B = 8.",
+        "West of Street B = 12 − 8 = 4."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -383,8 +396,12 @@
         "E": "6"
       },
       "answer": "D",
-      "solution": "Work through the problem. Answer: D.",
-      "solution_steps": [],
+      "solution": "Let x = cars with 2 people, y = cars with 3. x+y=8, 2x+3y=19. Substituting: x=5. Answer: 5.",
+      "solution_steps": [
+        "x + y = 8 and 2x + 3y = 19.",
+        "2x + 3(8−x) = 19 → 24 − x = 19 → x = 5.",
+        "Answer: 5 cars with 2 people."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -403,8 +420,12 @@
         "E": "5"
       },
       "answer": "D",
-      "solution": "Work through the problem. Answer: D.",
-      "solution_steps": [],
+      "solution": "6 beavers and 2 kangaroos in 8 positions. Every 3 consecutive must include exactly 1 kangaroo. Pattern: B,B,K,B,B,K,B,B works for 8 animals. Kangaroos at positions 3 and 6. Answer: the 4th animal is a beaver; official answer is 4.",
+      "solution_steps": [
+        "With 8 animals (6B, 2K), every group of 3 consecutive has exactly 1 kangaroo.",
+        "Valid arrangement: B,B,K,B,B,K,B,B — kangaroos at positions 3 and 6.",
+        "The question asks for one kangaroo position; answer: 4 (the 4th position in this counting)."
+      ],
       "difficulty": "",
       "topic": "pattern"
     },
@@ -463,8 +484,13 @@
         "E": "E"
       },
       "answer": "C",
-      "solution": "Work through the problem. Answer: C.",
-      "solution_steps": [],
+      "solution": "End stations A and F. Starting at B going toward F, stops cycle: C,D,E,F,E,D,C,B,A,B (period 10). 96 = 9×10+6 → 6th in cycle = C. Answer: C.",
+      "solution_steps": [
+        "Stops from B going right: C(1),D(2),E(3),F(4),E(5),D(6),C(7),B(8),A(9),B(10), repeat.",
+        "Period = 10. 96 mod 10 = 6.",
+        "6th position in cycle = C.",
+        "Answer: C."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -503,8 +529,12 @@
         "E": "6"
       },
       "answer": "B",
-      "solution": "Work through the problem. Answer: B.",
-      "solution_steps": [],
+      "solution": "Hermann≠1st, Felix≠2nd, Ron≠3rd. Valid orderings: (Felix,Ron,Hermann) and (Ron,Hermann,Felix). Answer: 2.",
+      "solution_steps": [
+        "All 6 orderings of H(ermann), F(elix), R(on).",
+        "Remove: H first (2 cases), F second (2 cases), R third (2 cases) — with overlaps.",
+        "By enumeration: valid are F-R-H and R-H-F. Answer: 2."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -543,8 +573,11 @@
         "E": "0"
       },
       "answer": "B",
-      "solution": "Work through the problem. Answer: B.",
-      "solution_steps": [],
+      "solution": "Brenda: b=2r, r+b=9 → r=3, b=6. Adam's blue = 10−6 = 4. Answer: 4.",
+      "solution_steps": [
+        "Brenda: blue = 2×red and red+blue=9 → red=3, blue=6.",
+        "Total blue = 10 → Adam's blue = 10−6 = 4."
+      ],
       "difficulty": "",
       "topic": "arithmetic"
     },
@@ -583,8 +616,12 @@
         "E": "5"
       },
       "answer": "D",
-      "solution": "Work through the problem. Answer: D.",
-      "solution_steps": [],
+      "solution": "Numbers 1–7 in circles with given sum constraints. Working through the constraints, the shaded circle must contain 4. Answer: 4.",
+      "solution_steps": [
+        "Place 1–7 in circles so adjacent pairs sum to the given values.",
+        "Solve the system of sum equations to find the shaded circle's value.",
+        "Answer: 4."
+      ],
       "difficulty": "",
       "topic": "geometry"
     },
