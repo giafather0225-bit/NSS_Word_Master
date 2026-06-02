@@ -303,7 +303,9 @@ function isTestMode() { return _testModeActive; }
  */
 async function _loadTestMode() {
   try {
-    const d = await fetch('/api/parent/test-mode').then(r => r.json());
+    const r0 = await fetch('/api/parent/test-mode');
+    if (!r0.ok) throw new Error(`HTTP ${r0.status}`);
+    const d = await r0.json();
     _testModeActive = !!d.test_mode;
     localStorage.setItem('gia_test_mode', _testModeActive ? 'true' : 'false');
   } catch (_) {
@@ -336,7 +338,9 @@ const _HOME_SECTION_ID = {
  */
 async function _applyHomeSections() {
   try {
-    const data = await fetch('/api/parent/home-sections').then(r => r.json());
+    const r1 = await fetch('/api/parent/home-sections');
+    if (!r1.ok) throw new Error(`HTTP ${r1.status}`);
+    const data = await r1.json();
     const sections = data.sections || {};
     Object.entries(_HOME_SECTION_ID).forEach(([key, elId]) => {
       const el = document.getElementById(elId);
