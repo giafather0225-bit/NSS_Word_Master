@@ -3,20 +3,20 @@
    Section: Math
    Dependencies: core.js, math-kangaroo.js, math-kangaroo-result.js
    API endpoints: GET /api/math/kangaroo/set/{id},
-                  POST /api/math/kangaroo/submit-answer,
                   POST /api/math/kangaroo/submit
+   Note: single-mode (timed test). Legacy "practice" per-question check mode
+         was retired 2026-05-03 (single-mode unification); its dead branches
+         removed 2026-06-02.
    ================================================================ */
 
 const examState = {
     setId: null,
-    mode: 'test',           // 'test' | 'practice'
     title: '',
     timeLimitSec: 0,
     remainingSec: 0,
     questions: [],          // flat list with section info
     answers: {},            // qid -> 'A'..'E'
     flagged: {},            // qid -> bool
-    practiceChecked: {},    // qid -> {correct_answer, solution, is_correct}
     idx: 0,
     timerHandle: null,
     startedAt: 0,
@@ -29,12 +29,10 @@ function _examFmt(sec) {
 }
 
 /** @tag MATH @tag KANGAROO */
-async function startKangarooExam(setId, mode) {
+async function startKangarooExam(setId) {
     examState.setId = setId;
-    examState.mode = mode === 'practice' ? 'practice' : 'test';
     examState.answers = {};
     examState.flagged = {};
-    examState.practiceChecked = {};
     examState.idx = 0;
     const stage = document.getElementById('stage');
     if (!stage) return;
@@ -59,7 +57,7 @@ async function startKangarooExam(setId, mode) {
         examState.questions = flat;
         examState.startedAt = Date.now();
         _examRender();
-        if (examState.mode === 'test') _examStartTimer();
+        _examStartTimer();
     } catch (err) {
         console.warn('[kangaroo] exam load failed', err);
         stage.innerHTML = `
@@ -104,13 +102,11 @@ function _examRender() {
         <div class="kang-wrap kang-exam">
             <header class="kang-exam-top">
                 <div class="kang-exam-title">${_mathEsc(examState.title)}</div>
-                <div class="kang-exam-timer ${examState.mode==='practice'?'is-hidden':''}">
+                <div class="kang-exam-timer">
                     <span id="kang-timer" class="kang-timer">${_examFmt(examState.remainingSec)}</span>
                 </div>
                 <div class="kang-exam-actions">
-                    ${examState.mode === 'test'
-                        ? `<button id="kang-submit-btn" class="kang-btn kang-btn-primary">Submit Test</button>`
-                        : `<button id="kang-finish-btn" class="kang-btn kang-btn-primary">Finish Practice</button>`}
+                    <button id="kang-submit-btn" class="kang-btn kang-btn-primary">Submit Test</button>
                 </div>
             </header>
             <div class="kang-nav" id="kang-nav"></div>
@@ -124,11 +120,7 @@ function _examRender() {
     `;
     document.getElementById('kang-prev').addEventListener('click', () => _examGoto(examState.idx - 1));
     document.getElementById('kang-next').addEventListener('click', () => _examGoto(examState.idx + 1));
-    if (examState.mode === 'test') {
-        document.getElementById('kang-submit-btn').addEventListener('click', () => _examConfirmSubmit());
-    } else {
-        document.getElementById('kang-finish-btn').addEventListener('click', () => _examSubmit(false));
-    }
+    document.getElementById('kang-submit-btn').addEventListener('click', () => _examConfirmSubmit());
     document.addEventListener('keydown', _examKeydown);
     _examRenderNav();
     _examRenderQuestion();
@@ -203,12 +195,6 @@ function _examRenderQuestion() {
     const qTextHtml = imageOnly
         ? ''
         : `<div class="kang-q-text">${_mathEsc(q.question_text)}</div>`;
-    const checkHtml = examState.mode === 'practice'
-        ? `<div class="kang-practice">
-             <button class="kang-btn kang-btn-secondary" id="kang-check-btn">Check Answer</button>
-             <div class="kang-feedback" id="kang-feedback"></div>
-           </div>`
-        : '';
     host.innerHTML = `
         <div class="kang-section-label ${sectionTint}">${_mathEsc(q._section)}</div>
         <div class="kang-q-head">
@@ -219,14 +205,12 @@ function _examRenderQuestion() {
         ${qTextHtml}
         ${imgHtml}
         <div class="kang-opts ${imageOnly ? 'kang-opts-compact' : ''}">${optsHtml}</div>
-        ${checkHtml}
     `;
     if (pos) pos.textContent = `Question ${examState.idx + 1} of ${examState.questions.length}`;
     if (typeof lucide !== 'undefined') lucide.createIcons();
     host.querySelectorAll('.kang-opt').forEach(btn => {
         btn.addEventListener('click', () => {
             examState.answers[q.id] = btn.dataset.opt;
-            delete examState.practiceChecked[q.id];
             _examRenderNav();
             _examRenderQuestion();
         });
@@ -237,49 +221,6 @@ function _examRenderQuestion() {
         _examRenderNav();
         _examRenderQuestion();
     });
-    if (examState.mode === 'practice') {
-        const checkBtn = document.getElementById('kang-check-btn');
-        if (checkBtn) checkBtn.addEventListener('click', () => _examCheckOne(q));
-        const prior = examState.practiceChecked[q.id];
-        if (prior) _examShowFeedback(prior);
-    }
-}
-
-/** @tag MATH @tag KANGAROO */
-async function _examCheckOne(q) {
-    const ans = examState.answers[q.id];
-    if (!ans) {
-        const fb = document.getElementById('kang-feedback');
-        if (fb) fb.innerHTML = `<div class="kang-fb kang-fb-warn">Select an option first.</div>`;
-        return;
-    }
-    try {
-        const res = await fetch('/api/math/kangaroo/submit-answer', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ set_id: examState.setId, question_id: q.id, answer: ans }),
-        });
-        const data = await res.json();
-        examState.practiceChecked[q.id] = data;
-        _examShowFeedback(data);
-    } catch (err) {
-        console.warn('[kangaroo] check failed', err);
-    }
-}
-
-/** @tag MATH @tag KANGAROO */
-function _examShowFeedback(data) {
-    const fb = document.getElementById('kang-feedback');
-    if (!fb) return;
-    const cls = data.is_correct ? 'kang-fb-ok' : 'kang-fb-no';
-    const head = data.is_correct ? '<i data-lucide="check-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Correct!' : `<i data-lucide="x-circle" style="width:14px;height:14px;vertical-align:-2px;stroke-width:1.5"></i> Not quite — correct answer is (${_mathEsc(data.correct_answer)})`;
-    fb.innerHTML = `
-        <div class="kang-fb ${cls}">
-            <div class="kang-fb-head">${head}</div>
-            ${data.solution ? `<div class="kang-fb-sol">${_mathEsc(data.solution)}</div>` : ''}
-        </div>
-    `;
-    if (typeof lucide !== 'undefined') lucide.createIcons();
 }
 
 /** @tag MATH @tag KANGAROO */
@@ -329,9 +270,7 @@ function _examConfirmSubmit() {
 async function _examSubmit(autoSubmit) {
     if (examState.timerHandle) { clearInterval(examState.timerHandle); examState.timerHandle = null; }
     document.removeEventListener('keydown', _examKeydown);
-    const timeSpent = examState.mode === 'test'
-        ? Math.max(0, examState.timeLimitSec - examState.remainingSec)
-        : Math.floor((Date.now() - examState.startedAt) / 1000);
+    const timeSpent = Math.max(0, examState.timeLimitSec - examState.remainingSec);
     const answers = Object.entries(examState.answers).map(([qid, a]) => ({ question_id: qid, answer: a }));
     const stage = document.getElementById('stage');
     if (stage) stage.innerHTML = `<div class="kang-wrap"><p class="kang-loading">Grading…</p></div>`;

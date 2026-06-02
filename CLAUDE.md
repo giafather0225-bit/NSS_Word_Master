@@ -1,5 +1,5 @@
 # GIA Learning App — Project Spec (CLAUDE.md)
-> Last updated: 2026-05-25 — 라우터 57개(파일 63개) · JS 128개 · CSS 66개 · 서비스 19개 · 마이그레이션 69개 (최신: 064) · child-pin/child-guide 추가 (bundle 외부 로딩) · 064 island_zone_status seed 수정 · Parent Dashboard 6탭 · CKLA 4번째 과목 · Top Weaknesses 홈탭 · 부모 PIN 게이트 감사 · legacy Reward 제거 · core.js → core-fx/core-stage/core-vault 3분할 · P2 전체 완료 · P3 완료
+> Last updated: 2026-06-02 — 라우터 57개(파일 63개) · JS 128개 · CSS 66개 · 서비스 19개 · 마이그레이션 71개 (최신: 066) · child-pin/child-guide 추가 (bundle 외부 로딩) · 065/066 query index 추가 · Parent Dashboard 6탭 · CKLA 4번째 과목 · Top Weaknesses 홈탭 · 부모 PIN 게이트 감사 · legacy Reward 제거 · core.js → core-fx/core-stage/core-vault 3분할 · P2 전체 완료 · P3 완료
 
 ## Overview
 - **Product**: 9세 여아(Gia)를 위한 AI-driven learning app — CKLA G3 (메인 영어 학습), DUX English (보조), Math Academy, Diary, Arcade
@@ -84,7 +84,7 @@ NSS_Word_Master/
 │   │   ├── lessons.py  system.py  gamification.py  learning.py
 │   │   ├── diary.py    math.py   assistant.py
 │   │   ├── us_academy.py  ckla.py  goals.py  island.py
-│   ├── services/                # 18 services
+│   ├── services/                # 19 services
 │   │   ├── xp_engine.py         # XP rules + award (config-overridable)
 │   │   ├── streak_engine.py     # 3-subject streak (ckla/math/game)
 │   │   ├── academy_session.py   # active session tracking
@@ -100,9 +100,11 @@ NSS_Word_Master/
 │   │   ├── email_sender.py
 │   │   ├── pin_guard.py / pin_hash.py
 │   │   ├── ollama_manager.py    # auto-start, healthcheck
-│   │   └── backup_engine.py     # auto-snapshot (7-day rolling)
+│   │   ├── backup_engine.py     # auto-snapshot (7-day rolling)
+│   │   ├── streak_freeze_engine.py # streak freeze (day-off) logic
+│   │   └── xp_lumi_bridge.py    # XP award → island lumi bridge
 │   ├── routers/                 # 57 files (52 registered; files_common.py = shared utility imported by files.py + files_voca.py, not a router)
-│   ├── migrations/              # 063_streak_freeze.py latest
+│   ├── migrations/              # 066_add_missing_query_indexes.py latest
 │   ├── data/                    # static content (math/, daily_words/)
 │   │   └── math/{G3,G4,G5,G6,glossary,kangaroo,placement}/
 │   ├── DB_INDEX.md  API_INDEX.md
@@ -708,7 +710,7 @@ pre_test (5문항, 진단+뇌 준비, 점수 미표시)
 ---
 
 ### Math Kangaroo
-90 sets in `backend/data/math/kangaroo/`: IKMC 2012-2023, intl 2009-2025, KSF 2020-2025, Lebanon 2024-2025, India, USA 2003-2025 (Cyprus 세트는 PDF 없어 2026-05-19 삭제)
+102 sets in `backend/data/math/kangaroo/`: IKMC 2012-2023, intl 2009-2025, KSF 2020-2025, Lebanon 2024-2025, AT (Austria) pre-ecolier 2014-2025, USA 2003-2025 (Cyprus 세트는 PDF 없어 2026-05-19 삭제)
 Levels: Pre-Ecolier (1-2), Ecolier (3-4), Benjamin (5-6), Cadet, Junior, Student
 Mode: 단일 모드 — 타이머 + 제출 후 결과 표시 (Practice/Test 구분 없음, 2026-05-03 통합)
 XP: complete +5, ≥80% +5, perfect +10
@@ -767,12 +769,12 @@ questions 배열 내 각 문제 필드:
 - `image_required: false` → `question_text` 인라인 렌더링 가능
 - 모든 solution은 영어로 작성
 
-**Solution 구축 현황 (2026-05-19 기준, 깨진 cyp/india/leb 15세트 삭제 후)**
+**Solution 구축 현황 (2026-06-02 기준, 전체 102세트 재집계)**
 
 | 카테고리 | 세트 수 | 비고 |
 |---------|--------|------|
-| Full per-question solutions | **27** / 90 | `q.solution` + `q.solution_steps` 완성 |
-| PDF Anchor 메타데이터-only | 63 / 90 | `questions` 배열 없음 — 의도적 (PDF.js로 PDF 페이지 직접 오픈), PDF 존재 확인됨 |
+| Full per-question solutions | **12** / 102 | `q.solution` + `q.solution_steps` 완성 (전부 at_* Austria pre-ecolier) |
+| PDF Anchor 메타데이터-only | 90 / 102 | `questions` 배열 비어있음 — 의도적 (PDF.js로 PDF 페이지 직접 오픈), PDF 존재 확인됨 |
 | 구형 root `solutions` dict | 0 | 신규 형식으로 전환 완료 |
 | 삭제된 깨진 세트 | -15 | 12 cyp_pre_ecolier (그리스 원본, PDF 없음) + 3 (india_2019, india_ksf, leb_2024) |
 
@@ -990,7 +992,7 @@ Hub UI is calm (`bg-page` + cards only). Energy/SFX (`arcade-sfx.js`) only insid
 
 ### Migrations (`backend/migrations/`)
 
-> 총 68개 파일 (번호 001~063 중 중복 prefix 5쌍(025/033/034/040/041) 포함). 시스템은 filename 전체로 추적하므로 동일 prefix를 가진 a/b 파일도 각각 별개로 실행됨 — 안전.
+> 총 71개 파일 (번호 001~066 중 중복 prefix 5쌍(025/033/034/040/041) 포함). 시스템은 filename 전체로 추적하므로 동일 prefix를 가진 a/b 파일도 각각 별개로 실행됨 — 안전.
 
 **001~024 (기반 + Island 초기)**
 001 base · 002 shop columns · 003 math tables · 004 review_source · 005 practice_sentence created_at · 006 academy_session active · 007 free_writings · 008 streak 3-subjects · 009 kangaroo columns · 010 us_academy_tables · 011 ckla_tables · 012 kangaroo rename set_ids · 013 diary_entry columns · 014 report schedule · 015 study_item starred · 016 weekly goals · 017 math_progress UNIQUE · 018 island_tables (10 new tables) · 019 ckla_grade · 020 ckla_badges · 021 ckla_spelling_grammar · 022 math_v2_schema · 023 island_decor_image_paths · 024 island_decor_extension
@@ -999,7 +1001,7 @@ Hub UI is calm (`bg-page` + cards only). Energy/SFX (`arcade-sfx.js`) only insid
 025a ai_call_log · 025b ckla_review_to_word_reviews · 026 ckla_aux_content · 027 fix_d1_lesson_titles · 028 fix_qa_model_answers · 029 fix_d4l9_evaluative · 030 audio_url_backfill · 031 fix_ocr_artifacts · 032 fix_data_quality_round2 · 033a add_qa_done · 033b math_progress_mastery · 034a math_attempt_misconception · 034b strip_wordnet_tags · 035 fix_bad_definitions · 036 fix_short_definitions · 037 fix_mw_colon_definitions · 038 fix_pos_and_short_definitions · 039 fix_circular_and_misc
 
 **040~056 (DUX 사전 정규화 + Island 확장)**
-040a fix_compound_noun_pos · 040b math_unique_constraints · 041a fix_relating_to_definitions · 041b math_daily_unique_date · 042 fix_examples_bold_and_wrong · 043 lowercase_definition_starts · 044 fix_structural_and_content_p1 · 045 expand_short_definitions · 046 fill_sort_order · 047 drop_us_academy_passages · 048 drop_us_academy_session_results · 049 fix_lesson14_progress · 050 generate_missing_audio · 051 normalize_pretest_stage · 052 island_zone_sequential_lock · 053 island_zone_first_evo_unlock · 054 xplog_composite_index · 055 island_evo_food_image_paths · 056 word_reviews_easiness_real · 057 normalize_pos_tags · 058 fix_words_bad_entries · 059 fix_reward_items_category_icons · 060 island_character_images · 061 top_weaknesses_indexes · 062 drop_legacy_rewards · 063 streak_freeze · **064 seed_island_zone_status** ← latest (island_zone_status 5행 + app_config island_initialized/lumi_exchange_rate 보정)
+040a fix_compound_noun_pos · 040b math_unique_constraints · 041a fix_relating_to_definitions · 041b math_daily_unique_date · 042 fix_examples_bold_and_wrong · 043 lowercase_definition_starts · 044 fix_structural_and_content_p1 · 045 expand_short_definitions · 046 fill_sort_order · 047 drop_us_academy_passages · 048 drop_us_academy_session_results · 049 fix_lesson14_progress · 050 generate_missing_audio · 051 normalize_pretest_stage · 052 island_zone_sequential_lock · 053 island_zone_first_evo_unlock · 054 xplog_composite_index · 055 island_evo_food_image_paths · 056 word_reviews_easiness_real · 057 normalize_pos_tags · 058 fix_words_bad_entries · 059 fix_reward_items_category_icons · 060 island_character_images · 061 top_weaknesses_indexes · 062 drop_legacy_rewards · 063 streak_freeze · 064 seed_island_zone_status (island_zone_status 5행 + app_config island_initialized/lumi_exchange_rate 보정) · 065 missing_table_indexes · **066 add_missing_query_indexes** ← latest (쿼리 인덱스 보강)
 
 ---
 
@@ -1287,7 +1289,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 | JS 소스 파일 | 128 | `ls frontend/static/js/*.js \| grep -v bundle` (child-pin.js + child-guide.js 추가 — bundle 외부 로딩; child-{calendar,keyboard,text,bootstrap}.js 분할 포함) |
 | CSS 파일 | 66 | `ls frontend/static/css/*.css` (island-guide.css 추가) |
 | Island JSX 컴포넌트 | 17 | `ls frontend/src/island/*.jsx` |
-| 마이그레이션 파일 | 69 | `ls backend/migrations/[0-9]*.py` (최신: 064_seed_island_zone_status) |
+| 마이그레이션 파일 | 71 | `ls backend/migrations/[0-9]*.py` (최신: 066_add_missing_query_indexes) |
 | ORM 모델 파일 | 11 | `ls backend/models/*.py` (\_base, \_\_init\_\_ 제외) |
 | 서비스 파일 | 19 | `ls backend/services/*.py` (xp_lumi_bridge + streak_freeze_engine 추가; pin_guard/pin_hash 각각 1개씩) |
 | Island 라우터 파일 수 | 5 | island.py + island_{character,dev,legend,shop}.py |
@@ -1310,7 +1312,7 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 | # | 파일 | 문제 | 심각도 |
 |---|------|------|--------|
 | ~~4~~ | ~~Island CSS 4개 파일~~ | ~~Work Principle #3 위반: hex 컬러 직접 사용~~ → **✅ 완료 (commit 0aaa0c0)** — 모든 hex → CSS 변수 마이그레이션, island-specific 토큰을 `theme.css`에 추가 | ✅ 해결됨 |
-| 5 | `backend/migrations/` | 067 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전. 062 최신, 059부터 단순 증가 적용 중 | 낮음 (시스템적으로 안전) |
+| 5 | `backend/migrations/` | 71 파일 중 중복 prefix 5쌍 (025/033/034/040/041) — filename 추적이라 안전. 066 최신, 059부터 단순 증가 적용 중 | 낮음 (시스템적으로 안전) |
 | ~~6~~ | ~~`models/system.py` `Reward`~~ | ~~legacy back-compat~~ → **✅ 완료 (2026-05-19, migration 062)** — 사용처 0건 확인 후 모델/라우터/테이블 삭제 | ✅ 해결됨 |
 | 10 | `finaltest.js` 608줄 | P2-1 XP 코드 추가 후 600 초과 (8줄). 분할 리스크 대비 효과 낮아 보류. 기준은 "~600줄" (tilde 허용). 재측정 기준: 기존 분할 완료분 — ~~arcade-crossword.js 588~~ ✅ ~~parent-panel.js 526~~ ✅ ~~child.js 683~~ ✅ ~~navigation.js 674~~ ✅ ~~arcade-word-invaders 647~~ ✅ ~~word-manager 603~~ ✅ ~~review-hub 594~~ ✅ ~~parent-panel-home.js 566~~ ✅ | 낮음 |
 | ~~11~~ | ~~500줄 초과 Python 2개~~ | ~~`services/xp_engine.py` 530·`routers/files_voca.py` 504~~ → **✅ 해소됨** — xp_engine 381줄·files_voca 169줄 (리팩토링 후 감소) | ✅ 해결됨 |
@@ -1390,12 +1392,12 @@ island_initialized, lumi_exchange_rate, lumi_rule_*, lumi_boost_*, island_on
 
 | 항목 | 상태 | 비고 |
 |------|------|------|
-| 세트 수 | 90 sets | `backend/data/math/kangaroo/*.json` (2026-05-19 cyp/india/leb 15 미작동 세트 삭제) |
+| 세트 수 | 102 sets | `backend/data/math/kangaroo/*.json` (at_* Austria 12세트 추가; 2026-05-19 cyp/india/leb 15 미작동 세트 삭제) |
 | PDF 위치 | `frontend/static/math/kangaroo/pdf/` | PDF Anchor Mode 채택 |
 | 답안 검증 | VERIFIED: `intl_*` 전체, `ikmc_2021_*`, `ikmc_2023/2024_ecolier`, `leb_2025_*`, `cyp_*` | |
 | 미검증 | `ikmc_2012~2022` (일부), `usa_*`, `ksf_*` | UI는 정상 작동, 답 출처 미확인 |
 | 알려진 오류 | (해결됨) cyp/india/leb 15세트는 2026-05-19 삭제 | |
-| solution 완성 | 27/105 세트 (full per-question solutions) ✅ | 78세트는 PDF Anchor 메타데이터-only (의도적) |
+| solution 완성 | 12/102 세트 (full per-question solutions, 전부 at_*) ✅ | 90세트는 PDF Anchor 메타데이터-only (의도적) |
 
 ### Island Character Catalog
 
