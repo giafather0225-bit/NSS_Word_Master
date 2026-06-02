@@ -1,0 +1,242 @@
+/* ================================================================
+   math-placement.css — Math Placement Test screens
+   Section: Math
+   Dependencies: theme.css, math-academy-problems.css
+   ================================================================ */
+
+/* ── Intro screen ──────────────────────────────────────────── */
+
+.math-placement-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 520px;
+    margin: 48px auto 0;
+    padding: 0 16px;
+    gap: 16px;
+}
+
+.math-placement-intro-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-full);
+    background: var(--math-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--math-primary);
+    margin-bottom: 4px;
+}
+
+.math-placement-intro-title {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.math-placement-intro-sub {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.math-placement-domains {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.math-placement-domain-chip {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--math-soft);
+    color: var(--math-ink);
+    border-radius: var(--radius-full);
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid var(--math-primary);
+    opacity: 0.7;
+}
+
+.math-placement-begin-btn {
+    margin-top: 8px;
+    min-width: 180px;
+    font-size: var(--font-size-md);
+    padding: 14px 32px;
+}
+
+/* ── Skip row ──────────────────────────────────────────────── */
+
+.math-placement-skip-row {
+    text-align: center;
+    margin-top: 4px;
+}
+
+.math-placement-skip-row .math-btn-ghost {
+    font-size: var(--font-size-sm);
+    color: var(--text-hint);
+    padding: 6px 14px;
+}
+
+.math-placement-skip-row .math-btn-ghost:hover {
+    color: var(--text-secondary);
+}
+
+/* ── Results screen ────────────────────────────────────────── */
+
+.math-placement-results-wrap {
+    max-width: 520px;
+    margin: 40px auto 0;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    text-align: center;
+}
+
+.math-placement-results-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: var(--radius-full);
+    background: var(--math-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.math-placement-results-title {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.math-placement-suggested-grade {
+    font-family: var(--font-family-display);
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--math-primary);
+    line-height: 1;
+    letter-spacing: -0.03em;
+}
+
+.math-placement-suggested-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-top: -6px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 11px;
+}
+
+/* ── Domain result bars ────────────────────────────────────── */
+
+.math-placement-domain-results {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 4px;
+}
+
+.math-placement-result-row {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px 12px;
+    text-align: left;
+}
+
+.math-placement-result-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+    gap: 8px;
+}
+
+.math-placement-result-label {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.math-placement-result-grade {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--math-ink);
+    background: var(--math-soft);
+    padding: 2px 8px;
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+}
+
+.math-placement-result-bar-wrap {
+    background: var(--bg-surface);
+    border-radius: var(--radius-full);
+    height: 8px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.math-placement-result-bar {
+    height: 100%;
+    border-radius: var(--radius-full);
+    transition: width 0.5s var(--ease-calm);
+}
+.math-placement-result-bar.pass { background: var(--math-primary); }
+.math-placement-result-bar.mid  { background: var(--arcade-primary); }
+.math-placement-result-bar.fail { background: var(--review-primary); }
+
+.math-placement-result-meta {
+    font-size: 11px;
+    color: var(--text-hint);
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+}
+
+/* ── Action row ────────────────────────────────────────────── */
+
+.math-placement-result-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+    width: 100%;
+}
+
+.math-placement-result-actions .math-btn-ghost {
+    flex: 0 0 auto;
+}
+
+.math-placement-result-actions .math-btn-primary {
+    flex: 1;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+    .math-placement-intro,
+    .math-placement-results-wrap {
+        margin-top: 24px;
+    }
+
+    .math-placement-suggested-grade {
+        font-size: 40px;
+    }
+
+    .math-placement-result-actions {
+        flex-direction: column;
+    }
+}
