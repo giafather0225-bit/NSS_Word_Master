@@ -281,12 +281,27 @@
     `;
 
     const doneBtn = body.querySelector('#math-sr-done');
-    if (doneBtn) doneBtn.addEventListener('click', () => {
+    if (doneBtn) doneBtn.addEventListener('click', async () => {
       _removeOverlay();
       if (typeof window._reviewHubOnMathDone === 'function') {
+        // Launched from Review Hub — hub handles XP + home refresh.
         window._reviewHubOnMathDone();
-      } else if (typeof renderTodayTasks === 'function') {
-        renderTodayTasks();
+      } else {
+        // Standalone launch (sidebar button) — award XP directly.
+        try {
+          const res = await fetch('/api/review/session-complete', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ type: 'math' }),
+          });
+          if (res.ok) {
+            const d = await res.json();
+            if (d.xp_earned > 0 && typeof window.showToast === 'function') {
+              window.showToast(`+${d.xp_earned} XP — Math review complete!`, 'success');
+            }
+          }
+        } catch { /* silent */ }
+        if (typeof renderTodayTasks === 'function') renderTodayTasks();
       }
     });
   }
